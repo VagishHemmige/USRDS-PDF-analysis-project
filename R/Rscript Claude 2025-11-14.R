@@ -2,6 +2,11 @@ library(ellmer)
 library(tidyverse)
 library(pdftools)
 
+
+#Define folder for status files
+results_dir <- "Results/Claude"
+dir.create(results_dir, recursive = TRUE, showWarnings = FALSE)
+
 # ----- Optional: Reset all output files via RStudio popup -----
 reset <- FALSE
 
@@ -16,14 +21,15 @@ if (interactive() && requireNamespace("rstudioapi", quietly = TRUE) && rstudioap
 }
 
 if (reset) {
-  files_to_delete <- c(
+  files_to_delete <- file.path(results_dir, c(
     "processed_files_claude.txt",
     "failed_files_claude.txt",
     "summary_partial_claude.rds",
     "summary_partial_claude.csv",
     "summary_final_claude.rds",
-    "summary_output_claude.csv"
-  )
+    "summary_output_claude.csv",
+    "type_summary_claude_schema.rds"
+  ))
   deleted <- file.remove(files_to_delete[file.exists(files_to_delete)])
   cat("🧹 Reset complete. Deleted", sum(deleted), "files.\n")
 } else {
@@ -32,7 +38,7 @@ if (reset) {
 
 # ----- Setup -----
 
-folder_path <- "C:/Users/katta/OneDrive - Montefiore Medicine/Desktop backup 2025-2-20/Anagha project/Anagha summer project PDFs"
+folder_path <- "data-raw/PDFs"
 pdf_files <- list.files(folder_path, pattern = "\\.pdf$", full.names = TRUE)
 
 id_prompt <- function(abstract) {
@@ -325,15 +331,16 @@ type_summary <- type_object(
 
 
 
-saveRDS(type_summary, "type_summary_claude_schema.rds")
+saveRDS(type_summary, file.path(results_dir, "type_summary_claude_schema.rds"))
 
 # ----- Paths -----
-processed_files_path <- "processed_files_claude.txt"
-failed_files_path <- "failed_files_claude.txt"
-partial_rds_path <- "summary_partial_claude.rds"
-partial_csv_path <- "summary_partial_claude.csv"
-final_rds_path <- "summary_final_claude.rds"
-final_csv_path <- "summary_output_claude.csv"
+processed_files_path <- file.path(results_dir, "processed_files_claude.txt")
+failed_files_path    <- file.path(results_dir, "failed_files_claude.txt")
+partial_rds_path     <- file.path(results_dir, "summary_partial_claude.rds")
+partial_csv_path     <- file.path(results_dir, "summary_partial_claude.csv")
+final_rds_path       <- file.path(results_dir, "summary_final_claude.rds")
+final_csv_path       <- file.path(results_dir, "summary_output_claude.csv")
+
 
 # ----- Load State -----
 processed_files <- if (file.exists(processed_files_path)) basename(readLines(processed_files_path)) else character(0)
