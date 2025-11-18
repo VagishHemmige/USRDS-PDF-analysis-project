@@ -3,13 +3,13 @@ library(readr)
 library(readxl)
 library(janitor)
 
-final_results_ChatGPT_raw <- readRDS("C:/Users/katta/OneDrive - Montefiore Medicine/Ellmer project/final_results_ChatGPT.rds")
-summary_final_claude_raw <- readRDS("C:/Users/katta/OneDrive - Montefiore Medicine/Ellmer project/summary_final_claude.rds")%>%
+final_results_ChatGPT_raw <- readRDS("Results/ChatGPT/final_results_ChatGPT.rds")
+summary_final_claude_raw <- readRDS("Results/Claude/summary_final_claude.rds")%>%
   bind_rows()
-summary_final_gemini_raw <- read_csv("summary_final_gemini.csv")
+summary_final_gemini_raw <- read_csv("Results/Gemini/summary_output_gemini.csv")
 
-human_results_raw <- read_excel("C:/Users/katta/OneDrive - Montefiore Medicine/Desktop backup 2025-2-20/Anagha project/Anagha summer project form files/Anagha summer project form 2025-10-29.xlsx", 
-                                                    sheet = "Vagish Hemmige summer project f")%>%
+human_results_raw <- read_excel("data-raw/Data abstraction Excel reviewer 1 and 2.xlsx", 
+                                sheet = "Reviewer 2")%>%
   clean_names()
 
 
@@ -26,19 +26,24 @@ summary_final_gemini_clean <- summary_final_gemini_raw %>%
 human_results_clean<-human_results_raw%>%
   
   #Language variables
-  mutate(language_r=str_detect(what_programming_language_s_was_were_used, "R"))%>%
-  mutate(language_sas=str_detect(what_programming_language_s_was_were_used, "SAS"))%>%
-  mutate(language_stata=str_detect(what_programming_language_s_was_were_used, "STATA"))%>%
-  mutate(language_spss=str_detect(what_programming_language_s_was_were_used, "SPSS"))%>%
+  mutate(languages_used_R=str_detect(what_programming_language_s_was_were_used, "R"))%>%
+  mutate(languages_used_SAS=str_detect(what_programming_language_s_was_were_used, "SAS"))%>%
+  mutate(languages_used_Stata=str_detect(what_programming_language_s_was_were_used, "STATA"))%>%
+  mutate(languages_used_SPSS=str_detect(what_programming_language_s_was_were_used, "SPSS"))%>%
+  mutate(languages_used_Python=str_detect(what_programming_language_s_was_were_used, "Python"))%>%
+  mutate(languages_used_SQL=str_detect(what_programming_language_s_was_were_used, "SQL"))%>%
+  mutate(languages_used_Julia=str_detect(what_programming_language_s_was_were_used, "Julia"))%>%
+  mutate(languages_used_Matlab=str_detect(what_programming_language_s_was_were_used, "Matlab"))%>%
+  
   
   #Files used
-  mutate(file_core=str_detect(what_files_were_used, "Core"))%>%
-  mutate(file_institution=str_detect(what_files_were_used, "Institution"))%>%
-  mutate(file_ps=str_detect(what_files_were_used, "Physician/Supplier"))%>%
-  mutate(file_hospital=str_detect(what_files_were_used	, "Hospital"))%>%
-  mutate(file_transplant=str_detect(what_files_were_used	, "Transplant"))%>%
-  mutate(file_partd=str_detect(what_files_were_used, "Part D"))%>%
-  mutate(file_CROWNWeb=str_detect(what_files_were_used, "CROWNWeb"))%>%
+  mutate(files_used_Core=str_detect(what_files_were_used, "Core"))%>%
+  mutate(files_used_Institution=str_detect(what_files_were_used, "Institution"))%>%
+  mutate(files_used_PhysicianSupplier=str_detect(what_files_were_used, "Physician/Supplier"))%>%
+  mutate(files_used_Hospital=str_detect(what_files_were_used	, "Hospital"))%>%
+  mutate(files_used_Transplant=str_detect(what_files_were_used	, "Transplant"))%>%
+  mutate(files_used_PartD=str_detect(what_files_were_used, "Part D"))%>%
+  mutate(files_used_CROWNWeb=str_detect(what_files_were_used, "CROWNWeb"))%>%
   
   #Components extracted
   mutate(component_basicdemographics=str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Basic demographics"))%>%

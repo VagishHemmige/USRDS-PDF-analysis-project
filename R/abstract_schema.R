@@ -5,202 +5,162 @@ id_prompt <- function(abstract) {
 You are an expert reviewer of USRDS-based research papers. 
 Extract metadata using STRICT, SEQUENTIAL, and ANTI-HALLUCINATION rules.
 
-Your job is to fill ONLY the fields in the schema.
-Return no commentary and never invent information.
+Return ONLY the fields in the schema below.
+Return no commentary, no reasoning, and never invent data.
 
 =========================================================
 SECTION 1 — GLOBAL PRINCIPLES
 =========================================================
 
 1. If a detail is NOT explicitly stated in the abstract or text → return FALSE or NULL.
-2. NEVER infer programming languages, crosswalks, or data sources.
+2. NEVER infer:
+   - programming languages
+   - crosswalk use
+   - USRDS files used
 3. If the abstract does not explicitly mention USRDS OR Medicare ESRD program data:
-      → is_new_data_analysis = FALSE
-      → files_used_* = FALSE
-      → data_abstracted = empty
-      → covered_by_usrds = FALSE
-4. If information is ambiguous → treat as “uncertain”.
+      → is_this_paper_a_new_data_analysis = FALSE  
+      → all files_used_* = FALSE  
+      → all data components = FALSE  
+         (component_basicdemographics, component_icd9, component_icd10,
+          component_cptcode, component_medicationD, component_transplant,
+          component_costs, component_residential)
+      → does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = FALSE
+      → would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = FALSE
+      → which_tasks_would_not_be_covered = NULL
+      → were_any_crosswalks_used = FALSE
+4. If information is ambiguous → treat as “uncertain” where allowed; otherwise FALSE.
 
 =========================================================
-SECTION 2 — TOP-LEVEL SEQUENTIAL LOGIC
+SECTION 2 — SEQUENTIAL LOGIC
 =========================================================
 
-STEP 1 — Extract bibliographic metadata  
+STEP 1 — Extract bibliographic metadata:
 - authors  
 - title  
 - journal  
 - year  
 
-STEP 2 — Identify whether the study is a **new analysis using USRDS**  
-Set is_new_data_analysis = TRUE only if the abstract is a new analysis of patient level data.
-If the paper is a review article, this is false
+STEP 2 — Identify whether this is a new analysis:
+is_this_paper_a_new_data_analysis = TRUE only if:
+- the study conducts original analyses using USRDS or Medicare ESRD patient-level data.
 
-STEP 3 — If is_new_data_analysis = FALSE  
-Then ALL of the following MUST be forced:  
-- files_used_* = FALSE  
-- data_abstracted = empty  
-- file_choice_appropriate = FALSE  
-- covered_by_usrds = FALSE  
-- tasks_not_covered = empty or NULL  
+STEP 3 — Identify whether the study is transplant-related:
+Set is_this_a_transplant_related_study = TRUE only if transplantation is explicitly studied.
+This should be false if transplant date is only used as a censoring date, not as an explicit outcome
+
+STEP 4 — Classify transplant study type:
+which_type_of_transplant_study_is_this must be one of:
+- “Pre-transplant access to care”
+- “Pre-transplant management/outcomes”
+- “Post-transplant”
+- “NA” if is_this_a_transplant_related_study=FALSE
 
 =========================================================
 SECTION 3 — PROGRAMMING LANGUAGES
 =========================================================
 
+did_the_authors_state_what_programming_language_they_used = TRUE only if the abstract explicitly names the language.
+
 languages_used_* booleans should be TRUE ONLY if explicitly mentioned:
+- R, SAS, Stata, Python, SQL, Matlab, Julia, SPSS
 
-Examples that trigger TRUE:
-- “Analysis performed in R 4.2”
-- “SAS 9.4”
-- “Python 3.10”
-- “Stata MP”
-- “SQL queries”
-- “MATLAB toolbox”
-- “SPSS statistics”
-- “Julia scripts”
-
-NEVER infer from vague phrases such as:
+Do NOT infer from:
 - “statistical software”
-- “standard packages”
-- “custom scripts”
-- “statistical computing environment”
+- “common packages”
+- “analysis performed in standard software”
 
 =========================================================
 SECTION 4 — FILE SOURCE DETERMINATION
 =========================================================
 
-file_source_type must be:
-- “explicit” → USRDS explicitly named  
-- “inferred” → Medicare ESRD claims implied but not explicitly USRDS  
-- “uncertain” → unclear or unspecified
+file_source_type must be exactly:
+- “explicit” → USRDS named directly  
+- “inferred” → Medicare ESRD claims implied but USRDS not named  
+- “uncertain” → unclear  
 
 =========================================================
-SECTION 5 — USRDS FILE IDENTIFICATION VIA KEY PHRASES
+SECTION 5 — USRDS FILE IDENTIFICATION
 =========================================================
 
-Set each files_used_* boolean TRUE only if explicit textual evidence supports it.
+Set each files_used_* = TRUE only if explicitly mentioned:
 
--------------------------
-A. CORE FILE (demographics, ESRD onset, 2728 form)
--------------------------
-Trigger phrases:
-- “ESRD Medical Evidence Form 2728”
-- “Form 2728” / “CMS-2728”
-- “date of ESRD onset”
-- “initial Medicare eligibility”
-- “cause of ESRD”
-- “comorbid conditions from USRDS”
-- “baseline demographics from USRDS Core”
-- “ZIP code from USRDS”
-
--------------------------
-B. TRANSPLANT FILE
--------------------------
-Trigger phrases:
-- “transplant date from USRDS”
-- “waitlist information”
-- “donor type (living/deceased)”
-- “graft failure date”
-- “US transplant registry linkage via USRDS”
-
--------------------------
-C. PART D (medications)
--------------------------
-Trigger phrases:
-- “Medicare Part D prescription claims”
-- “Part D drug fills”
-- “immunosuppressive medication fills from Part D”
-
--------------------------
-D. INSTITUTION FILE (dialysis facilities)
--------------------------
-Trigger phrases:
-- “facility characteristics”
-- “facility profit status”
-- “dialysis center chain affiliation”
-- “facility-level variables from USRDS”
-
-
--------------------------
-E. PHYSICIAN/SUPPLIER FILE
--------------------------
-Trigger phrases:
-- “physician claims”
-- “provider services”
-- “HCPCS codes”
-- “CPT-coded outpatient procedures”
-- “Part B claims”
-- “Immunosuppression”
-
--------------------------
-F. HOSPITAL FILE
--------------------------
-Trigger phrases:
-- “inpatient hospitalizations”
-- “Medicare inpatient stays”
-- “DRG codes”
-- “hospitalization rates from USRDS”
-
-If unsure → files_used_* = FALSE.
+CORE → 2728 form, Medical Evidence form, ESRD onset, cause of ESRD, baseline demographics.  Date of transplant. 
+Residence. Payer.  Cause of ESRD.  Baseline comorbidities.
+TRANSPLANT → graft failure, donor type, waitlist.  Most transplant details except date of transplant require this file.
+PART D → Medicare Part D drug fills (any medication except immunosuppression, which is Part B i.e. Physician Supplier)  
+INSTITUTION → Any billing by hospitals, clinics, hospice, home health, inpatient, outpatient (Part A)
+PHYSICIAN/SUPPLIER → Part B claims Physician/supplier claims are bills covering physician, laboratory, 
+  and radiology services, as well as medical supplies/DME 
+HOSPITAL → inpatient stays, DRG codes, hospitalization rates.  Costs are not present and require the INSTITUTION file  
+CROWNWeb → “CROWNWeb” or facility clinical metrics.
 
 =========================================================
-SECTION 6 — DATA ABSTRACTED (types of data)
+SECTION 6 — DATA COMPONENTS
 =========================================================
 
-Set TRUE only if explicitly mentioned:
+Each component_* must be TRUE only if explicitly mentioned:
 
-- “baseline demographics”
-- “ZIP code” / “residential location”
-- “transplant-specific variables”
-- “ICD-9 codes”
-- “ICD-10 codes”
-- “CPT codes”
-- “Part D prescription fills”
-- “Medicare costs” or “reimbursement amounts”
+- component_basicdemographics  
+- component_icd9  
+- component_icd10  
+- component_cptcode  
+- component_medicationD  
+- component_transplant  
+- component_costs  
+- component_residential  
 
 =========================================================
 SECTION 7 — FILE APPROPRIATENESS
 =========================================================
 
-file_choice_appropriate = TRUE ONLY IF:
-- the USRDS files used are clearly appropriate for the questions asked.
+does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = TRUE only when:
+- the files used clearly match the research aims.
 
-Examples (appropriate):
-- “Evaluated hospitalization rates” → Hospital File
-- “Identified medication adherence” → Part D
-
-Examples (inappropriate):
-- Studying drug use WITHOUT Part D
-- Studying transplant type WITHOUT Transplant File
-
-file_choice_appropriate_reason must be a SHORT STRING.
+file_choice_appropriate_reason = SHORT STRING.
 
 =========================================================
 SECTION 8 — CROSSWALK USE
 =========================================================
 
-Trigger TRUE only if explicitly stated:
-- “UNOS crosswalk”  
-- “provider crosswalk”  
-- “physician crosswalk”  
-- “NPI linkage”  
-- “UNOS–USRDS linkage”  
+were_any_crosswalks_used = TRUE only if explicitly stated.
+
+Trigger TRUE for specific crosswalks only if explicitly named:
+- UNOS crosswalk  
+- physician crosswalk  
+- provider crosswalk  
+
+crosswalk_used_UNOS  
+crosswalk_used_physician  
+crosswalk_used_provider  
+
+If ANY of these are TRUE → were_any_crosswalks_used must be TRUE.
 
 =========================================================
-SECTION 9 — OUTPUT FORMAT (CRITICAL)
+SECTION 9 — USRDS PACKAGE COVERAGE
 =========================================================
 
-Return ONLY the following schema fields:
+would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package:
+TRUE only if study tasks can be performed using usRds.
+
+which_tasks_would_not_be_covered:
+List tasks only if the above is FALSE.
+
+=========================================================
+SECTION 10 — OUTPUT FORMAT (CRITICAL)
+=========================================================
+
+Return ONLY the following fields, with EXACT names:
 
 - authors
 - title
 - journal
 - year
 
-- is_new_data_analysis
-- is_transplant_related
+- is_this_paper_a_new_data_analysis
+- is_this_a_transplant_related_study
+- which_type_of_transplant_study_is_this
 
-- stated_language
+- did_the_authors_state_what_programming_language_they_used
 - languages_used_R
 - languages_used_SAS
 - languages_used_Stata
@@ -218,24 +178,33 @@ Return ONLY the following schema fields:
 - files_used_Institution
 - files_used_PhysicianSupplier
 - files_used_Hospital
+- files_used_CROWNWeb
 
-- file_choice_appropriate_boolean
+- does_the_choice_of_files_codes_seem_appropriate_for_the_research_question
 - file_choice_appropriate_reason
 
 - comments
-- shared_code
+- did_the_authors_share_the_code_they_used
 
-- funded
-- funder
+- component_basicdemographics
+- component_icd9
+- component_icd10
+- component_cptcode
+- component_medicationD
+- component_transplant
+- component_costs
+- component_residential
 
-- covered_by_usrds
-- tasks_not_covered
+- was_the_study_funded
+- who_funded_the_study
 
-- crosswalk_used_boolean
+- would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package
+- which_tasks_would_not_be_covered
+
+- were_any_crosswalks_used
 - crosswalk_used_UNOS
 - crosswalk_used_physician
-- crosswalk_used_provider
-")
+- crosswalk_used_provider")
 }
 
 
@@ -247,10 +216,18 @@ type_summary <- type_object(
   journal = type_string("Journal name"),
   year = type_integer("Publication year"),
   
-  is_new_data_analysis = type_boolean("TRUE only if new USRDS analysis performed"),
-  is_transplant_related = type_boolean("TRUE only if study explicitly about transplantation"),
+  is_this_paper_a_new_data_analysis = type_boolean("TRUE only if new USRDS analysis performed"),
+  is_this_a_transplant_related_study = type_boolean("TRUE only if study explicitly about transplantation"),
   
-  stated_language = type_boolean("Did paper explicitly state the programming language?"),
+  which_type_of_transplant_study_is_this = type_enum(
+    "What type of transplant study is this? NA if not transplant-related",
+    values = c("Pre-transplant access to care", 
+               "Pre-transplant management/outcomes", 
+               "Post-transplant", 
+               "NA")
+  ),
+  
+  did_the_authors_state_what_programming_language_they_used = type_boolean("Did paper explicitly state the programming language?"),
   languages_used_R=type_boolean("Did paper use the R programming language?"),
   languages_used_SAS=type_boolean("Did paper use the SAS programming language?"),
   languages_used_Stata=type_boolean("Did paper use the Stata programming language?"),
@@ -270,19 +247,31 @@ type_summary <- type_object(
   files_used_Institution= type_boolean("Was the Institution file used?"),
   files_used_PhysicianSupplier= type_boolean("Was the Physician Supplier file used?"),
   files_used_Hospital= type_boolean("Was the Hospital file used?"),
+  files_used_CROWNWeb= type_boolean("Was the CROWNWeb file used?"),
   
-  file_choice_appropriate_boolean = type_boolean("Were file choices appropriate?"),
+  
+  does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = type_boolean("Were file choices appropriate?"),
   file_choice_appropriate_reason = type_string("Reason for choice of answer for file_choice_appropriate_boolean?"),
   comments = type_string("Comments, free text"),
-  shared_code = type_boolean("Was the code shared?"),
+  did_the_authors_share_the_code_they_used = type_boolean("Was the code shared?"),
   
-  funded = type_boolean("Did the paper state funding?"),
-  funder = type_string("Funder name"),
+  component_basicdemographics = type_boolean("Did the study abstract basic demographics?"),
+  component_icd9 = type_boolean("Did the study abstract ICD-9 codes?"),
+  component_icd10 = type_boolean("Did the study abstract ICD-10 codes?"),
+  component_cptcode = type_boolean("Did the study abstract CPT codes?"),
+  component_medicationD = type_boolean("Did the study abstract Medicare Part D medications?"),
+  component_transplant = type_boolean("Did the study abstract transplant-specific information?"),
+  component_costs = type_boolean("Did the study abstract Medicare costs or reimbursements?"),
+  component_residential = type_boolean("Did the study abstract ZIP code or residential location?"),
   
-  covered_by_usrds = type_boolean("Could usRds R package (https://vagishhemmige.github.io/usRds/) reproduce this?"),
-  tasks_not_covered = type_string("Tasks not supported in usrdsR"),
+  was_the_study_funded = type_boolean("Did the paper state funding?"),
+  who_funded_the_study = type_string("Funder name"),
   
-  crosswalk_used_boolean = type_boolean("Did the paper use any crosswalks?"),
+  would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = 
+    type_boolean("Could usRds R package (https://vagishhemmige.github.io/usRds/) reproduce this?"),
+  which_tasks_would_not_be_covered = type_string("Tasks not supported in usrdsR"),
+  
+  were_any_crosswalks_used = type_boolean("Did the paper use any crosswalks?"),
   crosswalk_used_UNOS=type_boolean("Did the paper use the UNOS crosswalk?"),
   crosswalk_used_physician=type_boolean("Did the paper use the physician crosswalk?"),
   crosswalk_used_provider=type_boolean("Did the paper use the provider crosswalk?")

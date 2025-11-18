@@ -69,7 +69,7 @@ estimate_tokens <- function(text) ceiling(nchar(text) / 4)
 source("R/abstract_schema.R")
 
 chatgpt1 <- chat_openai(
-  model = "gpt-5-mini",
+  model = "gpt-5.1",
   system_prompt = id_prompt("")
   )
 
@@ -129,7 +129,7 @@ extract_summary_row <- function(pdf_path,
     
     result <- tryCatch({
       chatgpt1 <- chat_openai(
-        model = "gpt-5-mini",
+        model = "gpt-5.1",
         system_prompt = id_prompt("")
       )
       chatgpt1$chat_structured(input_text, type = type_summary)
@@ -154,7 +154,7 @@ extract_summary_row <- function(pdf_path,
     
     if (inherits(result, "error") || is.null(result)) {
       chatgpt1 <- chat_openai(
-        model = "gpt-5-mini",
+        model = "gpt-5.1",
         system_prompt = id_prompt("")
       )
       fallback <- chatgpt1$chat(input_text)
