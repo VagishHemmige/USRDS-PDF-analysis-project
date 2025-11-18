@@ -4,6 +4,10 @@ library(tidyverse)
 library(pdftools)
 library(rstudioapi)
 
+# Define folder for Gemini output files
+results_dir <- "Results/Gemini"
+dir.create(results_dir, recursive = TRUE, showWarnings = FALSE)
+
 # ---- Optional Reset Prompt ----
 if (interactive() && rstudioapi::isAvailable()) {
   reset_confirm <- rstudioapi::showQuestion(
@@ -13,19 +17,22 @@ if (interactive() && rstudioapi::isAvailable()) {
     cancel = "No, keep"
   )
   if (reset_confirm) {
-    files_to_delete <- c(
+    files_to_delete <- file.path(results_dir, c(
+      "processed_files_gemini.txt",
+      "failed_files_gemini.txt",
       "summary_partial_gemini.rds",
-      "failed_gemini_files.txt",
-      "summary_final_gemini.csv",
-      "job_status_Gemini.csv"
-    )
+      "summary_partial_gemini.csv",
+      "summary_final_gemini.rds",
+      "summary_output_gemini.csv",
+      "type_summary_gemini_schema.rds"
+    ))
     deleted <- file.remove(files_to_delete[file.exists(files_to_delete)])
     message("🧹 Deleted ", sum(deleted), " files.")
   }
 }
 
 # ---- Setup ----
-folder_path <- "C:/Users/katta/OneDrive - Montefiore Medicine/Desktop backup 2025-2-20/Anagha project/Anagha summer project PDFs"
+folder_path <- "data-raw/PDFs"
 pdf_files <- list.files(folder_path, pattern = "\\.pdf$", full.names = TRUE)
 
 estimate_tokens <- function(text) ceiling(nchar(text) / 4)
@@ -322,7 +329,7 @@ type_summary <- type_object(
 
 
 # ---- Job Queue Setup ----
-job_file <- "job_status_Gemini.csv"
+job_file <- file.path(results_dir, "job_status_Gemini.csv")
 if (!file.exists(job_file)) {
   job_status <- tibble(
     full_path = pdf_files,
@@ -337,7 +344,7 @@ if (!file.exists(job_file)) {
 }
 
 # ---- Resume Results ----
-checkpoint_file <- "summary_partial_gemini.rds"
+checkpoint_file <- file.path(results_dir, "summary_partial_gemini.rds")
 if (file.exists(checkpoint_file)) {
   results_list <- readRDS(checkpoint_file)
 } else {
@@ -469,7 +476,7 @@ for (i in seq_len(nrow(job_status))) {
 
 # ---- Final Save ----
 final_df <- bind_rows(results_list)
-write_csv(final_df, "summary_final_gemini.csv")
+write_csv(final_df, file.path(results_dir, "summary_output_gemini.csv"))
 
 message("\n===== Summary =====")
 message("Total requests: ", total_requests)
