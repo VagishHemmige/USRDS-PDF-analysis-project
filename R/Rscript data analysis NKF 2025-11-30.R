@@ -1,4 +1,4 @@
-#Data analysis script
+#Data analysis script for NKF.  This will run the full 173 PDFs
 
 library(tidyverse)
 library(readr)
@@ -137,7 +137,7 @@ df_wide <- df_wide %>%
   mutate(across(all_of(logical_cols), convert_to_logical))
 
 #Save intermediate step
-write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")  
+#write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")  
 
 
 #How well can LLMs differentiate new data analyses from papers that are not new data analyses?
@@ -169,13 +169,9 @@ df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
 
 #Create a table 2
 #----------------------------------------------------------------
-# 1. Filter to human-positive dataset
+# 1. Filter to human-positive dataset (no filtering for the NKF abstract)
 #----------------------------------------------------------------
-df_filt <- df_wide %>%
-  filter(
-    is_this_paper_a_new_data_analysis_human == TRUE,
-    is_this_a_transplant_related_study_human == TRUE
-  )
+df_filt <- df_wide
 
 #----------------------------------------------------------------
 # 2. Identify all human-coded boolean variables
@@ -228,7 +224,7 @@ kappa_table <- kappa_results %>%
 kappa_table
 gtsave(
   data = kappa_table,
-  filename = "Results/kappa_table.docx"
+  filename = "Results/kappa_table_NKF.docx"
 )
 
 
@@ -330,5 +326,5 @@ breakdown_gt <- breakdown_table %>%
 breakdown_gt
 gtsave(
   data = breakdown_gt,
-  filename = "Results/breakdown_gt.docx"
+  filename = "Results/breakdown_gt_NKF.docx"
 )
