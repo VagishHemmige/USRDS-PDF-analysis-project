@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - quarto/**
+    
+    
+author:
+  - name: Vagish Hemmige
+    email: vagish.hemmige@gmail.com
+
+
+
+website:
+  site-url: https://vagishhemmige.github.io/USRDS-PDF-analysis-project
+  repo-url: https://github.com/VagishHemmige/USRDS-PDF-analysis-project
+  repo-actions: [edit, issue]
+  title: "Analysis of 175 papers related to the USRDS"
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+
+  page-navigation: true
+
+custom-callout:
+  Rcode:
+    icon: true
+    icon-symbol: "💻 "
+    color: "pink"
+
+filters:
+- custom-callout
+
+format:
+  html:
+    theme: cosmo
+    css: styles.scss
+    toc: true
+    code-fold: true
+    code-tools: true
+    page-layout: full
+    code-summary: "Click to show/hide R Code"
+    lightbox: true
