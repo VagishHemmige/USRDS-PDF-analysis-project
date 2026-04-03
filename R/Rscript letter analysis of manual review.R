@@ -127,25 +127,23 @@ Anagha_summer_project_form_final %>%
   as_gt() %>%
   gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html")
 
+
+
+
+
 #Create variable label list
 label_list = list(
   is_this_paper_a_new_data_analysis ~ "New data analysis",
   which_type_of_transplant_study_is_this ~ "Type of transplant study",
   did_the_authors_state_what_programming_language_they_used ~ "Programming language stated",
   did_the_authors_explicitly_state_what_files_they_used ~ "USRDS files explicitly stated",
-  which_pieces_of_data_were_abstracted_from_the_files ~ "Data elements abstracted",
   does_the_choice_of_files_codes_seem_appropriate_for_the_research_question ~ "Files/codes appropriate for research question",
-  comments_16 ~ "Comments on file/code choice",
   did_the_authors_share_the_code_they_used ~ "Authors shared code",
   was_the_study_funded ~ "Study funded",
-  who_funded_the_study ~ "Study funder",
   would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package ~ "Covered by proposed usRds package",
-  which_tasks_would_not_be_covered ~ "Tasks not covered by usRds",
   were_any_crosswalks_used ~ "Any crosswalks used",
   which_crosswalks_were_used ~ "Crosswalks used",
-  confirmed_by_vh ~ "Confirmed by VH",
   changes_made ~ "Changes made after review",
-  comments_26 ~ "Reviewer comments",
   language_r ~ "R used",
   language_sas ~ "SAS used",
   language_stata ~ "Stata used",
@@ -178,10 +176,17 @@ Anagha_summer_project_form_final %>%
     -title,
     -journal,
     -year,
-    -what_programming_language_s_was_were_used,-what_files_were_used
+    -what_programming_language_s_was_were_used,-what_files_were_used,
+    -which_pieces_of_data_were_abstracted_from_the_files,
+    -comments_16,
+    -comments_26,
+    -confirmed_by_vh,
+    -who_funded_the_study,
+    -which_tasks_would_not_be_covered
   ) %>%
   tbl_summary(by = is_this_a_transplant_related_study,
-              label=label_list
+              label=label_list,
+              missing = "no"
               ) %>%
   
   add_variable_group_header(
