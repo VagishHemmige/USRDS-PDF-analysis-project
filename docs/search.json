@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html#methods",
+    "href": "index.html#methods",
+    "title": "Overview of USRDS analysis",
+    "section": "Methods",
+    "text": "Methods",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "Overview of USRDS analysis",
+    "section": "Results",
+    "text": "Results\nSee the detailed results pages linked via the left sidebar.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#reproducibility",
+    "href": "index.html#reproducibility",
+    "title": "Overview of USRDS analysis",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nAll analyses presented on this website are fully reproducible.\nThe complete source code used to perform the full analysis and generate the tables and figures is publicly available at this GitHub repo.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#abstractsmanuscripts",
+    "href": "index.html#abstractsmanuscripts",
+    "title": "Overview of USRDS analysis",
+    "section": "Abstracts/manuscripts",
+    "text": "Abstracts/manuscripts\nThis analysis has yet to be published to date.\nAbstracts have been presented or will be presented at:\n\nWorld Transplant Congress 2025\nAmerican Transplant Congress 2026",
+    "crumbs": [
+      "Home"
+    ]
+  }
+]

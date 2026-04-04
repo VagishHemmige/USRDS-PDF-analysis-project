@@ -1,33 +1,23 @@
 ---
-title: "Overview"
+title: "Overview of USRDS analysis"
 format: html
 ---
 
-## Clinical background
-
-Solid organ transplantation has transformed survival for patients with end-stage organ disease. For people living with HIV (PLWH), access to transplantation has historically been limited by medical uncertainty, regulatory restrictions, and stigma. Over the past two decades, however, advances in antiretroviral therapy (ART) and transplant immunology have substantially changed the clinical landscape.
-
-This project integrates HIV epidemiologic data with SRTR transplant center data to examine geographic access to HIV-experienced transplant programs across the United States.
-
+## The United States Renal Data System
 
 ## Methods
 
-This project evaluates geographic access to solid organ transplant centers for people living with HIV in the United States. County-level HIV prevalence data from the CDC NCHHSTP AtlasPlus system were integrated with national transplant center location data. Transplant centers were classified by activity status and HIV program participation (including HOPE Act programs).
 
-Geographic accessibility was estimated using drive-time isochrones generated at standardized morning departure times. Isochrones were unioned across centers and spatially joined to county and tract-level population data to estimate the number and proportion of people living with HIV within defined travel-time thresholds.
-
-All data processing and spatial analyses were conducted in R using reproducible workflows built on sf, tigris, and custom functions documented throughout this site. No spatial smoothing or statistical modeling was applied unless explicitly stated.
 
 ## Results
 
 See the detailed results pages linked via the left sidebar.
 
-
 ## Reproducibility
 
 All analyses presented on this website are fully reproducible.  
 
-The complete source code used to perform the full analysis and generate the tables and figures is publicly available at this [GitHub repo](https://github.com/VagishHemmige/HOPE-CDC-analysis-2026).  The R script `R/main.R` will run the R subscripts needed for this analysis in the order they are to be run.  Model assumptions, parameter values, and analytic workflows are documented in the repository to facilitate transparency and reuse.
+The complete source code used to perform the full analysis and generate the tables and figures is publicly available at this [GitHub repo](https://github.com/VagishHemmige/USRDS-PDF-analysis-project).
 
 
 ## Abstracts/manuscripts
@@ -36,6 +26,5 @@ This analysis has yet to be published to date.
 
 Abstracts have been presented or will be presented at:
 
-- IDWeek 2025 (click below to enlarge) [![](figures/liver/IDWeek 2025.png)](figures/liver/IDWeek 2025.png)
-- International Society of Heart and Lung Transplantation 2026
+- World Transplant Congress 2025
 - American Transplant Congress 2026
