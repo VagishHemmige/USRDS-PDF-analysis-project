@@ -114,4 +114,6 @@ df_wide <- df_wide %>%
 #write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")  
 
 
+#---- Identify all human-coded boolean variables----
 
+human_vars <- names(df_wide)[grepl("_human$", names(df_wide))]

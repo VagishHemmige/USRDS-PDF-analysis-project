@@ -13,7 +13,7 @@ convert_to_logical <- function(x) {
 
 
 # Compute kappa helper
-compute_kappa <- function(hvar, mvar) {
+compute_kappa <- function(hvar, mvar, df_filt) {
   if (!(mvar %in% names(df_filt))) return(NA_real_)
   
   df_k <- df_filt %>%
@@ -29,7 +29,7 @@ compute_kappa <- function(hvar, mvar) {
 
 # Function to compute numerators, denominators, percentages
 
-get_breakdown <- function(hvar) {
+get_breakdown <- function(hvar, df_filt) {
   
   base <- sub("_human$", "", hvar)
   chat <- paste0(base, "_ChatGPT")
@@ -68,4 +68,20 @@ get_breakdown <- function(hvar) {
            chat_nd, chat_pct,
            cla_nd, cla_pct,
            gem_nd, gem_pct)
+}
+
+
+
+#Function to label variables in a df being piped into a table-creating object
+
+add_label_for_gt <- function(df, labels = label_list, var_col = "variable") {
+  if (!var_col %in% names(df)) {
+    return(df)
+  }
+  
+  labels_chr <- unlist(labels)
+  df$label <- labels_chr[df[[var_col]]]
+  df$label[is.na(df$label)] <- df[[var_col]][is.na(df$label)]
+  
+  df
 }

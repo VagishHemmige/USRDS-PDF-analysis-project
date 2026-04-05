@@ -28,69 +28,64 @@ df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
 
 
 
-#Create a table 2
-#----------------------------------------------------------------
-# 1. Filter to human-positive dataset (no filtering for the NKF abstract)
-#----------------------------------------------------------------
-df_filt <- df_wide
+#---- Filter to human-positive dataset----
 
-#----------------------------------------------------------------
-# 2. Identify all human-coded boolean variables
-#----------------------------------------------------------------
-human_vars <- names(df_filt)[grepl("_human$", names(df_filt))]
+df_filt_full <- df_wide
 
 
-#----------------------------------------------------------------
-# 4. Compute full kappa table
-#----------------------------------------------------------------
-kappa_results <- map_dfr(human_vars, function(h) {
+
+#---- Compute full kappa table----
+
+kappa_results_full <- purrr::map_dfr(human_vars, function(h) {
   base <- sub("_human$", "", h)
   
-  tibble(
+  tibble::tibble(
     variable = base,
-    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT")),
-    Claude  = compute_kappa(h, paste0(base, "_claude")),
-    Gemini  = compute_kappa(h, paste0(base, "_gemini"))
+    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT"), df_filt_full),
+    Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_full),
+    Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_full)
   )
 })
 
-#----------------------------------------------------------------
-# 5. Make a clean gt table
-#----------------------------------------------------------------
-kappa_table <- kappa_results %>%
+
+#---- Make a clean gt table----
+
+kappa_table_full <- kappa_results_full %>%
   gt() %>%
   fmt_number(
     columns = c(ChatGPT, Claude, Gemini),
     decimals = 3
   ) %>%
+  
+  gt::fmt_missing(
+    columns = everything(),
+    missing_text = "-"
+  )  %>%
+
+  
   tab_header(
     title = "Cohen’s Kappa: LLM vs Human Across All Variables",
-    subtitle = "Filtered to human new-data-analysis = TRUE and transplant-related = TRUE"
   )
 
-kappa_table
+kappa_table_full
+
+
 gtsave(
-  data = kappa_table,
-  filename = "Results/kappa_table_NKF.docx"
+  data = kappa_table_full,
+  filename = "Results/kappa_table_full.svg"
 )
 
 
-#Create a table 3
-#------------------------------------------------------------
-# 1. Identify human-coded variables
-#------------------------------------------------------------
-human_vars <- names(df_filt)[grepl("_human$", names(df_filt))]
+#Create a table with raw proportions
 
 
-#------------------------------------------------------------
-# 3. Build combined dataset
-#------------------------------------------------------------
-breakdown_table <- map_dfr(human_vars, get_breakdown)
+#---- Build combined dataset----
+breakdown_table_full <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_full)
 
-#------------------------------------------------------------
-# 4. Produce formatted gt table with spanners and combined N/D
-#------------------------------------------------------------
-breakdown_gt <- breakdown_table %>%
+
+#---- Produce formatted gt table with spanners and combined N/D
+
+breakdown_gt_full <- breakdown_table_full %>%
   gt(
     groupname_col = "variable",
     rowname_col = "human"
@@ -127,8 +122,8 @@ breakdown_gt <- breakdown_table %>%
     heading.align = "left"
   )
 
-breakdown_gt
+breakdown_gt_full
 gtsave(
-  data = breakdown_gt,
-  filename = "Results/breakdown_gt_NKF.docx"
+  data = breakdown_gt_full,
+  filename = "Results/breakdown_gt_full.svg"
 )

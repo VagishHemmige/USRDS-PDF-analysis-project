@@ -1,67 +1,35 @@
 #Data analysis script for ATC
 
 
-#How well can LLMs differentiate new data analyses from papers that are not new data analyses?
-df_wide %>% count(is_this_paper_a_new_data_analysis_human,
-             is_this_paper_a_new_data_analysis_ChatGPT)
-
-df_wide %>% count(is_this_paper_a_new_data_analysis_human,
-                  is_this_paper_a_new_data_analysis_claude)
-
-df_wide %>% count(is_this_paper_a_new_data_analysis_human,
-                  is_this_paper_a_new_data_analysis_gemini)
-
-#When limiting to true new analyses, how well can LLMs spot transplant-related papers?
-df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
-  count(is_this_a_transplant_related_study_human,
-        is_this_a_transplant_related_study_ChatGPT)
-  
-df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
-  count(is_this_a_transplant_related_study_human,
-        is_this_a_transplant_related_study_claude)
-
-df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
-  count(is_this_a_transplant_related_study_human,
-        is_this_a_transplant_related_study_gemini)
 
 
+#---- Filter to human-positive dataset and transplant only----
 
-
-
-#Create a table 2
-#----------------------------------------------------------------
-# 1. Filter to human-positive dataset
-#----------------------------------------------------------------
-df_filt <- df_wide %>%
+df_filt_atc <- df_wide %>%
   filter(
     is_this_paper_a_new_data_analysis_human == TRUE,
     is_this_a_transplant_related_study_human == TRUE
   )
 
-#----------------------------------------------------------------
-# 2. Identify all human-coded boolean variables
-#----------------------------------------------------------------
-human_vars <- names(df_filt)[grepl("_human$", names(df_filt))]
 
 
-#----------------------------------------------------------------
-# 4. Compute full kappa table
-#----------------------------------------------------------------
-kappa_results <- map_dfr(human_vars, function(h) {
+#---- Compute full kappa table----
+
+kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
   base <- sub("_human$", "", h)
   
-  tibble(
+  tibble::tibble(
     variable = base,
-    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT")),
-    Claude  = compute_kappa(h, paste0(base, "_claude")),
-    Gemini  = compute_kappa(h, paste0(base, "_gemini"))
+    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT"), df_filt_atc),
+    Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_atc),
+    Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_atc)
   )
 })
 
-#----------------------------------------------------------------
-# 5. Make a clean gt table
-#----------------------------------------------------------------
-kappa_table <- kappa_results %>%
+
+#---- Make a clean gt table----
+
+kappa_table_atc <- kappa_results_atc %>%
   gt() %>%
   fmt_number(
     columns = c(ChatGPT, Claude, Gemini),
@@ -72,72 +40,23 @@ kappa_table <- kappa_results %>%
     subtitle = "Filtered to human new-data-analysis = TRUE and transplant-related = TRUE"
   )
 
-kappa_table
+kappa_table_atc
 gtsave(
-  data = kappa_table,
-  filename = "Results/kappa_table.docx"
+  data = kappa_table_atc,
+  filename = "Results/kappa_table_atc.svg"
 )
 
 
-#Create a table 3
-#------------------------------------------------------------
-# 1. Identify human-coded variables
-#------------------------------------------------------------
-human_vars <- names(df_filt)[grepl("_human$", names(df_filt))]
+#Create a table with raw proportions
 
-#------------------------------------------------------------
-# 2. Function to compute numerators, denominators, percentages
-#------------------------------------------------------------
-get_breakdown <- function(hvar) {
-  
-  base <- sub("_human$", "", hvar)
-  chat <- paste0(base, "_ChatGPT")
-  cla  <- paste0(base, "_claude")
-  gem  <- paste0(base, "_gemini")
-  
-  model_vars <- c(chat, cla, gem)
-  model_vars <- model_vars[model_vars %in% names(df_filt)]
-  if (length(model_vars) == 0) return(NULL)
-  
-  df_filt %>%
-    select(human = all_of(hvar), all_of(model_vars)) %>%
-    mutate(human = as.logical(human)) %>%
-    filter(!is.na(human)) %>%
-    group_by(human) %>%
-    summarise(
-      chat_num = if (chat %in% names(.)) sum(!!sym(chat), na.rm = TRUE) else NA_real_,
-      cla_num  = if (cla  %in% names(.)) sum(!!sym(cla),  na.rm = TRUE) else NA_real_,
-      gem_num  = if (gem  %in% names(.)) sum(!!sym(gem),  na.rm = TRUE) else NA_real_,
-      
-      den      = n(),
-      
-      chat_pct = chat_num / den,
-      cla_pct  = cla_num / den,
-      gem_pct  = gem_num / den,
-      
-      .groups = "drop"
-    ) %>%
-    mutate(
-      variable = base,
-      chat_nd  = paste0(chat_num, "/", den),
-      cla_nd   = paste0(cla_num, "/", den),
-      gem_nd   = paste0(gem_num, "/", den)
-    ) %>%
-    select(variable, human,
-           chat_nd, chat_pct,
-           cla_nd, cla_pct,
-           gem_nd, gem_pct)
-}
 
-#------------------------------------------------------------
-# 3. Build combined dataset
-#------------------------------------------------------------
-breakdown_table <- map_dfr(human_vars, get_breakdown)
+#---- Build combined dataset----
+breakdown_table_atc <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_atc)
 
-#------------------------------------------------------------
-# 4. Produce formatted gt table with spanners and combined N/D
-#------------------------------------------------------------
-breakdown_gt <- breakdown_table %>%
+
+#---- Produce formatted gt table with spanners and combined N/D
+
+breakdown_gt_atc <- breakdown_table_atc %>%
   gt(
     groupname_col = "variable",
     rowname_col = "human"
@@ -174,8 +93,8 @@ breakdown_gt <- breakdown_table %>%
     heading.align = "left"
   )
 
-breakdown_gt
+breakdown_gt_atc
 gtsave(
-  data = breakdown_gt,
-  filename = "Results/breakdown_gt.docx"
+  data = breakdown_gt_atc,
+  filename = "Results/breakdown_gt_atc.svg"
 )
