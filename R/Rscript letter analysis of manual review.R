@@ -37,19 +37,19 @@ fc_draw(Anagha_summer_project_form_clean_fc)%>%
 Anagha_summer_project_form_final <- Anagha_summer_project_form_clean_fc$data %>%
   
   #Language variables
-  mutate(language_r = str_detect(what_programming_language_s_was_were_used, "R")) %>%
-  mutate(language_sas = str_detect(what_programming_language_s_was_were_used, "SAS")) %>%
-  mutate(language_stata = str_detect(what_programming_language_s_was_were_used, "STATA")) %>%
-  mutate(language_spss = str_detect(what_programming_language_s_was_were_used, "SPSS")) %>%
+  mutate(languages_used_R=str_detect(what_programming_language_s_was_were_used, "R"))%>%
+  mutate(languages_used_SAS=str_detect(what_programming_language_s_was_were_used, "SAS"))%>%
+  mutate(languages_used_Stata=str_detect(what_programming_language_s_was_were_used, "STATA"))%>%
+  mutate(languages_used_SPSS=str_detect(what_programming_language_s_was_were_used, "SPSS"))%>%
   
   #Files used
-  mutate(file_core = str_detect(what_files_were_used, "Core")) %>%
-  mutate(file_institution = str_detect(what_files_were_used, "Institution")) %>%
-  mutate(file_ps = str_detect(what_files_were_used, "Physician/Supplier")) %>%
-  mutate(file_hospital = str_detect(what_files_were_used	, "Hospital")) %>%
-  mutate(file_transplant = str_detect(what_files_were_used	, "Transplant")) %>%
-  mutate(file_partd = str_detect(what_files_were_used, "Part D")) %>%
-  mutate(file_CROWNWeb = str_detect(what_files_were_used, "CROWNWeb")) %>%
+  mutate(files_used_Core=str_detect(what_files_were_used, "Core"))%>%
+  mutate(files_used_Institution=str_detect(what_files_were_used, "Institution"))%>%
+  mutate(files_used_PhysicianSupplier=str_detect(what_files_were_used, "Physician/Supplier"))%>%
+  mutate(files_used_Hospital=str_detect(what_files_were_used	, "Hospital"))%>%
+  mutate(files_used_Transplant=str_detect(what_files_were_used	, "Transplant"))%>%
+  mutate(files_used_PartD=str_detect(what_files_were_used, "Part D"))%>%
+  mutate(files_used_CROWNWeb=str_detect(what_files_were_used, "CROWNWeb"))%>%
   
   #Components extracted
   mutate(

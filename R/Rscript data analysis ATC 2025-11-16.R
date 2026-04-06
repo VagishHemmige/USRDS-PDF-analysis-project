@@ -30,7 +30,9 @@ kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
 #---- Make a clean gt table----
 
 kappa_table_atc <- kappa_results_atc %>%
-  gt() %>%
+  add_label_for_gt() %>%
+  gt(rowname_col = "label") %>%
+  gt::cols_hide(columns = variable) %>%
   fmt_number(
     columns = c(ChatGPT, Claude, Gemini),
     decimals = 3
@@ -38,6 +40,15 @@ kappa_table_atc <- kappa_results_atc %>%
   tab_header(
     title = "Cohen’s Kappa: LLM vs Human Across All Variables",
     subtitle = "Filtered to human new-data-analysis = TRUE and transplant-related = TRUE"
+  ) %>%
+  gt::tab_stubhead(label = "Variable") %>%
+  gt::tab_row_group(
+    label = "Programming languages",
+    rows = grepl("^languages_", variable)
+  ) %>%
+  gt::tab_stub_indent(
+    rows = grepl("^(languages_|files_|component_)", variable),
+    indent = 4
   )
 
 kappa_table_atc
@@ -57,8 +68,10 @@ breakdown_table_atc <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_atc)
 #---- Produce formatted gt table with spanners and combined N/D
 
 breakdown_gt_atc <- breakdown_table_atc %>%
+  add_label_for_gt() %>%
+  dplyr::select(-variable) %>%
   gt(
-    groupname_col = "variable",
+    groupname_col = "label",
     rowname_col = "human"
   ) %>%
   fmt_percent(
@@ -66,7 +79,6 @@ breakdown_gt_atc <- breakdown_table_atc %>%
     decimals = 1
   ) %>%
   cols_label(
-    human = md("**Human**"),
     chat_nd = "Num/Den",
     chat_pct = "%",
     cla_nd = "Num/Den",
@@ -74,6 +86,7 @@ breakdown_gt_atc <- breakdown_table_atc %>%
     gem_nd = "Num/Den",
     gem_pct = "%"
   ) %>%
+  tab_stubhead(label = md("**Human**")) %>%
   tab_spanner(
     label = md("**ChatGPT**"),
     columns = c(chat_nd, chat_pct)
