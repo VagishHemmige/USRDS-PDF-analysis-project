@@ -46,6 +46,14 @@ kappa_table_atc <- kappa_results_atc %>%
     label = "Programming languages",
     rows = grepl("^languages_", variable)
   ) %>%
+  gt::tab_row_group(
+    label = "Files used",
+    rows = grepl("^files_", variable)
+  )%>%
+  gt::tab_row_group(
+    label = "Compoents of USRDS used",
+    rows = grepl("^component_", variable)
+  ) %>%
   gt::tab_stub_indent(
     rows = grepl("^(languages_|files_|component_)", variable),
     indent = 4

@@ -1,13 +1,5 @@
 
 
-# ---- Load libraries ----
-
-library(tidyverse)
-library(janitor)
-library(readxl)
-library(gtsummary)
-library(gt)
-library(flowchart)
 
 
 # ---- Import data ----
@@ -124,14 +116,6 @@ Anagha_summer_project_form_final %>%
   as_gt() %>%
   gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html")
 
-Anagha_summer_project_form_final %>%
-  select(
-    -timestamp,-filepath,-authors,-title,-journal,-year,-what_programming_language_s_was_were_used,-what_files_were_used,-which_type_of_transplant_study_is_this
-  ) %>%
-  tbl_summary() %>%
-  as_gt() %>%
-  gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html")
-
 
 
 Anagha_summer_project_form_final %>%
@@ -140,21 +124,21 @@ Anagha_summer_project_form_final %>%
     is_this_a_transplant_related_study,
     
     did_the_authors_state_what_programming_language_they_used,
-    language_r,
-    language_sas,
-    language_stata,
-    language_spss,
+    languages_used_R,
+    languages_used_SAS,
+    languages_used_Stata,
+    languages_used_SPSS,
     
     did_the_authors_explicitly_state_what_files_they_used,
     
     does_the_choice_of_files_codes_seem_appropriate_for_the_research_question,
-    file_core,
-    file_institution,
-    file_ps,
-    file_hospital,
-    file_transplant,
-    file_partd,
-    file_CROWNWeb,
+    files_used_Core,
+    files_used_Institution,
+    files_used_PhysicianSupplier,
+    files_used_Hospital,
+    files_used_Transplant,
+    files_used_PartD,
+    files_used_CROWNWeb,
 
     component_basicdemographics,
     component_icd9,
@@ -197,13 +181,13 @@ Anagha_summer_project_form_final %>%
   add_variable_group_header(
     header = "Files used",
     variables = c(
-      file_core,
-      file_institution,
-      file_ps,
-      file_hospital,
-      file_transplant,
-      file_partd,
-      file_CROWNWeb
+      files_used_Core,
+      files_used_Institution,
+      files_used_PhysicianSupplier,
+      files_used_Hospital,
+      files_used_Transplant,
+      files_used_PartD,
+      files_used_CROWNWeb,
       
     )
   )%>%
@@ -211,10 +195,10 @@ Anagha_summer_project_form_final %>%
   add_variable_group_header(
     header = "Programming language used",
     variables = c(
-      language_r,
-      language_sas,
-      language_stata,
-      language_spss
+      languages_used_R,
+      languages_used_SAS,
+      languages_used_Stata,
+      languages_used_SPSS,
       
     )
   )%>%
@@ -229,21 +213,21 @@ Anagha_summer_project_form_split[["transplant"]] %>%
     which_type_of_transplant_study_is_this,
     
     did_the_authors_state_what_programming_language_they_used,
-    language_r,
-    language_sas,
-    language_stata,
-    language_spss,
+    languages_used_R,
+    languages_used_SAS,
+    languages_used_Stata,
+    languages_used_SPSS,
     
     did_the_authors_explicitly_state_what_files_they_used,
     
     does_the_choice_of_files_codes_seem_appropriate_for_the_research_question,
-    file_core,
-    file_institution,
-    file_ps,
-    file_hospital,
-    file_transplant,
-    file_partd,
-    file_CROWNWeb,
+    files_used_Core,
+    files_used_Institution,
+    files_used_PhysicianSupplier,
+    files_used_Hospital,
+    files_used_Transplant,
+    files_used_PartD,
+    files_used_CROWNWeb,
     
     component_basicdemographics,
     component_icd9,
@@ -286,13 +270,13 @@ Anagha_summer_project_form_split[["transplant"]] %>%
     add_variable_group_header(
       header = "Files used",
       variables = c(
-        file_core,
-        file_institution,
-        file_ps,
-        file_hospital,
-        file_transplant,
-        file_partd,
-        file_CROWNWeb
+        files_used_Core,
+        files_used_Institution,
+        files_used_PhysicianSupplier,
+        files_used_Hospital,
+        files_used_Transplant,
+        files_used_PartD,
+        files_used_CROWNWeb,
         
       )
     )%>%
@@ -300,10 +284,10 @@ Anagha_summer_project_form_split[["transplant"]] %>%
     add_variable_group_header(
       header = "Programming language used",
       variables = c(
-        language_r,
-        language_sas,
-        language_stata,
-        language_spss
+        languages_used_R,
+        languages_used_SAS,
+        languages_used_Stata,
+        languages_used_SPSS,
         
       )
     )%>%

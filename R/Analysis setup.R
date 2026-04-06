@@ -10,7 +10,7 @@ library(gt)
 library(officer)
 library(tidyr)
 library(stringr)
-library(labelled)
+library(flowchart)
 
 
 
@@ -22,7 +22,6 @@ label_list <- list(
   was_the_study_funded = "Study funded",
   would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = "Covered by proposed usRds package",
   were_any_crosswalks_used = "Any crosswalks used",
-  
   languages_used_R = "R used",
   languages_used_SAS = "SAS used",
   languages_used_Stata = "Stata used",
@@ -43,5 +42,8 @@ label_list <- list(
   component_medicationD = "Part D medication data abstracted",
   component_transplant = "Transplant-specific data abstracted",
   component_costs = "Cost data abstracted",
-  component_residential = "Residential location abstracted"
+  component_residential = "Residential location abstracted",
+  
+  is_this_a_transplant_related_study = "Transplant-related study",
+  is_this_paper_a_new_data_analysis = "New patient-level data analysis"
 )
