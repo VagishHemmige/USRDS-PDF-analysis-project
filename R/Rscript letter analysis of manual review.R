@@ -202,6 +202,15 @@ Anagha_summer_project_form_final %>%
       
     )
   )%>%
+  modify_footnote_body(
+    footnote = "Categories in this section are not mutually exclusive; percentages may not sum to 100%.",
+    columns = label,
+    rows = label %in% c(
+      "Data components abstracted",
+      "Files used",
+      "Programming language used"
+    )
+  ) %>%
   
   as_gt() %>%
   gtsave(filename = "Letter analysis/Letter analysis Table 2 stratified by transplant.html")
@@ -291,6 +300,15 @@ Anagha_summer_project_form_split[["transplant"]] %>%
         
       )
     )%>%
+  modify_footnote_body(
+    footnote = "Categories in this section are not mutually exclusive; percentages may not sum to 100%.",
+    columns = label,
+    rows = label %in% c(
+      "Data components abstracted",
+      "Files used",
+      "Programming language used"
+    )
+  ) %>%
     
   as_gt() %>%
   gtsave(filename = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.html")

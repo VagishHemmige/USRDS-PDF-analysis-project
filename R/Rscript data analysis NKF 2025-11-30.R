@@ -45,7 +45,10 @@ kappa_results_full <- purrr::map_dfr(human_vars, function(h) {
     Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_full),
     Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_full)
   )
-})
+})%>%
+  select(
+    -which_tasks_would_not_be_covered
+  )
 
 
 #---- Make a clean gt table----

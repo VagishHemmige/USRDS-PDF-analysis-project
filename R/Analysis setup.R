@@ -26,6 +26,7 @@ label_list <- list(
   languages_used_SAS = "SAS used",
   languages_used_Stata = "Stata used",
   languages_used_SPSS = "SPSS used",
+  languages_used_Python = "Python used",
   
   files_used_Core = "Core file used",
   files_used_Institution = "Institution file used",

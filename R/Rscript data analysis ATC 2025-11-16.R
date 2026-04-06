@@ -23,8 +23,24 @@ kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
     ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT"), df_filt_atc),
     Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_atc),
     Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_atc)
+  )%>%
+    mutate(
+    across(c(ChatGPT, Claude, Gemini), ~ ifelse(is.nan(.x), NA_real_, .x))
   )
-})
+})%>%
+  filter(!variable %in% c(
+    "which_pieces_of_data_were_abstracted_from_the_files",
+    "which_tasks_would_not_be_covered",
+    "which_type_of_transplant_study_is_this",
+    "who_funded_the_study",
+    "year",
+    "journal",
+    "title",
+    "authors",
+    "languages_used_SQL",
+    "languages_used_Matlab",
+    "languages_used_Julia"
+  ))
 
 
 #---- Make a clean gt table----
@@ -37,11 +53,18 @@ kappa_table_atc <- kappa_results_atc %>%
     columns = c(ChatGPT, Claude, Gemini),
     decimals = 3
   ) %>%
+  cols_align_decimal(
+    columns = c(ChatGPT, Claude, Gemini)
+  ) %>%
   tab_header(
-    title = "Cohen’s Kappa: LLM vs Human Across All Variables",
-    subtitle = "Filtered to human new-data-analysis = TRUE and transplant-related = TRUE"
+    title = "Cohen’s κ: LLM vs Human Across All Variables",
+    subtitle = "Dataset of 44 transplant-related papers"
   ) %>%
   gt::tab_stubhead(label = "Variable") %>%
+  sub_missing(
+    columns = c(ChatGPT, Claude, Gemini),
+    missing_text = "-"
+  )%>%
   gt::tab_row_group(
     label = "Programming languages",
     rows = grepl("^languages_", variable)
@@ -51,12 +74,27 @@ kappa_table_atc <- kappa_results_atc %>%
     rows = grepl("^files_", variable)
   )%>%
   gt::tab_row_group(
-    label = "Compoents of USRDS used",
+    label = "Components of USRDS used",
     rows = grepl("^component_", variable)
   ) %>%
   gt::tab_stub_indent(
     rows = grepl("^(languages_|files_|component_)", variable),
     indent = 4
+  )%>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = ChatGPT, rows = is.na(ChatGPT)),
+    placement="right"
+  ) %>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = Claude, rows = is.na(Claude)),
+    placement="right"
+  ) %>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = Gemini, rows = is.na(Gemini)),
+    placement="right"
   )
 
 kappa_table_atc
