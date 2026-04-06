@@ -85,3 +85,81 @@ add_label_for_gt <- function(df, labels = label_list, var_col = "variable") {
   
   df
 }
+
+
+
+#Function to label variables in a df being piped into a table-creating object
+
+kappa_fill <- function(x) {
+  case_when(
+    is.na(x)          ~ "#FFFFFF",  # missing
+    x < 0             ~ "#e6b8b7",  # negative
+    x == 0            ~ "#f4cccc",  # exact zero
+    x < 0.21          ~ "#fce5cd",  # slight
+    x < 0.41          ~ "#fff2cc",  # fair
+    x < 0.61          ~ "#d9ead3",  # moderate
+    x < 0.81          ~ "#b6d7a8",  # substantial
+    x <= 1            ~ "#93c47d",  # almost perfect
+    TRUE              ~ "#FFFFFF"
+  )
+}
+
+
+
+create_kappa_legend_gt <- function(x) {
+
+#Creates DF to explain kappa tables
+legend_kappa_df <- tibble::tribble(
+  ~Swatch, ~Interpretation,   ~Range,
+  -0.10,   "Negative",        "< 0",
+  0.00,   "Exact zero",      "0.000",
+  0.10,   "Slight",          "0.001–0.20",
+  0.30,   "Fair",            "0.21–0.40",
+  0.50,   "Moderate",        "0.41–0.60",
+  0.70,   "Substantial",     "0.61–0.80",
+  0.90,   "Almost perfect",  "0.81–1.00",
+  NA_real_, "Not estimable", "-"
+)
+
+#Creates table with legend for kappa figures
+kappa_legend_gt <- legend_kappa_df %>%
+  gt() %>%
+  cols_label(
+    Swatch = "",
+    Interpretation = "Agreement",
+    Range = "Range"
+  ) %>%
+  fmt(
+    columns = Swatch,
+    fns = function(x) rep("", length(x))
+  ) %>%
+  sub_missing(
+    columns = Swatch,
+    missing_text = ""
+  ) %>%
+  data_color(
+    columns = Swatch,
+    fn = kappa_fill
+  ) %>%
+  cols_width(
+    Swatch ~ px(32),
+    Interpretation ~ px(150),
+    Range ~ px(95)
+  ) %>%
+  tab_header(
+    title = md("**Cohen’s κ legend**")
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "#f3f3f3"),
+    locations = cells_body(
+      columns = Swatch,
+      rows = is.na(Swatch)
+    )
+  ) %>%
+  tab_options(
+    table.font.size = px(11),
+    data_row.padding = px(4),
+    heading.align = "left"
+  )
+kappa_legend_gt
+}

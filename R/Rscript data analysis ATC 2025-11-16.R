@@ -95,12 +95,23 @@ kappa_table_atc <- kappa_results_atc %>%
     footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
     locations = cells_body(columns = Gemini, rows = is.na(Gemini)),
     placement="right"
+  )%>%
+  data_color(
+    columns = c(ChatGPT, Claude, Gemini),
+    fn = kappa_fill
   )
 
 kappa_table_atc
 gtsave(
   data = kappa_table_atc,
-  filename = "Results/kappa_table_atc.svg"
+  filename = "Results/kappa_table_atc.html"
+)
+
+#Create legend to supplement kappa table
+kappa_legend_gt<-create_kappa_legend_gt()
+gtsave(
+  data = kappa_legend_gt,
+  filename = "Results/kappa_table_legend_atc.html"
 )
 
 
@@ -155,5 +166,6 @@ breakdown_gt_atc <- breakdown_table_atc %>%
 breakdown_gt_atc
 gtsave(
   data = breakdown_gt_atc,
-  filename = "Results/breakdown_gt_atc.svg"
+  filename = "Results/breakdown_gt_atc.html"
 )
+
