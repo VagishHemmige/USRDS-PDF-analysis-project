@@ -2,3 +2,8 @@
 title: "Results: manual"
 format: html
 ---
+
+![Image](../Letter analysis/flowchart.png)
+
+
+

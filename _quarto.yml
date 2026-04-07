@@ -25,6 +25,24 @@ website:
       - href: index.qmd
         text: Home
 
+      - section: Background
+        contents:
+          - href: quarto/background.qmd
+            text: Clinical background
+          - href: quarto/analysis_methods.qmd
+            text: Description of analysis methods
+
+      - section: Setup and helper functions
+        contents:
+          - href: quarto/setup.qmd
+            text: Setup
+          - href: quarto/functions.qmd
+            text: Functions
+
+      - href: quarto/llm_analysis.qmd
+        text: LLM data extraction
+
+
   page-navigation: true
 
 custom-callout:
