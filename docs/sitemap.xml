@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/index.html</loc>
-    <lastmod>2026-04-07T16:01:40.067Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/analysis_methods.html</loc>
-    <lastmod>2026-04-07T20:43:37.559Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/llm_analysis.html</loc>
-    <lastmod>2026-04-07T22:32:03.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/results_manual.html</loc>
-    <lastmod>2026-04-07T22:47:35.542Z</lastmod>
-  </url>
-  <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/setup.html</loc>
     <lastmod>2026-03-30T00:44:27.651Z</lastmod>
   </url>
   <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/llm_analysis.html</loc>
+    <lastmod>2026-04-07T22:58:31.789Z</lastmod>
+  </url>
+  <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/background.html</loc>
     <lastmod>2026-04-07T21:36:45.233Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/about.html</loc>
+    <lastmod>2026-02-18T00:44:08.242Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/index.html</loc>
+    <lastmod>2026-04-07T22:52:29.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/analysis_methods.html</loc>
+    <lastmod>2026-04-07T21:51:36.187Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/functions.html</loc>
+    <lastmod>2026-04-07T21:56:33.417Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/results_manual.html</loc>
+    <lastmod>2026-04-07T22:47:35.542Z</lastmod>
   </url>
 </urlset>
