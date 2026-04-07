@@ -12,6 +12,25 @@ df_filt_atc <- df_wide %>%
   )
 
 
+#---- Table of times to run analysis----
+
+
+
+timing_gt<-timing_table %>%
+  gt() %>%
+  fmt_number(
+    columns = `Time (minutes)`,
+    decimals = 0
+  )%>%
+  tab_header(
+    title = "Runtime of LLMs Used in the Analysis",
+    subtitle = "Wall-clock time in minutes to process the full dataset"
+  )
+
+gt::gtsave(
+  data = timing_gt,
+  filename = "ATC 2026 abstract/timing_table_atc.png"
+)
 
 #---- Compute full kappa table----
 
@@ -104,14 +123,14 @@ kappa_table_atc <- kappa_results_atc %>%
 kappa_table_atc
 gtsave(
   data = kappa_table_atc,
-  filename = "Results/kappa_table_atc.html"
+  filename = "ATC 2026 abstract/kappa_table_atc.png"
 )
 
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
 gtsave(
   data = kappa_legend_gt,
-  filename = "Results/kappa_table_legend_atc.html"
+  filename = "ATC 2026 abstract/kappa_table_legend_atc.png"
 )
 
 
@@ -166,6 +185,91 @@ breakdown_gt_atc <- breakdown_table_atc %>%
 breakdown_gt_atc
 gtsave(
   data = breakdown_gt_atc,
-  filename = "Results/breakdown_gt_atc.html"
+  filename = "ATC 2026 abstract/breakdown_gt_atc.png"
 )
 
+
+#---- Heatmaps ----
+
+file_vars_atc <- names(label_list)[str_detect(names(label_list), "^files_")]
+
+files_res_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = file_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Files used heatmap",
+  reorder = FALSE
+)
+
+files_res_atc
+ggsave(
+  plot = files_res_atc,
+  filename = "ATC 2026 abstract/files_res_atc.png"
+)
+
+
+
+
+languages_vars_atc <- names(label_list)[str_detect(names(label_list), "^languages_")]
+
+languages_res_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = languages_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Languages used heatmap",
+  reorder = FALSE
+)
+
+languages_res_atc
+ggsave(
+  plot = languages_res_atc,
+  filename = "ATC 2026 abstract/languages_res_atc.png"
+)
+
+
+
+
+component_vars_atc <- names(label_list)[str_detect(names(label_list), "^component_")]
+
+component_res_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = component_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Components used heatmap",
+  reorder = FALSE
+)
+
+component_res_atc
+ggsave(
+  plot = component_res_atc,
+  filename = "ATC 2026 abstract/component_res_atc.png"
+)
+
+
+
+other_vars_atc <- setdiff(
+  setdiff(
+    names(label_list),
+    c(file_vars_atc, languages_vars_atc, component_vars_atc)
+  ),
+  "did_the_authors_explicitly_state_what_files_they_used"
+)
+
+other_res_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = other_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Other study features heatmap",
+  reorder = FALSE
+)
+
+other_res_atc
+
+ggsave(
+  filename = "Results/other_res_atc.png",
+  plot = other_res_atc,
+)

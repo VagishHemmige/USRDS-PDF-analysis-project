@@ -73,93 +73,167 @@ get_breakdown <- function(hvar, df_filt) {
 
 
 #Function to label variables in a df being piped into a table-creating object
-
-add_label_for_gt <- function(df, labels = label_list, var_col = "variable") {
-  if (!var_col %in% names(df)) {
-    return(df)
+make_llm_agreement_heatmap <- function(df,
+                                       vars,
+                                       paper_id_col = "filename",
+                                       label_list = NULL,
+                                       title = "LLM agreement heatmap",
+                                       subtitle = "Each cell shows how many of 3 models matched the human label",
+                                       low_to_high = TRUE,
+                                       reorder = TRUE) {
+  
+  stopifnot(is.data.frame(df))
+  stopifnot(is.character(vars))
+  stopifnot(length(paper_id_col) == 1)
+  
+  if (!paper_id_col %in% names(df)) {
+    stop("`paper_id_col` not found in `df`.")
   }
   
-  labels_chr <- unlist(labels)
-  df$label <- labels_chr[df[[var_col]]]
-  df$label[is.na(df$label)] <- df[[var_col]][is.na(df$label)]
+  needed_cols <- c(
+    unlist(purrr::map(vars, ~ c(
+      paste0(.x, "_human"),
+      paste0(.x, "_ChatGPT"),
+      paste0(.x, "_claude"),
+      paste0(.x, "_gemini")
+    ))),
+    paper_id_col
+  )
   
-  df
-}
-
-
-
-#Function to label variables in a df being piped into a table-creating object
-
-kappa_fill <- function(x) {
-  case_when(
-    is.na(x)          ~ "#FFFFFF",  # missing
-    x < 0             ~ "#e6b8b7",  # negative
-    x == 0            ~ "#f4cccc",  # exact zero
-    x < 0.21          ~ "#fce5cd",  # slight
-    x < 0.41          ~ "#fff2cc",  # fair
-    x < 0.61          ~ "#d9ead3",  # moderate
-    x < 0.81          ~ "#b6d7a8",  # substantial
-    x <= 1            ~ "#93c47d",  # almost perfect
-    TRUE              ~ "#FFFFFF"
-  )
-}
-
-
-
-create_kappa_legend_gt <- function(x) {
-
-#Creates DF to explain kappa tables
-legend_kappa_df <- tibble::tribble(
-  ~Swatch, ~Interpretation,   ~Range,
-  -0.10,   "Negative",        "< 0",
-  0.00,   "Exact zero",      "0.000",
-  0.10,   "Slight",          "0.001–0.20",
-  0.30,   "Fair",            "0.21–0.40",
-  0.50,   "Moderate",        "0.41–0.60",
-  0.70,   "Substantial",     "0.61–0.80",
-  0.90,   "Almost perfect",  "0.81–1.00",
-  NA_real_, "Not estimable", "-"
-)
-
-#Creates table with legend for kappa figures
-kappa_legend_gt <- legend_kappa_df %>%
-  gt() %>%
-  cols_label(
-    Swatch = "",
-    Interpretation = "Agreement",
-    Range = "Range"
-  ) %>%
-  fmt(
-    columns = Swatch,
-    fns = function(x) rep("", length(x))
-  ) %>%
-  sub_missing(
-    columns = Swatch,
-    missing_text = ""
-  ) %>%
-  data_color(
-    columns = Swatch,
-    fn = kappa_fill
-  ) %>%
-  cols_width(
-    Swatch ~ px(32),
-    Interpretation ~ px(150),
-    Range ~ px(95)
-  ) %>%
-  tab_header(
-    title = md("**Cohen’s κ legend**")
-  ) %>%
-  tab_style(
-    style = cell_fill(color = "#f3f3f3"),
-    locations = cells_body(
-      columns = Swatch,
-      rows = is.na(Swatch)
+  missing_cols <- setdiff(needed_cols, names(df))
+  if (length(missing_cols) > 0) {
+    stop(
+      "These required columns are missing from `df`: ",
+      paste(missing_cols, collapse = ", ")
     )
-  ) %>%
-  tab_options(
-    table.font.size = px(11),
-    data_row.padding = px(4),
-    heading.align = "left"
+  }
+  
+  heatmap_df <- purrr::map_dfr(vars, function(v) {
+    human_col <- paste0(v, "_human")
+    chat_col  <- paste0(v, "_ChatGPT")
+    cla_col   <- paste0(v, "_claude")
+    gem_col   <- paste0(v, "_gemini")
+    
+    pretty_label <- if (!is.null(label_list) && v %in% names(label_list)) {
+      unname(label_list[[v]])
+    } else {
+      v
+    }
+    
+    tibble::tibble(
+      paper_id = stringr::word(as.character(df[[paper_id_col]]), 1) |>
+        stringr::str_remove("\\.$"),
+      variable = v,
+      label = pretty_label,
+      human = df[[human_col]],
+      chat  = df[[chat_col]],
+      cla   = df[[cla_col]],
+      gem   = df[[gem_col]]
+    ) |>
+      dplyr::mutate(
+        chat_match = dplyr::if_else(is.na(human) | is.na(chat), NA_integer_, as.integer(human == chat)),
+        cla_match  = dplyr::if_else(is.na(human) | is.na(cla),  NA_integer_, as.integer(human == cla)),
+        gem_match  = dplyr::if_else(is.na(human) | is.na(gem),  NA_integer_, as.integer(human == gem)),
+        n_models_scorable = rowSums(!is.na(dplyr::pick(chat_match, cla_match, gem_match))),
+        n_models_correct  = rowSums(dplyr::pick(chat_match, cla_match, gem_match), na.rm = TRUE),
+        n_models_correct  = dplyr::if_else(n_models_scorable == 0, NA_integer_, n_models_correct)
+      )
+  })
+  
+  if (reorder) {
+    row_summary <- heatmap_df |>
+      dplyr::group_by(paper_id) |>
+      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = "drop")
+    
+    col_summary <- heatmap_df |>
+      dplyr::group_by(label) |>
+      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = "drop")
+    
+    if (low_to_high) {
+      row_order <- row_summary |>
+        dplyr::arrange(mean_models_correct) |>
+        dplyr::pull(paper_id)
+      
+      col_order <- col_summary |>
+        dplyr::arrange(mean_models_correct) |>
+        dplyr::pull(label)
+    } else {
+      row_order <- row_summary |>
+        dplyr::arrange(dplyr::desc(mean_models_correct)) |>
+        dplyr::pull(paper_id)
+      
+      col_order <- col_summary |>
+        dplyr::arrange(dplyr::desc(mean_models_correct)) |>
+        dplyr::pull(label)
+    }
+  } else {
+    row_order <- df[[paper_id_col]] |>
+      as.character() |>
+      stringr::word(1) |>
+      stringr::str_remove("\\.$") |>
+      unique()
+    
+    col_order <- purrr::map_chr(vars, function(v) {
+      if (!is.null(label_list) && v %in% names(label_list)) {
+        unname(label_list[[v]])
+      } else {
+        v
+      }
+    })
+  }
+  
+  heatmap_df <- heatmap_df |>
+    dplyr::mutate(
+      paper_id = factor(paper_id, levels = rev(row_order)),
+      label = factor(label, levels = col_order),
+      n_models_correct_f = factor(as.character(n_models_correct), levels = c("0", "1", "2", "3"))
+    )
+  
+  # invisible layer to force all 4 legend boxes to appear, using geom_tile
+  legend_df <- tibble::tibble(
+    label = factor(rep(col_order[1], 4), levels = col_order),
+    paper_id = factor(rep(rev(row_order)[1], 4), levels = levels(heatmap_df$paper_id)),
+    n_models_correct_f = factor(c("0", "1", "2", "3"), levels = c("0", "1", "2", "3"))
   )
-kappa_legend_gt
+  
+  ggplot2::ggplot(
+    heatmap_df,
+    ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f)
+  ) +
+    ggplot2::geom_tile(color = "white", linewidth = 0.25) +
+    ggplot2::geom_tile(
+      data = legend_df,
+      ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f),
+      inherit.aes = FALSE,
+      alpha = 0,
+      show.legend = TRUE
+    ) +
+    ggplot2::scale_fill_manual(
+      values = c(
+        "0" = "#b2182b",
+        "1" = "#ef8a62",
+        "2" = "#fddbc7",
+        "3" = "#d1e5f0"
+      ),
+      breaks = c("0", "1", "2", "3"),
+      drop = FALSE,
+      name = "Models matching\nhuman"
+    ) +
+    ggplot2::guides(
+      fill = ggplot2::guide_legend(
+        override.aes = list(alpha = 1)
+      )
+    ) +
+    ggplot2::labs(
+      title = title,
+      subtitle = subtitle,
+      x = NULL,
+      y = NULL
+    ) +
+    ggplot2::theme_minimal(base_size = 11) +
+    ggplot2::theme(
+      panel.grid = ggplot2::element_blank(),
+      axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
+      axis.text.y = ggplot2::element_text(size = 7)
+    )
 }

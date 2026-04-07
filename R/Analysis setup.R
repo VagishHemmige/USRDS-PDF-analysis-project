@@ -49,4 +49,21 @@ label_list <- list(
   is_this_paper_a_new_data_analysis = "New patient-level data analysis"
 )
 
-
+#Table of times to run the analysis
+timing_table <- tibble(
+  `Provider (Company)` = c(
+    "ChatGPT (OpenAI)",
+    "Claude (Anthropic)",
+    "Gemini (Google)"
+  ),
+  Model = c(
+    "Gpt 5.1",
+    "Claude Sonnet 4.5",
+    "Gemini 2.5 Flash"
+  ),
+  `Time (minutes)` = c(
+    165,
+    62,
+    672
+  )
+)

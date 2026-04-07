@@ -1,0 +1,983 @@
+---
+title: "LLM analysis"
+format: html
+---
+
+
+::: {.Rcode title="Source code"}
+
+The full R scripts are available at:
+
+-   [`R/Rscript%20ChatGPT%202025-11-14.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20ChatGPT%202025-11-14.R)
+-   [`R/Rscript%20Claude%202025-11-14.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20Claude%202025-11-14.R)
+-   [`R/Rscript%20Gemini%202025-11-15.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20Gemini%202025-11-15.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
+:::
+
+## Overview
+
+This page describes the large language model (LLM) workflow used to extract structured information from PDFs of studies related to the United States Renal Data System (USRDS). The goal was to evaluate whether LLMs could reproduce the same kinds of abstractions performed during manual review, including study classification, programming language, files used, funding, and other study characteristics.
+
+Each PDF was processed in R using the `ellmer` package. The text of each paper was extracted from the PDF, submitted to an LLM together with a standardized prompt and schema, and returned in a structured format suitable for downstream analysis. This allowed the outputs of multiple models to be compared directly with one another and with human review.
+
+Because the corpus was moderately large and API-based extraction can be interrupted by rate limits, transient failures, or incomplete runs, each workflow was built to support checkpointing, retry logic, and resumable processing. Intermediate results and job-status files were saved throughout so that processing could continue without restarting from the beginning.
+
+The sections below show the scripts used for the three LLM pipelines evaluated in this project: ChatGPT, Claude, and Google Gemini.
+
+For details on how to configure `ellmer` to work with LLMs via the APIs, see the package documentation.
+
+## Abstraction schema
+
+To make LLM-based review reproducible and comparable across models, we defined a common abstraction schema in R and used it for all three LLM pipelines. In practice, this schema had two linked components. The first was the **instruction text sent to the model** with each paper, which defined the extraction task, imposed decision rules, and limited when the model was allowed to mark a field as present. The second was the **typed output schema used by `ellmer`**, which specified the exact variables to be returned and the data type of each variable. Together, these components transformed the task from open-ended summarization into structured data abstraction. :contentReference[oaicite:1]{index=1}
+
+The instruction text was designed to reduce hallucination and improve consistency across papers. Models were told that they were acting as expert reviewers of USRDS-based research papers and were instructed to extract metadata using **strict, sequential, and anti-hallucination rules**. They were told to return only the fields defined in the schema, with no commentary and no reasoning. They were also explicitly told not to infer key details that are often omitted or ambiguously reported in manuscripts, including programming language, crosswalk use, and specific USRDS files used. When such details were not explicitly stated, the instructions required the model to return `FALSE`, `NULL`, or an allowed uncertainty category rather than guessing. :contentReference[oaicite:2]{index=2}
+
+The prompt text also encoded **decision logic** that guided the order and interpretation of extraction. It instructed the model to proceed sequentially: first extract bibliographic metadata, then determine whether the paper represented a new data analysis, then determine whether the study was transplant-related, and then classify more detailed variables such as study subtype, programming languages, files used, and component-level data elements. This sequencing was intended to mimic the logic of human review and reduce inconsistent downstream classification. For example, the prompt specified that a paper should be classified as a new data analysis only if it conducted original analyses using USRDS or Medicare ESRD patient-level data. It also specified that transplant-related status should be marked `TRUE` only when transplantation itself was explicitly studied, not when transplant date was mentioned only as a censoring event. :contentReference[oaicite:3]{index=3}
+
+Several prompt rules were designed as **guardrails** for downstream fields. If the text did not explicitly mention USRDS or Medicare ESRD program data, the model was instructed to set the new-analysis flag to `FALSE`, set all file-use and component variables to `FALSE`, mark file appropriateness as `FALSE`, mark crosswalk use as `FALSE`, and return no unsupported-task list for the package coverage field. In other words, the prompt contained not only extraction instructions but also internal consistency rules intended to keep related fields aligned with one another. This was important because many papers mention kidney disease populations or administrative data in ways that could tempt a model to overgeneralize from context. :contentReference[oaicite:4]{index=4}
+
+The prompt also contained explicit definitions for important variable groups. For programming language, the model was told to mark a language as present only if it was directly named in the paper, and not to infer language from generic phrases such as “statistical software” or mentions of common packages. For file identification, the prompt gave operational definitions for several USRDS file domains, including Core, Transplant, Part D, Institution, Physician/Supplier, Hospital, and CROWNWeb. For example, Core was linked to concepts such as the 2728 form, ESRD onset, baseline demographics, residence, payer, and transplant date, whereas Transplant was linked to donor type, graft failure, and waitlist information. Similarly, the prompt defined component-level variables such as basic demographics, ICD-9, ICD-10, CPT codes, Part D medications, transplant-specific information, costs, and residential information. These definitions were intended to make model classification more consistent and more closely aligned with how a knowledgeable human reviewer would interpret the paper. :contentReference[oaicite:5]{index=5}
+
+A particularly important feature of the prompt was its distinction between **explicit reporting and inferred file source**. The model was required to classify file source type as `explicit` when USRDS was directly named, `inferred` when Medicare ESRD claims use was implied but USRDS was not directly named, and `uncertain` when the source could not be determined confidently. This allowed the pipeline to capture a meaningful distinction between papers that clearly documented their use of USRDS and papers in which the likely data source had to be inferred from context. That distinction would have been difficult to preserve in a free-text summary and was therefore encoded directly into the schema. :contentReference[oaicite:6]{index=6}
+
+The second half of the schema was the **typed `ellmer` object**, defined as `type_summary`. This object formally declared the expected output fields and their data types. Bibliographic fields such as authors, title, and journal were represented as strings, while publication year was represented as an integer. Many of the review variables were encoded as booleans, including whether the paper was a new data analysis, whether it was transplant-related, whether the authors stated a programming language, whether specific files were used, whether specific data components were abstracted, whether funding was reported, whether code was shared, and whether crosswalks were used. Fields with a limited set of allowed values were encoded as enumerations. For example, transplant study type was restricted to four values: `Pre-transplant access to care`, `Pre-transplant management/outcomes`, `Post-transplant`, or `NA`. File source type was likewise restricted to `explicit`, `inferred`, or `uncertain`. :contentReference[oaicite:7]{index=7}
+
+This typed schema mattered methodologically because it constrained model output into a form that could be analyzed directly in R. Rather than parsing narrative text after the fact, the pipeline requested structured outputs that matched the predefined variable set. This made the outputs from ChatGPT, Claude, and Gemini directly comparable with one another and with human review. It also reduced ambiguity in downstream analysis, since the model could not invent new field names or return arbitrary prose in place of a boolean or enumerated response. In effect, the typed schema served as both a validation layer and a bridge between model output and statistical analysis. :contentReference[oaicite:8]{index=8}
+
+The variables included in `type_summary` closely mirrored the goals of the manual abstraction process, but also extended it in a few analytically useful ways. In addition to bibliographic metadata and study classification, the typed schema included a field for the type of transplant study, a three-level file-source variable, individual booleans for each programming language, booleans for each major USRDS file domain, booleans for each component-level data type, a short text field giving the reason why file choice did or did not seem appropriate, a free-text comments field, a funding field, package-coverage variables, and separate booleans for individual crosswalk types. This level of granularity allowed the LLM review to function not only as a test of model performance, but also as a structured characterization of how USRDS is used in the literature. :contentReference[oaicite:9]{index=9}
+
+The schema also linked directly to the broader aims of the project. Because one study goal was to understand what kinds of analytical tasks might be supported by the proposed `usRds` package, the prompt and typed schema included fields asking whether the major data tasks in a given paper would be covered by the package and, if not, which tasks would fall outside its scope. Likewise, because papers sometimes rely on linkage resources that are not obvious from the main text, the schema included dedicated fields for crosswalk use, including separate booleans for UNOS, physician, and provider crosswalks. These variables allowed the LLM pipeline to capture not just what the paper studied, but also what kinds of data engineering and linkage work were required to perform the study. :contentReference[oaicite:10]{index=10}
+
+Taken together, the prompt text and the `ellmer` typed schema formed a single methodological framework. The prompt defined the rules of extraction, including what counted as sufficient evidence and how ambiguous cases should be handled, while the typed schema defined the exact structure of the final result. Using both components together helped standardize model behavior, minimize overinterpretation, and produce outputs that could be summarized quantitatively and compared directly with manual abstraction. :contentReference[oaicite:11]{index=11}
+
+```{r, eval=FALSE}
+
+#This file defines the abstract schema for the three LLM models
+
+id_prompt <- function(abstract) {
+  glue::glue("
+You are an expert reviewer of USRDS-based research papers. 
+Extract metadata using STRICT, SEQUENTIAL, and ANTI-HALLUCINATION rules.
+
+Return ONLY the fields in the schema below.
+Return no commentary, no reasoning, and never invent data.
+
+=========================================================
+SECTION 1 — GLOBAL PRINCIPLES
+=========================================================
+
+1. If a detail is NOT explicitly stated in the abstract or text → return FALSE or NULL.
+2. NEVER infer:
+   - programming languages
+   - crosswalk use
+   - USRDS files used
+3. If the abstract does not explicitly mention USRDS OR Medicare ESRD program data:
+      → is_this_paper_a_new_data_analysis = FALSE  
+      → all files_used_* = FALSE  
+      → all data components = FALSE  
+         (component_basicdemographics, component_icd9, component_icd10,
+          component_cptcode, component_medicationD, component_transplant,
+          component_costs, component_residential)
+      → does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = FALSE
+      → would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = FALSE
+      → which_tasks_would_not_be_covered = NULL
+      → were_any_crosswalks_used = FALSE
+4. If information is ambiguous → treat as “uncertain” where allowed; otherwise FALSE.
+
+=========================================================
+SECTION 2 — SEQUENTIAL LOGIC
+=========================================================
+
+STEP 1 — Extract bibliographic metadata:
+- authors  
+- title  
+- journal  
+- year  
+
+STEP 2 — Identify whether this is a new analysis:
+is_this_paper_a_new_data_analysis = TRUE only if:
+- the study conducts original analyses using USRDS or Medicare ESRD patient-level data.
+
+STEP 3 — Identify whether the study is transplant-related:
+Set is_this_a_transplant_related_study = TRUE only if transplantation is explicitly studied.
+This should be false if transplant date is only used as a censoring date, not as an explicit outcome
+
+STEP 4 — Classify transplant study type:
+which_type_of_transplant_study_is_this must be one of:
+- “Pre-transplant access to care”
+- “Pre-transplant management/outcomes”
+- “Post-transplant”
+- “NA” if is_this_a_transplant_related_study=FALSE
+
+=========================================================
+SECTION 3 — PROGRAMMING LANGUAGES
+=========================================================
+
+did_the_authors_state_what_programming_language_they_used = TRUE only if the abstract explicitly names the language.
+
+languages_used_* booleans should be TRUE ONLY if explicitly mentioned:
+- R, SAS, Stata, Python, SQL, Matlab, Julia, SPSS
+
+Do NOT infer from:
+- “statistical software”
+- “common packages”
+- “analysis performed in standard software”
+
+=========================================================
+SECTION 4 — FILE SOURCE DETERMINATION
+=========================================================
+
+file_source_type must be exactly:
+- “explicit” → USRDS named directly  
+- “inferred” → Medicare ESRD claims implied but USRDS not named  
+- “uncertain” → unclear  
+
+=========================================================
+SECTION 5 — USRDS FILE IDENTIFICATION
+=========================================================
+
+Set each files_used_* = TRUE only if explicitly mentioned:
+
+CORE → 2728 form, Medical Evidence form, ESRD onset, cause of ESRD, baseline demographics.  Date of transplant. 
+Residence. Payer.  Cause of ESRD.  Baseline comorbidities.
+TRANSPLANT → graft failure, donor type, waitlist.  Most transplant details except date of transplant require this file.
+PART D → Medicare Part D drug fills (any medication except immunosuppression, which is Part B i.e. Physician Supplier)  
+INSTITUTION → Any billing by hospitals, clinics, hospice, home health, inpatient, outpatient (Part A)
+PHYSICIAN/SUPPLIER → Part B claims Physician/supplier claims are bills covering physician, laboratory, 
+  and radiology services, as well as medical supplies/DME 
+HOSPITAL → inpatient stays, DRG codes, hospitalization rates.  Costs are not present and require the INSTITUTION file  
+CROWNWeb → “CROWNWeb” or facility clinical metrics.
+
+=========================================================
+SECTION 6 — DATA COMPONENTS
+=========================================================
+
+Each component_* must be TRUE only if explicitly mentioned:
+
+- component_basicdemographics  
+- component_icd9  
+- component_icd10  
+- component_cptcode  
+- component_medicationD  
+- component_transplant  
+- component_costs  
+- component_residential  
+
+=========================================================
+SECTION 7 — FILE APPROPRIATENESS
+=========================================================
+
+does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = TRUE only when:
+- the files used clearly match the research aims.
+
+file_choice_appropriate_reason = SHORT STRING.
+
+=========================================================
+SECTION 8 — CROSSWALK USE
+=========================================================
+
+were_any_crosswalks_used = TRUE only if explicitly stated.
+
+Trigger TRUE for specific crosswalks only if explicitly named:
+- UNOS crosswalk  
+- physician crosswalk  
+- provider crosswalk  
+
+crosswalk_used_UNOS  
+crosswalk_used_physician  
+crosswalk_used_provider  
+
+If ANY of these are TRUE → were_any_crosswalks_used must be TRUE.
+
+=========================================================
+SECTION 9 — USRDS PACKAGE COVERAGE
+=========================================================
+
+would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package:
+TRUE only if study tasks can be performed using usRds.
+
+which_tasks_would_not_be_covered:
+List tasks only if the above is FALSE.
+
+=========================================================
+SECTION 10 — OUTPUT FORMAT (CRITICAL)
+=========================================================
+
+Return ONLY the following fields, with EXACT names:
+
+- authors
+- title
+- journal
+- year
+
+- is_this_paper_a_new_data_analysis
+- is_this_a_transplant_related_study
+- which_type_of_transplant_study_is_this
+
+- did_the_authors_state_what_programming_language_they_used
+- languages_used_R
+- languages_used_SAS
+- languages_used_Stata
+- languages_used_Python
+- languages_used_SQL
+- languages_used_Matlab
+- languages_used_Julia
+- languages_used_SPSS
+
+- file_source_type
+
+- files_used_Core
+- files_used_Transplant
+- files_used_PartD
+- files_used_Institution
+- files_used_PhysicianSupplier
+- files_used_Hospital
+- files_used_CROWNWeb
+
+- does_the_choice_of_files_codes_seem_appropriate_for_the_research_question
+- file_choice_appropriate_reason
+
+- comments
+- did_the_authors_share_the_code_they_used
+
+- component_basicdemographics
+- component_icd9
+- component_icd10
+- component_cptcode
+- component_medicationD
+- component_transplant
+- component_costs
+- component_residential
+
+- was_the_study_funded
+- who_funded_the_study
+
+- would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package
+- which_tasks_would_not_be_covered
+
+- were_any_crosswalks_used
+- crosswalk_used_UNOS
+- crosswalk_used_physician
+- crosswalk_used_provider")
+}
+
+
+# ---- Schema ----
+type_summary <- type_object(
+  "Schema for summarizing USRDS publication metadata.",
+  authors = type_string("Authors in Last, First format"),
+  title = type_string("Article title"),
+  journal = type_string("Journal name"),
+  year = type_integer("Publication year"),
+  
+  is_this_paper_a_new_data_analysis = type_boolean("TRUE only if new USRDS analysis performed"),
+  is_this_a_transplant_related_study = type_boolean("TRUE only if study explicitly about transplantation"),
+  
+  which_type_of_transplant_study_is_this = type_enum(
+    "What type of transplant study is this? NA if not transplant-related",
+    values = c("Pre-transplant access to care", 
+               "Pre-transplant management/outcomes", 
+               "Post-transplant", 
+               "NA")
+  ),
+  
+  did_the_authors_state_what_programming_language_they_used = type_boolean("Did paper explicitly state the programming language?"),
+  languages_used_R=type_boolean("Did paper use the R programming language?"),
+  languages_used_SAS=type_boolean("Did paper use the SAS programming language?"),
+  languages_used_Stata=type_boolean("Did paper use the Stata programming language?"),
+  languages_used_Python=type_boolean("Did paper use the Python programming language?"),
+  languages_used_SQL=type_boolean("Did paper use the SQL programming language?"),
+  languages_used_Matlab=type_boolean("Did paper use the Matlab programming language?"),
+  languages_used_Julia=type_boolean("Did paper use the Julia programming language?"),
+  languages_used_SPSS=type_boolean("Did paper use the SPSS programming language?"),
+  
+  file_source_type = type_enum("How USRDS file use was determined",
+                               values = c("explicit", "inferred", "uncertain")
+  ),
+  
+  files_used_Core= type_boolean("Was the Core file used?"),
+  files_used_Transplant= type_boolean("Was the Transplant file used?"),
+  files_used_PartD= type_boolean("Was the Medication Part D file used?"),
+  files_used_Institution= type_boolean("Was the Institution file used?"),
+  files_used_PhysicianSupplier= type_boolean("Was the Physician Supplier file used?"),
+  files_used_Hospital= type_boolean("Was the Hospital file used?"),
+  files_used_CROWNWeb= type_boolean("Was the CROWNWeb file used?"),
+  
+  
+  does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = type_boolean("Were file choices appropriate?"),
+  file_choice_appropriate_reason = type_string("Reason for choice of answer for file_choice_appropriate_boolean?"),
+  comments = type_string("Comments, free text"),
+  did_the_authors_share_the_code_they_used = type_boolean("Was the code shared?"),
+  
+  component_basicdemographics = type_boolean("Did the study abstract basic demographics?"),
+  component_icd9 = type_boolean("Did the study abstract ICD-9 codes?"),
+  component_icd10 = type_boolean("Did the study abstract ICD-10 codes?"),
+  component_cptcode = type_boolean("Did the study abstract CPT codes?"),
+  component_medicationD = type_boolean("Did the study abstract Medicare Part D medications?"),
+  component_transplant = type_boolean("Did the study abstract transplant-specific information?"),
+  component_costs = type_boolean("Did the study abstract Medicare costs or reimbursements?"),
+  component_residential = type_boolean("Did the study abstract ZIP code or residential location?"),
+  
+  was_the_study_funded = type_boolean("Did the paper state funding?"),
+  who_funded_the_study = type_string("Funder name"),
+  
+  would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = 
+    type_boolean("Could usRds R package (https://vagishhemmige.github.io/usRds/) reproduce this?"),
+  which_tasks_would_not_be_covered = type_string("Tasks not supported in usrdsR"),
+  
+  were_any_crosswalks_used = type_boolean("Did the paper use any crosswalks?"),
+  crosswalk_used_UNOS=type_boolean("Did the paper use the UNOS crosswalk?"),
+  crosswalk_used_physician=type_boolean("Did the paper use the physician crosswalk?"),
+  crosswalk_used_provider=type_boolean("Did the paper use the provider crosswalk?")
+)
+
+
+```
+
+
+## ChatGPT extraction
+
+This script implements the ChatGPT-based PDF abstraction workflow. It uses `ellmer` to send extracted PDF text to OpenAI's model with a structured schema, while also maintaining job-status files, retry logic, checkpointed partial results, and final exports for downstream analysis.
+
+```{r, eval=FALSE}
+
+# ---- Libraries ----
+library(ellmer)
+library(tidyverse)
+library(pdftools)
+library(tibble)
+library(purrr)
+library(dplyr)
+library(rstudioapi)
+
+
+# ---- Set file folder ----
+results_dir <- "Results/ChatGPT"
+dir.create(results_dir, recursive = TRUE, showWarnings = FALSE)
+
+# ---- Optional Reset Prompt ----
+if (interactive() && rstudioapi::isAvailable()) {
+  reset_confirm <- rstudioapi::showQuestion(
+    title = "Reset Checkpoint Files",
+    message = "Do you want to reset all previously saved progress (job queue, partial results, etc.)?",
+    ok = "Reset Everything",
+    cancel = "No, keep my files"
+  )
+  
+  if (reset_confirm) {
+    files_to_delete <- file.path(results_dir, c(
+      "job_status_ChatGPT.csv",
+      "partial_results_ChatGPT.rds",
+      "final_results_ChatGPT.csv",
+      "final_results_ChatGPT.rds"
+    ))
+    deleted <- file.remove(files_to_delete[file.exists(files_to_delete)])
+    message("🧹 Reset complete. Deleted ", sum(deleted), " files.")
+  } else {
+    message("🔁 Continuing with existing progress files.")
+  }
+}
+
+# ---- Optional Retry Failed Prompt ----
+job_status_file <- file.path(results_dir, "job_status_ChatGPT.csv")
+if (file.exists(job_status_file) && interactive() && rstudioapi::isAvailable()) {
+  retry_failed <- rstudioapi::showQuestion(
+    title = "Retry Previously Failed Jobs?",
+    message = "Some jobs have failed after 5 attempts. Do you want to retry them again?",
+    ok = "🔁 Yes, retry failed",
+    cancel = "🚫 No, leave as failed"
+  )
+  
+  if (isTRUE(retry_failed)) {
+    job_status <- read.csv(job_status_file, stringsAsFactors = FALSE)
+    num_failed <- sum(job_status$status == "failed")
+    job_status$status[job_status$status == "failed"] <- "retry"
+    write.csv(job_status, job_status_file, row.names = FALSE)
+    message("🔁 Reset ", num_failed, " failed jobs to 'retry'")
+  } else {
+    message("🚫 Failed jobs will remain skipped.")
+  }
+}
+
+# ---- Setup ----
+folder_path <- "data-raw/PDFs"
+pdf_files <- list.files(folder_path, pattern = "\\.pdf$", full.names = TRUE)
+files_df <- tibble(full_path = pdf_files)
+
+`%||%` <- function(x, y) if (is.null(x)) y else x
+estimate_tokens <- function(text) ceiling(nchar(text) / 4)
+
+
+#Pull schema from R script
+source("R/abstract_schema.R")
+
+chatgpt1 <- chat_openai(
+  model = "gpt-5.1",
+  system_prompt = id_prompt("")
+  )
+
+# ---- Job Queue ----
+if (!file.exists(job_status_file)) {
+  job_status <- tibble(
+    full_path = files_df$full_path,
+    filename = basename(files_df$full_path),
+    status = "pending",
+    retries = 0,
+    last_attempt = as.POSIXct(NA)
+  )
+  write.csv(job_status, job_status_file, row.names = FALSE)
+} else {
+  job_status <- read.csv(job_status_file, stringsAsFactors = FALSE)
+  job_status$last_attempt <- as.POSIXct(job_status$last_attempt)
+}
+
+# ---- Resume ----
+partial_rds <- file.path(results_dir, "partial_results_ChatGPT.rds")
+results_list <- if (file.exists(partial_rds)) {
+  message("🔁 Resuming from saved results...")
+  readRDS(partial_rds) %>% split(seq_len(nrow(.)))
+} else {
+  list()
+}
+
+# ---- Global Counters ----
+total_input_tokens <<- 0
+total_output_tokens <<- 0
+total_requests <<- 0
+total_retries <<- 0
+
+# ---- Main Extractor ----
+extract_summary_row <- function(pdf_path,
+                                initial_max_chars = 240000,
+                                min_chars = 5000,
+                                initial_wait = 300,
+                                max_wait = 1200,
+                                max_retries = 5) {
+  if (!file.exists(pdf_path)) {
+    message("Skipping missing file: ", pdf_path)
+    return(tibble(filename = basename(pdf_path)))
+  }
+  
+  text_pages <- pdftools::pdf_text(pdf_path)
+  full_text <- paste(text_pages, collapse = "\n")
+  full_char_length <- nchar(full_text)
+  max_chars <- min(full_char_length, initial_max_chars)
+  wait_time <- initial_wait
+  retries <- 0
+  
+  while (max_chars >= min_chars && retries <= max_retries) {
+    input_text <- substr(full_text, 1, max_chars)
+    input_token_est <- estimate_tokens(input_text)
+    message(Sys.time(), " 🔄 Attempting ", basename(pdf_path), " with ~", input_token_est, " tokens")
+    
+    result <- tryCatch({
+      chatgpt1 <- chat_openai(
+        model = "gpt-5.1",
+        system_prompt = id_prompt("")
+      )
+      chatgpt1$chat_structured(input_text, type = type_summary)
+    }, error = function(e) {
+      if (grepl("tokens per min|quota|429", e$message)) {
+        message("⚠️ Rate limit or quota error. Waiting ", wait_time, "s")
+        total_retries <<- total_retries + 1
+        Sys.sleep(wait_time)
+        return("RATE_LIMIT_RETRY")
+      } else {
+        message("❌ Error: ", e$message)
+        return(structure("ERROR", class = "error"))
+      }
+    })
+    
+    if (identical(result, "RATE_LIMIT_RETRY")) {
+      retries <- retries + 1
+      wait_time <- min(wait_time * 1.5, max_wait)
+      max_chars <- floor(max_chars * 0.9)
+      next
+    }
+    
+    if (inherits(result, "error") || is.null(result)) {
+      chatgpt1 <- chat_openai(
+        model = "gpt-5.1",
+        system_prompt = id_prompt("")
+      )
+      fallback <- chatgpt1$chat(input_text)
+      output_token_est <- estimate_tokens(fallback)
+      total_output_tokens <<- total_output_tokens + output_token_est
+      message("⚠️ Fallback preview:\n", substr(fallback, 1, 500))
+      break
+    }
+    
+    output_token_est <- estimate_tokens(paste(result$title %||% "", result$journal %||% "", result$authors %||% ""))
+    total_input_tokens <<- total_input_tokens + input_token_est
+    total_output_tokens <<- total_output_tokens + output_token_est
+    total_requests <<- total_requests + 1
+    
+    message("✅ Success: ", basename(pdf_path))
+    return(as_tibble_row(
+      c(
+        list(filename = basename(pdf_path), text = input_text, char_length = nchar(input_text), raw_json = list(result)),
+        map(result, ~ if (is.null(.x)) NA_character_ else paste(as.character(unlist(.x)), collapse = "; "))
+      )
+    ))
+  }
+  
+  message("❌ Final failure for ", basename(pdf_path), " after ", retries, " retries.")
+  tibble(filename = basename(pdf_path), text = substr(full_text, 1, min_chars), char_length = min_chars)
+}
+
+# ---- Main Loop ----
+message("\n===== Starting ChatGPT PDF summarization =====")
+message("Pending: ", sum(job_status$status == 'pending'))
+message("Retry: ", sum(job_status$status == 'retry'))
+message("Done: ", sum(job_status$status == 'done'))
+message("Failed: ", sum(job_status$status == 'failed'))
+
+for (i in seq_len(nrow(job_status))) {
+  row <- job_status[i, ]
+  message("\n📄 Processing file ", i, "/", nrow(job_status), ": ", row$filename)
+  
+  if (row$status == "done") {
+    message("⏭️ Skipping (done): ", row$filename)
+    next
+  }
+  if (row$status == "failed") {
+    message("⚠️ Skipping (failed): ", row$filename)
+    next
+  }
+  
+  result <- extract_summary_row(row$full_path)
+  
+  if (!"authors" %in% names(result) || is.na(result$authors[1])) {
+    job_status$retries[i] <- job_status$retries[i] + 1
+    job_status$status[i] <- ifelse(job_status$retries[i] >= 5, "failed", "retry")
+  } else {
+    job_status$status[i] <- "done"
+    results_list[[length(results_list) + 1]] <- result
+  }
+  
+  job_status$last_attempt[i] <- Sys.time()
+  message("💾 Saving checkpoint...")
+  write.csv(job_status, job_status_file, row.names = FALSE)
+  saveRDS(bind_rows(results_list), partial_rds)
+  Sys.sleep(60)
+}
+
+# ---- Final Save ----
+results_df <- bind_rows(results_list)
+
+# Flatten list-columns for CSV export
+results_df_flat <- results_df %>%
+  mutate(across(where(is.list), ~ sapply(.x, function(val) {
+    if (is.null(val) || all(is.na(val))) return(NA_character_)
+    if (length(val) == 0) return(NA_character_)
+    paste(as.character(val), collapse = "; ")
+  })))
+
+# Save final outputs
+write.csv(results_df_flat, file.path(results_dir, "final_results_ChatGPT.csv"))
+saveRDS(results_df, file.path(results_dir, "final_results_ChatGPT.rds"))
+write.csv(job_status, job_status_file)
+
+# ---- Summary ----
+cat("\n===== ✅ ChatGPT Job Summary =====\n")
+cat("🧾 Total requests:      ", total_requests, "\n")
+cat("🔡 Total input tokens:  ", total_input_tokens, "\n")
+cat("📤 Total output tokens: ", total_output_tokens, "\n")
+cat("🔁 Total retries:       ", total_retries, "\n")
+cat("📂 Output written to:   final_results_ChatGPT.csv / .rds\n")
+
+
+```
+
+## Claude
+
+This script implements the Claude-based PDF abstraction workflow. As with the other pipelines, the goal was to convert full-text PDF content into a structured set of study-level variables that could be analyzed in R and compared with manual review.
+
+```{r, eval=FALSE}
+
+library(ellmer)
+library(tidyverse)
+library(pdftools)
+library(purrr)
+library(tibble)
+library(rstudioapi)
+
+
+#Define folder for status files
+results_dir <- "Results/Claude"
+dir.create(results_dir, recursive = TRUE, showWarnings = FALSE)
+
+# ----- Optional: Reset all output files via RStudio popup -----
+reset <- FALSE
+
+if (interactive() && requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+  response <- rstudioapi::showQuestion(
+    title = "Reset Summarization Progress?",
+    message = "Do you want to delete all previous progress and start fresh?",
+    ok = "✅ Yes, reset",
+    cancel = "❌ No, do not reset"
+  )
+  reset <- isTRUE(response)
+}
+
+if (reset) {
+  files_to_delete <- file.path(results_dir, c(
+    "processed_files_claude.txt",
+    "failed_files_claude.txt",
+    "summary_partial_claude.rds",
+    "summary_partial_claude.csv",
+    "summary_final_claude.rds",
+    "summary_output_claude.csv",
+    "type_summary_claude_schema.rds"
+  ))
+  deleted <- file.remove(files_to_delete[file.exists(files_to_delete)])
+  cat("🧹 Reset complete. Deleted", sum(deleted), "files.\n")
+} else {
+  cat("⏩ No reset. Continuing with existing progress.\n")
+}
+
+# ----- Setup -----
+
+folder_path <- "data-raw/PDFs"
+pdf_files <- list.files(folder_path, pattern = "\\.pdf$", full.names = TRUE)
+
+source("R/abstract_schema.R")
+
+
+saveRDS(type_summary, file.path(results_dir, "type_summary_claude_schema.rds"))
+
+# ----- Paths -----
+processed_files_path <- file.path(results_dir, "processed_files_claude.txt")
+failed_files_path    <- file.path(results_dir, "failed_files_claude.txt")
+partial_rds_path     <- file.path(results_dir, "summary_partial_claude.rds")
+partial_csv_path     <- file.path(results_dir, "summary_partial_claude.csv")
+final_rds_path       <- file.path(results_dir, "summary_final_claude.rds")
+final_csv_path       <- file.path(results_dir, "summary_output_claude.csv")
+
+
+# ----- Load State -----
+processed_files <- if (file.exists(processed_files_path)) basename(readLines(processed_files_path)) else character(0)
+failed_files    <- if (file.exists(failed_files_path))    basename(readLines(failed_files_path))    else character(0)
+results_list    <- if (file.exists(partial_rds_path))     readRDS(partial_rds_path)                 else list()
+
+# ----- Single PDF Extractor -----
+
+extract_summary_single <- function(pdf_path, max_pages = 50, max_chars = 240000) {
+  text_pages <- pdftools::pdf_text(pdf_path)
+  truncated_text <- paste(text_pages[1:min(length(text_pages), max_pages)], collapse = "\n")
+  truncated_text <- substr(truncated_text, 1, max_chars)
+  print(Sys.time())
+  claude1 <- chat_anthropic(
+    model = "claude-sonnet-4-5",
+    system_prompt = id_prompt("")
+  )
+  
+  result <- claude1$chat_structured(truncated_text, type = type_summary)
+  
+  result_safe <- map(result, function(x) {
+    if (is.null(x)) return(NA_character_)
+    if (length(x) == 1) return(as.character(x))
+    return(paste(as.character(unlist(x)), collapse = ", "))
+  })
+  
+  result_safe$filename <- basename(pdf_path)
+  return(as_tibble_row(result_safe))
+}
+
+# ----- Main Loop -----
+
+for (i in seq_along(pdf_files)) {
+  file <- pdf_files[i]
+  file_name <- basename(file)
+  
+  if (file_name %in% processed_files) {
+    cat("[", i, "/", length(pdf_files), "] Skipping already processed:", file_name, "\n")
+    next
+  }
+  
+  cat("[", i, "/", length(pdf_files), "] Processing:", file_name, "\n")
+  
+  # Retry logic
+  max_attempts <- 5
+  wait_times <- c(300, 450, 600, 900, 1200)  # in seconds
+  attempt <- 1
+  success <- FALSE
+  result <- NULL
+  
+  while (attempt <= max_attempts && !success) {
+    cat("🔁 Attempt", attempt, "of", max_attempts, "for", file_name, "\n")
+    
+    result <- tryCatch({
+      extract_summary_single(file)
+    }, error = function(e) {
+      cat("⚠️ Error in attempt", attempt, ":", e$message, "\n")
+      return(NULL)
+    })
+    
+    if (!is.null(result) && is.data.frame(result)) {
+      success <- TRUE
+    } else if (attempt < max_attempts) {
+      wait <- wait_times[attempt]
+      cat("⏳ Waiting", wait, "seconds before retrying...\n")
+      Sys.sleep(wait)
+    }
+    
+    attempt <- attempt + 1
+  }
+  
+  if (success) {
+    results_list[[length(results_list) + 1]] <- result
+    processed_files <- unique(c(processed_files, file_name))
+    cat("✅ Success after", attempt - 1, "attempt(s):", file_name, "\n")
+    
+    # Save checkpoint
+    all_field_names <- unique(unlist(map(results_list, names)))
+    results_list_aligned <- map(results_list, ~{
+      missing <- setdiff(all_field_names, names(.x))
+      .x[missing] <- NA_character_
+      .x[all_field_names]
+    })
+    results_df <- bind_rows(results_list_aligned)
+    
+    saveRDS(results_list, partial_rds_path)
+    write.csv(results_df, partial_csv_path, row.names = FALSE)
+    writeLines(processed_files, processed_files_path)
+    writeLines(failed_files, failed_files_path)
+  } else {
+    failed_files <- unique(c(failed_files, file_name))
+    cat("❌ Failed after", max_attempts, "attempts:", file_name, "\n")
+    writeLines(failed_files, failed_files_path)
+  }
+}
+
+# ----- Final Save -----
+
+all_field_names <- unique(unlist(map(results_list, names)))
+results_list_aligned <- map(results_list, ~{
+  missing <- setdiff(all_field_names, names(.x))
+  .x[missing] <- NA_character_
+  .x[all_field_names]
+})
+summaries_df <- bind_rows(results_list_aligned)
+
+write.csv(summaries_df, final_csv_path, row.names = FALSE)
+saveRDS(results_list, final_rds_path)
+writeLines(processed_files, processed_files_path)
+writeLines(failed_files, failed_files_path)
+cat("✅ Final save complete. Files written with 'claude' in name.\n")
+
+
+```
+
+## Google Gemini
+
+This script implements the Google Gemini-based PDF abstraction workflow. It follows the same general strategy as the other model pipelines, using structured extraction with checkpointing and retry logic to support analysis of a large set of PDFs.
+
+```{r, eval=FALSE}
+
+# ---- Libraries ----
+library(ellmer)
+library(tidyverse)
+library(pdftools)
+library(rstudioapi)
+library(purrr)
+
+# Define folder for Gemini output files
+results_dir <- "Results/Gemini"
+dir.create(results_dir, recursive = TRUE, showWarnings = FALSE)
+
+# ---- Optional Reset Prompt ----
+if (interactive() && rstudioapi::isAvailable()) {
+  reset_confirm <- rstudioapi::showQuestion(
+    title = "Reset Gemini Files",
+    message = "Reset all Gemini checkpoint and log files?",
+    ok = "Yes, reset",
+    cancel = "No, keep"
+  )
+  if (reset_confirm) {
+    files_to_delete <- file.path(results_dir, c(
+      "processed_files_gemini.txt",
+      "failed_files_gemini.txt",
+      "summary_partial_gemini.rds",
+      "summary_partial_gemini.csv",
+      "summary_final_gemini.rds",
+      "summary_output_gemini.csv",
+      "type_summary_gemini_schema.rds",
+      "job_status_Gemini.csv"
+    ))
+    deleted <- file.remove(files_to_delete[file.exists(files_to_delete)])
+    message("🧹 Deleted ", sum(deleted), " files.")
+  }
+}
+
+# ---- Setup ----
+folder_path <- "data-raw/PDFs"
+pdf_files <- list.files(folder_path, pattern = "\\.pdf$", full.names = TRUE)
+
+estimate_tokens <- function(text) ceiling(nchar(text) / 4)
+
+#Pull schema from R script
+source("R/abstract_schema.R")
+
+# ---- Job Queue Setup ----
+job_file <- file.path(results_dir, "job_status_Gemini.csv")
+if (!file.exists(job_file)) {
+  job_status <- tibble(
+    full_path = pdf_files,
+    filename = basename(pdf_files),
+    status = "pending",
+    retries = 0,
+    last_attempt = as.POSIXct(NA)
+  )
+  write_csv(job_status, job_file)
+} else {
+  job_status <- read_csv(job_file, show_col_types = FALSE)
+}
+
+# ---- Resume Results ----
+checkpoint_file <- file.path(results_dir, "summary_partial_gemini.rds")
+if (file.exists(checkpoint_file)) {
+  results_list <- readRDS(checkpoint_file)
+} else {
+  results_list <- list()
+}
+
+# ---- Sync Job Status with Saved Results ----
+done_filenames <- names(results_list)
+job_status <- job_status %>%
+  mutate(
+    status = ifelse(filename %in% done_filenames, "done", status)
+  )
+
+# ---- Global Counters ----
+total_input_tokens <- 0
+total_output_tokens <- 0
+total_requests <- 0
+total_retries <- 0
+
+# ---- Summarizer Function ----
+extract_summary_single <- function(pdf_path, max_pages = 50, max_chars = 240000, max_retries = 6, global_pause = 15 * 60) {
+  if (!file.exists(pdf_path)) {
+    message("❌ File not found: ", pdf_path)
+    return(NULL)
+  }
+  
+  text_pages <- pdftools::pdf_text(pdf_path)
+  truncated_text <- paste(text_pages[1:min(length(text_pages), max_pages)], collapse = "\n")
+  truncated_text <- substr(truncated_text, 1, max_chars)
+  estimated_tokens <- estimate_tokens(truncated_text)
+  
+  retries <- 0
+  backoff <- c(60, 120, 180, 240, 300, 600)
+  
+  repeat {
+    cat("📏 Estimated tokens:", estimated_tokens, "from", nchar(truncated_text), "chars\n")
+    result <- tryCatch({
+      print(Sys.time())
+      gemini1 <- chat_google_gemini(
+        model = "gemini-2.5-flash",
+        system_prompt = id_prompt("")
+      )
+
+      gemini1$chat_structured(truncated_text, type = type_summary)
+    }, error = function(e) {
+      msg <- conditionMessage(e)
+      if (grepl("429|quota|rate limit", msg)) {
+        wait_time <- if (retries < length(backoff)) backoff[retries + 1] else 900
+        wait_time <- runif(1, wait_time * 0.9, wait_time * 1.1)
+        cat("⏳ Rate limit hit. Waiting", round(wait_time), "s (attempt", retries + 1, ")\n")
+        Sys.sleep(wait_time)
+        retries <<- retries + 1
+        total_retries <<- total_retries + 1
+        return("RETRY")
+      } else {
+        cat("❌ Unexpected error:", msg, "\n")
+        return(NULL)
+      }
+    })
+    
+    if (identical(result, "RETRY")) {
+      if (retries >= max_retries) {
+        cat("❌ Max retries reached\n")
+        return(NULL)
+      }
+    } else {
+      break
+    }
+  }
+  
+  if (is.null(result)) {
+    fallback <- gemini1$chat(truncated_text)
+    cat("⚠️ Fallback preview:\n", substr(fallback, 1, 500), "\n")
+    return(NULL)
+  }
+  
+  result_list <- result
+  result_list$filename <- basename(pdf_path)
+  
+  result_clean <- result_list %>% purrr::map_chr(~ {
+    if (is.null(.x) || length(.x) == 0) return(NA_character_)
+    if (is.atomic(.x) && length(.x) == 1) return(as.character(.x))
+    if (is.atomic(.x) && length(.x) > 1) return(paste(.x, collapse = ", "))
+    return(as.character(.x))
+  })
+  
+  output_tokens <- estimate_tokens(paste(result_clean, collapse = " "))
+  total_input_tokens <<- total_input_tokens + estimated_tokens
+  total_output_tokens <<- total_output_tokens + output_tokens
+  total_requests <<- total_requests + 1
+  
+  list(data = tibble::as_tibble_row(result_clean), token_count = estimated_tokens)
+}
+
+# ---- Main Loop ----
+message("\n===== Starting Gemini PDF summarization =====")
+message("Pending: ", sum(job_status$status == 'pending'))
+message("Retry: ", sum(job_status$status == 'retry'))
+message("Done: ", sum(job_status$status == 'done'))
+message("Failed: ", sum(job_status$status == 'failed'))
+
+for (i in seq_len(nrow(job_status))) {
+  row <- job_status[i, ]
+  cat("\n[", i, "/", nrow(job_status), "]", row$filename, "\n")
+  
+  if (row$status %in% c("done", "failed")) {
+    cat("⏭️ Skipping (status:", row$status, ")\n")
+    next
+  }
+  
+  result <- extract_summary_single(row$full_path)
+  
+  if (!is.null(result)) {
+    results_list[[row$filename]] <- result$data
+    job_status$status[i] <- "done"
+    wait_time <- ceiling(result$token_count / 1000) * 10
+    wait_time <- runif(1, wait_time * 0.9, wait_time * 1.1)
+    cat("🕒 Waiting", round(wait_time), "s...\n")
+    Sys.sleep(wait_time)
+  } else {
+    job_status$retries[i] <- job_status$retries[i] + 1
+    job_status$status[i] <- ifelse(job_status$retries[i] >= 5, "failed", "retry")
+  }
+  
+  job_status$last_attempt[i] <- Sys.time()
+  write_csv(job_status, job_file)
+  saveRDS(results_list, checkpoint_file)
+}
+
+# ---- Final Save ----
+final_df <- bind_rows(results_list)
+write_csv(final_df, file.path(results_dir, "summary_output_gemini.csv"))
+
+message("\n===== Summary =====")
+message("Total requests: ", total_requests)
+message("Input tokens: ", total_input_tokens)
+message("Output tokens: ", total_output_tokens)
+message("Retries: ", total_retries)
+
+
+```
+

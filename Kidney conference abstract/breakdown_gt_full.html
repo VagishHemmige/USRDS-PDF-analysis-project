@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<body>
+<div id="ahnelunfaz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>#ahnelunfaz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ahnelunfaz thead, #ahnelunfaz tbody, #ahnelunfaz tfoot, #ahnelunfaz tr, #ahnelunfaz td, #ahnelunfaz th {
+  border-style: none;
+}
+
+#ahnelunfaz p {
+  margin: 0;
+  padding: 0;
+}
+
+#ahnelunfaz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ahnelunfaz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ahnelunfaz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ahnelunfaz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ahnelunfaz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ahnelunfaz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ahnelunfaz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ahnelunfaz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ahnelunfaz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ahnelunfaz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ahnelunfaz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ahnelunfaz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ahnelunfaz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ahnelunfaz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ahnelunfaz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ahnelunfaz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ahnelunfaz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ahnelunfaz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ahnelunfaz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ahnelunfaz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ahnelunfaz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ahnelunfaz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ahnelunfaz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ahnelunfaz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ahnelunfaz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ahnelunfaz .gt_left {
+  text-align: left;
+}
+
+#ahnelunfaz .gt_center {
+  text-align: center;
+}
+
+#ahnelunfaz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ahnelunfaz .gt_font_normal {
+  font-weight: normal;
+}
+
+#ahnelunfaz .gt_font_bold {
+  font-weight: bold;
+}
+
+#ahnelunfaz .gt_font_italic {
+  font-style: italic;
+}
+
+#ahnelunfaz .gt_super {
+  font-size: 65%;
+}
+
+#ahnelunfaz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ahnelunfaz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ahnelunfaz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ahnelunfaz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ahnelunfaz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ahnelunfaz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ahnelunfaz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ahnelunfaz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ahnelunfaz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="2" scope="colgroup" id="a::stub"><span class='gt_from_md'><strong>Human</strong></span></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="**ChatGPT**">
+        <div class="gt_column_spanner"><span class='gt_from_md'><strong>ChatGPT</strong></span></div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="**Claude**">
+        <div class="gt_column_spanner"><span class='gt_from_md'><strong>Claude</strong></span></div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="**Gemini**">
+        <div class="gt_column_spanner"><span class='gt_from_md'><strong>Gemini</strong></span></div>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chat_nd">Num/Den</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chat_pct">%</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cla_nd">Num/Den</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cla_pct">%</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="gem_nd">Num/Den</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="gem_pct">%</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_row_group_first"><td headers="Basic demographics abstracted stub_2_1 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">Basic demographics abstracted</td>
+<th id="stub_2_1" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Basic demographics abstracted stub_2_1 chat_nd" class="gt_row gt_right">142/149</td>
+<td headers="Basic demographics abstracted stub_2_1 chat_pct" class="gt_row gt_right">95.3%</td>
+<td headers="Basic demographics abstracted stub_2_1 cla_nd" class="gt_row gt_right">146/149</td>
+<td headers="Basic demographics abstracted stub_2_1 cla_pct" class="gt_row gt_right">98.0%</td>
+<td headers="Basic demographics abstracted stub_2_1 gem_nd" class="gt_row gt_right">147/149</td>
+<td headers="Basic demographics abstracted stub_2_1 gem_pct" class="gt_row gt_right">98.7%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Cost data abstracted stub_2_2 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Cost data abstracted</td>
+<th id="stub_2_2" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Cost data abstracted stub_2_2 chat_nd" class="gt_row gt_right">3/145</td>
+<td headers="Cost data abstracted stub_2_2 chat_pct" class="gt_row gt_right">2.1%</td>
+<td headers="Cost data abstracted stub_2_2 cla_nd" class="gt_row gt_right">1/145</td>
+<td headers="Cost data abstracted stub_2_2 cla_pct" class="gt_row gt_right">0.7%</td>
+<td headers="Cost data abstracted stub_2_2 gem_nd" class="gt_row gt_right">4/145</td>
+<td headers="Cost data abstracted stub_2_2 gem_pct" class="gt_row gt_right">2.8%</td></tr>
+    <tr><th id="stub_2_3" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Cost data abstracted stub_2_3 chat_nd" class="gt_row gt_right">4/4</td>
+<td headers="Cost data abstracted stub_2_3 chat_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Cost data abstracted stub_2_3 cla_nd" class="gt_row gt_right">4/4</td>
+<td headers="Cost data abstracted stub_2_3 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Cost data abstracted stub_2_3 gem_nd" class="gt_row gt_right">4/4</td>
+<td headers="Cost data abstracted stub_2_3 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="CPT codes abstracted stub_2_4 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">CPT codes abstracted</td>
+<th id="stub_2_4" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="CPT codes abstracted stub_2_4 chat_nd" class="gt_row gt_right">6/103</td>
+<td headers="CPT codes abstracted stub_2_4 chat_pct" class="gt_row gt_right">5.8%</td>
+<td headers="CPT codes abstracted stub_2_4 cla_nd" class="gt_row gt_right">5/103</td>
+<td headers="CPT codes abstracted stub_2_4 cla_pct" class="gt_row gt_right">4.9%</td>
+<td headers="CPT codes abstracted stub_2_4 gem_nd" class="gt_row gt_right">7/103</td>
+<td headers="CPT codes abstracted stub_2_4 gem_pct" class="gt_row gt_right">6.8%</td></tr>
+    <tr><th id="stub_2_5" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="CPT codes abstracted stub_2_5 chat_nd" class="gt_row gt_right">34/46</td>
+<td headers="CPT codes abstracted stub_2_5 chat_pct" class="gt_row gt_right">73.9%</td>
+<td headers="CPT codes abstracted stub_2_5 cla_nd" class="gt_row gt_right">38/46</td>
+<td headers="CPT codes abstracted stub_2_5 cla_pct" class="gt_row gt_right">82.6%</td>
+<td headers="CPT codes abstracted stub_2_5 gem_nd" class="gt_row gt_right">39/46</td>
+<td headers="CPT codes abstracted stub_2_5 gem_pct" class="gt_row gt_right">84.8%</td></tr>
+    <tr class="gt_row_group_first"><td headers="ICD-10 codes abstracted stub_2_6 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">ICD-10 codes abstracted</td>
+<th id="stub_2_6" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="ICD-10 codes abstracted stub_2_6 chat_nd" class="gt_row gt_right">5/121</td>
+<td headers="ICD-10 codes abstracted stub_2_6 chat_pct" class="gt_row gt_right">4.1%</td>
+<td headers="ICD-10 codes abstracted stub_2_6 cla_nd" class="gt_row gt_right">5/121</td>
+<td headers="ICD-10 codes abstracted stub_2_6 cla_pct" class="gt_row gt_right">4.1%</td>
+<td headers="ICD-10 codes abstracted stub_2_6 gem_nd" class="gt_row gt_right">8/121</td>
+<td headers="ICD-10 codes abstracted stub_2_6 gem_pct" class="gt_row gt_right">6.6%</td></tr>
+    <tr><th id="stub_2_7" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="ICD-10 codes abstracted stub_2_7 chat_nd" class="gt_row gt_right">26/28</td>
+<td headers="ICD-10 codes abstracted stub_2_7 chat_pct" class="gt_row gt_right">92.9%</td>
+<td headers="ICD-10 codes abstracted stub_2_7 cla_nd" class="gt_row gt_right">26/28</td>
+<td headers="ICD-10 codes abstracted stub_2_7 cla_pct" class="gt_row gt_right">92.9%</td>
+<td headers="ICD-10 codes abstracted stub_2_7 gem_nd" class="gt_row gt_right">26/28</td>
+<td headers="ICD-10 codes abstracted stub_2_7 gem_pct" class="gt_row gt_right">92.9%</td></tr>
+    <tr class="gt_row_group_first"><td headers="ICD-9 codes abstracted stub_2_8 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">ICD-9 codes abstracted</td>
+<th id="stub_2_8" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="ICD-9 codes abstracted stub_2_8 chat_nd" class="gt_row gt_right">3/64</td>
+<td headers="ICD-9 codes abstracted stub_2_8 chat_pct" class="gt_row gt_right">4.7%</td>
+<td headers="ICD-9 codes abstracted stub_2_8 cla_nd" class="gt_row gt_right">3/64</td>
+<td headers="ICD-9 codes abstracted stub_2_8 cla_pct" class="gt_row gt_right">4.7%</td>
+<td headers="ICD-9 codes abstracted stub_2_8 gem_nd" class="gt_row gt_right">5/64</td>
+<td headers="ICD-9 codes abstracted stub_2_8 gem_pct" class="gt_row gt_right">7.8%</td></tr>
+    <tr><th id="stub_2_9" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="ICD-9 codes abstracted stub_2_9 chat_nd" class="gt_row gt_right">79/85</td>
+<td headers="ICD-9 codes abstracted stub_2_9 chat_pct" class="gt_row gt_right">92.9%</td>
+<td headers="ICD-9 codes abstracted stub_2_9 cla_nd" class="gt_row gt_right">80/85</td>
+<td headers="ICD-9 codes abstracted stub_2_9 cla_pct" class="gt_row gt_right">94.1%</td>
+<td headers="ICD-9 codes abstracted stub_2_9 gem_nd" class="gt_row gt_right">80/85</td>
+<td headers="ICD-9 codes abstracted stub_2_9 gem_pct" class="gt_row gt_right">94.1%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Part D medication data abstracted stub_2_10 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Part D medication data abstracted</td>
+<th id="stub_2_10" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Part D medication data abstracted stub_2_10 chat_nd" class="gt_row gt_right">0/116</td>
+<td headers="Part D medication data abstracted stub_2_10 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Part D medication data abstracted stub_2_10 cla_nd" class="gt_row gt_right">0/116</td>
+<td headers="Part D medication data abstracted stub_2_10 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Part D medication data abstracted stub_2_10 gem_nd" class="gt_row gt_right">1/116</td>
+<td headers="Part D medication data abstracted stub_2_10 gem_pct" class="gt_row gt_right">0.9%</td></tr>
+    <tr><th id="stub_2_11" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Part D medication data abstracted stub_2_11 chat_nd" class="gt_row gt_right">30/33</td>
+<td headers="Part D medication data abstracted stub_2_11 chat_pct" class="gt_row gt_right">90.9%</td>
+<td headers="Part D medication data abstracted stub_2_11 cla_nd" class="gt_row gt_right">31/33</td>
+<td headers="Part D medication data abstracted stub_2_11 cla_pct" class="gt_row gt_right">93.9%</td>
+<td headers="Part D medication data abstracted stub_2_11 gem_nd" class="gt_row gt_right">32/33</td>
+<td headers="Part D medication data abstracted stub_2_11 gem_pct" class="gt_row gt_right">97.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Residential location abstracted stub_2_12 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Residential location abstracted</td>
+<th id="stub_2_12" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Residential location abstracted stub_2_12 chat_nd" class="gt_row gt_right">6/100</td>
+<td headers="Residential location abstracted stub_2_12 chat_pct" class="gt_row gt_right">6.0%</td>
+<td headers="Residential location abstracted stub_2_12 cla_nd" class="gt_row gt_right">13/100</td>
+<td headers="Residential location abstracted stub_2_12 cla_pct" class="gt_row gt_right">13.0%</td>
+<td headers="Residential location abstracted stub_2_12 gem_nd" class="gt_row gt_right">14/100</td>
+<td headers="Residential location abstracted stub_2_12 gem_pct" class="gt_row gt_right">14.0%</td></tr>
+    <tr><th id="stub_2_13" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Residential location abstracted stub_2_13 chat_nd" class="gt_row gt_right">42/49</td>
+<td headers="Residential location abstracted stub_2_13 chat_pct" class="gt_row gt_right">85.7%</td>
+<td headers="Residential location abstracted stub_2_13 cla_nd" class="gt_row gt_right">46/49</td>
+<td headers="Residential location abstracted stub_2_13 cla_pct" class="gt_row gt_right">93.9%</td>
+<td headers="Residential location abstracted stub_2_13 gem_nd" class="gt_row gt_right">45/49</td>
+<td headers="Residential location abstracted stub_2_13 gem_pct" class="gt_row gt_right">91.8%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Transplant-specific data abstracted stub_2_14 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Transplant-specific data abstracted</td>
+<th id="stub_2_14" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Transplant-specific data abstracted stub_2_14 chat_nd" class="gt_row gt_right">28/95</td>
+<td headers="Transplant-specific data abstracted stub_2_14 chat_pct" class="gt_row gt_right">29.5%</td>
+<td headers="Transplant-specific data abstracted stub_2_14 cla_nd" class="gt_row gt_right">16/95</td>
+<td headers="Transplant-specific data abstracted stub_2_14 cla_pct" class="gt_row gt_right">16.8%</td>
+<td headers="Transplant-specific data abstracted stub_2_14 gem_nd" class="gt_row gt_right">24/95</td>
+<td headers="Transplant-specific data abstracted stub_2_14 gem_pct" class="gt_row gt_right">25.3%</td></tr>
+    <tr><th id="stub_2_15" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Transplant-specific data abstracted stub_2_15 chat_nd" class="gt_row gt_right">51/54</td>
+<td headers="Transplant-specific data abstracted stub_2_15 chat_pct" class="gt_row gt_right">94.4%</td>
+<td headers="Transplant-specific data abstracted stub_2_15 cla_nd" class="gt_row gt_right">43/54</td>
+<td headers="Transplant-specific data abstracted stub_2_15 cla_pct" class="gt_row gt_right">79.6%</td>
+<td headers="Transplant-specific data abstracted stub_2_15 gem_nd" class="gt_row gt_right">47/54</td>
+<td headers="Transplant-specific data abstracted stub_2_15 gem_pct" class="gt_row gt_right">87.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Authors shared code stub_2_16 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Authors shared code</td>
+<th id="stub_2_16" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Authors shared code stub_2_16 chat_nd" class="gt_row gt_right">1/144</td>
+<td headers="Authors shared code stub_2_16 chat_pct" class="gt_row gt_right">0.7%</td>
+<td headers="Authors shared code stub_2_16 cla_nd" class="gt_row gt_right">0/144</td>
+<td headers="Authors shared code stub_2_16 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Authors shared code stub_2_16 gem_nd" class="gt_row gt_right">1/144</td>
+<td headers="Authors shared code stub_2_16 gem_pct" class="gt_row gt_right">0.7%</td></tr>
+    <tr><th id="stub_2_17" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Authors shared code stub_2_17 chat_nd" class="gt_row gt_right">2/6</td>
+<td headers="Authors shared code stub_2_17 chat_pct" class="gt_row gt_right">33.3%</td>
+<td headers="Authors shared code stub_2_17 cla_nd" class="gt_row gt_right">3/6</td>
+<td headers="Authors shared code stub_2_17 cla_pct" class="gt_row gt_right">50.0%</td>
+<td headers="Authors shared code stub_2_17 gem_nd" class="gt_row gt_right">2/6</td>
+<td headers="Authors shared code stub_2_17 gem_pct" class="gt_row gt_right">33.3%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Programming language stated stub_2_18 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Programming language stated</td>
+<th id="stub_2_18" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Programming language stated stub_2_18 chat_nd" class="gt_row gt_right">1/23</td>
+<td headers="Programming language stated stub_2_18 chat_pct" class="gt_row gt_right">4.3%</td>
+<td headers="Programming language stated stub_2_18 cla_nd" class="gt_row gt_right">0/23</td>
+<td headers="Programming language stated stub_2_18 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Programming language stated stub_2_18 gem_nd" class="gt_row gt_right">1/23</td>
+<td headers="Programming language stated stub_2_18 gem_pct" class="gt_row gt_right">4.3%</td></tr>
+    <tr><th id="stub_2_19" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Programming language stated stub_2_19 chat_nd" class="gt_row gt_right">118/127</td>
+<td headers="Programming language stated stub_2_19 chat_pct" class="gt_row gt_right">92.9%</td>
+<td headers="Programming language stated stub_2_19 cla_nd" class="gt_row gt_right">126/127</td>
+<td headers="Programming language stated stub_2_19 cla_pct" class="gt_row gt_right">99.2%</td>
+<td headers="Programming language stated stub_2_19 gem_nd" class="gt_row gt_right">125/127</td>
+<td headers="Programming language stated stub_2_19 gem_pct" class="gt_row gt_right">98.4%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Files/codes appropriate for research question stub_2_20 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Files/codes appropriate for research question</td>
+<th id="stub_2_20" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Files/codes appropriate for research question stub_2_20 chat_nd" class="gt_row gt_right">3/4</td>
+<td headers="Files/codes appropriate for research question stub_2_20 chat_pct" class="gt_row gt_right">75.0%</td>
+<td headers="Files/codes appropriate for research question stub_2_20 cla_nd" class="gt_row gt_right">4/4</td>
+<td headers="Files/codes appropriate for research question stub_2_20 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Files/codes appropriate for research question stub_2_20 gem_nd" class="gt_row gt_right">4/4</td>
+<td headers="Files/codes appropriate for research question stub_2_20 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr><th id="stub_2_21" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Files/codes appropriate for research question stub_2_21 chat_nd" class="gt_row gt_right">119/146</td>
+<td headers="Files/codes appropriate for research question stub_2_21 chat_pct" class="gt_row gt_right">81.5%</td>
+<td headers="Files/codes appropriate for research question stub_2_21 cla_nd" class="gt_row gt_right">142/146</td>
+<td headers="Files/codes appropriate for research question stub_2_21 cla_pct" class="gt_row gt_right">97.3%</td>
+<td headers="Files/codes appropriate for research question stub_2_21 gem_nd" class="gt_row gt_right">145/146</td>
+<td headers="Files/codes appropriate for research question stub_2_21 gem_pct" class="gt_row gt_right">99.3%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Core file used stub_2_22 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">Core file used</td>
+<th id="stub_2_22" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Core file used stub_2_22 chat_nd" class="gt_row gt_right">94/150</td>
+<td headers="Core file used stub_2_22 chat_pct" class="gt_row gt_right">62.7%</td>
+<td headers="Core file used stub_2_22 cla_nd" class="gt_row gt_right">144/150</td>
+<td headers="Core file used stub_2_22 cla_pct" class="gt_row gt_right">96.0%</td>
+<td headers="Core file used stub_2_22 gem_nd" class="gt_row gt_right">147/150</td>
+<td headers="Core file used stub_2_22 gem_pct" class="gt_row gt_right">98.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="CROWNWeb file used stub_2_23 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">CROWNWeb file used</td>
+<th id="stub_2_23" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="CROWNWeb file used stub_2_23 chat_nd" class="gt_row gt_right">6/131</td>
+<td headers="CROWNWeb file used stub_2_23 chat_pct" class="gt_row gt_right">4.6%</td>
+<td headers="CROWNWeb file used stub_2_23 cla_nd" class="gt_row gt_right">6/131</td>
+<td headers="CROWNWeb file used stub_2_23 cla_pct" class="gt_row gt_right">4.6%</td>
+<td headers="CROWNWeb file used stub_2_23 gem_nd" class="gt_row gt_right">15/131</td>
+<td headers="CROWNWeb file used stub_2_23 gem_pct" class="gt_row gt_right">11.5%</td></tr>
+    <tr><th id="stub_2_24" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="CROWNWeb file used stub_2_24 chat_nd" class="gt_row gt_right">18/19</td>
+<td headers="CROWNWeb file used stub_2_24 chat_pct" class="gt_row gt_right">94.7%</td>
+<td headers="CROWNWeb file used stub_2_24 cla_nd" class="gt_row gt_right">19/19</td>
+<td headers="CROWNWeb file used stub_2_24 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="CROWNWeb file used stub_2_24 gem_nd" class="gt_row gt_right">19/19</td>
+<td headers="CROWNWeb file used stub_2_24 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Hospital file used stub_2_25 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Hospital file used</td>
+<th id="stub_2_25" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Hospital file used stub_2_25 chat_nd" class="gt_row gt_right">1/98</td>
+<td headers="Hospital file used stub_2_25 chat_pct" class="gt_row gt_right">1.0%</td>
+<td headers="Hospital file used stub_2_25 cla_nd" class="gt_row gt_right">11/98</td>
+<td headers="Hospital file used stub_2_25 cla_pct" class="gt_row gt_right">11.2%</td>
+<td headers="Hospital file used stub_2_25 gem_nd" class="gt_row gt_right">27/98</td>
+<td headers="Hospital file used stub_2_25 gem_pct" class="gt_row gt_right">27.6%</td></tr>
+    <tr><th id="stub_2_26" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Hospital file used stub_2_26 chat_nd" class="gt_row gt_right">9/52</td>
+<td headers="Hospital file used stub_2_26 chat_pct" class="gt_row gt_right">17.3%</td>
+<td headers="Hospital file used stub_2_26 cla_nd" class="gt_row gt_right">33/52</td>
+<td headers="Hospital file used stub_2_26 cla_pct" class="gt_row gt_right">63.5%</td>
+<td headers="Hospital file used stub_2_26 gem_nd" class="gt_row gt_right">32/52</td>
+<td headers="Hospital file used stub_2_26 gem_pct" class="gt_row gt_right">61.5%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Institution file used stub_2_27 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Institution file used</td>
+<th id="stub_2_27" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Institution file used stub_2_27 chat_nd" class="gt_row gt_right">7/75</td>
+<td headers="Institution file used stub_2_27 chat_pct" class="gt_row gt_right">9.3%</td>
+<td headers="Institution file used stub_2_27 cla_nd" class="gt_row gt_right">8/75</td>
+<td headers="Institution file used stub_2_27 cla_pct" class="gt_row gt_right">10.7%</td>
+<td headers="Institution file used stub_2_27 gem_nd" class="gt_row gt_right">14/75</td>
+<td headers="Institution file used stub_2_27 gem_pct" class="gt_row gt_right">18.7%</td></tr>
+    <tr><th id="stub_2_28" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Institution file used stub_2_28 chat_nd" class="gt_row gt_right">37/75</td>
+<td headers="Institution file used stub_2_28 chat_pct" class="gt_row gt_right">49.3%</td>
+<td headers="Institution file used stub_2_28 cla_nd" class="gt_row gt_right">49/75</td>
+<td headers="Institution file used stub_2_28 cla_pct" class="gt_row gt_right">65.3%</td>
+<td headers="Institution file used stub_2_28 gem_nd" class="gt_row gt_right">63/75</td>
+<td headers="Institution file used stub_2_28 gem_pct" class="gt_row gt_right">84.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Part D file used stub_2_29 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Part D file used</td>
+<th id="stub_2_29" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Part D file used stub_2_29 chat_nd" class="gt_row gt_right">0/117</td>
+<td headers="Part D file used stub_2_29 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Part D file used stub_2_29 cla_nd" class="gt_row gt_right">1/117</td>
+<td headers="Part D file used stub_2_29 cla_pct" class="gt_row gt_right">0.9%</td>
+<td headers="Part D file used stub_2_29 gem_nd" class="gt_row gt_right">1/117</td>
+<td headers="Part D file used stub_2_29 gem_pct" class="gt_row gt_right">0.9%</td></tr>
+    <tr><th id="stub_2_30" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Part D file used stub_2_30 chat_nd" class="gt_row gt_right">24/33</td>
+<td headers="Part D file used stub_2_30 chat_pct" class="gt_row gt_right">72.7%</td>
+<td headers="Part D file used stub_2_30 cla_nd" class="gt_row gt_right">31/33</td>
+<td headers="Part D file used stub_2_30 cla_pct" class="gt_row gt_right">93.9%</td>
+<td headers="Part D file used stub_2_30 gem_nd" class="gt_row gt_right">32/33</td>
+<td headers="Part D file used stub_2_30 gem_pct" class="gt_row gt_right">97.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Physician/Supplier file used stub_2_31 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Physician/Supplier file used</td>
+<th id="stub_2_31" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Physician/Supplier file used stub_2_31 chat_nd" class="gt_row gt_right">4/79</td>
+<td headers="Physician/Supplier file used stub_2_31 chat_pct" class="gt_row gt_right">5.1%</td>
+<td headers="Physician/Supplier file used stub_2_31 cla_nd" class="gt_row gt_right">3/79</td>
+<td headers="Physician/Supplier file used stub_2_31 cla_pct" class="gt_row gt_right">3.8%</td>
+<td headers="Physician/Supplier file used stub_2_31 gem_nd" class="gt_row gt_right">11/79</td>
+<td headers="Physician/Supplier file used stub_2_31 gem_pct" class="gt_row gt_right">13.9%</td></tr>
+    <tr><th id="stub_2_32" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Physician/Supplier file used stub_2_32 chat_nd" class="gt_row gt_right">30/71</td>
+<td headers="Physician/Supplier file used stub_2_32 chat_pct" class="gt_row gt_right">42.3%</td>
+<td headers="Physician/Supplier file used stub_2_32 cla_nd" class="gt_row gt_right">43/71</td>
+<td headers="Physician/Supplier file used stub_2_32 cla_pct" class="gt_row gt_right">60.6%</td>
+<td headers="Physician/Supplier file used stub_2_32 gem_nd" class="gt_row gt_right">60/71</td>
+<td headers="Physician/Supplier file used stub_2_32 gem_pct" class="gt_row gt_right">84.5%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Transplant file used stub_2_33 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Transplant file used</td>
+<th id="stub_2_33" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Transplant file used stub_2_33 chat_nd" class="gt_row gt_right">3/105</td>
+<td headers="Transplant file used stub_2_33 chat_pct" class="gt_row gt_right">2.9%</td>
+<td headers="Transplant file used stub_2_33 cla_nd" class="gt_row gt_right">13/105</td>
+<td headers="Transplant file used stub_2_33 cla_pct" class="gt_row gt_right">12.4%</td>
+<td headers="Transplant file used stub_2_33 gem_nd" class="gt_row gt_right">6/105</td>
+<td headers="Transplant file used stub_2_33 gem_pct" class="gt_row gt_right">5.7%</td></tr>
+    <tr><th id="stub_2_34" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Transplant file used stub_2_34 chat_nd" class="gt_row gt_right">15/45</td>
+<td headers="Transplant file used stub_2_34 chat_pct" class="gt_row gt_right">33.3%</td>
+<td headers="Transplant file used stub_2_34 cla_nd" class="gt_row gt_right">28/45</td>
+<td headers="Transplant file used stub_2_34 cla_pct" class="gt_row gt_right">62.2%</td>
+<td headers="Transplant file used stub_2_34 gem_nd" class="gt_row gt_right">35/45</td>
+<td headers="Transplant file used stub_2_34 gem_pct" class="gt_row gt_right">77.8%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Transplant-related study stub_2_35 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Transplant-related study</td>
+<th id="stub_2_35" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Transplant-related study stub_2_35 chat_nd" class="gt_row gt_right">2/106</td>
+<td headers="Transplant-related study stub_2_35 chat_pct" class="gt_row gt_right">1.9%</td>
+<td headers="Transplant-related study stub_2_35 cla_nd" class="gt_row gt_right">1/106</td>
+<td headers="Transplant-related study stub_2_35 cla_pct" class="gt_row gt_right">0.9%</td>
+<td headers="Transplant-related study stub_2_35 gem_nd" class="gt_row gt_right">7/106</td>
+<td headers="Transplant-related study stub_2_35 gem_pct" class="gt_row gt_right">6.6%</td></tr>
+    <tr><th id="stub_2_36" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Transplant-related study stub_2_36 chat_nd" class="gt_row gt_right">41/44</td>
+<td headers="Transplant-related study stub_2_36 chat_pct" class="gt_row gt_right">93.2%</td>
+<td headers="Transplant-related study stub_2_36 cla_nd" class="gt_row gt_right">34/44</td>
+<td headers="Transplant-related study stub_2_36 cla_pct" class="gt_row gt_right">77.3%</td>
+<td headers="Transplant-related study stub_2_36 gem_nd" class="gt_row gt_right">43/44</td>
+<td headers="Transplant-related study stub_2_36 gem_pct" class="gt_row gt_right">97.7%</td></tr>
+    <tr class="gt_row_group_first"><td headers="New patient-level data analysis stub_2_37 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">New patient-level data analysis</td>
+<th id="stub_2_37" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="New patient-level data analysis stub_2_37 chat_nd" class="gt_row gt_right">149/150</td>
+<td headers="New patient-level data analysis stub_2_37 chat_pct" class="gt_row gt_right">99.3%</td>
+<td headers="New patient-level data analysis stub_2_37 cla_nd" class="gt_row gt_right">150/150</td>
+<td headers="New patient-level data analysis stub_2_37 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="New patient-level data analysis stub_2_37 gem_nd" class="gt_row gt_right">149/150</td>
+<td headers="New patient-level data analysis stub_2_37 gem_pct" class="gt_row gt_right">99.3%</td></tr>
+    <tr class="gt_row_group_first"><td headers="languages_used_Julia stub_2_38 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">languages_used_Julia</td>
+<th id="stub_2_38" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="languages_used_Julia stub_2_38 chat_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Julia stub_2_38 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_Julia stub_2_38 cla_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Julia stub_2_38 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_Julia stub_2_38 gem_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Julia stub_2_38 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="languages_used_Matlab stub_2_39 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">languages_used_Matlab</td>
+<th id="stub_2_39" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="languages_used_Matlab stub_2_39 chat_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Matlab stub_2_39 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_Matlab stub_2_39 cla_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Matlab stub_2_39 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_Matlab stub_2_39 gem_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_Matlab stub_2_39 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Python used stub_2_40 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Python used</td>
+<th id="stub_2_40" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Python used stub_2_40 chat_nd" class="gt_row gt_right">0/126</td>
+<td headers="Python used stub_2_40 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Python used stub_2_40 cla_nd" class="gt_row gt_right">0/126</td>
+<td headers="Python used stub_2_40 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Python used stub_2_40 gem_nd" class="gt_row gt_right">0/126</td>
+<td headers="Python used stub_2_40 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_2_41" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Python used stub_2_41 chat_nd" class="gt_row gt_right">1/1</td>
+<td headers="Python used stub_2_41 chat_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Python used stub_2_41 cla_nd" class="gt_row gt_right">1/1</td>
+<td headers="Python used stub_2_41 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Python used stub_2_41 gem_nd" class="gt_row gt_right">1/1</td>
+<td headers="Python used stub_2_41 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="R used stub_2_42 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">R used</td>
+<th id="stub_2_42" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="R used stub_2_42 chat_nd" class="gt_row gt_right">0/94</td>
+<td headers="R used stub_2_42 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="R used stub_2_42 cla_nd" class="gt_row gt_right">0/94</td>
+<td headers="R used stub_2_42 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="R used stub_2_42 gem_nd" class="gt_row gt_right">0/94</td>
+<td headers="R used stub_2_42 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_2_43" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="R used stub_2_43 chat_nd" class="gt_row gt_right">29/33</td>
+<td headers="R used stub_2_43 chat_pct" class="gt_row gt_right">87.9%</td>
+<td headers="R used stub_2_43 cla_nd" class="gt_row gt_right">31/33</td>
+<td headers="R used stub_2_43 cla_pct" class="gt_row gt_right">93.9%</td>
+<td headers="R used stub_2_43 gem_nd" class="gt_row gt_right">31/33</td>
+<td headers="R used stub_2_43 gem_pct" class="gt_row gt_right">93.9%</td></tr>
+    <tr class="gt_row_group_first"><td headers="SAS used stub_2_44 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">SAS used</td>
+<th id="stub_2_44" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="SAS used stub_2_44 chat_nd" class="gt_row gt_right">3/42</td>
+<td headers="SAS used stub_2_44 chat_pct" class="gt_row gt_right">7.1%</td>
+<td headers="SAS used stub_2_44 cla_nd" class="gt_row gt_right">1/42</td>
+<td headers="SAS used stub_2_44 cla_pct" class="gt_row gt_right">2.4%</td>
+<td headers="SAS used stub_2_44 gem_nd" class="gt_row gt_right">1/42</td>
+<td headers="SAS used stub_2_44 gem_pct" class="gt_row gt_right">2.4%</td></tr>
+    <tr><th id="stub_2_45" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="SAS used stub_2_45 chat_nd" class="gt_row gt_right">80/85</td>
+<td headers="SAS used stub_2_45 chat_pct" class="gt_row gt_right">94.1%</td>
+<td headers="SAS used stub_2_45 cla_nd" class="gt_row gt_right">84/85</td>
+<td headers="SAS used stub_2_45 cla_pct" class="gt_row gt_right">98.8%</td>
+<td headers="SAS used stub_2_45 gem_nd" class="gt_row gt_right">84/85</td>
+<td headers="SAS used stub_2_45 gem_pct" class="gt_row gt_right">98.8%</td></tr>
+    <tr class="gt_row_group_first"><td headers="SPSS used stub_2_46 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">SPSS used</td>
+<th id="stub_2_46" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="SPSS used stub_2_46 chat_nd" class="gt_row gt_right">0/123</td>
+<td headers="SPSS used stub_2_46 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="SPSS used stub_2_46 cla_nd" class="gt_row gt_right">0/123</td>
+<td headers="SPSS used stub_2_46 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="SPSS used stub_2_46 gem_nd" class="gt_row gt_right">0/123</td>
+<td headers="SPSS used stub_2_46 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_2_47" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="SPSS used stub_2_47 chat_nd" class="gt_row gt_right">3/4</td>
+<td headers="SPSS used stub_2_47 chat_pct" class="gt_row gt_right">75.0%</td>
+<td headers="SPSS used stub_2_47 cla_nd" class="gt_row gt_right">4/4</td>
+<td headers="SPSS used stub_2_47 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="SPSS used stub_2_47 gem_nd" class="gt_row gt_right">4/4</td>
+<td headers="SPSS used stub_2_47 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="languages_used_SQL stub_2_48 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">languages_used_SQL</td>
+<th id="stub_2_48" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="languages_used_SQL stub_2_48 chat_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_SQL stub_2_48 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_SQL stub_2_48 cla_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_SQL stub_2_48 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="languages_used_SQL stub_2_48 gem_nd" class="gt_row gt_right">0/127</td>
+<td headers="languages_used_SQL stub_2_48 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Stata used stub_2_49 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Stata used</td>
+<th id="stub_2_49" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Stata used stub_2_49 chat_nd" class="gt_row gt_right">0/90</td>
+<td headers="Stata used stub_2_49 chat_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Stata used stub_2_49 cla_nd" class="gt_row gt_right">0/90</td>
+<td headers="Stata used stub_2_49 cla_pct" class="gt_row gt_right">0.0%</td>
+<td headers="Stata used stub_2_49 gem_nd" class="gt_row gt_right">0/90</td>
+<td headers="Stata used stub_2_49 gem_pct" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_2_50" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Stata used stub_2_50 chat_nd" class="gt_row gt_right">34/37</td>
+<td headers="Stata used stub_2_50 chat_pct" class="gt_row gt_right">91.9%</td>
+<td headers="Stata used stub_2_50 cla_nd" class="gt_row gt_right">37/37</td>
+<td headers="Stata used stub_2_50 cla_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Stata used stub_2_50 gem_nd" class="gt_row gt_right">37/37</td>
+<td headers="Stata used stub_2_50 gem_pct" class="gt_row gt_right">100.0%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Study funded stub_2_51 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Study funded</td>
+<th id="stub_2_51" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Study funded stub_2_51 chat_nd" class="gt_row gt_right">8/33</td>
+<td headers="Study funded stub_2_51 chat_pct" class="gt_row gt_right">24.2%</td>
+<td headers="Study funded stub_2_51 cla_nd" class="gt_row gt_right">7/33</td>
+<td headers="Study funded stub_2_51 cla_pct" class="gt_row gt_right">21.2%</td>
+<td headers="Study funded stub_2_51 gem_nd" class="gt_row gt_right">13/33</td>
+<td headers="Study funded stub_2_51 gem_pct" class="gt_row gt_right">39.4%</td></tr>
+    <tr><th id="stub_2_52" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Study funded stub_2_52 chat_nd" class="gt_row gt_right">117/117</td>
+<td headers="Study funded stub_2_52 chat_pct" class="gt_row gt_right">100.0%</td>
+<td headers="Study funded stub_2_52 cla_nd" class="gt_row gt_right">112/117</td>
+<td headers="Study funded stub_2_52 cla_pct" class="gt_row gt_right">95.7%</td>
+<td headers="Study funded stub_2_52 gem_nd" class="gt_row gt_right">116/117</td>
+<td headers="Study funded stub_2_52 gem_pct" class="gt_row gt_right">99.1%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Any crosswalks used stub_2_53 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">Any crosswalks used</td>
+<th id="stub_2_53" scope="row" class="gt_row gt_center gt_stub">FALSE</th>
+<td headers="Any crosswalks used stub_2_53 chat_nd" class="gt_row gt_right">9/134</td>
+<td headers="Any crosswalks used stub_2_53 chat_pct" class="gt_row gt_right">6.7%</td>
+<td headers="Any crosswalks used stub_2_53 cla_nd" class="gt_row gt_right">9/134</td>
+<td headers="Any crosswalks used stub_2_53 cla_pct" class="gt_row gt_right">6.7%</td>
+<td headers="Any crosswalks used stub_2_53 gem_nd" class="gt_row gt_right">6/134</td>
+<td headers="Any crosswalks used stub_2_53 gem_pct" class="gt_row gt_right">4.5%</td></tr>
+    <tr><th id="stub_2_54" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Any crosswalks used stub_2_54 chat_nd" class="gt_row gt_right">8/16</td>
+<td headers="Any crosswalks used stub_2_54 chat_pct" class="gt_row gt_right">50.0%</td>
+<td headers="Any crosswalks used stub_2_54 cla_nd" class="gt_row gt_right">6/16</td>
+<td headers="Any crosswalks used stub_2_54 cla_pct" class="gt_row gt_right">37.5%</td>
+<td headers="Any crosswalks used stub_2_54 gem_nd" class="gt_row gt_right">7/16</td>
+<td headers="Any crosswalks used stub_2_54 gem_pct" class="gt_row gt_right">43.8%</td></tr>
+    <tr class="gt_row_group_first"><td headers="Covered by proposed usRds package stub_2_55 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">Covered by proposed usRds package</td>
+<th id="stub_2_55" scope="row" class="gt_row gt_center gt_stub">TRUE</th>
+<td headers="Covered by proposed usRds package stub_2_55 chat_nd" class="gt_row gt_right">133/150</td>
+<td headers="Covered by proposed usRds package stub_2_55 chat_pct" class="gt_row gt_right">88.7%</td>
+<td headers="Covered by proposed usRds package stub_2_55 cla_nd" class="gt_row gt_right">123/150</td>
+<td headers="Covered by proposed usRds package stub_2_55 cla_pct" class="gt_row gt_right">82.0%</td>
+<td headers="Covered by proposed usRds package stub_2_55 gem_nd" class="gt_row gt_right">79/150</td>
+<td headers="Covered by proposed usRds package stub_2_55 gem_pct" class="gt_row gt_right">52.7%</td></tr>
+  </tbody>
+  
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+---
+title: "Methods"
+format: html
+---
+
+## Pubmed search
+
+We performed a PubMed search in June 2022 for the terms “United States Renal Data System” and “USRDS”, and downloaded the results.  We chose a convenience sample of the 175 most recently published papers further analysis.
+
+PDFs of each study were obtained from the appropriate source.
+
+## Manual review of papers
+Each paper was reviewed independently by two study reviewers and the results entered into a Google Form.  The study assessment tool is below:
+
+::: {.callout-note collapse="true" title="Click here to see form"}
+
+## USRDS abstraction form
+
+### Citation information
+
+1. **Authors**  
+   Free text
+
+2. **Title**  
+   Free text
+
+3. **Journal**  
+   Free text
+
+4. **Year**  
+   Free text
+
+### Study classification
+
+5. **Is this paper a new data analysis?**  
+
+    - [ ] Yes
+    - [ ] No
+
+6. **Is this a transplant-related study?**  
+
+    - [ ] Yes
+    - [ ] No
+
+### Programming language
+
+7. **Did the authors state what programming language they used?**  
+
+    - [ ] Yes
+    - [ ] No
+
+8. **What programming language(s) was/were used?**  
+
+    - [ ] R
+    - [ ] SAS
+    - [ ] STATA
+    - [ ] SPSS
+    - [ ] Other: ________
+
+### Files used
+
+9. **Did the authors explicitly state what files they used?**  
+
+    - [ ] Yes
+    - [ ] No
+
+10. **What files were used?**  
+
+    - [ ] Core
+    - [ ] Transplant
+    - [ ] Part D
+    - [ ] Institution
+    - [ ] Physician/Supplier
+    - [ ] Hospital
+    - [ ] Other: ________
+
+11. **Which pieces of data were abstracted from the files?**  
+
+    - [ ] Basic demographics
+    - [ ] Residential location
+    - [ ] Transplant-specific information
+    - [ ] ICD9 code
+    - [ ] ICD10 code
+    - [ ] CPT code
+    - [ ] Medications (part D)
+    - [ ] Costs
+
+12. **Does the choice of files/codes seem appropriate for the research question?**  
+
+    - [ ] Yes
+    - [ ] No
+
+13. **Comments**  
+   Free text
+
+### Reproducibility and funding
+
+14. **Did the authors share the code they used?**  
+
+    - [ ] Yes
+    - [ ] No
+
+15. **Was the study funded?**  
+
+    - [ ] Yes
+    - [ ] No
+
+16. **Who funded the study?**  
+   [ ] NIH
+
+    - [ ] Foundation
+    - [ ] Industry/pharma
+    - [ ] Internal funding
+    - [ ] Other: ________
+
+### usRds coverage
+
+17. **Would the major data tasks needed for this study be covered by currently proposed usRds package?**  
+
+    - [ ] Yes
+    - [ ] No
+
+18. **Which tasks would not be covered?**  
+   Free text
+
+### Crosswalks
+
+19. **Were any crosswalks used?**  
+
+    - [ ] Yes
+    - [ ] No
+
+20. **Which crosswalks were used?**  
+
+    - [ ] UNOS
+    - [ ] Physician
+    - [ ] Provider
+
+:::
+
+## LLM review
+
+We used an R-based pipeline built with the [`ellmer`](https://ellmer.tidyverse.org/) package to evaluate whether large language models (LLMs) could reproduce the manual review process. Each PDF was imported into R, and the full text was submitted to each of three LLMs along with a standardized set of abstraction questions modeled on the manual review form.
+
+The `ellmer` package was used to request structured outputs, allowing model responses to be returned in a format suitable for downstream analysis in R. This made it possible to compare LLM-generated abstractions directly with human review across multiple study characteristics, including study type, transplant relevance, programming language, files used, and other extracted variables.
+
+## Data analysis in R
+
+Data analysis was performed in R. We summarized the results of manual and LLM-based review and compared model outputs with human abstraction.
+
+Agreement between human reviewers and each LLM was assessed using Cohen's kappa. We also examined simple descriptive summaries of extracted variables, including whether papers represented new data analyses, whether they were transplant-related, which programming languages were reported, and which USRDS files or data elements were used.
+
+To visualize patterns of agreement across variables and models, we generated heatmaps and related summary tables.

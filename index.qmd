@@ -3,11 +3,15 @@ title: "Overview of USRDS analysis"
 format: html
 ---
 
-## The United States Renal Data System
+## United States Renal Data System (USRDS)
+
+The [**United States Renal Data System (USRDS)**](https://www.niddk.nih.gov/about-niddk/strategic-plans-reports/usrds) is a major U.S. resource for kidney disease research, containing linked data used to study chronic kidney disease, kidney failure, dialysis, transplantation, and related outcomes. Because the database is large, multi-part, and changes over time, using it can be analytically complex.
+
+This project examines **how researchers use the USRDS in published studies**. Through structured review of full-text PDFs, we identify what database components were used, what kinds of analyses were performed, and what programming languages or methods were reported.
 
 ## Methods
 
-
+ll
 
 ## Results
 

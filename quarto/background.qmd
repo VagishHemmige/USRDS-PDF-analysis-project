@@ -1,0 +1,31 @@
+---
+title: "Background"
+editor: source
+---
+
+
+## United States Renal Data System (USRDS)
+
+The **United States Renal Data System (USRDS)** is the national kidney disease surveillance and research data system in the United States. It is funded by the **National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)** and collects, analyzes, and distributes information on **chronic kidney disease (CKD)** and **end-stage kidney disease / end-stage renal disease (ESKD/ESRD)** in the United States.
+
+For researchers, the USRDS is especially valuable because it provides access to the **Standard Analysis Files (SAFs)**, which include patient- and facility-level data used for kidney disease and transplant research. The **Core** files include basic demographic, payer, treatment-history, limited transplant, and provider data, while additional files support more detailed claims-based and transplant-focused analyses.
+
+In addition to distributing research files, USRDS publishes the **Annual Data Report (ADR)**, a major national resource describing the epidemiology, care, outcomes, and costs of kidney disease in the United States. The ADR is widely used for public health surveillance, policy, and clinical research.
+
+The official USRDS site is here: **[United States Renal Data System (USRDS)](https://www.niddk.nih.gov/about-niddk/strategic-plans-reports/usrds)**. Researchers can also access the **[Researcher’s Guide](https://www.niddk.nih.gov/about-niddk/strategic-plans-reports/usrds/for-researchers/researchers-guide)** and information about the **[Standard Analysis Files](https://www.niddk.nih.gov/about-niddk/strategic-plans-reports/usrds/for-researchers/standard-analysis-files)**.
+
+## The complexity of the USRDS
+
+The USRDS is a rich but technically challenging database. Its large size, multi-file organization, and changing structure across calendar years can make even straightforward analyses labor-intensive. Researchers often need to determine which files are relevant, how records link across files and years, and whether variable definitions or coding conventions remain comparable over time. These challenges are especially important for longitudinal studies, claims-based analyses, and transplant-focused work, where reproducibility depends on careful handling of shifting database architecture as well as clinical knowledge of the underlying populations and events.
+
+## How do researchers use the USRDS?
+
+Prior work has examined how researchers use other large administrative and clinical databases, but less attention has been paid to how the USRDS is used in published studies.
+
+In this project, we examined how published studies used the United States Renal Data System (USRDS) in practice. Rather than focusing only on whether authors cited the database, we evaluated the role USRDS played in the analysis itself. We asked which components of the USRDS were used, what kinds of data were abstracted, and what programming languages or analytic tools were reported. This approach helps move beyond simple citation of the database and toward a more detailed understanding of how investigators operationalize USRDS data in real-world research.
+
+## What needs could an R package meet?
+
+Our review of the USRDS literature helps clarify where an R package could be most useful. For example, a package may be able to simplify file loading, standardize variable labels and coding, support common extraction tasks for diagnoses and procedures, and make it easier for researchers to work across raw CSV, SAS, and parquet versions of the data. Just as importantly, reviewing published studies helps show which tasks remain difficult, inconsistent, or insufficiently documented, and therefore where package development could have the greatest practical value.
+
+The prototype package for this work is **[`usRds`](https://vagishhemmige.github.io/usRds/)**, which is designed to facilitate analysis of USRDS data in R.

@@ -1,0 +1,30 @@
+---
+title: "Functions"
+format: html
+---
+
+The code in this script performs a number of useful tasks required for the analysis.
+
+::: {.Rcode title="Source code"}
+
+
+The full R script is available at:
+
+-   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
+:::
+
+## Drawing 60 minute isochrones around each transplant center
+
+
+
+```{r, eval=FALSE}
+
+
+
+```
+
+

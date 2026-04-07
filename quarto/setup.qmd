@@ -1,0 +1,304 @@
+---
+title: "Setup"
+format: html
+---
+
+
+The code in this script imports libraries, initializes constants, and performs other such preparatory work for the main analysis.
+
+```{r, include=FALSE}
+
+#Ensures pipe works
+library(tidyverse)
+library(gt)
+
+```
+
+
+::: {.Rcode title="Source code"}
+
+
+The full R script is available at:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/HOPE-CDC-analysis-2026/blob/master/R/setup.R)
+
+:::
+
+## Libraries
+
+The analysis relies on a set of open-source R packages for data management, cohort construction, visualization, and statistical modeling. These libraries were selected based on their stability, community support, and suitability for large-scale longitudinal health data. 
+
+
+```{r eval=FALSE}
+
+# Libraries necessary for the analysis
+
+# Data management
+library(tidyverse)
+library(stringi)
+library(glue)
+
+#Core library for the SRTR
+library(sRtr)
+
+#Data import libraries
+library(readxl)
+library(readr)
+library(haven)
+library(mapboxapi)
+library(CDCAtlas)
+
+#Geographic libraries
+library(sf)
+library(tigris)
+library(tidycensus)
+library(tmap)
+library(lutz)
+
+#Table libraries
+library(flextable)
+library(gt)
+
+#Plotting
+library(colorspace)
+library(ggtext)
+library(extrafont)
+library(janitor)
+library(ggrepel)
+library(writexl)
+library(plotly)
+library(htmlwidgets)
+library(patchwork)
+library(ggbeeswarm)
+library(ggpubr)
+library(cowplot)
+library(scales)
+
+
+```
+
+The table below lists the required packages along with links to their primary documentation.
+
+```{r, echo=FALSE}
+
+
+libraries_table <- tibble::tibble(
+  Category = c(
+    "Data management",
+    "Data management",
+    "Data management",
+    "SRTR-specific",
+    "Data import",
+    "Data import",
+    "Data import",
+    "Data import",
+    "Data import",
+    "Geographic",
+    "Geographic",
+    "Geographic",
+    "Geographic",
+    "Geographic",
+    "Tables",
+    "Tables",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting",
+    "Plotting"
+  ),
+  Package = c("tidyverse", 
+              "stringi", 
+              "glue",
+              "sRtr",
+              "readxl", 
+              "readr", 
+              "haven", 
+              "mapboxapi", 
+              "CDCAtlas",
+              "sf", 
+              "tigris", 
+              "tidycensus", 
+              "tmap", 
+              "lutz",
+              "flextable", 
+              "gt",
+              "colorspace", 
+              "ggtext", 
+              "extrafont", 
+              "janitor", 
+              "ggrepel", 
+              "writexl",
+              "plotly", 
+              "htmlwidgets", 
+              "patchwork", 
+              "ggbeeswarm", 
+              "ggpubr", 
+              "cowplot", 
+              "scales"
+  )
+  ,
+Documentation = c(
+    "[tidyverse](https://www.tidyverse.org/)",
+    "[stringi](https://stringi.gagolewski.com/)",
+    "[glue](https://glue.tidyverse.org/)",
+    "[sRtr GitHub](https://github.com/vagishhemmige/sRtr)",
+
+    "[readxl](https://readxl.tidyverse.org/)",
+    "[readr](https://readr.tidyverse.org/)",
+    "[haven](https://haven.tidyverse.org/)",
+    "[mapboxapi](https://walker-data.com/mapboxapi/)",
+    "[CDCAtlas GitHub](https://github.com/vagishhemmige/CDCAtlas)",
+
+    "[sf](https://r-spatial.github.io/sf/)",
+    "[tigris](https://walker-data.com/tigris/)",
+    "[tidycensus](https://walker-data.com/tidycensus/)",
+    "[tmap](https://r-tmap.github.io/tmap/)",
+    "[lutz](https://cran.r-project.org/package=lutz)",
+
+    "[flextable](https://davidgohel.github.io/flextable/)",
+    "[gt](https://gt.rstudio.com/)",
+
+    "[colorspace](https://colorspace.r-forge.r-project.org/)",
+    "[ggtext](https://wilkelab.org/ggtext/)",
+    "[extrafont](https://cran.r-project.org/package=extrafont)",
+    "[janitor](https://sfirke.github.io/janitor/)",
+    "[ggrepel](https://ggrepel.slowkow.com/)",
+    "[writexl](https://cran.r-project.org/package=writexl)",
+
+    "[plotly](https://plotly.com/r/)",
+    "[htmlwidgets](https://www.htmlwidgets.org/)",
+    "[patchwork](https://patchwork.data-imaginist.com/)",
+    "[ggbeeswarm](https://cran.r-project.org/package=ggbeeswarm)",
+    "[ggpubr](https://rpkgs.datanovia.com/ggpubr/)",
+    "[cowplot](https://wilkelab.org/cowplot/)",
+    "[scales](https://scales.r-lib.org/)"
+  )
+  )
+
+libraries_table |>
+  gt::gt() |>
+  gt::fmt_markdown(columns = "Documentation") |>
+  gt::cols_label(
+    Category = "Category",
+    Package = "R package",
+    Documentation = "Documentation"
+  ) |>
+  gt::tab_header(
+    title = "Required R Packages",
+    subtitle = "Libraries used for data processing, visualization, and statistical modeling"
+  )|>
+  gt::tab_style(
+  style = gt::cell_text(font = "mono"),
+  locations = gt::cells_body(columns = Package)
+)
+
+
+
+```
+
+
+## Constants
+
+A number of analysis parameters are reused across cohort construction, matching, and cost modeling steps. 
+
+These constants are defined in the `R/setup.R` file.
+
+```{r}
+
+
+organ_list<-c("liver", "kidney", "heart", "lung", "pancreas")
+year_list<-c("2017", "2022")
+distance_list=c("50mile", "60min", "100mile", "200mile")
+
+#List states which are continental
+continental_fips <- c(
+  "01", "04", "05", "06", "08", "09", "10", "11", "12", "13", "16",
+  "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
+  "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
+  "37", "38", "39", "40", "41", "42", "44", "45", "46", "47",
+  "48", "49", "50", "51", "53", "54", "55", "56"
+)
+
+#For isochrone analysis, we need to account for time zones in order to calculate driving time at 7 AM on the specific date
+
+#List US continental time zones
+
+timezones<-c("America/New_York","America/Chicago","America/Denver","America/Los_Angeles","America/Phoenix",
+             "America/Indiana/Indianapolis","America/Kentucky/Louisville","America/Detroit")
+
+reference_date<-list()
+
+# Specific date to anchor the time: First Monday in March of both years
+reference_date[["2022"]] <- as.Date("2022-03-07")
+reference_date[["2017"]] <- as.Date("2017-03-06")
+
+```
+
+For clarity, these constants are summarized below along with brief explanations of their role in the analysis.
+
+```{r, echo=FALSE}
+
+format_constant <- function(x) {
+  if (inherits(x, "Date")) {
+    format(x, "%Y-%m-%d")
+    
+  } else if (is.list(x) && all(sapply(x, inherits, "Date"))) {
+    paste(
+      paste(names(x), format(as.Date(unlist(x), origin = "1970-01-01"), "%Y-%m-%d"), sep = ": "),
+      collapse = " | "
+    )
+    
+  } else if (length(x) > 1) {
+    paste(x, collapse = ", ")
+    
+  } else {
+    as.character(x)
+  }
+}
+
+constants_table <- tibble::tibble(
+  Constant = c(
+    "organ_list",
+    "year_list",
+    "distance_list",
+    "continental_fips",
+    "timezones",
+    "reference_date"
+  ),
+  Value = c(
+    format_constant(organ_list),
+    format_constant(year_list),
+    format_constant(distance_list),
+    format_constant(continental_fips),
+    format_constant(timezones),
+    format_constant(reference_date)
+  ),
+  Explanation = c(
+    "Organs included in transplant center access analysis",
+    "Calendar years evaluated for geographic access comparison",
+    "Distance or drive-time buffers used to define transplant center catchment areas",
+    "FIPS codes representing continental U.S. states included in analysis",
+    "Time zones used to convert local 7 AM departure times to UTC for isochrone calculations",
+    "Anchor dates (first Monday in March) used for time-zone–adjusted isochrone generation"
+  )
+)
+
+constants_table |>
+  gt::gt() |>
+  gt::tab_header(
+    title = "Analysis Constants",
+    subtitle = "Geographic buffer definitions and time-zone parameters"
+  )
+
+
+```
+
+

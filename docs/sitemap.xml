@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/index.html</loc>
-    <lastmod>2026-04-04T00:40:26.176Z</lastmod>
+    <lastmod>2026-04-07T15:28:47.273Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/analysis_methods.html</loc>
+    <lastmod>2026-04-07T20:43:37.559Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/llm_analysis.html</loc>
+    <lastmod>2026-04-07T22:32:03.462Z</lastmod>
   </url>
 </urlset>
