@@ -1,0 +1,34 @@
+---
+title: "Final selection of papers"
+format: html
+---
+
+## Study selection
+
+```{r, include=FALSE}
+
+
+#This code prepares the .qmd environent for analysis
+
+paper_table_gt<-readRDS("../Letter analysis/paper_table_gt.rds")
+
+source("../R/Analysis setup.R")
+
+
+```
+
+The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.
+
+![](../Letter analysis/flowchart.png)
+
+## Table of papers included in the analysis
+
+
+The table below lists the papers included in the final manually reviewed dataset. For each paper, we present the authors, title, journal, year of publication, and whether the study was classified as transplant-related during manual abstraction.
+
+```{r, echo=FALSE}
+
+paper_table_gt
+
+```
+

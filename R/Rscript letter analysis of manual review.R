@@ -25,6 +25,40 @@ Anagha_summer_project_form_clean_fc<-Anagha_summer_project_form_clean%>%
 fc_draw(Anagha_summer_project_form_clean_fc)%>%
   fc_export("Letter analysis/flowchart.png")
 
+
+
+#Create table of included papers 
+paper_table_gt <-Anagha_summer_project_form_clean%>%
+  
+  filter(is_this_paper_a_new_data_analysis == "Yes")%>%
+  
+  select(
+    authors,
+    title,
+    journal,
+    year,
+    transplant_related = `is_this_a_transplant_related_study`
+  ) %>%
+  distinct() %>%
+  arrange(transplant_related,authors, desc(year), title) %>%
+  gt() %>%
+  cols_label(
+    authors = "Authors",
+    title = "Title",
+    journal = "Journal",
+    year = "Year",
+    transplant_related = "Transplant related"
+  ) %>%
+  tab_header(
+    title = "Papers Included in the Analysis"
+  )
+
+paper_table_gt
+saveRDS(paper_table_gt, file = "Letter analysis/paper_table_gt.rds")
+
+gtsave(filename = "Letter analysis/paper_table_gt.html",
+       data=paper_table_gt)
+
 #Create final dataset for analysis
 Anagha_summer_project_form_final <- Anagha_summer_project_form_clean_fc$data %>%
   

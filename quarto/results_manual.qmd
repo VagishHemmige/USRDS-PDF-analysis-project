@@ -3,7 +3,6 @@ title: "Results: manual"
 format: html
 ---
 
-## Study selection
 
 
 ```{r, include=FALSE}
@@ -25,13 +24,9 @@ source("../R/Analysis setup.R")
 ```
 
 
-The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.
-
-![Image](../Letter analysis/flowchart.png)
-
 ## Characteristics of transplant-related versus non-transplant studies
 
-Table 2 compares manually reviewed papers according to whether the study was transplant-related. Overall, transplant-related and non-transplant studies were similar in many respects. In both groups, most papers stated the programming language used, and SAS was the most commonly reported language, with smaller proportions using R or Stata. Core USRDS files were used universally, and institution and Physician/Supplier files were used at similar rates across groups.
+This table compares manually reviewed papers according to whether the study was transplant-related. Overall, transplant-related and non-transplant studies were similar in many respects. In both groups, most papers stated the programming language used, and SAS was the most commonly reported language, with smaller proportions using R or Stata. Core USRDS files were used universally, and institution and Physician/Supplier files were used at similar rates across groups.
 
 The largest differences were in the expected transplant-specific domains. Transplant-related studies were much more likely to use the transplant file and to abstract transplant-specific data elements, whereas non-transplant studies more often relied on hospital and Part D files. These findings suggest that most studies shared a common analytic foundation in standard USRDS files, but diverged in predictable ways depending on whether the research question required transplant-specific content.
 
@@ -43,7 +38,7 @@ letter_table2_gt
 
 ## Characteristics of transplant studies by study type
 
-Table 3 further stratifies transplant-related studies into post-transplant studies, pre-transplant access-to-care studies, and pre-transplant management or outcomes studies. Across all three subgroups, most papers reported the programming language used, suggesting relatively good reporting of analytic software among transplant-focused studies.
+This table further stratifies transplant-related studies into post-transplant studies, pre-transplant access-to-care studies, and pre-transplant management or outcomes studies. Across all three subgroups, most papers reported the programming language used, suggesting relatively good reporting of analytic software among transplant-focused studies.
 
 SAS was the dominant language across transplant study types, particularly in pre-transplant access-to-care studies, while R and Stata were used less often. Although the subgroup sizes are small, the overall pattern suggests that transplant studies varied more in clinical focus than in their basic computational approach. In other words, post-transplant and pre-transplant studies appeared to draw from a broadly similar analytic toolkit, with differences likely driven by the specific data elements needed for each research question.
 

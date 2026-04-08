@@ -44,8 +44,10 @@ website:
         
       - section: Results
         contents:
+          - href: quarto/final_selection_papers.qmd
+            text: Final selection of papers
           - href: quarto/results_manual.qmd
-            text: Resuts of manual extraction of data
+            text: Results of manual extraction of data
           - href: quarto/results_LLM_full.qmd
             text: LLM analysis of full dataset
           - href: quarto/results_LLM_transplant.qmd
