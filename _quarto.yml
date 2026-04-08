@@ -41,6 +41,16 @@ website:
 
       - href: quarto/llm_analysis.qmd
         text: LLM data extraction
+        
+      - section: Results
+        contents:
+          - href: quarto/results_manual.qmd
+            text: Resuts of manual extraction of data
+          - href: quarto/results_LLM_full.qmd
+            text: LLM analysis of full dataset
+          - href: quarto/results_LLM_transplant.qmd
+            text: Transplant LLM analysis
+
 
 
   page-navigation: true
