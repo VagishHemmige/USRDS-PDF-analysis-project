@@ -31,6 +31,7 @@ gt::gtsave(
   data = timing_gt,
   filename = "ATC 2026 abstract/timing_table_atc.png"
 )
+saveRDS(timing_gt, "ATC 2026 abstract/timing_table_atc.rds")
 
 #---- Compute full kappa table----
 
@@ -125,6 +126,7 @@ gtsave(
   data = kappa_table_atc,
   filename = "ATC 2026 abstract/kappa_table_atc.png"
 )
+saveRDS(kappa_table_atc, "ATC 2026 abstract/kappa_table_atc.rds")
 
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
@@ -132,6 +134,9 @@ gtsave(
   data = kappa_legend_gt,
   filename = "ATC 2026 abstract/kappa_table_legend_atc.png"
 )
+saveRDS(kappa_legend_gt, "ATC 2026 abstract/kappa_legend_gt.rds")
+
+
 
 
 #Create a table with raw proportions
@@ -187,7 +192,7 @@ gtsave(
   data = breakdown_gt_atc,
   filename = "ATC 2026 abstract/breakdown_gt_atc.png"
 )
-
+saveRDS(breakdown_gt_atc, "ATC 2026 abstract/breakdown_gt_atc.rds")
 
 #---- Heatmaps ----
 
@@ -270,6 +275,6 @@ other_res_atc <- make_llm_agreement_heatmap(
 other_res_atc
 
 ggsave(
-  filename = "Results/other_res_atc.png",
+  filename = "ATC 2026 abstract/other_res_atc.png",
   plot = other_res_atc,
 )

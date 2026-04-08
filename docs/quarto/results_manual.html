@@ -221,11 +221,20 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#study-selection" id="toc-study-selection" class="nav-link active" data-scroll-target="#study-selection">Study selection</a></li>
+  <li><a href="#characteristics-of-transplant-related-versus-non-transplant-studies" id="toc-characteristics-of-transplant-related-versus-non-transplant-studies" class="nav-link" data-scroll-target="#characteristics-of-transplant-related-versus-non-transplant-studies">Characteristics of transplant-related versus non-transplant studies</a></li>
+  <li><a href="#characteristics-of-transplant-studies-by-study-type" id="toc-characteristics-of-transplant-studies-by-study-type" class="nav-link" data-scroll-target="#characteristics-of-transplant-studies-by-study-type">Characteristics of transplant studies by study type</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -234,7 +243,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -252,16 +261,1371 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </header>
 
 
+<section id="study-selection" class="level2">
+<h2 class="anchored" data-anchor-id="study-selection">Study selection</h2>
+<p>The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../Letter analysis/flowchart.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Image"><img src="../Letter analysis/flowchart.png" class="img-fluid figure-img" alt="Image"></a></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
+</section>
+<section id="characteristics-of-transplant-related-versus-non-transplant-studies" class="level2">
+<h2 class="anchored" data-anchor-id="characteristics-of-transplant-related-versus-non-transplant-studies">Characteristics of transplant-related versus non-transplant studies</h2>
+<p>Table 2 compares manually reviewed papers according to whether the study was transplant-related. Overall, transplant-related and non-transplant studies were similar in many respects. In both groups, most papers stated the programming language used, and SAS was the most commonly reported language, with smaller proportions using R or Stata. Core USRDS files were used universally, and institution and Physician/Supplier files were used at similar rates across groups.</p>
+<p>The largest differences were in the expected transplant-specific domains. Transplant-related studies were much more likely to use the transplant file and to abstract transplant-specific data elements, whereas non-transplant studies more often relied on hospital and Part D files. These findings suggest that most studies shared a common analytic foundation in standard USRDS files, but diverged in predictable ways depending on whether the research question required transplant-specific content.</p>
+<p>Notably, explicit reporting of which USRDS files were used remained incomplete in both groups, despite most studies appearing to use files appropriate to the research question. Sharing of analytic code was rare across the manual review sample.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="xltcxmyhcu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xltcxmyhcu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xltcxmyhcu thead, #xltcxmyhcu tbody, #xltcxmyhcu tfoot, #xltcxmyhcu tr, #xltcxmyhcu td, #xltcxmyhcu th {
+  border-style: none;
+}
+
+#xltcxmyhcu p {
+  margin: 0;
+  padding: 0;
+}
+
+#xltcxmyhcu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xltcxmyhcu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xltcxmyhcu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xltcxmyhcu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xltcxmyhcu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xltcxmyhcu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xltcxmyhcu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xltcxmyhcu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xltcxmyhcu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xltcxmyhcu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xltcxmyhcu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xltcxmyhcu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xltcxmyhcu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xltcxmyhcu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xltcxmyhcu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xltcxmyhcu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xltcxmyhcu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xltcxmyhcu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xltcxmyhcu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xltcxmyhcu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xltcxmyhcu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xltcxmyhcu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xltcxmyhcu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xltcxmyhcu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xltcxmyhcu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xltcxmyhcu .gt_left {
+  text-align: left;
+}
+
+#xltcxmyhcu .gt_center {
+  text-align: center;
+}
+
+#xltcxmyhcu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xltcxmyhcu .gt_font_normal {
+  font-weight: normal;
+}
+
+#xltcxmyhcu .gt_font_bold {
+  font-weight: bold;
+}
+
+#xltcxmyhcu .gt_font_italic {
+  font-style: italic;
+}
+
+#xltcxmyhcu .gt_super {
+  font-size: 65%;
+}
+
+#xltcxmyhcu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xltcxmyhcu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xltcxmyhcu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xltcxmyhcu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xltcxmyhcu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xltcxmyhcu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xltcxmyhcu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xltcxmyhcu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xltcxmyhcu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th colspan="2" id="level 1; stat_1" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Transplant-related study?</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>No</strong><br>
+N = 106<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Yes</strong><br>
+N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Programming language stated</td>
+<td class="gt_row gt_center" headers="stat_1">87 (82%)</td>
+<td class="gt_row gt_center" headers="stat_2">40 (91%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Programming language used<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;R used</td>
+<td class="gt_row gt_center" headers="stat_1">23 (26%)</td>
+<td class="gt_row gt_center" headers="stat_2">10 (25%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;SAS used</td>
+<td class="gt_row gt_center" headers="stat_1">59 (68%)</td>
+<td class="gt_row gt_center" headers="stat_2">26 (65%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Stata used</td>
+<td class="gt_row gt_center" headers="stat_1">26 (30%)</td>
+<td class="gt_row gt_center" headers="stat_2">11 (28%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;SPSS used</td>
+<td class="gt_row gt_center" headers="stat_1">2 (2.3%)</td>
+<td class="gt_row gt_center" headers="stat_2">2 (5.0%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">USRDS files explicitly stated</td>
+<td class="gt_row gt_center" headers="stat_1">68 (64%)</td>
+<td class="gt_row gt_center" headers="stat_2">30 (68%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Files/codes appropriate for research question</td>
+<td class="gt_row gt_center" headers="stat_1">102 (96%)</td>
+<td class="gt_row gt_center" headers="stat_2">44 (100%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Files used<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Core file used</td>
+<td class="gt_row gt_center" headers="stat_1">106 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">44 (100%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Institution file used</td>
+<td class="gt_row gt_center" headers="stat_1">53 (50%)</td>
+<td class="gt_row gt_center" headers="stat_2">22 (50%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Physician/Supplier file used</td>
+<td class="gt_row gt_center" headers="stat_1">50 (47%)</td>
+<td class="gt_row gt_center" headers="stat_2">21 (48%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Hospital file used</td>
+<td class="gt_row gt_center" headers="stat_1">44 (42%)</td>
+<td class="gt_row gt_center" headers="stat_2">8 (18%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Transplant file used</td>
+<td class="gt_row gt_center" headers="stat_1">5 (4.7%)</td>
+<td class="gt_row gt_center" headers="stat_2">40 (91%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Part D file used</td>
+<td class="gt_row gt_center" headers="stat_1">30 (28%)</td>
+<td class="gt_row gt_center" headers="stat_2">3 (6.8%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;CROWNWeb file used</td>
+<td class="gt_row gt_center" headers="stat_1">15 (14%)</td>
+<td class="gt_row gt_center" headers="stat_2">4 (9.1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Data components abstracted<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Basic demographics abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">105 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">44 (100%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;ICD-9 codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">63 (60%)</td>
+<td class="gt_row gt_center" headers="stat_2">22 (50%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;ICD-10 codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">21 (20%)</td>
+<td class="gt_row gt_center" headers="stat_2">7 (16%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;CPT codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">36 (34%)</td>
+<td class="gt_row gt_center" headers="stat_2">10 (23%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Part D medication data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">30 (29%)</td>
+<td class="gt_row gt_center" headers="stat_2">3 (6.8%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Transplant-specific data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">14 (13%)</td>
+<td class="gt_row gt_center" headers="stat_2">40 (91%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Cost data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">3 (2.9%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (2.3%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Residential location abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">33 (31%)</td>
+<td class="gt_row gt_center" headers="stat_2">16 (36%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Any crosswalks used</td>
+<td class="gt_row gt_center" headers="stat_1">9 (8.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">7 (16%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Authors shared code</td>
+<td class="gt_row gt_center" headers="stat_1">4 (3.8%)</td>
+<td class="gt_row gt_center" headers="stat_2">2 (4.5%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Study funded</td>
+<td class="gt_row gt_center" headers="stat_1">88 (83%)</td>
+<td class="gt_row gt_center" headers="stat_2">29 (66%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Covered by proposed usRds package</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td class="gt_row gt_center" headers="stat_1">106 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">44 (100%)</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> n (%)</td>
+</tr>
+<tr class="gt_footnotes even">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Categories in this section are not mutually exclusive; percentages may not sum to 100%.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="characteristics-of-transplant-studies-by-study-type" class="level2">
+<h2 class="anchored" data-anchor-id="characteristics-of-transplant-studies-by-study-type">Characteristics of transplant studies by study type</h2>
+<p>Table 3 further stratifies transplant-related studies into post-transplant studies, pre-transplant access-to-care studies, and pre-transplant management or outcomes studies. Across all three subgroups, most papers reported the programming language used, suggesting relatively good reporting of analytic software among transplant-focused studies.</p>
+<p>SAS was the dominant language across transplant study types, particularly in pre-transplant access-to-care studies, while R and Stata were used less often. Although the subgroup sizes are small, the overall pattern suggests that transplant studies varied more in clinical focus than in their basic computational approach. In other words, post-transplant and pre-transplant studies appeared to draw from a broadly similar analytic toolkit, with differences likely driven by the specific data elements needed for each research question.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="mhmphejkhe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mhmphejkhe table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mhmphejkhe thead, #mhmphejkhe tbody, #mhmphejkhe tfoot, #mhmphejkhe tr, #mhmphejkhe td, #mhmphejkhe th {
+  border-style: none;
+}
+
+#mhmphejkhe p {
+  margin: 0;
+  padding: 0;
+}
+
+#mhmphejkhe .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mhmphejkhe .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mhmphejkhe .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mhmphejkhe .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mhmphejkhe .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mhmphejkhe .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mhmphejkhe .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mhmphejkhe .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mhmphejkhe .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mhmphejkhe .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mhmphejkhe .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mhmphejkhe .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mhmphejkhe .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mhmphejkhe .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mhmphejkhe .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mhmphejkhe .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mhmphejkhe .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mhmphejkhe .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mhmphejkhe .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mhmphejkhe .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mhmphejkhe .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mhmphejkhe .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mhmphejkhe .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mhmphejkhe .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mhmphejkhe .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mhmphejkhe .gt_left {
+  text-align: left;
+}
+
+#mhmphejkhe .gt_center {
+  text-align: center;
+}
+
+#mhmphejkhe .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mhmphejkhe .gt_font_normal {
+  font-weight: normal;
+}
+
+#mhmphejkhe .gt_font_bold {
+  font-weight: bold;
+}
+
+#mhmphejkhe .gt_font_italic {
+  font-style: italic;
+}
+
+#mhmphejkhe .gt_super {
+  font-size: 65%;
+}
+
+#mhmphejkhe .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mhmphejkhe .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mhmphejkhe .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mhmphejkhe .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mhmphejkhe .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mhmphejkhe .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mhmphejkhe .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mhmphejkhe .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mhmphejkhe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th colspan="3" id="level 1; stat_1" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Type of transplant study</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Post-transplant</strong><br>
+N = 25<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Pre-transplant access to care</strong><br>
+N = 12<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Pre-transplant management/outcomes</strong><br>
+N = 7<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Programming language stated</td>
+<td class="gt_row gt_center" headers="stat_1">22 (88%)</td>
+<td class="gt_row gt_center" headers="stat_2">11 (92%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Programming language used<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;R used</td>
+<td class="gt_row gt_center" headers="stat_1">6 (27%)</td>
+<td class="gt_row gt_center" headers="stat_2">3 (27%)</td>
+<td class="gt_row gt_center" headers="stat_3">1 (14%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;SAS used</td>
+<td class="gt_row gt_center" headers="stat_1">11 (50%)</td>
+<td class="gt_row gt_center" headers="stat_2">10 (91%)</td>
+<td class="gt_row gt_center" headers="stat_3">5 (71%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Stata used</td>
+<td class="gt_row gt_center" headers="stat_1">8 (36%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (9.1%)</td>
+<td class="gt_row gt_center" headers="stat_3">2 (29%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;SPSS used</td>
+<td class="gt_row gt_center" headers="stat_1">1 (4.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (9.1%)</td>
+<td class="gt_row gt_center" headers="stat_3">0 (0%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">USRDS files explicitly stated</td>
+<td class="gt_row gt_center" headers="stat_1">15 (60%)</td>
+<td class="gt_row gt_center" headers="stat_2">9 (75%)</td>
+<td class="gt_row gt_center" headers="stat_3">6 (86%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Files/codes appropriate for research question</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td class="gt_row gt_center" headers="stat_1">25 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">12 (100%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Files used<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Core file used</td>
+<td class="gt_row gt_center" headers="stat_1">25 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">12 (100%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Institution file used</td>
+<td class="gt_row gt_center" headers="stat_1">15 (60%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">6 (86%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Physician/Supplier file used</td>
+<td class="gt_row gt_center" headers="stat_1">14 (56%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">6 (86%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Hospital file used</td>
+<td class="gt_row gt_center" headers="stat_1">5 (20%)</td>
+<td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
+<td class="gt_row gt_center" headers="stat_3">3 (43%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Transplant file used</td>
+<td class="gt_row gt_center" headers="stat_1">24 (96%)</td>
+<td class="gt_row gt_center" headers="stat_2">11 (92%)</td>
+<td class="gt_row gt_center" headers="stat_3">5 (71%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Part D file used</td>
+<td class="gt_row gt_center" headers="stat_1">1 (4.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">1 (14%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;CROWNWeb file used</td>
+<td class="gt_row gt_center" headers="stat_1">2 (8.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
+<td class="gt_row gt_center" headers="stat_3">2 (29%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Data components abstracted<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Basic demographics abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">25 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">12 (100%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;ICD-9 codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">14 (56%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;ICD-10 codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">2 (8.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">4 (57%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;CPT codes abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">5 (20%)</td>
+<td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
+<td class="gt_row gt_center" headers="stat_3">5 (71%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Part D medication data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">1 (4.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (8.3%)</td>
+<td class="gt_row gt_center" headers="stat_3">1 (14%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Transplant-specific data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">24 (96%)</td>
+<td class="gt_row gt_center" headers="stat_2">11 (92%)</td>
+<td class="gt_row gt_center" headers="stat_3">5 (71%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Cost data abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">1 (4.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
+<td class="gt_row gt_center" headers="stat_3">0 (0%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Residential location abstracted</td>
+<td class="gt_row gt_center" headers="stat_1">4 (16%)</td>
+<td class="gt_row gt_center" headers="stat_2">9 (75%)</td>
+<td class="gt_row gt_center" headers="stat_3">3 (43%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Any crosswalks used</td>
+<td class="gt_row gt_center" headers="stat_1">1 (4.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">6 (50%)</td>
+<td class="gt_row gt_center" headers="stat_3">0 (0%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Authors shared code</td>
+<td class="gt_row gt_center" headers="stat_1">2 (8.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
+<td class="gt_row gt_center" headers="stat_3">0 (0%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Study funded</td>
+<td class="gt_row gt_center" headers="stat_1">16 (64%)</td>
+<td class="gt_row gt_center" headers="stat_2">8 (67%)</td>
+<td class="gt_row gt_center" headers="stat_3">5 (71%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Covered by proposed usRds package</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td class="gt_row gt_center" headers="stat_1">25 (100%)</td>
+<td class="gt_row gt_center" headers="stat_2">12 (100%)</td>
+<td class="gt_row gt_center" headers="stat_3">7 (100%)</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> n (%)</td>
+</tr>
+<tr class="gt_footnotes even">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Categories in this section are not mutually exclusive; percentages may not sum to 100%.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Taken together, these manually abstracted results suggest that published USRDS analyses rely on a fairly consistent computational backbone, centered on common source files and a limited set of statistical software platforms. The main differences between study groups arise from the clinical question being asked, particularly whether transplant-specific data are needed. At the same time, incomplete reporting of specific files used and the very low rate of code sharing highlight ongoing limitations in reproducibility.</p>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -737,12 +2101,60 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="al">![Image](../Letter analysis/flowchart.png)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Study selection</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">#This code prepares the .qmd environent for analysis</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">letter_table2_gt&lt;-readRDS("../Letter analysis/Letter analysis Table 2 stratified by transplant.rds")</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">letter_table3_gt&lt;-readRDS("../Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds")</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">source("../R/Analysis setup.R")</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="al">![Image](../Letter analysis/flowchart.png)</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Characteristics of transplant-related versus non-transplant studies</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Table 2 compares manually reviewed papers according to whether the study was transplant-related. Overall, transplant-related and non-transplant studies were similar in many respects. In both groups, most papers stated the programming language used, and SAS was the most commonly reported language, with smaller proportions using R or Stata. Core USRDS files were used universally, and institution and Physician/Supplier files were used at similar rates across groups.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>The largest differences were in the expected transplant-specific domains. Transplant-related studies were much more likely to use the transplant file and to abstract transplant-specific data elements, whereas non-transplant studies more often relied on hospital and Part D files. These findings suggest that most studies shared a common analytic foundation in standard USRDS files, but diverged in predictable ways depending on whether the research question required transplant-specific content.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Notably, explicit reporting of which USRDS files were used remained incomplete in both groups, despite most studies appearing to use files appropriate to the research question. Sharing of analytic code was rare across the manual review sample.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">letter_table2_gt</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Characteristics of transplant studies by study type</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>Table 3 further stratifies transplant-related studies into post-transplant studies, pre-transplant access-to-care studies, and pre-transplant management or outcomes studies. Across all three subgroups, most papers reported the programming language used, suggesting relatively good reporting of analytic software among transplant-focused studies.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>SAS was the dominant language across transplant study types, particularly in pre-transplant access-to-care studies, while R and Stata were used less often. Although the subgroup sizes are small, the overall pattern suggests that transplant studies varied more in clinical focus than in their basic computational approach. In other words, post-transplant and pre-transplant studies appeared to draw from a broadly similar analytic toolkit, with differences likely driven by the specific data elements needed for each research question.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">letter_table3_gt</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Taken together, these manually abstracted results suggest that published USRDS analyses rely on a fairly consistent computational backbone, centered on common source files and a limited set of statistical software platforms. The main differences between study groups arise from the clinical question being asked, particularly whether transplant-specific data are needed. At the same time, incomplete reporting of specific files used and the very low rate of code sharing highlight ongoing limitations in reproducibility.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

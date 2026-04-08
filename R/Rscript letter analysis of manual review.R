@@ -102,7 +102,7 @@ Anagha_summer_project_form_split <- Anagha_summer_project_form_final %>%
 # ---- Analysis and table creation ----
 
 #Save the overall table as a document
-Anagha_summer_project_form_final %>%
+letter_table1_gt<-Anagha_summer_project_form_final %>%
   select(
     -filepath,
     -timestamp,
@@ -113,12 +113,14 @@ Anagha_summer_project_form_final %>%
     -what_programming_language_s_was_were_used,-what_files_were_used
   ) %>%
   tbl_summary() %>%
-  as_gt() %>%
-  gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html")
+  as_gt()
+gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html",
+       data=letter_table1_gt)
+saveRDS(letter_table1_gt, file = "Letter analysis/Letter analysis Table 1 overall raw.rds")
 
 
 
-Anagha_summer_project_form_final %>%
+letter_table2_gt<-Anagha_summer_project_form_final %>%
   
   select(
     is_this_a_transplant_related_study,
@@ -139,7 +141,7 @@ Anagha_summer_project_form_final %>%
     files_used_Transplant,
     files_used_PartD,
     files_used_CROWNWeb,
-
+    
     component_basicdemographics,
     component_icd9,
     component_icd10,
@@ -148,21 +150,21 @@ Anagha_summer_project_form_final %>%
     component_transplant,
     component_costs,
     component_residential,
-
+    
     were_any_crosswalks_used,
-            
+    
     did_the_authors_share_the_code_they_used,
     was_the_study_funded,
     would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package
-
-
+    
+    
   ) %>%
   
   tbl_summary(by = is_this_a_transplant_related_study,
               label=label_list,
               missing = "no"
   ) %>%
-
+  
   modify_spanning_header(all_stat_cols() ~ "**Transplant-related study?**")%>%
   add_variable_group_header(
     header = "Data components abstracted",
@@ -212,10 +214,16 @@ Anagha_summer_project_form_final %>%
     )
   ) %>%
   
-  as_gt() %>%
-  gtsave(filename = "Letter analysis/Letter analysis Table 2 stratified by transplant.html")
+  as_gt()
 
-Anagha_summer_project_form_split[["transplant"]] %>%
+
+saveRDS(letter_table2_gt, file = "Letter analysis/Letter analysis Table 2 stratified by transplant.rds")
+
+gtsave(filename = "Letter analysis/Letter analysis Table 2 stratified by transplant.html",
+       data=letter_table2_gt)
+
+
+letter_table3_gt<-Anagha_summer_project_form_split[["transplant"]] %>%
   
   
   select(
@@ -256,50 +264,50 @@ Anagha_summer_project_form_split[["transplant"]] %>%
     
   )%>%
   
-
+  
   tbl_summary(by = which_type_of_transplant_study_is_this,
               label=label_list,
               missing = "no") %>%
   
-    modify_spanning_header(all_stat_cols() ~ "**Type of transplant study**")%>%
-    add_variable_group_header(
-      header = "Data components abstracted",
-      variables = c(
-        component_basicdemographics,
-        component_icd9,
-        component_icd10,
-        component_cptcode,
-        component_medicationD,
-        component_transplant,
-        component_costs,
-        component_residential
-      )
-    )%>%
-    
-    add_variable_group_header(
-      header = "Files used",
-      variables = c(
-        files_used_Core,
-        files_used_Institution,
-        files_used_PhysicianSupplier,
-        files_used_Hospital,
-        files_used_Transplant,
-        files_used_PartD,
-        files_used_CROWNWeb,
-        
-      )
-    )%>%
-    
-    add_variable_group_header(
-      header = "Programming language used",
-      variables = c(
-        languages_used_R,
-        languages_used_SAS,
-        languages_used_Stata,
-        languages_used_SPSS,
-        
-      )
-    )%>%
+  modify_spanning_header(all_stat_cols() ~ "**Type of transplant study**")%>%
+  add_variable_group_header(
+    header = "Data components abstracted",
+    variables = c(
+      component_basicdemographics,
+      component_icd9,
+      component_icd10,
+      component_cptcode,
+      component_medicationD,
+      component_transplant,
+      component_costs,
+      component_residential
+    )
+  )%>%
+  
+  add_variable_group_header(
+    header = "Files used",
+    variables = c(
+      files_used_Core,
+      files_used_Institution,
+      files_used_PhysicianSupplier,
+      files_used_Hospital,
+      files_used_Transplant,
+      files_used_PartD,
+      files_used_CROWNWeb,
+      
+    )
+  )%>%
+  
+  add_variable_group_header(
+    header = "Programming language used",
+    variables = c(
+      languages_used_R,
+      languages_used_SAS,
+      languages_used_Stata,
+      languages_used_SPSS,
+      
+    )
+  )%>%
   modify_footnote_body(
     footnote = "Categories in this section are not mutually exclusive; percentages may not sum to 100%.",
     columns = label,
@@ -309,6 +317,10 @@ Anagha_summer_project_form_split[["transplant"]] %>%
       "Programming language used"
     )
   ) %>%
-    
-  as_gt() %>%
-  gtsave(filename = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.html")
+  
+  as_gt()
+
+saveRDS(letter_table3_gt, file = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds")
+
+gtsave(filename = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.html",
+       data=letter_table3_gt)
