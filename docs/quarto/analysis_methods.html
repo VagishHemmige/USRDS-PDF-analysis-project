@@ -255,7 +255,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   <li><a href="#pubmed-search" id="toc-pubmed-search" class="nav-link active" data-scroll-target="#pubmed-search">Pubmed search</a></li>
   <li><a href="#manual-review-of-papers" id="toc-manual-review-of-papers" class="nav-link" data-scroll-target="#manual-review-of-papers">Manual review of papers</a></li>
   <li><a href="#llm-review" id="toc-llm-review" class="nav-link" data-scroll-target="#llm-review">LLM review</a></li>
-  <li><a href="#data-analysis-in-r" id="toc-data-analysis-in-r" class="nav-link" data-scroll-target="#data-analysis-in-r">Data analysis in R</a></li>
+  <li><a href="#data-analysis-in-r" id="toc-data-analysis-in-r" class="nav-link" data-scroll-target="#data-analysis-in-r">Data analysis in R</a>
+  <ul class="collapse">
+  <li><a href="#cohens-κ" id="toc-cohens-κ" class="nav-link" data-scroll-target="#cohens-κ">Cohen’s κ</a></li>
+  <li><a href="#heatmaps" id="toc-heatmaps" class="nav-link" data-scroll-target="#heatmaps">Heatmaps</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/analysis_methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -454,13 +458,20 @@ Free text</p></li>
 </section>
 <section id="data-analysis-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="data-analysis-in-r">Data analysis in R</h2>
-<p>Data analysis was performed in R. We summarized the results of manual and LLM-based review and compared model outputs with human abstraction.</p>
-<p>Agreement between human reviewers and each LLM was assessed using Cohen’s kappa. We also examined simple descriptive summaries of extracted variables, including whether papers represented new data analyses, whether they were transplant-related, which programming languages were reported, and which USRDS files or data elements were used.</p>
-<p>To visualize patterns of agreement across variables and models, we generated heatmaps and related summary tables.</p>
+<p>Data analysis was performed in R. We first summarized the results of manual review and LLM-based extraction across the included papers, focusing on both broad study classification and more detailed methodological features. Descriptive summaries included whether a paper represented a new data analysis, whether it was transplant-related, and whether specific programming languages, USRDS files, or other analytic components were identified. These summaries provided an initial overview of model performance and helped show where the structured outputs from each LLM aligned with the human-reviewed reference standard.</p>
+<section id="cohens-κ" class="level3">
+<h3 class="anchored" data-anchor-id="cohens-κ">Cohen’s κ</h3>
+<p>Agreement between human reviewers and each LLM was assessed using <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Cohen’s κ</a>. Cohen’s κ is a chance-corrected measure of agreement for categorical variables: unlike simple percent agreement, it accounts for the fact that some agreement would be expected even if two raters were classifying papers partly by chance. This is especially important when variables are imbalanced, such as when most papers fall into one category and only a small number fall into another. In those situations, percent agreement can appear high even when true discriminative performance is limited..</p>
+<p>In this analysis, κ was calculated separately for each extracted variable and for each LLM compared with the human-reviewed reference set. Higher κ values indicate stronger agreement beyond chance, while lower values suggest weaker correspondence between model output and human abstraction. We interpreted κ using standard descriptive ranges, while recognizing that these categories are only rough guides and that κ can be influenced by prevalence and marginal distributions. For that reason, κ was considered alongside descriptive counts and percentages rather than in isolation.</p>
+</section>
+<section id="heatmaps" class="level3">
+<h3 class="anchored" data-anchor-id="heatmaps">Heatmaps</h3>
+<p>To visualize patterns of performance across variables and models, we generated heatmaps and related summary tables. The heatmaps were designed to show where agreement clustered within groups of variables, such as analytic components, reported programming languages, or USRDS files used in a study. This approach made it easier to identify domains in which the models performed consistently well and domains in which extraction was less reliable. Together, the descriptive summaries, κ statistics, and heatmaps provided a complementary view of model performance, combining overall agreement metrics with more detailed inspection of where errors occurred.</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1092,11 +1103,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data analysis in R</span></span>
 <span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>Data analysis was performed in R. We summarized the results of manual and LLM-based review and compared model outputs with human abstraction.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>Data analysis was performed in R. We first summarized the results of manual review and LLM-based extraction across the included papers, focusing on both broad study classification and more detailed methodological features. Descriptive summaries included whether a paper represented a new data analysis, whether it was transplant-related, and whether specific programming languages, USRDS files, or other analytic components were identified. These summaries provided an initial overview of model performance and helped show where the structured outputs from each LLM aligned with the human-reviewed reference standard.</span>
 <span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>Agreement between human reviewers and each LLM was assessed using Cohen's kappa. We also examined simple descriptive summaries of extracted variables, including whether papers represented new data analyses, whether they were transplant-related, which programming languages were reported, and which USRDS files or data elements were used.</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cohen’s κ</span></span>
 <span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>To visualize patterns of agreement across variables and models, we generated heatmaps and related summary tables.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>Agreement between human reviewers and each LLM was assessed using <span class="co">[</span><span class="ot">Cohen’s κ</span><span class="co">](https://en.wikipedia.org/wiki/Cohen%27s_kappa)</span>. Cohen’s κ is a chance-corrected measure of agreement for categorical variables: unlike simple percent agreement, it accounts for the fact that some agreement would be expected even if two raters were classifying papers partly by chance. This is especially important when variables are imbalanced, such as when most papers fall into one category and only a small number fall into another. In those situations, percent agreement can appear high even when true discriminative performance is limited..</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>In this analysis, κ was calculated separately for each extracted variable and for each LLM compared with the human-reviewed reference set. Higher κ values indicate stronger agreement beyond chance, while lower values suggest weaker correspondence between model output and human abstraction. We interpreted κ using standard descriptive ranges, while recognizing that these categories are only rough guides and that κ can be influenced by prevalence and marginal distributions. For that reason, κ was considered alongside descriptive counts and percentages rather than in isolation.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heatmaps</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>To visualize patterns of performance across variables and models, we generated heatmaps and related summary tables. The heatmaps were designed to show where agreement clustered within groups of variables, such as analytic components, reported programming languages, or USRDS files used in a study. This approach made it easier to identify domains in which the models performed consistently well and domains in which extraction was less reliable. Together, the descriptive summaries, κ statistics, and heatmaps provided a complementary view of model performance, combining overall agreement metrics with more detailed inspection of where errors occurred.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
