@@ -1,0 +1,67 @@
+---
+title: "Results: LLM full"
+format: html
+---
+
+
+```{r, include=FALSE}
+
+
+#This code prepares the .qmd environment for analysis
+
+
+timing_table_atc<-readRDS("../ATC 2026 abstract/timing_table_atc.rds")
+kappa_table_atc<-readRDS("../ATC 2026 abstract/kappa_table_atc.rds")
+kappa_legend_gt<-readRDS("../ATC 2026 abstract/kappa_legend_gt.rds")
+breakdown_gt_atc<-readRDS("../ATC 2026 abstract/breakdown_gt_atc.rds")
+
+
+
+source("../R/Analysis setup.R")
+
+
+```
+
+
+## Study selection
+
+The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.
+
+![](../Letter analysis/flowchart.png)
+
+```{r, echo=FALSE}
+
+timing_table_atc
+
+```
+
+
+```{r, echo=FALSE}
+
+breakdown_gt_atc
+
+```
+
+
+## Heatmaps
+
+![](../ATC 2026 abstract/component_res_atc.png)
+![](../ATC 2026 abstract/files_res_atc.png)
+![](../ATC 2026 abstract/languages_res_atc.png)
+
+
+![](../ATC 2026 abstract/other_res_atc.png)
+
+## Kappa analysis
+
+```{r, echo=FALSE}
+
+kappa_table_atc
+
+```
+
+```{r, echo=FALSE}
+
+kappa_legend_gt
+
+```
