@@ -22,11 +22,11 @@
     ]
   },
   {
-    "objectID": "quarto/setup.html#constants",
-    "href": "quarto/setup.html#constants",
+    "objectID": "quarto/setup.html#label-dictionary-and-analysis-objects",
+    "href": "quarto/setup.html#label-dictionary-and-analysis-objects",
     "title": "Setup",
-    "section": "Constants",
-    "text": "Constants\nA number of analysis parameters are reused across cohort construction, matching, and cost modeling steps.\nThese constants are defined in the R/setup.R file.\n\n\nClick to show/hide R Code\norgan_list&lt;-c(\"liver\", \"kidney\", \"heart\", \"lung\", \"pancreas\")\nyear_list&lt;-c(\"2017\", \"2022\")\ndistance_list=c(\"50mile\", \"60min\", \"100mile\", \"200mile\")\n\n#List states which are continental\ncontinental_fips &lt;- c(\n  \"01\", \"04\", \"05\", \"06\", \"08\", \"09\", \"10\", \"11\", \"12\", \"13\", \"16\",\n  \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\", \"24\", \"25\", \"26\",\n  \"27\", \"28\", \"29\", \"30\", \"31\", \"32\", \"33\", \"34\", \"35\", \"36\",\n  \"37\", \"38\", \"39\", \"40\", \"41\", \"42\", \"44\", \"45\", \"46\", \"47\",\n  \"48\", \"49\", \"50\", \"51\", \"53\", \"54\", \"55\", \"56\"\n)\n\n#For isochrone analysis, we need to account for time zones in order to calculate driving time at 7 AM on the specific date\n\n#List US continental time zones\n\ntimezones&lt;-c(\"America/New_York\",\"America/Chicago\",\"America/Denver\",\"America/Los_Angeles\",\"America/Phoenix\",\n             \"America/Indiana/Indianapolis\",\"America/Kentucky/Louisville\",\"America/Detroit\")\n\nreference_date&lt;-list()\n\n# Specific date to anchor the time: First Monday in March of both years\nreference_date[[\"2022\"]] &lt;- as.Date(\"2022-03-07\")\nreference_date[[\"2017\"]] &lt;- as.Date(\"2017-03-06\")\n\n\nFor clarity, these constants are summarized below along with brief explanations of their role in the analysis.\n\n\n\n\n\n\n\n\nAnalysis Constants\n\n\nGeographic buffer definitions and time-zone parameters\n\n\nConstant\nValue\nExplanation\n\n\n\n\norgan_list\nliver, kidney, heart, lung, pancreas\nOrgans included in transplant center access analysis\n\n\nyear_list\n2017, 2022\nCalendar years evaluated for geographic access comparison\n\n\ndistance_list\n50mile, 60min, 100mile, 200mile\nDistance or drive-time buffers used to define transplant center catchment areas\n\n\ncontinental_fips\n01, 04, 05, 06, 08, 09, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56\nFIPS codes representing continental U.S. states included in analysis\n\n\ntimezones\nAmerica/New_York, America/Chicago, America/Denver, America/Los_Angeles, America/Phoenix, America/Indiana/Indianapolis, America/Kentucky/Louisville, America/Detroit\nTime zones used to convert local 7 AM departure times to UTC for isochrone calculations\n\n\nreference_date\n2022: 2022-03-07 | 2017: 2017-03-06\nAnchor dates (first Monday in March) used for time-zone–adjusted isochrone generation",
+    "section": "Label dictionary and analysis objects",
+    "text": "Label dictionary and analysis objects\nThe PDF analysis uses a small set of shared objects defined in R/Analysis setup.R. These help standardize variable labels across tables and figures and store supporting information used in the results pages.\n\nVariable label dictionary\nThe label_list object maps internal variable names used in the analysis code to reader-friendly labels used in tables and summaries. This allows the same underlying variables to be displayed consistently across outputs without manually renaming them in each table.\n\n\nClick to show/hide R Code\nlabel_list &lt;- list(\n  did_the_authors_state_what_programming_language_they_used = \"Programming language stated\",\n  did_the_authors_explicitly_state_what_files_they_used = \"USRDS files explicitly stated\",\n  does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = \"Files/codes appropriate for research question\",\n  did_the_authors_share_the_code_they_used = \"Authors shared code\",\n  was_the_study_funded = \"Study funded\",\n  would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = \"Covered by proposed usRds package\",\n  were_any_crosswalks_used = \"Any crosswalks used\",\n  languages_used_R = \"R used\",\n  languages_used_SAS = \"SAS used\",\n  languages_used_Stata = \"Stata used\",\n  languages_used_SPSS = \"SPSS used\",\n  languages_used_Python = \"Python used\",\n  \n  files_used_Core = \"Core file used\",\n  files_used_Institution = \"Institution file used\",\n  files_used_PhysicianSupplier = \"Physician/Supplier file used\",\n  files_used_Hospital = \"Hospital file used\",\n  files_used_Transplant = \"Transplant file used\",\n  files_used_PartD= \"Part D file used\",\n  files_used_CROWNWeb = \"CROWNWeb file used\",\n  \n  component_basicdemographics = \"Basic demographics abstracted\",\n  component_icd9 = \"ICD-9 codes abstracted\",\n  component_icd10 = \"ICD-10 codes abstracted\",\n  component_cptcode = \"CPT codes abstracted\",\n  component_medicationD = \"Part D medication data abstracted\",\n  component_transplant = \"Transplant-specific data abstracted\",\n  component_costs = \"Cost data abstracted\",\n  component_residential = \"Residential location abstracted\",\n  \n  is_this_a_transplant_related_study = \"Transplant-related study\",\n  is_this_paper_a_new_data_analysis = \"New patient-level data analysis\"\n)\n\n\nFor clarity, the label dictionary is summarized below along with brief explanations of their role in the analysis.\n\n\n\n\n\n\n\n\nVariable label dictionary\n\n\nInternal variable names mapped to display labels used in tables and figures\n\n\nVariable\nLabel\n\n\n\n\ndid_the_authors_state_what_programming_language_they_used\nProgramming language stated\n\n\ndid_the_authors_explicitly_state_what_files_they_used\nUSRDS files explicitly stated\n\n\ndoes_the_choice_of_files_codes_seem_appropriate_for_the_research_question\nFiles/codes appropriate for research question\n\n\ndid_the_authors_share_the_code_they_used\nAuthors shared code\n\n\nwas_the_study_funded\nStudy funded\n\n\nwould_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package\nCovered by proposed usRds package\n\n\nwere_any_crosswalks_used\nAny crosswalks used\n\n\nlanguages_used_R\nR used\n\n\nlanguages_used_SAS\nSAS used\n\n\nlanguages_used_Stata\nStata used\n\n\nlanguages_used_SPSS\nSPSS used\n\n\nlanguages_used_Python\nPython used\n\n\nfiles_used_Core\nCore file used\n\n\nfiles_used_Institution\nInstitution file used\n\n\nfiles_used_PhysicianSupplier\nPhysician/Supplier file used\n\n\nfiles_used_Hospital\nHospital file used\n\n\nfiles_used_Transplant\nTransplant file used\n\n\nfiles_used_PartD\nPart D file used\n\n\nfiles_used_CROWNWeb\nCROWNWeb file used\n\n\ncomponent_basicdemographics\nBasic demographics abstracted\n\n\ncomponent_icd9\nICD-9 codes abstracted\n\n\ncomponent_icd10\nICD-10 codes abstracted\n\n\ncomponent_cptcode\nCPT codes abstracted\n\n\ncomponent_medicationD\nPart D medication data abstracted\n\n\ncomponent_transplant\nTransplant-specific data abstracted\n\n\ncomponent_costs\nCost data abstracted\n\n\ncomponent_residential\nResidential location abstracted\n\n\nis_this_a_transplant_related_study\nTransplant-related study\n\n\nis_this_paper_a_new_data_analysis\nNew patient-level data analysis\n\n\n\n\n\n\n\n\n\nModel runtime table\nThe timing_table object stores the approximate runtime required to process the full dataset with each model. This provides context for the practical tradeoff between speed and extraction performance.\n\n\nClick to show/hide R Code\n#Table of times to run the analysis\ntiming_table &lt;- tibble(\n  `Provider (Company)` = c(\n    \"ChatGPT (OpenAI)\",\n    \"Claude (Anthropic)\",\n    \"Gemini (Google)\"\n  ),\n  Model = c(\n    \"Gpt 5.1\",\n    \"Claude Sonnet 4.5\",\n    \"Gemini 2.5 Flash\"\n  ),\n  `Time (minutes)` = c(\n    165,\n    62,\n    672\n  )\n)",
     "crumbs": [
       "Setup and helper functions",
       "Setup"
@@ -96,6 +96,17 @@
     "crumbs": [
       "Results",
       "Transplant LLM analysis"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html",
+    "href": "quarto/manual_data.html",
+    "title": "Manual data analysis",
+    "section": "",
+    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
     ]
   },
   {
@@ -198,6 +209,128 @@
     ]
   },
   {
+    "objectID": "quarto/background.html",
+    "href": "quarto/background.html",
+    "title": "Background",
+    "section": "",
+    "text": "The United States Renal Data System (USRDS) is the national kidney disease surveillance and research data system in the United States. It is funded by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and collects, analyzes, and distributes information on chronic kidney disease (CKD) and end-stage kidney disease / end-stage renal disease (ESKD/ESRD) in the United States.\nFor researchers, the USRDS is especially valuable because it provides access to the Standard Analysis Files (SAFs), which include patient- and facility-level data used for kidney disease and transplant research. The Core files include basic demographic, payer, treatment-history, limited transplant, and provider data, while additional files support more detailed claims-based and transplant-focused analyses.\nIn addition to distributing research files, USRDS publishes the Annual Data Report (ADR), a major national resource describing the epidemiology, care, outcomes, and costs of kidney disease in the United States. The ADR is widely used for public health surveillance, policy, and clinical research.\nThe official USRDS site is here: United States Renal Data System (USRDS). Researchers can also access the Researcher’s Guide and information about the Standard Analysis Files.",
+    "crumbs": [
+      "Background",
+      "Clinical background"
+    ]
+  },
+  {
+    "objectID": "quarto/background.html#united-states-renal-data-system-usrds",
+    "href": "quarto/background.html#united-states-renal-data-system-usrds",
+    "title": "Background",
+    "section": "",
+    "text": "The United States Renal Data System (USRDS) is the national kidney disease surveillance and research data system in the United States. It is funded by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and collects, analyzes, and distributes information on chronic kidney disease (CKD) and end-stage kidney disease / end-stage renal disease (ESKD/ESRD) in the United States.\nFor researchers, the USRDS is especially valuable because it provides access to the Standard Analysis Files (SAFs), which include patient- and facility-level data used for kidney disease and transplant research. The Core files include basic demographic, payer, treatment-history, limited transplant, and provider data, while additional files support more detailed claims-based and transplant-focused analyses.\nIn addition to distributing research files, USRDS publishes the Annual Data Report (ADR), a major national resource describing the epidemiology, care, outcomes, and costs of kidney disease in the United States. The ADR is widely used for public health surveillance, policy, and clinical research.\nThe official USRDS site is here: United States Renal Data System (USRDS). Researchers can also access the Researcher’s Guide and information about the Standard Analysis Files.",
+    "crumbs": [
+      "Background",
+      "Clinical background"
+    ]
+  },
+  {
+    "objectID": "quarto/background.html#the-complexity-of-the-usrds",
+    "href": "quarto/background.html#the-complexity-of-the-usrds",
+    "title": "Background",
+    "section": "The complexity of the USRDS",
+    "text": "The complexity of the USRDS\nThe USRDS is a rich but technically challenging database. Its large size, multi-file organization, and changing structure across calendar years can make even straightforward analyses labor-intensive. Researchers often need to determine which files are relevant, how records link across files and years, and whether variable definitions or coding conventions remain comparable over time. These challenges are especially important for longitudinal studies, claims-based analyses, and transplant-focused work, where reproducibility depends on careful handling of shifting database architecture as well as clinical knowledge of the underlying populations and events.",
+    "crumbs": [
+      "Background",
+      "Clinical background"
+    ]
+  },
+  {
+    "objectID": "quarto/background.html#how-do-researchers-use-the-usrds",
+    "href": "quarto/background.html#how-do-researchers-use-the-usrds",
+    "title": "Background",
+    "section": "How do researchers use the USRDS?",
+    "text": "How do researchers use the USRDS?\nPrior work has examined how researchers use other large administrative and clinical databases, but less attention has been paid to how the USRDS is used in published studies.\nIn this project, we examined how published studies used the United States Renal Data System (USRDS) in practice. Rather than focusing only on whether authors cited the database, we evaluated the role USRDS played in the analysis itself. We asked which components of the USRDS were used, what kinds of data were abstracted, and what programming languages or analytic tools were reported. This approach helps move beyond simple citation of the database and toward a more detailed understanding of how investigators operationalize USRDS data in real-world research.",
+    "crumbs": [
+      "Background",
+      "Clinical background"
+    ]
+  },
+  {
+    "objectID": "quarto/background.html#what-needs-could-an-r-package-meet",
+    "href": "quarto/background.html#what-needs-could-an-r-package-meet",
+    "title": "Background",
+    "section": "What needs could an R package meet?",
+    "text": "What needs could an R package meet?\nOur review of the USRDS literature helps clarify where an R package could be most useful. For example, a package may be able to simplify file loading, standardize variable labels and coding, support common extraction tasks for diagnoses and procedures, and make it easier for researchers to work across raw CSV, SAS, and parquet versions of the data. Just as importantly, reviewing published studies helps show which tasks remain difficult, inconsistent, or insufficiently documented, and therefore where package development could have the greatest practical value.\nThe prototype package for this work is usRds, which is designed to facilitate analysis of USRDS data in R.",
+    "crumbs": [
+      "Background",
+      "Clinical background"
+    ]
+  },
+  {
+    "objectID": "quarto/about.html",
+    "href": "quarto/about.html",
+    "title": "About",
+    "section": "",
+    "text": "Pending"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview of USRDS analysis",
+    "section": "",
+    "text": "The United States Renal Data System (USRDS) is a major U.S. resource for kidney disease research, containing linked data used to study chronic kidney disease, kidney failure, dialysis, transplantation, and related outcomes. Because the database is large, multi-part, and changes over time, using it can be analytically complex.\nThis project examines how researchers use the USRDS in published studies. Through structured review of full-text PDFs, we identify what database components were used, what kinds of analyses were performed, and what programming languages or methods were reported.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#united-states-renal-data-system-usrds",
+    "href": "index.html#united-states-renal-data-system-usrds",
+    "title": "Overview of USRDS analysis",
+    "section": "",
+    "text": "The United States Renal Data System (USRDS) is a major U.S. resource for kidney disease research, containing linked data used to study chronic kidney disease, kidney failure, dialysis, transplantation, and related outcomes. Because the database is large, multi-part, and changes over time, using it can be analytically complex.\nThis project examines how researchers use the USRDS in published studies. Through structured review of full-text PDFs, we identify what database components were used, what kinds of analyses were performed, and what programming languages or methods were reported.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#methods",
+    "href": "index.html#methods",
+    "title": "Overview of USRDS analysis",
+    "section": "Methods",
+    "text": "Methods",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "Overview of USRDS analysis",
+    "section": "Results",
+    "text": "Results\nSee the detailed results pages linked via the left sidebar.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#reproducibility",
+    "href": "index.html#reproducibility",
+    "title": "Overview of USRDS analysis",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nAll analyses presented on this website are fully reproducible.\nThe complete source code used to perform the full analysis and generate the tables and figures is publicly available at this GitHub repo.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#abstractsmanuscripts",
+    "href": "index.html#abstractsmanuscripts",
+    "title": "Overview of USRDS analysis",
+    "section": "Abstracts/manuscripts",
+    "text": "Abstracts/manuscripts\nThis analysis has yet to be published to date.\nAbstracts have been presented or will be presented at:\n\nWorld Transplant Congress 2025\nAmerican Transplant Congress 2026",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "quarto/analysis_methods.html",
     "href": "quarto/analysis_methods.html",
     "title": "Methods",
@@ -264,125 +397,14 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview of USRDS analysis",
+    "objectID": "quarto/data_cleaning.html",
+    "href": "quarto/data_cleaning.html",
+    "title": "LLM data analysis",
     "section": "",
-    "text": "The United States Renal Data System (USRDS) is a major U.S. resource for kidney disease research, containing linked data used to study chronic kidney disease, kidney failure, dialysis, transplantation, and related outcomes. Because the database is large, multi-part, and changes over time, using it can be analytically complex.\nThis project examines how researchers use the USRDS in published studies. Through structured review of full-text PDFs, we identify what database components were used, what kinds of analyses were performed, and what programming languages or methods were reported.",
+    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
     "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#united-states-renal-data-system-usrds",
-    "href": "index.html#united-states-renal-data-system-usrds",
-    "title": "Overview of USRDS analysis",
-    "section": "",
-    "text": "The United States Renal Data System (USRDS) is a major U.S. resource for kidney disease research, containing linked data used to study chronic kidney disease, kidney failure, dialysis, transplantation, and related outcomes. Because the database is large, multi-part, and changes over time, using it can be analytically complex.\nThis project examines how researchers use the USRDS in published studies. Through structured review of full-text PDFs, we identify what database components were used, what kinds of analyses were performed, and what programming languages or methods were reported.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#methods",
-    "href": "index.html#methods",
-    "title": "Overview of USRDS analysis",
-    "section": "Methods",
-    "text": "Methods",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#results",
-    "href": "index.html#results",
-    "title": "Overview of USRDS analysis",
-    "section": "Results",
-    "text": "Results\nSee the detailed results pages linked via the left sidebar.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#reproducibility",
-    "href": "index.html#reproducibility",
-    "title": "Overview of USRDS analysis",
-    "section": "Reproducibility",
-    "text": "Reproducibility\nAll analyses presented on this website are fully reproducible.\nThe complete source code used to perform the full analysis and generate the tables and figures is publicly available at this GitHub repo.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#abstractsmanuscripts",
-    "href": "index.html#abstractsmanuscripts",
-    "title": "Overview of USRDS analysis",
-    "section": "Abstracts/manuscripts",
-    "text": "Abstracts/manuscripts\nThis analysis has yet to be published to date.\nAbstracts have been presented or will be presented at:\n\nWorld Transplant Congress 2025\nAmerican Transplant Congress 2026",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "quarto/about.html",
-    "href": "quarto/about.html",
-    "title": "About",
-    "section": "",
-    "text": "Pending"
-  },
-  {
-    "objectID": "quarto/background.html",
-    "href": "quarto/background.html",
-    "title": "Background",
-    "section": "",
-    "text": "The United States Renal Data System (USRDS) is the national kidney disease surveillance and research data system in the United States. It is funded by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and collects, analyzes, and distributes information on chronic kidney disease (CKD) and end-stage kidney disease / end-stage renal disease (ESKD/ESRD) in the United States.\nFor researchers, the USRDS is especially valuable because it provides access to the Standard Analysis Files (SAFs), which include patient- and facility-level data used for kidney disease and transplant research. The Core files include basic demographic, payer, treatment-history, limited transplant, and provider data, while additional files support more detailed claims-based and transplant-focused analyses.\nIn addition to distributing research files, USRDS publishes the Annual Data Report (ADR), a major national resource describing the epidemiology, care, outcomes, and costs of kidney disease in the United States. The ADR is widely used for public health surveillance, policy, and clinical research.\nThe official USRDS site is here: United States Renal Data System (USRDS). Researchers can also access the Researcher’s Guide and information about the Standard Analysis Files.",
-    "crumbs": [
-      "Background",
-      "Clinical background"
-    ]
-  },
-  {
-    "objectID": "quarto/background.html#united-states-renal-data-system-usrds",
-    "href": "quarto/background.html#united-states-renal-data-system-usrds",
-    "title": "Background",
-    "section": "",
-    "text": "The United States Renal Data System (USRDS) is the national kidney disease surveillance and research data system in the United States. It is funded by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and collects, analyzes, and distributes information on chronic kidney disease (CKD) and end-stage kidney disease / end-stage renal disease (ESKD/ESRD) in the United States.\nFor researchers, the USRDS is especially valuable because it provides access to the Standard Analysis Files (SAFs), which include patient- and facility-level data used for kidney disease and transplant research. The Core files include basic demographic, payer, treatment-history, limited transplant, and provider data, while additional files support more detailed claims-based and transplant-focused analyses.\nIn addition to distributing research files, USRDS publishes the Annual Data Report (ADR), a major national resource describing the epidemiology, care, outcomes, and costs of kidney disease in the United States. The ADR is widely used for public health surveillance, policy, and clinical research.\nThe official USRDS site is here: United States Renal Data System (USRDS). Researchers can also access the Researcher’s Guide and information about the Standard Analysis Files.",
-    "crumbs": [
-      "Background",
-      "Clinical background"
-    ]
-  },
-  {
-    "objectID": "quarto/background.html#the-complexity-of-the-usrds",
-    "href": "quarto/background.html#the-complexity-of-the-usrds",
-    "title": "Background",
-    "section": "The complexity of the USRDS",
-    "text": "The complexity of the USRDS\nThe USRDS is a rich but technically challenging database. Its large size, multi-file organization, and changing structure across calendar years can make even straightforward analyses labor-intensive. Researchers often need to determine which files are relevant, how records link across files and years, and whether variable definitions or coding conventions remain comparable over time. These challenges are especially important for longitudinal studies, claims-based analyses, and transplant-focused work, where reproducibility depends on careful handling of shifting database architecture as well as clinical knowledge of the underlying populations and events.",
-    "crumbs": [
-      "Background",
-      "Clinical background"
-    ]
-  },
-  {
-    "objectID": "quarto/background.html#how-do-researchers-use-the-usrds",
-    "href": "quarto/background.html#how-do-researchers-use-the-usrds",
-    "title": "Background",
-    "section": "How do researchers use the USRDS?",
-    "text": "How do researchers use the USRDS?\nPrior work has examined how researchers use other large administrative and clinical databases, but less attention has been paid to how the USRDS is used in published studies.\nIn this project, we examined how published studies used the United States Renal Data System (USRDS) in practice. Rather than focusing only on whether authors cited the database, we evaluated the role USRDS played in the analysis itself. We asked which components of the USRDS were used, what kinds of data were abstracted, and what programming languages or analytic tools were reported. This approach helps move beyond simple citation of the database and toward a more detailed understanding of how investigators operationalize USRDS data in real-world research.",
-    "crumbs": [
-      "Background",
-      "Clinical background"
-    ]
-  },
-  {
-    "objectID": "quarto/background.html#what-needs-could-an-r-package-meet",
-    "href": "quarto/background.html#what-needs-could-an-r-package-meet",
-    "title": "Background",
-    "section": "What needs could an R package meet?",
-    "text": "What needs could an R package meet?\nOur review of the USRDS literature helps clarify where an R package could be most useful. For example, a package may be able to simplify file loading, standardize variable labels and coding, support common extraction tasks for diagnoses and procedures, and make it easier for researchers to work across raw CSV, SAS, and parquet versions of the data. Just as importantly, reviewing published studies helps show which tasks remain difficult, inconsistent, or insufficiently documented, and therefore where package development could have the greatest practical value.\nThe prototype package for this work is usRds, which is designed to facilitate analysis of USRDS data in R.",
-    "crumbs": [
-      "Background",
-      "Clinical background"
+      "Methods",
+      "Analysis of manual data extraction"
     ]
   },
   {
@@ -397,14 +419,36 @@
     ]
   },
   {
-    "objectID": "quarto/functions.html#drawing-60-minute-isochrones-around-each-transplant-center",
-    "href": "quarto/functions.html#drawing-60-minute-isochrones-around-each-transplant-center",
+    "objectID": "quarto/functions.html#function-that-safely-normalizes-to-logical",
+    "href": "quarto/functions.html#function-that-safely-normalizes-to-logical",
     "title": "Functions",
-    "section": "Drawing 60 minute isochrones around each transplant center",
-    "text": "Drawing 60 minute isochrones around each transplant center",
+    "section": "Function that safely normalizes to logical",
+    "text": "Function that safely normalizes to logical\nThe PDF review dataset contains binary variables that may appear in different formats, including logical values and character encodings such as \"yes\", \"no\", \"true\", \"false\", \"1\", and \"0\". The convert_to_logical() function standardizes these inputs into TRUE, FALSE, or NA. This preprocessing step helps ensure that downstream comparisons between human and model-generated labels are performed on consistently formatted data.\n\n\nClick to show/hide R Code\nconvert_to_logical &lt;- function(x) {\n  if (is.logical(x)) return(x)\n  \n  x_clean &lt;- trimws(tolower(as.character(x)))\n  \n  case_when(\n    x_clean %in% c(\"true\", \"yes\", \"1\")  ~ TRUE,\n    x_clean %in% c(\"false\", \"no\", \"0\") ~ FALSE,\n    TRUE ~ NA\n  )\n}",
     "crumbs": [
       "Setup and helper functions",
       "Functions"
+    ]
+  },
+  {
+    "objectID": "quarto/functions.html#function-to-create-heatmap",
+    "href": "quarto/functions.html#function-to-create-heatmap",
+    "title": "Functions",
+    "section": "Function to create heatmap",
+    "text": "Function to create heatmap\nThe make_llm_agreement_heatmap() function creates a paper-by-variable heatmap showing how many of the three language models matched the human-reviewed label for each observation. It can optionally relabel variables using label_list, reorder rows and columns by average agreement, and customize the plot title and subtitle. This figure is used to visualize where model agreement was high, where it was mixed, and which variables were most difficult for the models to classify consistently.\n\n\nClick to show/hide R Code\nmake_llm_agreement_heatmap &lt;- function(df,\n                                       vars,\n                                       paper_id_col = \"filename\",\n                                       label_list = NULL,\n                                       title = \"LLM agreement heatmap\",\n                                       subtitle = \"Each cell shows how many of 3 models matched the human label\",\n                                       low_to_high = TRUE,\n                                       reorder = TRUE) {\n  \n  stopifnot(is.data.frame(df))\n  stopifnot(is.character(vars))\n  stopifnot(length(paper_id_col) == 1)\n  \n  if (!paper_id_col %in% names(df)) {\n    stop(\"`paper_id_col` not found in `df`.\")\n  }\n  \n  needed_cols &lt;- c(\n    unlist(purrr::map(vars, ~ c(\n      paste0(.x, \"_human\"),\n      paste0(.x, \"_ChatGPT\"),\n      paste0(.x, \"_claude\"),\n      paste0(.x, \"_gemini\")\n    ))),\n    paper_id_col\n  )\n  \n  missing_cols &lt;- setdiff(needed_cols, names(df))\n  if (length(missing_cols) &gt; 0) {\n    stop(\n      \"These required columns are missing from `df`: \",\n      paste(missing_cols, collapse = \", \")\n    )\n  }\n  \n  heatmap_df &lt;- purrr::map_dfr(vars, function(v) {\n    human_col &lt;- paste0(v, \"_human\")\n    chat_col  &lt;- paste0(v, \"_ChatGPT\")\n    cla_col   &lt;- paste0(v, \"_claude\")\n    gem_col   &lt;- paste0(v, \"_gemini\")\n    \n    pretty_label &lt;- if (!is.null(label_list) && v %in% names(label_list)) {\n      unname(label_list[[v]])\n    } else {\n      v\n    }\n    \n    tibble::tibble(\n      paper_id = stringr::word(as.character(df[[paper_id_col]]), 1) |&gt;\n        stringr::str_remove(\"\\\\.$\"),\n      variable = v,\n      label = pretty_label,\n      human = df[[human_col]],\n      chat  = df[[chat_col]],\n      cla   = df[[cla_col]],\n      gem   = df[[gem_col]]\n    ) |&gt;\n      dplyr::mutate(\n        chat_match = dplyr::if_else(is.na(human) | is.na(chat), NA_integer_, as.integer(human == chat)),\n        cla_match  = dplyr::if_else(is.na(human) | is.na(cla),  NA_integer_, as.integer(human == cla)),\n        gem_match  = dplyr::if_else(is.na(human) | is.na(gem),  NA_integer_, as.integer(human == gem)),\n        n_models_scorable = rowSums(!is.na(dplyr::pick(chat_match, cla_match, gem_match))),\n        n_models_correct  = rowSums(dplyr::pick(chat_match, cla_match, gem_match), na.rm = TRUE),\n        n_models_correct  = dplyr::if_else(n_models_scorable == 0, NA_integer_, n_models_correct)\n      )\n  })\n  \n  if (reorder) {\n    row_summary &lt;- heatmap_df |&gt;\n      dplyr::group_by(paper_id) |&gt;\n      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = \"drop\")\n    \n    col_summary &lt;- heatmap_df |&gt;\n      dplyr::group_by(label) |&gt;\n      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = \"drop\")\n    \n    if (low_to_high) {\n      row_order &lt;- row_summary |&gt;\n        dplyr::arrange(mean_models_correct) |&gt;\n        dplyr::pull(paper_id)\n      \n      col_order &lt;- col_summary |&gt;\n        dplyr::arrange(mean_models_correct) |&gt;\n        dplyr::pull(label)\n    } else {\n      row_order &lt;- row_summary |&gt;\n        dplyr::arrange(dplyr::desc(mean_models_correct)) |&gt;\n        dplyr::pull(paper_id)\n      \n      col_order &lt;- col_summary |&gt;\n        dplyr::arrange(dplyr::desc(mean_models_correct)) |&gt;\n        dplyr::pull(label)\n    }\n  } else {\n    row_order &lt;- df[[paper_id_col]] |&gt;\n      as.character() |&gt;\n      stringr::word(1) |&gt;\n      stringr::str_remove(\"\\\\.$\") |&gt;\n      unique()\n    \n    col_order &lt;- purrr::map_chr(vars, function(v) {\n      if (!is.null(label_list) && v %in% names(label_list)) {\n        unname(label_list[[v]])\n      } else {\n        v\n      }\n    })\n  }\n  \n  heatmap_df &lt;- heatmap_df |&gt;\n    dplyr::mutate(\n      paper_id = factor(paper_id, levels = rev(row_order)),\n      label = factor(label, levels = col_order),\n      n_models_correct_f = factor(as.character(n_models_correct), levels = c(\"0\", \"1\", \"2\", \"3\"))\n    )\n  \n  # invisible layer to force all 4 legend boxes to appear, using geom_tile\n  legend_df &lt;- tibble::tibble(\n    label = factor(rep(col_order[1], 4), levels = col_order),\n    paper_id = factor(rep(rev(row_order)[1], 4), levels = levels(heatmap_df$paper_id)),\n    n_models_correct_f = factor(c(\"0\", \"1\", \"2\", \"3\"), levels = c(\"0\", \"1\", \"2\", \"3\"))\n  )\n  \n  ggplot2::ggplot(\n    heatmap_df,\n    ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f)\n  ) +\n    ggplot2::geom_tile(color = \"white\", linewidth = 0.25) +\n    ggplot2::geom_tile(\n      data = legend_df,\n      ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f),\n      inherit.aes = FALSE,\n      alpha = 0,\n      show.legend = TRUE\n    ) +\n    ggplot2::scale_fill_manual(\n      values = c(\n        \"0\" = \"#b2182b\",\n        \"1\" = \"#ef8a62\",\n        \"2\" = \"#fddbc7\",\n        \"3\" = \"#d1e5f0\"\n      ),\n      breaks = c(\"0\", \"1\", \"2\", \"3\"),\n      drop = FALSE,\n      name = \"Models matching\\nhuman\"\n    ) +\n    ggplot2::guides(\n      fill = ggplot2::guide_legend(\n        override.aes = list(alpha = 1)\n      )\n    ) +\n    ggplot2::labs(\n      title = title,\n      subtitle = subtitle,\n      x = NULL,\n      y = NULL\n    ) +\n    ggplot2::theme_minimal(base_size = 11) +\n    ggplot2::theme(\n      panel.grid = ggplot2::element_blank(),\n      axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),\n      axis.text.y = ggplot2::element_text(size = 7)\n    )\n}",
+    "crumbs": [
+      "Setup and helper functions",
+      "Functions"
+    ]
+  },
+  {
+    "objectID": "quarto/llm_data.html",
+    "href": "quarto/llm_data.html",
+    "title": "LLM data analysis",
+    "section": "",
+    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
+    "crumbs": [
+      "Methods",
+      "LLM data analysis"
     ]
   },
   {
@@ -493,72 +537,6 @@
     "crumbs": [
       "Results",
       "Results of manual extraction of data"
-    ]
-  },
-  {
-    "objectID": "quarto/setup.html#label-dictionary-and-analysis-objects",
-    "href": "quarto/setup.html#label-dictionary-and-analysis-objects",
-    "title": "Setup",
-    "section": "Label dictionary and analysis objects",
-    "text": "Label dictionary and analysis objects\nThe PDF analysis uses a small set of shared objects defined in R/Analysis setup.R. These help standardize variable labels across tables and figures and store supporting information used in the results pages.\n\nVariable label dictionary\nThe label_list object maps internal variable names used in the analysis code to reader-friendly labels used in tables and summaries. This allows the same underlying variables to be displayed consistently across outputs without manually renaming them in each table.\n\n\nClick to show/hide R Code\nlabel_list &lt;- list(\n  did_the_authors_state_what_programming_language_they_used = \"Programming language stated\",\n  did_the_authors_explicitly_state_what_files_they_used = \"USRDS files explicitly stated\",\n  does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = \"Files/codes appropriate for research question\",\n  did_the_authors_share_the_code_they_used = \"Authors shared code\",\n  was_the_study_funded = \"Study funded\",\n  would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = \"Covered by proposed usRds package\",\n  were_any_crosswalks_used = \"Any crosswalks used\",\n  languages_used_R = \"R used\",\n  languages_used_SAS = \"SAS used\",\n  languages_used_Stata = \"Stata used\",\n  languages_used_SPSS = \"SPSS used\",\n  languages_used_Python = \"Python used\",\n  \n  files_used_Core = \"Core file used\",\n  files_used_Institution = \"Institution file used\",\n  files_used_PhysicianSupplier = \"Physician/Supplier file used\",\n  files_used_Hospital = \"Hospital file used\",\n  files_used_Transplant = \"Transplant file used\",\n  files_used_PartD= \"Part D file used\",\n  files_used_CROWNWeb = \"CROWNWeb file used\",\n  \n  component_basicdemographics = \"Basic demographics abstracted\",\n  component_icd9 = \"ICD-9 codes abstracted\",\n  component_icd10 = \"ICD-10 codes abstracted\",\n  component_cptcode = \"CPT codes abstracted\",\n  component_medicationD = \"Part D medication data abstracted\",\n  component_transplant = \"Transplant-specific data abstracted\",\n  component_costs = \"Cost data abstracted\",\n  component_residential = \"Residential location abstracted\",\n  \n  is_this_a_transplant_related_study = \"Transplant-related study\",\n  is_this_paper_a_new_data_analysis = \"New patient-level data analysis\"\n)\n\n\nFor clarity, the label dictionary is summarized below along with brief explanations of their role in the analysis.\n\n\n\n\n\n\n\n\nVariable label dictionary\n\n\nInternal variable names mapped to display labels used in tables and figures\n\n\nVariable\nLabel\n\n\n\n\ndid_the_authors_state_what_programming_language_they_used\nProgramming language stated\n\n\ndid_the_authors_explicitly_state_what_files_they_used\nUSRDS files explicitly stated\n\n\ndoes_the_choice_of_files_codes_seem_appropriate_for_the_research_question\nFiles/codes appropriate for research question\n\n\ndid_the_authors_share_the_code_they_used\nAuthors shared code\n\n\nwas_the_study_funded\nStudy funded\n\n\nwould_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package\nCovered by proposed usRds package\n\n\nwere_any_crosswalks_used\nAny crosswalks used\n\n\nlanguages_used_R\nR used\n\n\nlanguages_used_SAS\nSAS used\n\n\nlanguages_used_Stata\nStata used\n\n\nlanguages_used_SPSS\nSPSS used\n\n\nlanguages_used_Python\nPython used\n\n\nfiles_used_Core\nCore file used\n\n\nfiles_used_Institution\nInstitution file used\n\n\nfiles_used_PhysicianSupplier\nPhysician/Supplier file used\n\n\nfiles_used_Hospital\nHospital file used\n\n\nfiles_used_Transplant\nTransplant file used\n\n\nfiles_used_PartD\nPart D file used\n\n\nfiles_used_CROWNWeb\nCROWNWeb file used\n\n\ncomponent_basicdemographics\nBasic demographics abstracted\n\n\ncomponent_icd9\nICD-9 codes abstracted\n\n\ncomponent_icd10\nICD-10 codes abstracted\n\n\ncomponent_cptcode\nCPT codes abstracted\n\n\ncomponent_medicationD\nPart D medication data abstracted\n\n\ncomponent_transplant\nTransplant-specific data abstracted\n\n\ncomponent_costs\nCost data abstracted\n\n\ncomponent_residential\nResidential location abstracted\n\n\nis_this_a_transplant_related_study\nTransplant-related study\n\n\nis_this_paper_a_new_data_analysis\nNew patient-level data analysis\n\n\n\n\n\n\n\n\n\nModel runtime table\nThe timing_table object stores the approximate runtime required to process the full dataset with each model. This provides context for the practical tradeoff between speed and extraction performance.\n\n\nClick to show/hide R Code\n#Table of times to run the analysis\ntiming_table &lt;- tibble(\n  `Provider (Company)` = c(\n    \"ChatGPT (OpenAI)\",\n    \"Claude (Anthropic)\",\n    \"Gemini (Google)\"\n  ),\n  Model = c(\n    \"Gpt 5.1\",\n    \"Claude Sonnet 4.5\",\n    \"Gemini 2.5 Flash\"\n  ),\n  `Time (minutes)` = c(\n    165,\n    62,\n    672\n  )\n)",
-    "crumbs": [
-      "Setup and helper functions",
-      "Setup"
-    ]
-  },
-  {
-    "objectID": "quarto/manual_data.html",
-    "href": "quarto/manual_data.html",
-    "title": "Manual data analysis",
-    "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
-    "crumbs": [
-      "Methods",
-      "Analysis of manual data extraction"
-    ]
-  },
-  {
-    "objectID": "quarto/data_cleaning.html",
-    "href": "quarto/data_cleaning.html",
-    "title": "LLM data analysis",
-    "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
-    "crumbs": [
-      "Methods",
-      "Analysis of manual data extraction"
-    ]
-  },
-  {
-    "objectID": "quarto/llm_data.html",
-    "href": "quarto/llm_data.html",
-    "title": "LLM data analysis",
-    "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
-    "crumbs": [
-      "Methods",
-      "LLM data analysis"
-    ]
-  },
-  {
-    "objectID": "quarto/functions.html#function-that-safely-normalizes-to-logical",
-    "href": "quarto/functions.html#function-that-safely-normalizes-to-logical",
-    "title": "Functions",
-    "section": "Function that safely normalizes to logical",
-    "text": "Function that safely normalizes to logical\nThe PDF review dataset contains binary variables that may appear in different formats, including logical values and character encodings such as \"yes\", \"no\", \"true\", \"false\", \"1\", and \"0\". The convert_to_logical() function standardizes these inputs into TRUE, FALSE, or NA. This preprocessing step helps ensure that downstream comparisons between human and model-generated labels are performed on consistently formatted data.\n\n\nClick to show/hide R Code\nconvert_to_logical &lt;- function(x) {\n  if (is.logical(x)) return(x)\n  \n  x_clean &lt;- trimws(tolower(as.character(x)))\n  \n  case_when(\n    x_clean %in% c(\"true\", \"yes\", \"1\")  ~ TRUE,\n    x_clean %in% c(\"false\", \"no\", \"0\") ~ FALSE,\n    TRUE ~ NA\n  )\n}",
-    "crumbs": [
-      "Setup and helper functions",
-      "Functions"
-    ]
-  },
-  {
-    "objectID": "quarto/functions.html#function-to-create-heatmap",
-    "href": "quarto/functions.html#function-to-create-heatmap",
-    "title": "Functions",
-    "section": "Function to create heatmap",
-    "text": "Function to create heatmap\nThe make_llm_agreement_heatmap() function creates a paper-by-variable heatmap showing how many of the three language models matched the human-reviewed label for each observation. It can optionally relabel variables using label_list, reorder rows and columns by average agreement, and customize the plot title and subtitle. This figure is used to visualize where model agreement was high, where it was mixed, and which variables were most difficult for the models to classify consistently.\n\n\nClick to show/hide R Code\nmake_llm_agreement_heatmap &lt;- function(df,\n                                       vars,\n                                       paper_id_col = \"filename\",\n                                       label_list = NULL,\n                                       title = \"LLM agreement heatmap\",\n                                       subtitle = \"Each cell shows how many of 3 models matched the human label\",\n                                       low_to_high = TRUE,\n                                       reorder = TRUE) {\n  \n  stopifnot(is.data.frame(df))\n  stopifnot(is.character(vars))\n  stopifnot(length(paper_id_col) == 1)\n  \n  if (!paper_id_col %in% names(df)) {\n    stop(\"`paper_id_col` not found in `df`.\")\n  }\n  \n  needed_cols &lt;- c(\n    unlist(purrr::map(vars, ~ c(\n      paste0(.x, \"_human\"),\n      paste0(.x, \"_ChatGPT\"),\n      paste0(.x, \"_claude\"),\n      paste0(.x, \"_gemini\")\n    ))),\n    paper_id_col\n  )\n  \n  missing_cols &lt;- setdiff(needed_cols, names(df))\n  if (length(missing_cols) &gt; 0) {\n    stop(\n      \"These required columns are missing from `df`: \",\n      paste(missing_cols, collapse = \", \")\n    )\n  }\n  \n  heatmap_df &lt;- purrr::map_dfr(vars, function(v) {\n    human_col &lt;- paste0(v, \"_human\")\n    chat_col  &lt;- paste0(v, \"_ChatGPT\")\n    cla_col   &lt;- paste0(v, \"_claude\")\n    gem_col   &lt;- paste0(v, \"_gemini\")\n    \n    pretty_label &lt;- if (!is.null(label_list) && v %in% names(label_list)) {\n      unname(label_list[[v]])\n    } else {\n      v\n    }\n    \n    tibble::tibble(\n      paper_id = stringr::word(as.character(df[[paper_id_col]]), 1) |&gt;\n        stringr::str_remove(\"\\\\.$\"),\n      variable = v,\n      label = pretty_label,\n      human = df[[human_col]],\n      chat  = df[[chat_col]],\n      cla   = df[[cla_col]],\n      gem   = df[[gem_col]]\n    ) |&gt;\n      dplyr::mutate(\n        chat_match = dplyr::if_else(is.na(human) | is.na(chat), NA_integer_, as.integer(human == chat)),\n        cla_match  = dplyr::if_else(is.na(human) | is.na(cla),  NA_integer_, as.integer(human == cla)),\n        gem_match  = dplyr::if_else(is.na(human) | is.na(gem),  NA_integer_, as.integer(human == gem)),\n        n_models_scorable = rowSums(!is.na(dplyr::pick(chat_match, cla_match, gem_match))),\n        n_models_correct  = rowSums(dplyr::pick(chat_match, cla_match, gem_match), na.rm = TRUE),\n        n_models_correct  = dplyr::if_else(n_models_scorable == 0, NA_integer_, n_models_correct)\n      )\n  })\n  \n  if (reorder) {\n    row_summary &lt;- heatmap_df |&gt;\n      dplyr::group_by(paper_id) |&gt;\n      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = \"drop\")\n    \n    col_summary &lt;- heatmap_df |&gt;\n      dplyr::group_by(label) |&gt;\n      dplyr::summarise(mean_models_correct = mean(n_models_correct, na.rm = TRUE), .groups = \"drop\")\n    \n    if (low_to_high) {\n      row_order &lt;- row_summary |&gt;\n        dplyr::arrange(mean_models_correct) |&gt;\n        dplyr::pull(paper_id)\n      \n      col_order &lt;- col_summary |&gt;\n        dplyr::arrange(mean_models_correct) |&gt;\n        dplyr::pull(label)\n    } else {\n      row_order &lt;- row_summary |&gt;\n        dplyr::arrange(dplyr::desc(mean_models_correct)) |&gt;\n        dplyr::pull(paper_id)\n      \n      col_order &lt;- col_summary |&gt;\n        dplyr::arrange(dplyr::desc(mean_models_correct)) |&gt;\n        dplyr::pull(label)\n    }\n  } else {\n    row_order &lt;- df[[paper_id_col]] |&gt;\n      as.character() |&gt;\n      stringr::word(1) |&gt;\n      stringr::str_remove(\"\\\\.$\") |&gt;\n      unique()\n    \n    col_order &lt;- purrr::map_chr(vars, function(v) {\n      if (!is.null(label_list) && v %in% names(label_list)) {\n        unname(label_list[[v]])\n      } else {\n        v\n      }\n    })\n  }\n  \n  heatmap_df &lt;- heatmap_df |&gt;\n    dplyr::mutate(\n      paper_id = factor(paper_id, levels = rev(row_order)),\n      label = factor(label, levels = col_order),\n      n_models_correct_f = factor(as.character(n_models_correct), levels = c(\"0\", \"1\", \"2\", \"3\"))\n    )\n  \n  # invisible layer to force all 4 legend boxes to appear, using geom_tile\n  legend_df &lt;- tibble::tibble(\n    label = factor(rep(col_order[1], 4), levels = col_order),\n    paper_id = factor(rep(rev(row_order)[1], 4), levels = levels(heatmap_df$paper_id)),\n    n_models_correct_f = factor(c(\"0\", \"1\", \"2\", \"3\"), levels = c(\"0\", \"1\", \"2\", \"3\"))\n  )\n  \n  ggplot2::ggplot(\n    heatmap_df,\n    ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f)\n  ) +\n    ggplot2::geom_tile(color = \"white\", linewidth = 0.25) +\n    ggplot2::geom_tile(\n      data = legend_df,\n      ggplot2::aes(x = label, y = paper_id, fill = n_models_correct_f),\n      inherit.aes = FALSE,\n      alpha = 0,\n      show.legend = TRUE\n    ) +\n    ggplot2::scale_fill_manual(\n      values = c(\n        \"0\" = \"#b2182b\",\n        \"1\" = \"#ef8a62\",\n        \"2\" = \"#fddbc7\",\n        \"3\" = \"#d1e5f0\"\n      ),\n      breaks = c(\"0\", \"1\", \"2\", \"3\"),\n      drop = FALSE,\n      name = \"Models matching\\nhuman\"\n    ) +\n    ggplot2::guides(\n      fill = ggplot2::guide_legend(\n        override.aes = list(alpha = 1)\n      )\n    ) +\n    ggplot2::labs(\n      title = title,\n      subtitle = subtitle,\n      x = NULL,\n      y = NULL\n    ) +\n    ggplot2::theme_minimal(base_size = 11) +\n    ggplot2::theme(\n      panel.grid = ggplot2::element_blank(),\n      axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),\n      axis.text.y = ggplot2::element_text(size = 7)\n    )\n}",
-    "crumbs": [
-      "Setup and helper functions",
-      "Functions"
     ]
   }
 ]
