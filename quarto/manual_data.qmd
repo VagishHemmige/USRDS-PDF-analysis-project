@@ -1,0 +1,20 @@
+---
+title: "Manual data analysis"
+format: html
+---
+
+::: {.Rcode title="Source code"}
+
+
+The full R scripts are available at:
+
+-   [`R/Rscript%20data%20analysis%20ATC%202025-11-16.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R)
+-   [`R/Rscript%20data%20analysis%20ATC%202025-11-16.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20NKF%202025-11-16.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
+:::
+
+

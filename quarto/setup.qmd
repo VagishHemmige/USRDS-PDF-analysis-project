@@ -20,7 +20,7 @@ library(gt)
 
 The full R script is available at:
 
--   [`R/setup.R`](https://github.com/VagishHemmige/HOPE-CDC-analysis-2026/blob/master/R/setup.R)
+-   [`R/Analysis setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)
 
 :::
 
@@ -33,46 +33,22 @@ The analysis relies on a set of open-source R packages for data management, coho
 
 # Libraries necessary for the analysis
 
-# Data management
 library(tidyverse)
-library(stringi)
-library(glue)
-
-#Core library for the SRTR
-library(sRtr)
-
-#Data import libraries
-library(readxl)
 library(readr)
-library(haven)
-library(mapboxapi)
-library(CDCAtlas)
-
-#Geographic libraries
-library(sf)
-library(tigris)
-library(tidycensus)
-library(tmap)
-library(lutz)
-
-#Table libraries
-library(flextable)
-library(gt)
-
-#Plotting
-library(colorspace)
-library(ggtext)
-library(extrafont)
-library(janitor)
-library(ggrepel)
+library(readxl)
 library(writexl)
-library(plotly)
-library(htmlwidgets)
-library(patchwork)
-library(ggbeeswarm)
-library(ggpubr)
-library(cowplot)
-library(scales)
+library(janitor)
+library(irr)
+library(gtsummary)
+library(gt)
+library(officer)
+library(tidyr)
+library(stringr)
+library(flowchart)
+library(ellmer)
+library(pdftools)
+library(rstudioapi)
+library(purrr)
 
 
 ```
@@ -81,107 +57,59 @@ The table below lists the required packages along with links to their primary do
 
 ```{r, echo=FALSE}
 
-
 libraries_table <- tibble::tibble(
   Category = c(
-    "Data management",
-    "Data management",
-    "Data management",
-    "SRTR-specific",
-    "Data import",
-    "Data import",
-    "Data import",
-    "Data import",
-    "Data import",
-    "Geographic",
-    "Geographic",
-    "Geographic",
-    "Geographic",
-    "Geographic",
-    "Tables",
-    "Tables",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting",
-    "Plotting"
+    "Core data handling",
+    "Core data handling",
+    "Core data handling",
+    "Core data handling",
+    "Core data handling",
+    "Agreement and summaries",
+    "Agreement and summaries",
+    "Agreement and summaries",
+    "Output and reporting",
+    "Output and reporting",
+    "Workflow and diagrams",
+    "Workflow and diagrams",
+    "PDF and LLM analysis",
+    "PDF and LLM analysis",
+    "PDF and LLM analysis"
   ),
-  Package = c("tidyverse", 
-              "stringi", 
-              "glue",
-              "sRtr",
-              "readxl", 
-              "readr", 
-              "haven", 
-              "mapboxapi", 
-              "CDCAtlas",
-              "sf", 
-              "tigris", 
-              "tidycensus", 
-              "tmap", 
-              "lutz",
-              "flextable", 
-              "gt",
-              "colorspace", 
-              "ggtext", 
-              "extrafont", 
-              "janitor", 
-              "ggrepel", 
-              "writexl",
-              "plotly", 
-              "htmlwidgets", 
-              "patchwork", 
-              "ggbeeswarm", 
-              "ggpubr", 
-              "cowplot", 
-              "scales"
-  )
-  ,
-Documentation = c(
+  Package = c(
+    "tidyverse",
+    "readr",
+    "readxl",
+    "janitor",
+    "writexl",
+    "irr",
+    "gtsummary",
+    "gt",
+    "officer",
+    "writexl",
+    "flowchart",
+    "rstudioapi",
+    "ellmer",
+    "pdftools",
+    "purrr"
+  ),
+  Documentation = c(
     "[tidyverse](https://www.tidyverse.org/)",
-    "[stringi](https://stringi.gagolewski.com/)",
-    "[glue](https://glue.tidyverse.org/)",
-    "[sRtr GitHub](https://github.com/vagishhemmige/sRtr)",
-
-    "[readxl](https://readxl.tidyverse.org/)",
     "[readr](https://readr.tidyverse.org/)",
-    "[haven](https://haven.tidyverse.org/)",
-    "[mapboxapi](https://walker-data.com/mapboxapi/)",
-    "[CDCAtlas GitHub](https://github.com/vagishhemmige/CDCAtlas)",
-
-    "[sf](https://r-spatial.github.io/sf/)",
-    "[tigris](https://walker-data.com/tigris/)",
-    "[tidycensus](https://walker-data.com/tidycensus/)",
-    "[tmap](https://r-tmap.github.io/tmap/)",
-    "[lutz](https://cran.r-project.org/package=lutz)",
-
-    "[flextable](https://davidgohel.github.io/flextable/)",
-    "[gt](https://gt.rstudio.com/)",
-
-    "[colorspace](https://colorspace.r-forge.r-project.org/)",
-    "[ggtext](https://wilkelab.org/ggtext/)",
-    "[extrafont](https://cran.r-project.org/package=extrafont)",
+    "[readxl](https://readxl.tidyverse.org/)",
     "[janitor](https://sfirke.github.io/janitor/)",
-    "[ggrepel](https://ggrepel.slowkow.com/)",
     "[writexl](https://cran.r-project.org/package=writexl)",
-
-    "[plotly](https://plotly.com/r/)",
-    "[htmlwidgets](https://www.htmlwidgets.org/)",
-    "[patchwork](https://patchwork.data-imaginist.com/)",
-    "[ggbeeswarm](https://cran.r-project.org/package=ggbeeswarm)",
-    "[ggpubr](https://rpkgs.datanovia.com/ggpubr/)",
-    "[cowplot](https://wilkelab.org/cowplot/)",
-    "[scales](https://scales.r-lib.org/)"
+    "[irr](https://cran.r-project.org/package=irr)",
+    "[gtsummary](https://www.danieldsjoberg.com/gtsummary/)",
+    "[gt](https://gt.rstudio.com/)",
+    "[officer](https://davidgohel.github.io/officer/)",
+    "[writexl](https://cran.r-project.org/package=writexl)",
+    "[flowchart](https://cran.r-project.org/package=flowchart)",
+    "[rstudioapi](https://rstudio.github.io/rstudioapi/)",
+    "[ellmer](https://ellmer.tidyverse.org/)",
+    "[pdftools](https://cran.r-project.org/package=pdftools)",
+    "[purrr](https://purrr.tidyverse.org/)"
   )
-  )
+)
 
 libraries_table |>
   gt::gt() |>
@@ -193,110 +121,118 @@ libraries_table |>
   ) |>
   gt::tab_header(
     title = "Required R Packages",
-    subtitle = "Libraries used for data processing, visualization, and statistical modeling"
-  )|>
+    subtitle = "Libraries used for PDF processing, structured LLM extraction, data cleaning, agreement analysis, and reporting"
+  ) |>
   gt::tab_style(
-  style = gt::cell_text(font = "mono"),
-  locations = gt::cells_body(columns = Package)
-)
-
-
+    style = gt::cell_text(font = "mono"),
+    locations = gt::cells_body(columns = Package)
+  )
 
 ```
 
 
-## Constants
+## Label dictionary and analysis objects
 
-A number of analysis parameters are reused across cohort construction, matching, and cost modeling steps. 
+The PDF analysis uses a small set of shared objects defined in `R/Analysis setup.R`. These help standardize variable labels across tables and figures and store supporting information used in the results pages.
 
-These constants are defined in the `R/setup.R` file.
+### Variable label dictionary
+
+The label_list object maps internal variable names used in the analysis code to reader-friendly labels used in tables and summaries. This allows the same underlying variables to be displayed consistently across outputs without manually renaming them in each table.
 
 ```{r}
 
 
-organ_list<-c("liver", "kidney", "heart", "lung", "pancreas")
-year_list<-c("2017", "2022")
-distance_list=c("50mile", "60min", "100mile", "200mile")
 
-#List states which are continental
-continental_fips <- c(
-  "01", "04", "05", "06", "08", "09", "10", "11", "12", "13", "16",
-  "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
-  "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-  "37", "38", "39", "40", "41", "42", "44", "45", "46", "47",
-  "48", "49", "50", "51", "53", "54", "55", "56"
+label_list <- list(
+  did_the_authors_state_what_programming_language_they_used = "Programming language stated",
+  did_the_authors_explicitly_state_what_files_they_used = "USRDS files explicitly stated",
+  does_the_choice_of_files_codes_seem_appropriate_for_the_research_question = "Files/codes appropriate for research question",
+  did_the_authors_share_the_code_they_used = "Authors shared code",
+  was_the_study_funded = "Study funded",
+  would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package = "Covered by proposed usRds package",
+  were_any_crosswalks_used = "Any crosswalks used",
+  languages_used_R = "R used",
+  languages_used_SAS = "SAS used",
+  languages_used_Stata = "Stata used",
+  languages_used_SPSS = "SPSS used",
+  languages_used_Python = "Python used",
+  
+  files_used_Core = "Core file used",
+  files_used_Institution = "Institution file used",
+  files_used_PhysicianSupplier = "Physician/Supplier file used",
+  files_used_Hospital = "Hospital file used",
+  files_used_Transplant = "Transplant file used",
+  files_used_PartD= "Part D file used",
+  files_used_CROWNWeb = "CROWNWeb file used",
+  
+  component_basicdemographics = "Basic demographics abstracted",
+  component_icd9 = "ICD-9 codes abstracted",
+  component_icd10 = "ICD-10 codes abstracted",
+  component_cptcode = "CPT codes abstracted",
+  component_medicationD = "Part D medication data abstracted",
+  component_transplant = "Transplant-specific data abstracted",
+  component_costs = "Cost data abstracted",
+  component_residential = "Residential location abstracted",
+  
+  is_this_a_transplant_related_study = "Transplant-related study",
+  is_this_paper_a_new_data_analysis = "New patient-level data analysis"
 )
 
-#For isochrone analysis, we need to account for time zones in order to calculate driving time at 7 AM on the specific date
 
-#List US continental time zones
-
-timezones<-c("America/New_York","America/Chicago","America/Denver","America/Los_Angeles","America/Phoenix",
-             "America/Indiana/Indianapolis","America/Kentucky/Louisville","America/Detroit")
-
-reference_date<-list()
-
-# Specific date to anchor the time: First Monday in March of both years
-reference_date[["2022"]] <- as.Date("2022-03-07")
-reference_date[["2017"]] <- as.Date("2017-03-06")
 
 ```
 
-For clarity, these constants are summarized below along with brief explanations of their role in the analysis.
+For clarity, the label dictionary is summarized below along with brief explanations of their role in the analysis.
+
+
 
 ```{r, echo=FALSE}
 
-format_constant <- function(x) {
-  if (inherits(x, "Date")) {
-    format(x, "%Y-%m-%d")
-    
-  } else if (is.list(x) && all(sapply(x, inherits, "Date"))) {
-    paste(
-      paste(names(x), format(as.Date(unlist(x), origin = "1970-01-01"), "%Y-%m-%d"), sep = ": "),
-      collapse = " | "
-    )
-    
-  } else if (length(x) > 1) {
-    paste(x, collapse = ", ")
-    
-  } else {
-    as.character(x)
-  }
-}
-
-constants_table <- tibble::tibble(
-  Constant = c(
-    "organ_list",
-    "year_list",
-    "distance_list",
-    "continental_fips",
-    "timezones",
-    "reference_date"
-  ),
-  Value = c(
-    format_constant(organ_list),
-    format_constant(year_list),
-    format_constant(distance_list),
-    format_constant(continental_fips),
-    format_constant(timezones),
-    format_constant(reference_date)
-  ),
-  Explanation = c(
-    "Organs included in transplant center access analysis",
-    "Calendar years evaluated for geographic access comparison",
-    "Distance or drive-time buffers used to define transplant center catchment areas",
-    "FIPS codes representing continental U.S. states included in analysis",
-    "Time zones used to convert local 7 AM departure times to UTC for isochrone calculations",
-    "Anchor dates (first Monday in March) used for time-zone–adjusted isochrone generation"
-  )
+label_table <- tibble::tibble(
+  Variable = names(label_list),
+  Label = unname(unlist(label_list))
 )
 
-constants_table |>
+label_table |>
   gt::gt() |>
   gt::tab_header(
-    title = "Analysis Constants",
-    subtitle = "Geographic buffer definitions and time-zone parameters"
+    title = "Variable label dictionary",
+    subtitle = "Internal variable names mapped to display labels used in tables and figures"
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(font = "mono"),
+    locations = gt::cells_body(columns = Variable)
   )
+
+```
+
+
+
+
+### Model runtime table
+
+The timing_table object stores the approximate runtime required to process the full dataset with each model. This provides context for the practical tradeoff between speed and extraction performance.
+
+```{r, eval=FALSE}
+
+#Table of times to run the analysis
+timing_table <- tibble(
+  `Provider (Company)` = c(
+    "ChatGPT (OpenAI)",
+    "Claude (Anthropic)",
+    "Gemini (Google)"
+  ),
+  Model = c(
+    "Gpt 5.1",
+    "Claude Sonnet 4.5",
+    "Gemini 2.5 Flash"
+  ),
+  `Time (minutes)` = c(
+    165,
+    62,
+    672
+  )
+)
 
 
 ```

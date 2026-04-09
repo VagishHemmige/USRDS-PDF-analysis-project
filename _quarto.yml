@@ -16,7 +16,7 @@ website:
   site-url: https://vagishhemmige.github.io/USRDS-PDF-analysis-project
   repo-url: https://github.com/VagishHemmige/USRDS-PDF-analysis-project
   repo-actions: [edit, issue]
-  title: "Analysis of 175 papers related to the USRDS"
+  title: "Analysis of USRDS-related papers"
 
   sidebar:
     style: "docked"
@@ -39,8 +39,17 @@ website:
           - href: quarto/functions.qmd
             text: Functions
 
-      - href: quarto/llm_analysis.qmd
-        text: LLM data extraction
+      - section: Methods
+        contents:
+          - href: quarto/manual_data.qmd
+            text: Analysis of manual data extraction
+          - href: quarto/llm_analysis.qmd
+            text: LLM data extraction
+          - href: quarto/data_cleaning.qmd
+            text: Analysis of manual data extraction
+          - href: quarto/llm_data.qmd
+            text: LLM data analysis
+            
         
       - section: Results
         contents:

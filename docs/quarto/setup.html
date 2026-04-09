@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vagish Hemmige">
 
-<title>Setup – Analysis of 175 papers related to the USRDS</title>
+<title>Setup – Analysis of USRDS-related papers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Analysis of 175 papers related to the USRDS</a> 
+      <a href="../">Analysis of USRDS-related papers</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -207,21 +207,50 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LLM data extraction</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Results</span></a>
+ <span class="menu-text">Methods</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/manual_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis of manual data extraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM data extraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis of manual data extraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/llm_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM data analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../quarto/final_selection_papers.html" class="sidebar-item-text sidebar-link">
@@ -259,7 +288,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
    
   <ul>
   <li><a href="#libraries" id="toc-libraries" class="nav-link active" data-scroll-target="#libraries">Libraries</a></li>
-  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants">Constants</a></li>
+  <li><a href="#label-dictionary-and-analysis-objects" id="toc-label-dictionary-and-analysis-objects" class="nav-link" data-scroll-target="#label-dictionary-and-analysis-objects">Label dictionary and analysis objects</a>
+  <ul class="collapse">
+  <li><a href="#variable-label-dictionary" id="toc-variable-label-dictionary" class="nav-link" data-scroll-target="#variable-label-dictionary">Variable label dictionary</a></li>
+  <li><a href="#model-runtime-table" id="toc-model-runtime-table" class="nav-link" data-scroll-target="#model-runtime-table">Model runtime table</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -304,7 +337,7 @@ Source code
 <div class="callout-body-container callout-body">
 <p>The full R script is available at:</p>
 <ul>
-<li><a href="https://github.com/VagishHemmige/HOPE-CDC-analysis-2026/blob/master/R/setup.R"><code>R/setup.R</code></a></li>
+<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R"><code>R/Analysis setup.R</code></a></li>
 </ul>
 </div>
 </div>
@@ -316,68 +349,44 @@ Source code
 <summary>Click to show/hide R Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries necessary for the analysis</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data management</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Core library for the SRTR</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sRtr)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Data import libraries</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapboxapi)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CDCAtlas)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Geographic libraries</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lutz)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Table libraries</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(irr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flowchart)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstudioapi)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The table below lists the required packages along with links to their primary documentation.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="enlvobpqqx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#enlvobpqqx table {
+<div id="xfeypnfbvq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xfeypnfbvq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#enlvobpqqx thead, #enlvobpqqx tbody, #enlvobpqqx tfoot, #enlvobpqqx tr, #enlvobpqqx td, #enlvobpqqx th {
+#xfeypnfbvq thead, #xfeypnfbvq tbody, #xfeypnfbvq tfoot, #xfeypnfbvq tr, #xfeypnfbvq td, #xfeypnfbvq th {
   border-style: none;
 }
 
-#enlvobpqqx p {
+#xfeypnfbvq p {
   margin: 0;
   padding: 0;
 }
 
-#enlvobpqqx .gt_table {
+#xfeypnfbvq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -403,12 +412,12 @@ Source code
   border-left-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_caption {
+#xfeypnfbvq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#enlvobpqqx .gt_title {
+#xfeypnfbvq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -420,7 +429,7 @@ Source code
   border-bottom-width: 0;
 }
 
-#enlvobpqqx .gt_subtitle {
+#xfeypnfbvq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -432,7 +441,7 @@ Source code
   border-top-width: 0;
 }
 
-#enlvobpqqx .gt_heading {
+#xfeypnfbvq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -444,13 +453,13 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_bottom_border {
+#xfeypnfbvq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_col_headings {
+#xfeypnfbvq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -465,7 +474,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_col_heading {
+#xfeypnfbvq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,7 +494,7 @@ Source code
   overflow-x: hidden;
 }
 
-#enlvobpqqx .gt_column_spanner_outer {
+#xfeypnfbvq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -497,15 +506,15 @@ Source code
   padding-right: 4px;
 }
 
-#enlvobpqqx .gt_column_spanner_outer:first-child {
+#xfeypnfbvq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#enlvobpqqx .gt_column_spanner_outer:last-child {
+#xfeypnfbvq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#enlvobpqqx .gt_column_spanner {
+#xfeypnfbvq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -517,11 +526,11 @@ Source code
   width: 100%;
 }
 
-#enlvobpqqx .gt_spanner_row {
+#xfeypnfbvq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#enlvobpqqx .gt_group_heading {
+#xfeypnfbvq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -547,7 +556,7 @@ Source code
   text-align: left;
 }
 
-#enlvobpqqx .gt_empty_group_heading {
+#xfeypnfbvq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -562,15 +571,15 @@ Source code
   vertical-align: middle;
 }
 
-#enlvobpqqx .gt_from_md > :first-child {
+#xfeypnfbvq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#enlvobpqqx .gt_from_md > :last-child {
+#xfeypnfbvq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#enlvobpqqx .gt_row {
+#xfeypnfbvq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -589,7 +598,7 @@ Source code
   overflow-x: hidden;
 }
 
-#enlvobpqqx .gt_stub {
+#xfeypnfbvq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -602,7 +611,7 @@ Source code
   padding-right: 5px;
 }
 
-#enlvobpqqx .gt_stub_row_group {
+#xfeypnfbvq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -616,15 +625,15 @@ Source code
   vertical-align: top;
 }
 
-#enlvobpqqx .gt_row_group_first td {
+#xfeypnfbvq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#enlvobpqqx .gt_row_group_first th {
+#xfeypnfbvq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#enlvobpqqx .gt_summary_row {
+#xfeypnfbvq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -634,16 +643,16 @@ Source code
   padding-right: 5px;
 }
 
-#enlvobpqqx .gt_first_summary_row {
+#xfeypnfbvq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_first_summary_row.thick {
+#xfeypnfbvq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#enlvobpqqx .gt_last_summary_row {
+#xfeypnfbvq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -653,7 +662,7 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_grand_summary_row {
+#xfeypnfbvq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -663,7 +672,7 @@ Source code
   padding-right: 5px;
 }
 
-#enlvobpqqx .gt_first_grand_summary_row {
+#xfeypnfbvq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -673,7 +682,7 @@ Source code
   border-top-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_last_grand_summary_row_top {
+#xfeypnfbvq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -683,11 +692,11 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_striped {
+#xfeypnfbvq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#enlvobpqqx .gt_table_body {
+#xfeypnfbvq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -696,7 +705,7 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_footnotes {
+#xfeypnfbvq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -710,7 +719,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_footnote {
+#xfeypnfbvq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -719,7 +728,7 @@ Source code
   padding-right: 5px;
 }
 
-#enlvobpqqx .gt_sourcenotes {
+#xfeypnfbvq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -733,7 +742,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#enlvobpqqx .gt_sourcenote {
+#xfeypnfbvq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -741,72 +750,72 @@ Source code
   padding-right: 5px;
 }
 
-#enlvobpqqx .gt_left {
+#xfeypnfbvq .gt_left {
   text-align: left;
 }
 
-#enlvobpqqx .gt_center {
+#xfeypnfbvq .gt_center {
   text-align: center;
 }
 
-#enlvobpqqx .gt_right {
+#xfeypnfbvq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#enlvobpqqx .gt_font_normal {
+#xfeypnfbvq .gt_font_normal {
   font-weight: normal;
 }
 
-#enlvobpqqx .gt_font_bold {
+#xfeypnfbvq .gt_font_bold {
   font-weight: bold;
 }
 
-#enlvobpqqx .gt_font_italic {
+#xfeypnfbvq .gt_font_italic {
   font-style: italic;
 }
 
-#enlvobpqqx .gt_super {
+#xfeypnfbvq .gt_super {
   font-size: 65%;
 }
 
-#enlvobpqqx .gt_footnote_marks {
+#xfeypnfbvq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#enlvobpqqx .gt_asterisk {
+#xfeypnfbvq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#enlvobpqqx .gt_indent_1 {
+#xfeypnfbvq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#enlvobpqqx .gt_indent_2 {
+#xfeypnfbvq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#enlvobpqqx .gt_indent_3 {
+#xfeypnfbvq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#enlvobpqqx .gt_indent_4 {
+#xfeypnfbvq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#enlvobpqqx .gt_indent_5 {
+#xfeypnfbvq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#enlvobpqqx .katex-display {
+#xfeypnfbvq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#enlvobpqqx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xfeypnfbvq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -817,7 +826,7 @@ Source code
 <th colspan="3" class="gt_heading gt_title gt_font_normal">Required R Packages</th>
 </tr>
 <tr class="gt_heading even">
-<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Libraries used for data processing, visualization, and statistical modeling</th>
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Libraries used for PDF processing, structured LLM extraction, data cleaning, agreement analysis, and reporting</th>
 </tr>
 <tr class="gt_col_headings header">
 <th id="Category" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Category</th>
@@ -827,149 +836,79 @@ Source code
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Data management</td>
+<td class="gt_row gt_left" headers="Category">Core data handling</td>
 <td class="gt_row gt_left" headers="Package" style="font-family: mono">tidyverse</td>
 <td class="gt_row gt_left" headers="Documentation"><a href="https://www.tidyverse.org/">tidyverse</a></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Category">Data management</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">stringi</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://stringi.gagolewski.com/">stringi</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Data management</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">glue</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://glue.tidyverse.org/">glue</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">SRTR-specific</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">sRtr</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://github.com/vagishhemmige/sRtr">sRtr GitHub</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Data import</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">readxl</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://readxl.tidyverse.org/">readxl</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Data import</td>
+<td class="gt_row gt_left" headers="Category">Core data handling</td>
 <td class="gt_row gt_left" headers="Package" style="font-family: mono">readr</td>
 <td class="gt_row gt_left" headers="Documentation"><a href="https://readr.tidyverse.org/">readr</a></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Data import</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">haven</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://haven.tidyverse.org/">haven</a></td>
+<td class="gt_row gt_left" headers="Category">Core data handling</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">readxl</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://readxl.tidyverse.org/">readxl</a></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Category">Data import</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">mapboxapi</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://walker-data.com/mapboxapi/">mapboxapi</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Data import</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">CDCAtlas</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://github.com/vagishhemmige/CDCAtlas">CDCAtlas GitHub</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Geographic</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">sf</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://r-spatial.github.io/sf/">sf</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Geographic</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">tigris</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://walker-data.com/tigris/">tigris</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Geographic</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">tidycensus</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://walker-data.com/tidycensus/">tidycensus</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Geographic</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">tmap</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://r-tmap.github.io/tmap/">tmap</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Geographic</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">lutz</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=lutz">lutz</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Tables</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">flextable</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://davidgohel.github.io/flextable/">flextable</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Tables</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">gt</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://gt.rstudio.com/">gt</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">colorspace</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://colorspace.r-forge.r-project.org/">colorspace</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">ggtext</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://wilkelab.org/ggtext/">ggtext</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">extrafont</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=extrafont">extrafont</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
+<td class="gt_row gt_left" headers="Category">Core data handling</td>
 <td class="gt_row gt_left" headers="Package" style="font-family: mono">janitor</td>
 <td class="gt_row gt_left" headers="Documentation"><a href="https://sfirke.github.io/janitor/">janitor</a></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">ggrepel</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://ggrepel.slowkow.com/">ggrepel</a></td>
+<td class="gt_row gt_left" headers="Category">Core data handling</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">writexl</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=writexl">writexl</a></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
+<td class="gt_row gt_left" headers="Category">Agreement and summaries</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">irr</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=irr">irr</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Category">Agreement and summaries</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">gtsummary</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://www.danieldsjoberg.com/gtsummary/">gtsummary</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Category">Agreement and summaries</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">gt</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://gt.rstudio.com/">gt</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Category">Output and reporting</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">officer</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://davidgohel.github.io/officer/">officer</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Category">Output and reporting</td>
 <td class="gt_row gt_left" headers="Package" style="font-family: mono">writexl</td>
 <td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=writexl">writexl</a></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">plotly</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://plotly.com/r/">plotly</a></td>
+<td class="gt_row gt_left" headers="Category">Workflow and diagrams</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">flowchart</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=flowchart">flowchart</a></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">htmlwidgets</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://www.htmlwidgets.org/">htmlwidgets</a></td>
+<td class="gt_row gt_left" headers="Category">Workflow and diagrams</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">rstudioapi</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://rstudio.github.io/rstudioapi/">rstudioapi</a></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">patchwork</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://patchwork.data-imaginist.com/">patchwork</a></td>
+<td class="gt_row gt_left" headers="Category">PDF and LLM analysis</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">ellmer</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://ellmer.tidyverse.org/">ellmer</a></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">ggbeeswarm</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=ggbeeswarm">ggbeeswarm</a></td>
+<td class="gt_row gt_left" headers="Category">PDF and LLM analysis</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">pdftools</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://cran.r-project.org/package=pdftools">pdftools</a></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">ggpubr</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">cowplot</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://wilkelab.org/cowplot/">cowplot</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Category">Plotting</td>
-<td class="gt_row gt_left" headers="Package" style="font-family: mono">scales</td>
-<td class="gt_row gt_left" headers="Documentation"><a href="https://scales.r-lib.org/">scales</a></td>
+<td class="gt_row gt_left" headers="Category">PDF and LLM analysis</td>
+<td class="gt_row gt_left" headers="Package" style="font-family: mono">purrr</td>
+<td class="gt_row gt_left" headers="Documentation"><a href="https://purrr.tidyverse.org/">purrr</a></td>
 </tr>
 </tbody>
 </table>
@@ -978,60 +917,71 @@ Source code
 </div>
 </div>
 </section>
-<section id="constants" class="level2">
-<h2 class="anchored" data-anchor-id="constants">Constants</h2>
-<p>A number of analysis parameters are reused across cohort construction, matching, and cost modeling steps.</p>
-<p>These constants are defined in the <code>R/setup.R</code> file.</p>
+<section id="label-dictionary-and-analysis-objects" class="level2">
+<h2 class="anchored" data-anchor-id="label-dictionary-and-analysis-objects">Label dictionary and analysis objects</h2>
+<p>The PDF analysis uses a small set of shared objects defined in <code>R/Analysis setup.R</code>. These help standardize variable labels across tables and figures and store supporting information used in the results pages.</p>
+<section id="variable-label-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="variable-label-dictionary">Variable label dictionary</h3>
+<p>The label_list object maps internal variable names used in the analysis code to reader-friendly labels used in tables and summaries. This allows the same underlying variables to be displayed consistently across outputs without manually renaming them in each table.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>organ_list<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"kidney"</span>, <span class="st">"heart"</span>, <span class="st">"lung"</span>, <span class="st">"pancreas"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>year_list<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"2017"</span>, <span class="st">"2022"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>distance_list<span class="ot">=</span><span class="fu">c</span>(<span class="st">"50mile"</span>, <span class="st">"60min"</span>, <span class="st">"100mile"</span>, <span class="st">"200mile"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#List states which are continental</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>continental_fips <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"01"</span>, <span class="st">"04"</span>, <span class="st">"05"</span>, <span class="st">"06"</span>, <span class="st">"08"</span>, <span class="st">"09"</span>, <span class="st">"10"</span>, <span class="st">"11"</span>, <span class="st">"12"</span>, <span class="st">"13"</span>, <span class="st">"16"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"17"</span>, <span class="st">"18"</span>, <span class="st">"19"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"22"</span>, <span class="st">"23"</span>, <span class="st">"24"</span>, <span class="st">"25"</span>, <span class="st">"26"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"27"</span>, <span class="st">"28"</span>, <span class="st">"29"</span>, <span class="st">"30"</span>, <span class="st">"31"</span>, <span class="st">"32"</span>, <span class="st">"33"</span>, <span class="st">"34"</span>, <span class="st">"35"</span>, <span class="st">"36"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"37"</span>, <span class="st">"38"</span>, <span class="st">"39"</span>, <span class="st">"40"</span>, <span class="st">"41"</span>, <span class="st">"42"</span>, <span class="st">"44"</span>, <span class="st">"45"</span>, <span class="st">"46"</span>, <span class="st">"47"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"48"</span>, <span class="st">"49"</span>, <span class="st">"50"</span>, <span class="st">"51"</span>, <span class="st">"53"</span>, <span class="st">"54"</span>, <span class="st">"55"</span>, <span class="st">"56"</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#For isochrone analysis, we need to account for time zones in order to calculate driving time at 7 AM on the specific date</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#List US continental time zones</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>timezones<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"America/New_York"</span>,<span class="st">"America/Chicago"</span>,<span class="st">"America/Denver"</span>,<span class="st">"America/Los_Angeles"</span>,<span class="st">"America/Phoenix"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>             <span class="st">"America/Indiana/Indianapolis"</span>,<span class="st">"America/Kentucky/Louisville"</span>,<span class="st">"America/Detroit"</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>reference_date<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Specific date to anchor the time: First Monday in March of both years</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>reference_date[[<span class="st">"2022"</span>]] <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-03-07"</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>reference_date[[<span class="st">"2017"</span>]] <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2017-03-06"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>label_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_state_what_programming_language_they_used =</span> <span class="st">"Programming language stated"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_explicitly_state_what_files_they_used =</span> <span class="st">"USRDS files explicitly stated"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">does_the_choice_of_files_codes_seem_appropriate_for_the_research_question =</span> <span class="st">"Files/codes appropriate for research question"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_share_the_code_they_used =</span> <span class="st">"Authors shared code"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">was_the_study_funded =</span> <span class="st">"Study funded"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package =</span> <span class="st">"Covered by proposed usRds package"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">were_any_crosswalks_used =</span> <span class="st">"Any crosswalks used"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_R =</span> <span class="st">"R used"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_SAS =</span> <span class="st">"SAS used"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_Stata =</span> <span class="st">"Stata used"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_SPSS =</span> <span class="st">"SPSS used"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_Python =</span> <span class="st">"Python used"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Core =</span> <span class="st">"Core file used"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Institution =</span> <span class="st">"Institution file used"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_PhysicianSupplier =</span> <span class="st">"Physician/Supplier file used"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Hospital =</span> <span class="st">"Hospital file used"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Transplant =</span> <span class="st">"Transplant file used"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_PartD=</span> <span class="st">"Part D file used"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_CROWNWeb =</span> <span class="st">"CROWNWeb file used"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_basicdemographics =</span> <span class="st">"Basic demographics abstracted"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_icd9 =</span> <span class="st">"ICD-9 codes abstracted"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_icd10 =</span> <span class="st">"ICD-10 codes abstracted"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_cptcode =</span> <span class="st">"CPT codes abstracted"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_medicationD =</span> <span class="st">"Part D medication data abstracted"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_transplant =</span> <span class="st">"Transplant-specific data abstracted"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_costs =</span> <span class="st">"Cost data abstracted"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_residential =</span> <span class="st">"Residential location abstracted"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">is_this_a_transplant_related_study =</span> <span class="st">"Transplant-related study"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">is_this_paper_a_new_data_analysis =</span> <span class="st">"New patient-level data analysis"</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>For clarity, these constants are summarized below along with brief explanations of their role in the analysis.</p>
+<p>For clarity, the label dictionary is summarized below along with brief explanations of their role in the analysis.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="anoybtabhp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#anoybtabhp table {
+<div id="xuyoyjrlit" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xuyoyjrlit table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#anoybtabhp thead, #anoybtabhp tbody, #anoybtabhp tfoot, #anoybtabhp tr, #anoybtabhp td, #anoybtabhp th {
+#xuyoyjrlit thead, #xuyoyjrlit tbody, #xuyoyjrlit tfoot, #xuyoyjrlit tr, #xuyoyjrlit td, #xuyoyjrlit th {
   border-style: none;
 }
 
-#anoybtabhp p {
+#xuyoyjrlit p {
   margin: 0;
   padding: 0;
 }
 
-#anoybtabhp .gt_table {
+#xuyoyjrlit .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1057,12 +1007,12 @@ Source code
   border-left-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_caption {
+#xuyoyjrlit .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#anoybtabhp .gt_title {
+#xuyoyjrlit .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1074,7 +1024,7 @@ Source code
   border-bottom-width: 0;
 }
 
-#anoybtabhp .gt_subtitle {
+#xuyoyjrlit .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1086,7 +1036,7 @@ Source code
   border-top-width: 0;
 }
 
-#anoybtabhp .gt_heading {
+#xuyoyjrlit .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1098,13 +1048,13 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_bottom_border {
+#xuyoyjrlit .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_col_headings {
+#xuyoyjrlit .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1119,7 +1069,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_col_heading {
+#xuyoyjrlit .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1139,7 +1089,7 @@ Source code
   overflow-x: hidden;
 }
 
-#anoybtabhp .gt_column_spanner_outer {
+#xuyoyjrlit .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1151,15 +1101,15 @@ Source code
   padding-right: 4px;
 }
 
-#anoybtabhp .gt_column_spanner_outer:first-child {
+#xuyoyjrlit .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#anoybtabhp .gt_column_spanner_outer:last-child {
+#xuyoyjrlit .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#anoybtabhp .gt_column_spanner {
+#xuyoyjrlit .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1171,11 +1121,11 @@ Source code
   width: 100%;
 }
 
-#anoybtabhp .gt_spanner_row {
+#xuyoyjrlit .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#anoybtabhp .gt_group_heading {
+#xuyoyjrlit .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1201,7 +1151,7 @@ Source code
   text-align: left;
 }
 
-#anoybtabhp .gt_empty_group_heading {
+#xuyoyjrlit .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1216,15 +1166,15 @@ Source code
   vertical-align: middle;
 }
 
-#anoybtabhp .gt_from_md > :first-child {
+#xuyoyjrlit .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#anoybtabhp .gt_from_md > :last-child {
+#xuyoyjrlit .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#anoybtabhp .gt_row {
+#xuyoyjrlit .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1243,7 +1193,7 @@ Source code
   overflow-x: hidden;
 }
 
-#anoybtabhp .gt_stub {
+#xuyoyjrlit .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1256,7 +1206,7 @@ Source code
   padding-right: 5px;
 }
 
-#anoybtabhp .gt_stub_row_group {
+#xuyoyjrlit .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1270,15 +1220,15 @@ Source code
   vertical-align: top;
 }
 
-#anoybtabhp .gt_row_group_first td {
+#xuyoyjrlit .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#anoybtabhp .gt_row_group_first th {
+#xuyoyjrlit .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#anoybtabhp .gt_summary_row {
+#xuyoyjrlit .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1288,16 +1238,16 @@ Source code
   padding-right: 5px;
 }
 
-#anoybtabhp .gt_first_summary_row {
+#xuyoyjrlit .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_first_summary_row.thick {
+#xuyoyjrlit .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#anoybtabhp .gt_last_summary_row {
+#xuyoyjrlit .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1307,7 +1257,7 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_grand_summary_row {
+#xuyoyjrlit .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1317,7 +1267,7 @@ Source code
   padding-right: 5px;
 }
 
-#anoybtabhp .gt_first_grand_summary_row {
+#xuyoyjrlit .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1327,7 +1277,7 @@ Source code
   border-top-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_last_grand_summary_row_top {
+#xuyoyjrlit .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1337,11 +1287,11 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_striped {
+#xuyoyjrlit .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#anoybtabhp .gt_table_body {
+#xuyoyjrlit .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1350,7 +1300,7 @@ Source code
   border-bottom-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_footnotes {
+#xuyoyjrlit .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1364,7 +1314,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_footnote {
+#xuyoyjrlit .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1373,7 +1323,7 @@ Source code
   padding-right: 5px;
 }
 
-#anoybtabhp .gt_sourcenotes {
+#xuyoyjrlit .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1387,7 +1337,7 @@ Source code
   border-right-color: #D3D3D3;
 }
 
-#anoybtabhp .gt_sourcenote {
+#xuyoyjrlit .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1395,72 +1345,72 @@ Source code
   padding-right: 5px;
 }
 
-#anoybtabhp .gt_left {
+#xuyoyjrlit .gt_left {
   text-align: left;
 }
 
-#anoybtabhp .gt_center {
+#xuyoyjrlit .gt_center {
   text-align: center;
 }
 
-#anoybtabhp .gt_right {
+#xuyoyjrlit .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#anoybtabhp .gt_font_normal {
+#xuyoyjrlit .gt_font_normal {
   font-weight: normal;
 }
 
-#anoybtabhp .gt_font_bold {
+#xuyoyjrlit .gt_font_bold {
   font-weight: bold;
 }
 
-#anoybtabhp .gt_font_italic {
+#xuyoyjrlit .gt_font_italic {
   font-style: italic;
 }
 
-#anoybtabhp .gt_super {
+#xuyoyjrlit .gt_super {
   font-size: 65%;
 }
 
-#anoybtabhp .gt_footnote_marks {
+#xuyoyjrlit .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#anoybtabhp .gt_asterisk {
+#xuyoyjrlit .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#anoybtabhp .gt_indent_1 {
+#xuyoyjrlit .gt_indent_1 {
   text-indent: 5px;
 }
 
-#anoybtabhp .gt_indent_2 {
+#xuyoyjrlit .gt_indent_2 {
   text-indent: 10px;
 }
 
-#anoybtabhp .gt_indent_3 {
+#xuyoyjrlit .gt_indent_3 {
   text-indent: 15px;
 }
 
-#anoybtabhp .gt_indent_4 {
+#xuyoyjrlit .gt_indent_4 {
   text-indent: 20px;
 }
 
-#anoybtabhp .gt_indent_5 {
+#xuyoyjrlit .gt_indent_5 {
   text-indent: 25px;
 }
 
-#anoybtabhp .katex-display {
+#xuyoyjrlit .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#anoybtabhp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xuyoyjrlit div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1468,47 +1418,132 @@ Source code
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="3" class="gt_heading gt_title gt_font_normal">Analysis Constants</th>
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Variable label dictionary</th>
 </tr>
 <tr class="gt_heading even">
-<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Geographic buffer definitions and time-zone parameters</th>
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Internal variable names mapped to display labels used in tables and figures</th>
 </tr>
 <tr class="gt_col_headings header">
-<th id="Constant" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Constant</th>
-<th id="Value" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Value</th>
-<th id="Explanation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Explanation</th>
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Label</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Constant">organ_list</td>
-<td class="gt_row gt_left" headers="Value">liver, kidney, heart, lung, pancreas</td>
-<td class="gt_row gt_left" headers="Explanation">Organs included in transplant center access analysis</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">did_the_authors_state_what_programming_language_they_used</td>
+<td class="gt_row gt_left" headers="Label">Programming language stated</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Constant">year_list</td>
-<td class="gt_row gt_left" headers="Value">2017, 2022</td>
-<td class="gt_row gt_left" headers="Explanation">Calendar years evaluated for geographic access comparison</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">did_the_authors_explicitly_state_what_files_they_used</td>
+<td class="gt_row gt_left" headers="Label">USRDS files explicitly stated</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Constant">distance_list</td>
-<td class="gt_row gt_left" headers="Value">50mile, 60min, 100mile, 200mile</td>
-<td class="gt_row gt_left" headers="Explanation">Distance or drive-time buffers used to define transplant center catchment areas</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">does_the_choice_of_files_codes_seem_appropriate_for_the_research_question</td>
+<td class="gt_row gt_left" headers="Label">Files/codes appropriate for research question</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Constant">continental_fips</td>
-<td class="gt_row gt_left" headers="Value">01, 04, 05, 06, 08, 09, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56</td>
-<td class="gt_row gt_left" headers="Explanation">FIPS codes representing continental U.S. states included in analysis</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">did_the_authors_share_the_code_they_used</td>
+<td class="gt_row gt_left" headers="Label">Authors shared code</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Constant">timezones</td>
-<td class="gt_row gt_left" headers="Value">America/New_York, America/Chicago, America/Denver, America/Los_Angeles, America/Phoenix, America/Indiana/Indianapolis, America/Kentucky/Louisville, America/Detroit</td>
-<td class="gt_row gt_left" headers="Explanation">Time zones used to convert local 7 AM departure times to UTC for isochrone calculations</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">was_the_study_funded</td>
+<td class="gt_row gt_left" headers="Label">Study funded</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Constant">reference_date</td>
-<td class="gt_row gt_left" headers="Value">2022: 2022-03-07 | 2017: 2017-03-06</td>
-<td class="gt_row gt_left" headers="Explanation">Anchor dates (first Monday in March) used for time-zone–adjusted isochrone generation</td>
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package</td>
+<td class="gt_row gt_left" headers="Label">Covered by proposed usRds package</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">were_any_crosswalks_used</td>
+<td class="gt_row gt_left" headers="Label">Any crosswalks used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">languages_used_R</td>
+<td class="gt_row gt_left" headers="Label">R used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">languages_used_SAS</td>
+<td class="gt_row gt_left" headers="Label">SAS used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">languages_used_Stata</td>
+<td class="gt_row gt_left" headers="Label">Stata used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">languages_used_SPSS</td>
+<td class="gt_row gt_left" headers="Label">SPSS used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">languages_used_Python</td>
+<td class="gt_row gt_left" headers="Label">Python used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_Core</td>
+<td class="gt_row gt_left" headers="Label">Core file used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_Institution</td>
+<td class="gt_row gt_left" headers="Label">Institution file used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_PhysicianSupplier</td>
+<td class="gt_row gt_left" headers="Label">Physician/Supplier file used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_Hospital</td>
+<td class="gt_row gt_left" headers="Label">Hospital file used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_Transplant</td>
+<td class="gt_row gt_left" headers="Label">Transplant file used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_PartD</td>
+<td class="gt_row gt_left" headers="Label">Part D file used</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">files_used_CROWNWeb</td>
+<td class="gt_row gt_left" headers="Label">CROWNWeb file used</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_basicdemographics</td>
+<td class="gt_row gt_left" headers="Label">Basic demographics abstracted</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_icd9</td>
+<td class="gt_row gt_left" headers="Label">ICD-9 codes abstracted</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_icd10</td>
+<td class="gt_row gt_left" headers="Label">ICD-10 codes abstracted</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_cptcode</td>
+<td class="gt_row gt_left" headers="Label">CPT codes abstracted</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_medicationD</td>
+<td class="gt_row gt_left" headers="Label">Part D medication data abstracted</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_transplant</td>
+<td class="gt_row gt_left" headers="Label">Transplant-specific data abstracted</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_costs</td>
+<td class="gt_row gt_left" headers="Label">Cost data abstracted</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">component_residential</td>
+<td class="gt_row gt_left" headers="Label">Residential location abstracted</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">is_this_a_transplant_related_study</td>
+<td class="gt_row gt_left" headers="Label">Transplant-related study</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable" style="font-family: mono">is_this_paper_a_new_data_analysis</td>
+<td class="gt_row gt_left" headers="Label">New patient-level data analysis</td>
 </tr>
 </tbody>
 </table>
@@ -1516,10 +1551,38 @@ Source code
 </div>
 </div>
 </div>
+</section>
+<section id="model-runtime-table" class="level3">
+<h3 class="anchored" data-anchor-id="model-runtime-table">Model runtime table</h3>
+<p>The timing_table object stores the approximate runtime required to process the full dataset with each model. This provides context for the practical tradeoff between speed and extraction performance.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Table of times to run the analysis</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>timing_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Provider (Company)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ChatGPT (OpenAI)"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Claude (Anthropic)"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gemini (Google)"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gpt 5.1"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Claude Sonnet 4.5"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gemini 2.5 Flash"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Time (minutes)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">165</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">62</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">672</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -2003,307 +2066,242 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Setup"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>The code in this script imports libraries, initializes constants, and performs other such preparatory work for the main analysis.</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">#Ensures pipe works</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>::: {.Rcode title="Source code"}</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>The full R script is available at:</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/setup.R`</span><span class="co">](https://github.com/VagishHemmige/HOPE-CDC-analysis-2026/blob/master/R/setup.R)</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Libraries</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>The analysis relies on a set of open-source R packages for data management, cohort construction, visualization, and statistical modeling. These libraries were selected based on their stability, community support, and suitability for large-scale longitudinal health data. </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in"># Libraries necessary for the analysis</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in"># Data management</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="in">library(stringi)</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="in">library(glue)</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="in">#Core library for the SRTR</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="in">library(sRtr)</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="in">#Data import libraries</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="in">library(readr)</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="in">library(haven)</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="in">library(mapboxapi)</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="in">library(CDCAtlas)</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="in">#Geographic libraries</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="in">library(sf)</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="in">library(tigris)</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidycensus)</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="in">library(tmap)</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="in">library(lutz)</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="in">#Table libraries</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="in">library(flextable)</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="in">#Plotting</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="in">library(colorspace)</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggtext)</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="in">library(extrafont)</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggrepel)</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="in">library(writexl)</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="in">library(plotly)</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="in">library(htmlwidgets)</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="in">library(patchwork)</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggbeeswarm)</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggpubr)</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="in">library(cowplot)</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>The table below lists the required packages along with links to their primary documentation.</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="in">libraries_table &lt;- tibble::tibble(</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="in">  Category = c(</span></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data management",</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data management",</span></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data management",</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="in">    "SRTR-specific",</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data import",</span></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data import",</span></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data import",</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data import",</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="in">    "Data import",</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="in">    "Geographic",</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="in">    "Geographic",</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="in">    "Geographic",</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="in">    "Geographic",</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="in">    "Geographic",</span></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="in">    "Tables",</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="in">    "Tables",</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting",</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="in">    "Plotting"</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="in">  Package = c("tidyverse", </span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="in">              "stringi", </span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="in">              "glue",</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="in">              "sRtr",</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="in">              "readxl", </span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="in">              "readr", </span></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="in">              "haven", </span></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="in">              "mapboxapi", </span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="in">              "CDCAtlas",</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="in">              "sf", </span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="in">              "tigris", </span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="in">              "tidycensus", </span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="in">              "tmap", </span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="in">              "lutz",</span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="in">              "flextable", </span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="in">              "gt",</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="in">              "colorspace", </span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="in">              "ggtext", </span></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="in">              "extrafont", </span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="in">              "janitor", </span></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="in">              "ggrepel", </span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="in">              "writexl",</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="in">              "plotly", </span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="in">              "htmlwidgets", </span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="in">              "patchwork", </span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="in">              "ggbeeswarm", </span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="in">              "ggpubr", </span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="in">              "cowplot", </span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="in">              "scales"</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="in">  ,</span></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a><span class="in">Documentation = c(</span></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="in">    "[tidyverse](https://www.tidyverse.org/)",</span></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="in">    "[stringi](https://stringi.gagolewski.com/)",</span></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="in">    "[glue](https://glue.tidyverse.org/)",</span></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="in">    "[sRtr GitHub](https://github.com/vagishhemmige/sRtr)",</span></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="in">    "[readxl](https://readxl.tidyverse.org/)",</span></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="in">    "[readr](https://readr.tidyverse.org/)",</span></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="in">    "[haven](https://haven.tidyverse.org/)",</span></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="in">    "[mapboxapi](https://walker-data.com/mapboxapi/)",</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="in">    "[CDCAtlas GitHub](https://github.com/vagishhemmige/CDCAtlas)",</span></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="in">    "[sf](https://r-spatial.github.io/sf/)",</span></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="in">    "[tigris](https://walker-data.com/tigris/)",</span></span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="in">    "[tidycensus](https://walker-data.com/tidycensus/)",</span></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="in">    "[tmap](https://r-tmap.github.io/tmap/)",</span></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="in">    "[lutz](https://cran.r-project.org/package=lutz)",</span></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="in">    "[flextable](https://davidgohel.github.io/flextable/)",</span></span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="in">    "[gt](https://gt.rstudio.com/)",</span></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="in">    "[colorspace](https://colorspace.r-forge.r-project.org/)",</span></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="in">    "[ggtext](https://wilkelab.org/ggtext/)",</span></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a><span class="in">    "[extrafont](https://cran.r-project.org/package=extrafont)",</span></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="in">    "[janitor](https://sfirke.github.io/janitor/)",</span></span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="in">    "[ggrepel](https://ggrepel.slowkow.com/)",</span></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="in">    "[writexl](https://cran.r-project.org/package=writexl)",</span></span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="in">    "[plotly](https://plotly.com/r/)",</span></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="in">    "[htmlwidgets](https://www.htmlwidgets.org/)",</span></span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="in">    "[patchwork](https://patchwork.data-imaginist.com/)",</span></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="in">    "[ggbeeswarm](https://cran.r-project.org/package=ggbeeswarm)",</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="in">    "[ggpubr](https://rpkgs.datanovia.com/ggpubr/)",</span></span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="in">    "[cowplot](https://wilkelab.org/cowplot/)",</span></span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="in">    "[scales](https://scales.r-lib.org/)"</span></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="in">libraries_table |&gt;</span></span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::gt() |&gt;</span></span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::fmt_markdown(columns = "Documentation") |&gt;</span></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::cols_label(</span></span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="in">    Category = "Category",</span></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="in">    Package = "R package",</span></span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="in">    Documentation = "Documentation"</span></span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_header(</span></span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Required R Packages",</span></span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Libraries used for data processing, visualization, and statistical modeling"</span></span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="in">  )|&gt;</span></span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_style(</span></span>
-<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a><span class="in">  style = gt::cell_text(font = "mono"),</span></span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="in">  locations = gt::cells_body(columns = Package)</span></span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Constants</span></span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>A number of analysis parameters are reused across cohort construction, matching, and cost modeling steps. </span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>These constants are defined in the <span class="in">`R/setup.R`</span> file.</span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>organ_list<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"kidney"</span>, <span class="st">"heart"</span>, <span class="st">"lung"</span>, <span class="st">"pancreas"</span>)</span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>year_list<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"2017"</span>, <span class="st">"2022"</span>)</span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>distance_list<span class="ot">=</span><span class="fu">c</span>(<span class="st">"50mile"</span>, <span class="st">"60min"</span>, <span class="st">"100mile"</span>, <span class="st">"200mile"</span>)</span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co">#List states which are continental</span></span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>continental_fips <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>  <span class="st">"01"</span>, <span class="st">"04"</span>, <span class="st">"05"</span>, <span class="st">"06"</span>, <span class="st">"08"</span>, <span class="st">"09"</span>, <span class="st">"10"</span>, <span class="st">"11"</span>, <span class="st">"12"</span>, <span class="st">"13"</span>, <span class="st">"16"</span>,</span>
-<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>  <span class="st">"17"</span>, <span class="st">"18"</span>, <span class="st">"19"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"22"</span>, <span class="st">"23"</span>, <span class="st">"24"</span>, <span class="st">"25"</span>, <span class="st">"26"</span>,</span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>  <span class="st">"27"</span>, <span class="st">"28"</span>, <span class="st">"29"</span>, <span class="st">"30"</span>, <span class="st">"31"</span>, <span class="st">"32"</span>, <span class="st">"33"</span>, <span class="st">"34"</span>, <span class="st">"35"</span>, <span class="st">"36"</span>,</span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>  <span class="st">"37"</span>, <span class="st">"38"</span>, <span class="st">"39"</span>, <span class="st">"40"</span>, <span class="st">"41"</span>, <span class="st">"42"</span>, <span class="st">"44"</span>, <span class="st">"45"</span>, <span class="st">"46"</span>, <span class="st">"47"</span>,</span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>  <span class="st">"48"</span>, <span class="st">"49"</span>, <span class="st">"50"</span>, <span class="st">"51"</span>, <span class="st">"53"</span>, <span class="st">"54"</span>, <span class="st">"55"</span>, <span class="st">"56"</span></span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="co">#For isochrone analysis, we need to account for time zones in order to calculate driving time at 7 AM on the specific date</span></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="co">#List US continental time zones</span></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>timezones<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"America/New_York"</span>,<span class="st">"America/Chicago"</span>,<span class="st">"America/Denver"</span>,<span class="st">"America/Los_Angeles"</span>,<span class="st">"America/Phoenix"</span>,</span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>             <span class="st">"America/Indiana/Indianapolis"</span>,<span class="st">"America/Kentucky/Louisville"</span>,<span class="st">"America/Detroit"</span>)</span>
-<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>reference_date<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Specific date to anchor the time: First Monday in March of both years</span></span>
-<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>reference_date[[<span class="st">"2022"</span>]] <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-03-07"</span>)</span>
-<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>reference_date[[<span class="st">"2017"</span>]] <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2017-03-06"</span>)</span>
-<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>For clarity, these constants are summarized below along with brief explanations of their role in the analysis.</span>
-<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="in">format_constant &lt;- function(x) {</span></span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="in">  if (inherits(x, "Date")) {</span></span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="in">    format(x, "%Y-%m-%d")</span></span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a><span class="in">  } else if (is.list(x) &amp;&amp; all(sapply(x, inherits, "Date"))) {</span></span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="in">    paste(</span></span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a><span class="in">      paste(names(x), format(as.Date(unlist(x), origin = "1970-01-01"), "%Y-%m-%d"), sep = ": "),</span></span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="in">      collapse = " | "</span></span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a><span class="in">  } else if (length(x) &gt; 1) {</span></span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="in">    paste(x, collapse = ", ")</span></span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a><span class="in">  } else {</span></span>
-<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="in">    as.character(x)</span></span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a><span class="in">constants_table &lt;- tibble::tibble(</span></span>
-<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a><span class="in">  Constant = c(</span></span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a><span class="in">    "organ_list",</span></span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="in">    "year_list",</span></span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="in">    "distance_list",</span></span>
-<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a><span class="in">    "continental_fips",</span></span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a><span class="in">    "timezones",</span></span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="in">    "reference_date"</span></span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
-<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a><span class="in">  Value = c(</span></span>
-<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(organ_list),</span></span>
-<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(year_list),</span></span>
-<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(distance_list),</span></span>
-<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(continental_fips),</span></span>
-<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(timezones),</span></span>
-<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a><span class="in">    format_constant(reference_date)</span></span>
-<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
-<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a><span class="in">  Explanation = c(</span></span>
-<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a><span class="in">    "Organs included in transplant center access analysis",</span></span>
-<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a><span class="in">    "Calendar years evaluated for geographic access comparison",</span></span>
-<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a><span class="in">    "Distance or drive-time buffers used to define transplant center catchment areas",</span></span>
-<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a><span class="in">    "FIPS codes representing continental U.S. states included in analysis",</span></span>
-<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a><span class="in">    "Time zones used to convert local 7 AM departure times to UTC for isochrone calculations",</span></span>
-<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a><span class="in">    "Anchor dates (first Monday in March) used for time-zone–adjusted isochrone generation"</span></span>
-<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a><span class="in">constants_table |&gt;</span></span>
-<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::gt() |&gt;</span></span>
-<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_header(</span></span>
-<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Analysis Constants",</span></span>
-<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Geographic buffer definitions and time-zone parameters"</span></span>
-<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Setup"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>The code in this script imports libraries, initializes constants, and performs other such preparatory work for the main analysis.</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">#Ensures pipe works</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>::: {.Rcode title="Source code"}</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>The full R script is available at:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/Analysis setup.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Libraries</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>The analysis relies on a set of open-source R packages for data management, cohort construction, visualization, and statistical modeling. These libraries were selected based on their stability, community support, and suitability for large-scale longitudinal health data. </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="in"># Libraries necessary for the analysis</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">library(readr)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="in">library(writexl)</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">library(irr)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="in">library(gtsummary)</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="in">library(officer)</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyr)</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="in">library(stringr)</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="in">library(flowchart)</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="in">library(ellmer)</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="in">library(pdftools)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="in">library(rstudioapi)</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="in">library(purrr)</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>The table below lists the required packages along with links to their primary documentation.</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="in">libraries_table &lt;- tibble::tibble(</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="in">  Category = c(</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="in">    "Core data handling",</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="in">    "Core data handling",</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="in">    "Core data handling",</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="in">    "Core data handling",</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="in">    "Core data handling",</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="in">    "Agreement and summaries",</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="in">    "Agreement and summaries",</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="in">    "Agreement and summaries",</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="in">    "Output and reporting",</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="in">    "Output and reporting",</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="in">    "Workflow and diagrams",</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="in">    "Workflow and diagrams",</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="in">    "PDF and LLM analysis",</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="in">    "PDF and LLM analysis",</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="in">    "PDF and LLM analysis"</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="in">  Package = c(</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="in">    "tidyverse",</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="in">    "readr",</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="in">    "readxl",</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="in">    "janitor",</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="in">    "writexl",</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="in">    "irr",</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="in">    "gtsummary",</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="in">    "gt",</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="in">    "officer",</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="in">    "writexl",</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="in">    "flowchart",</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="in">    "rstudioapi",</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="in">    "ellmer",</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="in">    "pdftools",</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="in">    "purrr"</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="in">  Documentation = c(</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="in">    "[tidyverse](https://www.tidyverse.org/)",</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="in">    "[readr](https://readr.tidyverse.org/)",</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="in">    "[readxl](https://readxl.tidyverse.org/)",</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="in">    "[janitor](https://sfirke.github.io/janitor/)",</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="in">    "[writexl](https://cran.r-project.org/package=writexl)",</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="in">    "[irr](https://cran.r-project.org/package=irr)",</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="in">    "[gtsummary](https://www.danieldsjoberg.com/gtsummary/)",</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="in">    "[gt](https://gt.rstudio.com/)",</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="in">    "[officer](https://davidgohel.github.io/officer/)",</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="in">    "[writexl](https://cran.r-project.org/package=writexl)",</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="in">    "[flowchart](https://cran.r-project.org/package=flowchart)",</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="in">    "[rstudioapi](https://rstudio.github.io/rstudioapi/)",</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="in">    "[ellmer](https://ellmer.tidyverse.org/)",</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="in">    "[pdftools](https://cran.r-project.org/package=pdftools)",</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="in">    "[purrr](https://purrr.tidyverse.org/)"</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="in">libraries_table |&gt;</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::gt() |&gt;</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::fmt_markdown(columns = "Documentation") |&gt;</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::cols_label(</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="in">    Category = "Category",</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="in">    Package = "R package",</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="in">    Documentation = "Documentation"</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_header(</span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Required R Packages",</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Libraries used for PDF processing, structured LLM extraction, data cleaning, agreement analysis, and reporting"</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_style(</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="in">    style = gt::cell_text(font = "mono"),</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="in">    locations = gt::cells_body(columns = Package)</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Label dictionary and analysis objects</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>The PDF analysis uses a small set of shared objects defined in <span class="in">`R/Analysis setup.R`</span>. These help standardize variable labels across tables and figures and store supporting information used in the results pages.</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variable label dictionary</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>The label_list object maps internal variable names used in the analysis code to reader-friendly labels used in tables and summaries. This allows the same underlying variables to be displayed consistently across outputs without manually renaming them in each table.</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>label_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_state_what_programming_language_they_used =</span> <span class="st">"Programming language stated"</span>,</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_explicitly_state_what_files_they_used =</span> <span class="st">"USRDS files explicitly stated"</span>,</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>  <span class="at">does_the_choice_of_files_codes_seem_appropriate_for_the_research_question =</span> <span class="st">"Files/codes appropriate for research question"</span>,</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">did_the_authors_share_the_code_they_used =</span> <span class="st">"Authors shared code"</span>,</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">was_the_study_funded =</span> <span class="st">"Study funded"</span>,</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>  <span class="at">would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package =</span> <span class="st">"Covered by proposed usRds package"</span>,</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>  <span class="at">were_any_crosswalks_used =</span> <span class="st">"Any crosswalks used"</span>,</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_R =</span> <span class="st">"R used"</span>,</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_SAS =</span> <span class="st">"SAS used"</span>,</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_Stata =</span> <span class="st">"Stata used"</span>,</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_SPSS =</span> <span class="st">"SPSS used"</span>,</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>  <span class="at">languages_used_Python =</span> <span class="st">"Python used"</span>,</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Core =</span> <span class="st">"Core file used"</span>,</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Institution =</span> <span class="st">"Institution file used"</span>,</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_PhysicianSupplier =</span> <span class="st">"Physician/Supplier file used"</span>,</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Hospital =</span> <span class="st">"Hospital file used"</span>,</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_Transplant =</span> <span class="st">"Transplant file used"</span>,</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_PartD=</span> <span class="st">"Part D file used"</span>,</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">files_used_CROWNWeb =</span> <span class="st">"CROWNWeb file used"</span>,</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_basicdemographics =</span> <span class="st">"Basic demographics abstracted"</span>,</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_icd9 =</span> <span class="st">"ICD-9 codes abstracted"</span>,</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_icd10 =</span> <span class="st">"ICD-10 codes abstracted"</span>,</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_cptcode =</span> <span class="st">"CPT codes abstracted"</span>,</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_medicationD =</span> <span class="st">"Part D medication data abstracted"</span>,</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_transplant =</span> <span class="st">"Transplant-specific data abstracted"</span>,</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_costs =</span> <span class="st">"Cost data abstracted"</span>,</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">component_residential =</span> <span class="st">"Residential location abstracted"</span>,</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  <span class="at">is_this_a_transplant_related_study =</span> <span class="st">"Transplant-related study"</span>,</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>  <span class="at">is_this_paper_a_new_data_analysis =</span> <span class="st">"New patient-level data analysis"</span></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>For clarity, the label dictionary is summarized below along with brief explanations of their role in the analysis.</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="in">label_table &lt;- tibble::tibble(</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="in">  Variable = names(label_list),</span></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="in">  Label = unname(unlist(label_list))</span></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="in">label_table |&gt;</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::gt() |&gt;</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_header(</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Variable label dictionary",</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Internal variable names mapped to display labels used in tables and figures"</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="in">  gt::tab_style(</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="in">    style = gt::cell_text(font = "mono"),</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="in">    locations = gt::cells_body(columns = Variable)</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model runtime table</span></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>The timing_table object stores the approximate runtime required to process the full dataset with each model. This provides context for the practical tradeoff between speed and extraction performance.</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="in">#Table of times to run the analysis</span></span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="in">timing_table &lt;- tibble(</span></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="in">  `Provider (Company)` = c(</span></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="in">    "ChatGPT (OpenAI)",</span></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="in">    "Claude (Anthropic)",</span></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="in">    "Gemini (Google)"</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="in">  Model = c(</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a><span class="in">    "Gpt 5.1",</span></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a><span class="in">    "Claude Sonnet 4.5",</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="in">    "Gemini 2.5 Flash"</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="in">  `Time (minutes)` = c(</span></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="in">    165,</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="in">    62,</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="in">    672</span></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

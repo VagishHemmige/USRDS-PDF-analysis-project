@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/setup.html</loc>
-    <lastmod>2026-03-30T00:44:27.651Z</lastmod>
+    <lastmod>2026-04-09T22:22:51.130Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/results_LLM_transplant.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/llm_analysis.html</loc>
-    <lastmod>2026-04-07T23:06:44.825Z</lastmod>
+    <lastmod>2026-04-09T00:00:41.218Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/final_selection_papers.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/functions.html</loc>
-    <lastmod>2026-04-07T21:56:33.417Z</lastmod>
+    <lastmod>2026-04-09T22:38:38.748Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/results_LLM_full.html</loc>
@@ -43,5 +43,17 @@
   <url>
     <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/results_manual.html</loc>
     <lastmod>2026-04-08T21:20:43.774Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/manual_data.html</loc>
+    <lastmod>2026-04-09T13:43:20.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/data_cleaning.html</loc>
+    <lastmod>2026-04-09T13:49:23.623Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/USRDS-PDF-analysis-project/quarto/llm_data.html</loc>
+    <lastmod>2026-04-09T00:22:41.993Z</lastmod>
   </url>
 </urlset>

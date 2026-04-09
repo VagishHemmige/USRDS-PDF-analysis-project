@@ -11,6 +11,10 @@ library(officer)
 library(tidyr)
 library(stringr)
 library(flowchart)
+library(ellmer)
+library(pdftools)
+library(rstudioapi)
+library(purrr)
 
 
 
