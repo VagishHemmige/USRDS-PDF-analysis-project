@@ -103,7 +103,106 @@
     "href": "quarto/manual_data.html",
     "title": "Manual data analysis",
     "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
+    "text": "Source code\n\n\n\nThe full R script is available at:\n\nR/Rscript letter analysis of manual review.R\n\nThis R script relies on the following helper files:\n\nR/Analysis setup.R\nR/functions.R\nThis script prepares the manually reviewed dataset for descriptive analysis. It imports the abstraction spreadsheet, filters to confirmed records, creates derived variables from free-text fields, generates a study selection flowchart, and produces the tables used in the manual review results pages. The workflow is shown below in the same sequence used in the analysis script.",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#import-the-manually-reviewed-data",
+    "href": "quarto/manual_data.html#import-the-manually-reviewed-data",
+    "title": "Manual data analysis",
+    "section": "Import the manually reviewed data",
+    "text": "Import the manually reviewed data\nThe analysis begins by importing the reviewer spreadsheet from Excel. This file contains the manually abstracted information for each paper.\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_2025_raw &lt;- read_excel(\n  \"data-raw/Data abstraction Excel reviewer 1 and 2.xlsx\",\n  sheet = \"Reviewer 2\"\n)",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#clean-the-manually-reviewed-dataset",
+    "href": "quarto/manual_data.html#clean-the-manually-reviewed-dataset",
+    "title": "Manual data analysis",
+    "section": "Clean the manually reviewed dataset",
+    "text": "Clean the manually reviewed dataset\nThe imported spreadsheet is standardized using clean_names(), and the analysis is restricted to records that were confirmed for inclusion. This creates the core cleaned dataset used in subsequent steps.\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_clean &lt;- Anagha_summer_project_form_2025_raw %&gt;%\n  clean_names() %&gt;%\n  filter(confirmed_by_vh == \"Yes\")",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-the-study-selection-flowchart",
+    "href": "quarto/manual_data.html#create-the-study-selection-flowchart",
+    "title": "Manual data analysis",
+    "section": "Create the study selection flowchart",
+    "text": "Create the study selection flowchart\nA flowchart is generated from the cleaned dataset to summarize how papers moved through the selection process. The diagram begins with the initial PubMed search results, then filters to new patient-level data analyses and splits the remaining papers into transplant-related and non-transplant-related studies.\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_clean_fc &lt;- Anagha_summer_project_form_clean %&gt;%\n  as_fc(label = \"Initial papers from Pubmed search\") %&gt;%\n  fc_filter(\n    is_this_paper_a_new_data_analysis == \"Yes\",\n    label = \"New patient-level data analysis\",\n    show_exc = TRUE\n  ) %&gt;%\n  fc_split(\n    is_this_a_transplant_related_study,\n    label = c(\"Not transplant-related\", \"Transplant-related\")\n  )\n\n\nThe resulting flowchart is then drawn and exported as a PNG image for use in the Quarto site.\n\n\nClick to show/hide R Code\nfc_draw(Anagha_summer_project_form_clean_fc) %&gt;%\n  fc_export(\"Letter analysis/flowchart.png\")",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-a-table-of-included-papers",
+    "href": "quarto/manual_data.html#create-a-table-of-included-papers",
+    "title": "Manual data analysis",
+    "section": "Create a table of included papers",
+    "text": "Create a table of included papers\nThe next step is to generate a formatted table listing the papers included in the manual analysis. This table is restricted to new patient-level data analyses and includes the main bibliographic details together with transplant-related status.\n\n\nClick to show/hide R Code\npaper_table_gt &lt;- Anagha_summer_project_form_clean %&gt;%\n  filter(is_this_paper_a_new_data_analysis == \"Yes\") %&gt;%\n  select(\n    authors,\n    title,\n    journal,\n    year,\n    transplant_related = is_this_a_transplant_related_study\n  ) %&gt;%\n  distinct() %&gt;%\n  arrange(transplant_related, authors, desc(year), title) %&gt;%\n  gt() %&gt;%\n  cols_label(\n    authors = \"Authors\",\n    title = \"Title\",\n    journal = \"Journal\",\n    year = \"Year\",\n    transplant_related = \"Transplant related\"\n  ) %&gt;%\n  tab_header(\n    title = \"Papers Included in the Analysis\"\n  )\n\n\nThe formatted paper table is then saved for later reuse in the Quarto pages.\n\n\nClick to show/hide R Code\npaper_table_gt\nsaveRDS(paper_table_gt, file = \"Letter analysis/paper_table_gt.rds\")\n\ngtsave(\n  filename = \"Letter analysis/paper_table_gt.html\",\n  data = paper_table_gt\n)",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-the-final-dataset-for-manual-analysis",
+    "href": "quarto/manual_data.html#create-the-final-dataset-for-manual-analysis",
+    "title": "Manual data analysis",
+    "section": "Create the final dataset for manual analysis",
+    "text": "Create the final dataset for manual analysis\nThe confirmed dataset is then expanded into a more analysis-ready form. Several free-text fields are converted into binary indicator variables so that the contents of each paper can be summarized systematically. These include programming languages used, USRDS files used, and types of data components abstracted.\n\nDerive programming language indicators\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_final &lt;- Anagha_summer_project_form_clean_fc$data %&gt;%\n  mutate(languages_used_R = str_detect(what_programming_language_s_was_were_used, \"R\")) %&gt;%\n  mutate(languages_used_SAS = str_detect(what_programming_language_s_was_were_used, \"SAS\")) %&gt;%\n  mutate(languages_used_Stata = str_detect(what_programming_language_s_was_were_used, \"STATA\")) %&gt;%\n  mutate(languages_used_SPSS = str_detect(what_programming_language_s_was_were_used, \"SPSS\"))\n\n\n\n\nDerive file-use indicators\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_final &lt;- Anagha_summer_project_form_final %&gt;%\n  mutate(files_used_Core = str_detect(what_files_were_used, \"Core\")) %&gt;%\n  mutate(files_used_Institution = str_detect(what_files_were_used, \"Institution\")) %&gt;%\n  mutate(files_used_PhysicianSupplier = str_detect(what_files_were_used, \"Physician/Supplier\")) %&gt;%\n  mutate(files_used_Hospital = str_detect(what_files_were_used, \"Hospital\")) %&gt;%\n  mutate(files_used_Transplant = str_detect(what_files_were_used, \"Transplant\")) %&gt;%\n  mutate(files_used_PartD = str_detect(what_files_were_used, \"Part D\")) %&gt;%\n  mutate(files_used_CROWNWeb = str_detect(what_files_were_used, \"CROWNWeb\"))\n\n\n\n\nDerive abstracted data-component indicators\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_final &lt;- Anagha_summer_project_form_final %&gt;%\n  mutate(\n    component_basicdemographics = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"Basic demographics\"\n    )\n  ) %&gt;%\n  mutate(\n    component_icd9 = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"ICD9 code\"\n    )\n  ) %&gt;%\n  mutate(\n    component_icd10 = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"ICD10 code\"\n    )\n  ) %&gt;%\n  mutate(\n    component_cptcode = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"CPT code\"\n    )\n  ) %&gt;%\n  mutate(\n    component_medicationD = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"Medications\"\n    )\n  ) %&gt;%\n  mutate(\n    component_transplant = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"Transplant-specific information\"\n    )\n  ) %&gt;%\n  mutate(\n    component_costs = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"Costs\"\n    )\n  ) %&gt;%\n  mutate(\n    component_residential = str_detect(\n      which_pieces_of_data_were_abstracted_from_the_files,\n      \"Residential location\"\n    )\n  )",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#split-the-final-dataset-by-transplant-related-status",
+    "href": "quarto/manual_data.html#split-the-final-dataset-by-transplant-related-status",
+    "title": "Manual data analysis",
+    "section": "Split the final dataset by transplant-related status",
+    "text": "Split the final dataset by transplant-related status\nFor some downstream analyses, the final dataset is divided into transplant-related and non-transplant-related subsets. This allows the descriptive summaries to be stratified by study type.\n\n\nClick to show/hide R Code\nAnagha_summer_project_form_split &lt;- Anagha_summer_project_form_final %&gt;%\n  group_by(is_this_a_transplant_related_study) %&gt;%\n  group_split() %&gt;%\n  set_names(c(\"not_transplant\", \"transplant\"))",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-the-overall-summary-table",
+    "href": "quarto/manual_data.html#create-the-overall-summary-table",
+    "title": "Manual data analysis",
+    "section": "Create the overall summary table",
+    "text": "Create the overall summary table\nThe first descriptive table summarizes the full manually reviewed dataset after excluding identifying and free-text fields that are not intended for the summary output.\n\n\nClick to show/hide R Code\nletter_table1_gt &lt;- Anagha_summer_project_form_final %&gt;%\n  select(\n    -filepath,\n    -timestamp,\n    -authors,\n    -title,\n    -journal,\n    -year,\n    -what_programming_language_s_was_were_used,\n    -what_files_were_used\n  ) %&gt;%\n  tbl_summary() %&gt;%\n  as_gt()\n\n\nThe overall summary table is then saved for later rendering in the Quarto site.\n\n\nClick to show/hide R Code\ngtsave(\n  filename = \"Letter analysis/Letter analysis Table 1 overall raw.html\",\n  data = letter_table1_gt\n)\nsaveRDS(\n  letter_table1_gt,\n  file = \"Letter analysis/Letter analysis Table 1 overall raw.rds\"\n)",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-the-table-stratified-by-transplant-related-status",
+    "href": "quarto/manual_data.html#create-the-table-stratified-by-transplant-related-status",
+    "title": "Manual data analysis",
+    "section": "Create the table stratified by transplant-related status",
+    "text": "Create the table stratified by transplant-related status\nThe next table summarizes the manually reviewed variables separately for transplant-related and non-transplant-related studies. Variable labels are applied using label_list, and related variables are grouped into sections for readability.\n\n\nClick to show/hide R Code\nletter_table2_gt &lt;- Anagha_summer_project_form_final %&gt;%\n  select(\n    is_this_a_transplant_related_study,\n    did_the_authors_state_what_programming_language_they_used,\n    languages_used_R,\n    languages_used_SAS,\n    languages_used_Stata,\n    languages_used_SPSS,\n    did_the_authors_explicitly_state_what_files_they_used,\n    does_the_choice_of_files_codes_seem_appropriate_for_the_research_question,\n    files_used_Core,\n    files_used_Institution,\n    files_used_PhysicianSupplier,\n    files_used_Hospital,\n    files_used_Transplant,\n    files_used_PartD,\n    files_used_CROWNWeb,\n    component_basicdemographics,\n    component_icd9,\n    component_icd10,\n    component_cptcode,\n    component_medicationD,\n    component_transplant,\n    component_costs,\n    component_residential,\n    were_any_crosswalks_used,\n    did_the_authors_share_the_code_they_used,\n    was_the_study_funded,\n    would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package\n  ) %&gt;%\n  tbl_summary(\n    by = is_this_a_transplant_related_study,\n    label = label_list,\n    missing = \"no\"\n  ) %&gt;%\n  modify_spanning_header(all_stat_cols() ~ \"**Transplant-related study?**\") %&gt;%\n  add_variable_group_header(\n    header = \"Data components abstracted\",\n    variables = c(\n      component_basicdemographics,\n      component_icd9,\n      component_icd10,\n      component_cptcode,\n      component_medicationD,\n      component_transplant,\n      component_costs,\n      component_residential\n    )\n  ) %&gt;%\n  add_variable_group_header(\n    header = \"Files used\",\n    variables = c(\n      files_used_Core,\n      files_used_Institution,\n      files_used_PhysicianSupplier,\n      files_used_Hospital,\n      files_used_Transplant,\n      files_used_PartD,\n      files_used_CROWNWeb\n    )\n  ) %&gt;%\n  add_variable_group_header(\n    header = \"Programming language used\",\n    variables = c(\n      languages_used_R,\n      languages_used_SAS,\n      languages_used_Stata,\n      languages_used_SPSS\n    )\n  ) %&gt;%\n  modify_footnote_body(\n    footnote = \"Categories in this section are not mutually exclusive; percentages may not sum to 100%.\",\n    columns = label,\n    rows = label %in% c(\n      \"Data components abstracted\",\n      \"Files used\",\n      \"Programming language used\"\n    )\n  ) %&gt;%\n  as_gt()\n\n\nThis stratified table is also saved for reuse.\n\n\nClick to show/hide R Code\nsaveRDS(\n  letter_table2_gt,\n  file = \"Letter analysis/Letter analysis Table 2 stratified by transplant.rds\"\n)\n\ngtsave(\n  filename = \"Letter analysis/Letter analysis Table 2 stratified by transplant.html\",\n  data = letter_table2_gt\n)",
+    "crumbs": [
+      "Methods",
+      "Analysis of manual data extraction"
+    ]
+  },
+  {
+    "objectID": "quarto/manual_data.html#create-the-table-stratified-by-transplant-study-type",
+    "href": "quarto/manual_data.html#create-the-table-stratified-by-transplant-study-type",
+    "title": "Manual data analysis",
+    "section": "Create the table stratified by transplant study type",
+    "text": "Create the table stratified by transplant study type\nAmong transplant-related studies, a further summary table is created using the more specific variable which_type_of_transplant_study_is_this. This allows the manual review results to be described in more detail within the transplant subset.\n\n\nClick to show/hide R Code\nletter_table3_gt &lt;- Anagha_summer_project_form_split[[\"transplant\"]] %&gt;%\n  select(\n    which_type_of_transplant_study_is_this,\n    did_the_authors_state_what_programming_language_they_used,\n    languages_used_R,\n    languages_used_SAS,\n    languages_used_Stata,\n    languages_used_SPSS,\n    did_the_authors_explicitly_state_what_files_they_used,\n    does_the_choice_of_files_codes_seem_appropriate_for_the_research_question,\n    files_used_Core,\n    files_used_Institution,\n    files_used_PhysicianSupplier,\n    files_used_Hospital,\n    files_used_Transplant,\n    files_used_PartD,\n    files_used_CROWNWeb,\n    component_basicdemographics,\n    component_icd9,\n    component_icd10,\n    component_cptcode,\n    component_medicationD,\n    component_transplant,\n    component_costs,\n    component_residential,\n    were_any_crosswalks_used,\n    did_the_authors_share_the_code_they_used,\n    was_the_study_funded,\n    would_the_major_data_tasks_needed_for_this_study_be_covered_by_currently_proposed_usrds_r_package\n  ) %&gt;%\n  tbl_summary(\n    by = which_type_of_transplant_study_is_this,\n    label = label_list,\n    missing = \"no\"\n  ) %&gt;%\n  modify_spanning_header(all_stat_cols() ~ \"**Type of transplant study**\") %&gt;%\n  add_variable_group_header(\n    header = \"Data components abstracted\",\n    variables = c(\n      component_basicdemographics,\n      component_icd9,\n      component_icd10,\n      component_cptcode,\n      component_medicationD,\n      component_transplant,\n      component_costs,\n      component_residential\n    )\n  ) %&gt;%\n  add_variable_group_header(\n    header = \"Files used\",\n    variables = c(\n      files_used_Core,\n      files_used_Institution,\n      files_used_PhysicianSupplier,\n      files_used_Hospital,\n      files_used_Transplant,\n      files_used_PartD,\n      files_used_CROWNWeb\n    )\n  ) %&gt;%\n  add_variable_group_header(\n    header = \"Programming language used\",\n    variables = c(\n      languages_used_R,\n      languages_used_SAS,\n      languages_used_Stata,\n      languages_used_SPSS\n    )\n  ) %&gt;%\n  modify_footnote_body(\n    footnote = \"Categories in this section are not mutually exclusive; percentages may not sum to 100%.\",\n    columns = label,\n    rows = label %in% c(\n      \"Data components abstracted\",\n      \"Files used\",\n      \"Programming language used\"\n    )\n  ) %&gt;%\n  as_gt()\n\n\nThe final transplant-subtype table is saved for inclusion in the project outputs.\n\n\nClick to show/hide R Code\nsaveRDS(\n  letter_table3_gt,\n  file = \"Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds\"\n)\n\ngtsave(\n  filename = \"Letter analysis/Letter analysis Table 3 stratified by transplant study type.html\",\n  data = letter_table3_gt\n)",
     "crumbs": [
       "Methods",
       "Analysis of manual data extraction"
@@ -114,7 +213,7 @@
     "href": "quarto/llm_analysis.html",
     "title": "LLM extraction",
     "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20ChatGPT%202025-11-14.R\nR/Rscript%20Claude%202025-11-14.R\nR/Rscript%20Gemini%202025-11-15.R\nR/abstract_schema.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R",
+    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20ChatGPT%202025-11-14.R\nR/Rscript%20Claude%202025-11-14.R\nR/Rscript%20Gemini%202025-11-15.R\nR/abstract_schema.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
     "crumbs": [
       "Methods",
       "LLM data extraction"
@@ -399,12 +498,89 @@
   {
     "objectID": "quarto/data_cleaning.html",
     "href": "quarto/data_cleaning.html",
-    "title": "LLM data analysis",
+    "title": "LLM data import and cleaning",
     "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
+    "text": "Source code\n\n\n\nThe full R script is available at:\n\nR/Analysis data import and cleaning.R\n\nThis R script relies on the following helper files:\n\nR/Analysis setup.R\nR/functions.R",
     "crumbs": [
       "Methods",
-      "Analysis of manual data extraction"
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#import-raw-data",
+    "href": "quarto/data_cleaning.html#import-raw-data",
+    "title": "LLM data import and cleaning",
+    "section": "Import raw data",
+    "text": "Import raw data\nThe analysis begins by importing the raw outputs from each large language model together with the human-reviewed abstraction file. These inputs were produced in different formats, so they must first be standardized before they can be compared directly.\n\n\nClick to show/hide R Code\nfinal_results_ChatGPT_raw &lt;- readRDS(\"Results/ChatGPT/final_results_ChatGPT.rds\")\n\nsummary_final_claude_raw &lt;- readRDS(\"Results/Claude/summary_final_claude.rds\") %&gt;%\n  bind_rows()\n\nsummary_final_gemini_raw &lt;- read_csv(\"Results/Gemini/summary_output_gemini.csv\")\n\nhuman_results_raw &lt;- read_excel(\n  \"data-raw/Data abstraction Excel reviewer 1 and 2.xlsx\",\n  sheet = \"Reviewer 2\"\n) %&gt;%\n  clean_names()",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#clean-model-outputs",
+    "href": "quarto/data_cleaning.html#clean-model-outputs",
+    "title": "LLM data import and cleaning",
+    "section": "Clean model outputs",
+    "text": "Clean model outputs\nEach model output is then cleaned separately. A model-specific suffix is added to each variable name so that the human-reviewed and model-generated versions of the same field can coexist in a single merged dataset. Unneeded text-heavy fields are removed from the ChatGPT output to keep the working dataset focused on structured variables.\n\n\nClick to show/hide R Code\nfinal_results_ChatGPT_clean &lt;- final_results_ChatGPT_raw %&gt;%\n  rename_with(~ paste0(.x, \"_ChatGPT\"), -filename) %&gt;%\n  select(-text_ChatGPT, -raw_json_ChatGPT)\n\nsummary_final_claude_clean &lt;- summary_final_claude_raw %&gt;%\n  rename_with(~ paste0(.x, \"_claude\"), -filename)\n\nsummary_final_gemini_clean &lt;- summary_final_gemini_raw %&gt;%\n  rename_with(~ paste0(.x, \"_gemini\"), -filename)",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#derive-structured-variables-from-the-human-review-file",
+    "href": "quarto/data_cleaning.html#derive-structured-variables-from-the-human-review-file",
+    "title": "LLM data import and cleaning",
+    "section": "Derive structured variables from the human review file",
+    "text": "Derive structured variables from the human review file\nThe human review spreadsheet requires additional preprocessing. Several variables were originally captured as free-text fields listing programming languages, USRDS files, or abstracted data components. These were split into separate binary indicator variables so that they could be compared directly with the corresponding structured outputs from the language models.\n\n\nClick to show/hide R Code\nhuman_results_clean &lt;- human_results_raw %&gt;%\n  mutate(languages_used_R = str_detect(what_programming_language_s_was_were_used, \"R\")) %&gt;%\n  mutate(languages_used_SAS = str_detect(what_programming_language_s_was_were_used, \"SAS\")) %&gt;%\n  mutate(languages_used_Stata = str_detect(what_programming_language_s_was_were_used, \"STATA\")) %&gt;%\n  mutate(languages_used_SPSS = str_detect(what_programming_language_s_was_were_used, \"SPSS\")) %&gt;%\n  mutate(languages_used_Python = str_detect(what_programming_language_s_was_were_used, \"Python\")) %&gt;%\n  mutate(languages_used_SQL = str_detect(what_programming_language_s_was_were_used, \"SQL\")) %&gt;%\n  mutate(languages_used_Julia = str_detect(what_programming_language_s_was_were_used, \"Julia\")) %&gt;%\n  mutate(languages_used_Matlab = str_detect(what_programming_language_s_was_were_used, \"Matlab\")) %&gt;%\n  mutate(files_used_Core = str_detect(what_files_were_used, \"Core\")) %&gt;%\n  mutate(files_used_Institution = str_detect(what_files_were_used, \"Institution\")) %&gt;%\n  mutate(files_used_PhysicianSupplier = str_detect(what_files_were_used, \"Physician/Supplier\")) %&gt;%\n  mutate(files_used_Hospital = str_detect(what_files_were_used, \"Hospital\")) %&gt;%\n  mutate(files_used_Transplant = str_detect(what_files_were_used, \"Transplant\")) %&gt;%\n  mutate(files_used_PartD = str_detect(what_files_were_used, \"Part D\")) %&gt;%\n  mutate(files_used_CROWNWeb = str_detect(what_files_were_used, \"CROWNWeb\")) %&gt;%\n  mutate(component_basicdemographics = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"Basic demographics\")) %&gt;%\n  mutate(component_icd9 = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"ICD9 code\")) %&gt;%\n  mutate(component_icd10 = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"ICD10 code\")) %&gt;%\n  mutate(component_cptcode = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"CPT code\")) %&gt;%\n  mutate(component_medicationD = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"Medications\")) %&gt;%\n  mutate(component_transplant = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"Transplant-specific information\")) %&gt;%\n  mutate(component_costs = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"Costs\")) %&gt;%\n  mutate(component_residential = str_detect(which_pieces_of_data_were_abstracted_from_the_files, \"Residential location\")) %&gt;%\n  select(\n    -timestamp, -changes_made, -comments_16, -comments_26, -confirmed_by_vh,\n    -what_files_were_used, -what_programming_language_s_was_were_used,\n    -which_crosswalks_were_used\n  ) %&gt;%\n  rename(filename = filepath) %&gt;%\n  rename_with(~ paste0(.x, \"_human\"), -filename) %&gt;%\n  mutate(across(\n    where(~ all(.x %in% c(\"Yes\", \"No\", NA))),\n    ~ case_when(\n      .x == \"Yes\" ~ TRUE,\n      .x == \"No\"  ~ FALSE,\n      TRUE ~ NA\n    )\n  )) %&gt;%\n  mutate(\n    filename = if_else(\n      str_ends(filename, \"\\\\.pdf\"),\n      filename,\n      paste0(filename, \".pdf\")\n    )\n  )",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#check-filename-alignment-across-sources",
+    "href": "quarto/data_cleaning.html#check-filename-alignment-across-sources",
+    "title": "LLM data import and cleaning",
+    "section": "Check filename alignment across sources",
+    "text": "Check filename alignment across sources\nBefore the datasets are merged, filenames are checked to ensure that the same PDF records are present across the human-reviewed and model-generated datasets. These checks make it easier to identify missing or unmatched files before proceeding.\n\n\nClick to show/hide R Code\nsetdiff(human_results_clean$filename, final_results_ChatGPT_clean$filename)\nsetdiff(final_results_ChatGPT_clean$filename, human_results_clean$filename)\n\nsetdiff(human_results_clean$filename, summary_final_claude_clean$filename)\nsetdiff(summary_final_claude_clean$filename, human_results_clean$filename)\n\nsetdiff(human_results_clean$filename, summary_final_gemini_clean$filename)\nsetdiff(summary_final_gemini_clean$filename, human_results_clean$filename)\n\n# Gemini unable to parse a single PDF despite multiple attempts",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#merge-cleaned-datasets",
+    "href": "quarto/data_cleaning.html#merge-cleaned-datasets",
+    "title": "LLM data import and cleaning",
+    "section": "Merge cleaned datasets",
+    "text": "Merge cleaned datasets\nOnce the inputs have been standardized and checked, they are merged into one wide analysis dataset using the shared filename field. This produces a single record per paper containing the human-reviewed variables and the corresponding outputs from ChatGPT, Claude, and Gemini.\n\n\nClick to show/hide R Code\ndf_wide &lt;- human_results_clean %&gt;%\n  left_join(final_results_ChatGPT_clean, by = join_by(filename)) %&gt;%\n  left_join(summary_final_claude_clean, by = join_by(filename)) %&gt;%\n  left_join(summary_final_gemini_clean, by = join_by(filename)) %&gt;%\n  filter(!is.na(filename))",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#standardize-logical-variables",
+    "href": "quarto/data_cleaning.html#standardize-logical-variables",
+    "title": "LLM data import and cleaning",
+    "section": "Standardize logical variables",
+    "text": "Standardize logical variables\nAfter merging, the dataset is reordered and all human and model variables are converted to logical format. This step is important because the imported data may still contain character encodings such as \"yes\" or \"no\" that need to be normalized before agreement statistics are calculated.\n\n\nClick to show/hide R Code\ndf_wide &lt;- df_wide %&gt;%\n  select(filename, sort(setdiff(names(.), \"filename\")))\n\nlogical_cols &lt;- names(df_wide)[\n  grepl(\"_ChatGPT$|_claude$|_gemini$|_human$\", names(df_wide))\n]\n\ndf_wide &lt;- df_wide %&gt;%\n  mutate(across(all_of(logical_cols), convert_to_logical))\n\n# write_xlsx(df_wide, \"Results/Cleaned and merged data.xlsx\")",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
+    ]
+  },
+  {
+    "objectID": "quarto/data_cleaning.html#identify-human-reviewed-analysis-variables",
+    "href": "quarto/data_cleaning.html#identify-human-reviewed-analysis-variables",
+    "title": "LLM data import and cleaning",
+    "section": "Identify human-reviewed analysis variables",
+    "text": "Identify human-reviewed analysis variables\nFinally, the script identifies the set of human-coded binary variables that will be used in downstream agreement analyses. These variables serve as the reference standard for comparisons with each model.\n\n\nClick to show/hide R Code\nhuman_vars &lt;- names(df_wide)[grepl(\"_human$\", names(df_wide))]",
+    "crumbs": [
+      "Methods",
+      "Data cleaning"
     ]
   },
   {
@@ -445,7 +621,7 @@
     "href": "quarto/llm_data.html",
     "title": "LLM data analysis",
     "section": "",
-    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/setup.R\nR/functions.R",
+    "text": "Source code\n\n\n\nThe full R scripts are available at:\n\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\nR/Rscript%20data%20analysis%20ATC%202025-11-16.R\n\nThis R script file is itself reliant on the following helper files:\n\nR/Analysis setup.R\nR/functions.R",
     "crumbs": [
       "Methods",
       "LLM data analysis"

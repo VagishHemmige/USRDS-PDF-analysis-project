@@ -18,6 +18,8 @@ The full R scripts are available at:
 This R script file is itself reliant on the following helper files:
 
 -   [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
+
 :::
 
 ## Overview

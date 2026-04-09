@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vagish Hemmige">
 
-<title>LLM data analysis – Analysis of USRDS-related papers</title>
+<title>LLM data import and cleaning – Analysis of USRDS-related papers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/manual_data.html">Methods</a></li><li class="breadcrumb-item"><a href="../quarto/data_cleaning.html">Analysis of manual data extraction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/manual_data.html">Methods</a></li><li class="breadcrumb-item"><a href="../quarto/data_cleaning.html">Data cleaning</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -231,7 +231,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Analysis of manual data extraction</span></a>
+ <span class="menu-text">Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -282,20 +282,32 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import-raw-data" id="toc-import-raw-data" class="nav-link active" data-scroll-target="#import-raw-data">Import raw data</a></li>
+  <li><a href="#clean-model-outputs" id="toc-clean-model-outputs" class="nav-link" data-scroll-target="#clean-model-outputs">Clean model outputs</a></li>
+  <li><a href="#derive-structured-variables-from-the-human-review-file" id="toc-derive-structured-variables-from-the-human-review-file" class="nav-link" data-scroll-target="#derive-structured-variables-from-the-human-review-file">Derive structured variables from the human review file</a></li>
+  <li><a href="#check-filename-alignment-across-sources" id="toc-check-filename-alignment-across-sources" class="nav-link" data-scroll-target="#check-filename-alignment-across-sources">Check filename alignment across sources</a></li>
+  <li><a href="#merge-cleaned-datasets" id="toc-merge-cleaned-datasets" class="nav-link" data-scroll-target="#merge-cleaned-datasets">Merge cleaned datasets</a></li>
+  <li><a href="#standardize-logical-variables" id="toc-standardize-logical-variables" class="nav-link" data-scroll-target="#standardize-logical-variables">Standardize logical variables</a></li>
+  <li><a href="#identify-human-reviewed-analysis-variables" id="toc-identify-human-reviewed-analysis-variables" class="nav-link" data-scroll-target="#identify-human-reviewed-analysis-variables">Identify human-reviewed analysis variables</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/data_cleaning.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/manual_data.html">Methods</a></li><li class="breadcrumb-item"><a href="../quarto/data_cleaning.html">Analysis of manual data extraction</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/manual_data.html">Methods</a></li><li class="breadcrumb-item"><a href="../quarto/data_cleaning.html">Data cleaning</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">LLM data analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">LLM data import and cleaning</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -323,22 +335,178 @@ Source code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The full R scripts are available at:</p>
+<p>The full R script is available at:</p>
 <ul>
-<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R"><code>R/Rscript%20data%20analysis%20ATC%202025-11-16.R</code></a></li>
-<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20NKF%202025-11-16.R"><code>R/Rscript%20data%20analysis%20ATC%202025-11-16.R</code></a></li>
+<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20data%20import%20and%20cleaning.R"><code>R/Analysis data import and cleaning.R</code></a></li>
 </ul>
-<p>This R script file is itself reliant on the following helper files:</p>
+<p>This R script relies on the following helper files:</p>
 <ul>
-<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R"><code>R/setup.R</code></a></li>
+<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R"><code>R/Analysis setup.R</code></a></li>
 <li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R"><code>R/functions.R</code></a></li>
 </ul>
 </div>
+</div>
+<section id="import-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-raw-data">Import raw data</h2>
+<p>The analysis begins by importing the raw outputs from each large language model together with the human-reviewed abstraction file. These inputs were produced in different formats, so they must first be standardized before they can be compared directly.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>final_results_ChatGPT_raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Results/ChatGPT/final_results_ChatGPT.rds"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>summary_final_claude_raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Results/Claude/summary_final_claude.rds"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>summary_final_gemini_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Results/Gemini/summary_output_gemini.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>human_results_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data-raw/Data abstraction Excel reviewer 1 and 2.xlsx"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Reviewer 2"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="clean-model-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="clean-model-outputs">Clean model outputs</h2>
+<p>Each model output is then cleaned separately. A model-specific suffix is added to each variable name so that the human-reviewed and model-generated versions of the same field can coexist in a single merged dataset. Unneeded text-heavy fields are removed from the ChatGPT output to keep the working dataset focused on structured variables.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>final_results_ChatGPT_clean <span class="ot">&lt;-</span> final_results_ChatGPT_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">paste0</span>(.x, <span class="st">"_ChatGPT"</span>), <span class="sc">-</span>filename) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>text_ChatGPT, <span class="sc">-</span>raw_json_ChatGPT)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>summary_final_claude_clean <span class="ot">&lt;-</span> summary_final_claude_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">paste0</span>(.x, <span class="st">"_claude"</span>), <span class="sc">-</span>filename)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>summary_final_gemini_clean <span class="ot">&lt;-</span> summary_final_gemini_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">paste0</span>(.x, <span class="st">"_gemini"</span>), <span class="sc">-</span>filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="derive-structured-variables-from-the-human-review-file" class="level2">
+<h2 class="anchored" data-anchor-id="derive-structured-variables-from-the-human-review-file">Derive structured variables from the human review file</h2>
+<p>The human review spreadsheet requires additional preprocessing. Several variables were originally captured as free-text fields listing programming languages, USRDS files, or abstracted data components. These were split into separate binary indicator variables so that they could be compared directly with the corresponding structured outputs from the language models.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>human_results_clean <span class="ot">&lt;-</span> human_results_raw <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_R =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"R"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_SAS =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"SAS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_Stata =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"STATA"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_SPSS =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"SPSS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_Python =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"Python"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_SQL =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"SQL"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_Julia =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"Julia"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">languages_used_Matlab =</span> <span class="fu">str_detect</span>(what_programming_language_s_was_were_used, <span class="st">"Matlab"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_Core =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Core"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_Institution =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Institution"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_PhysicianSupplier =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Physician/Supplier"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_Hospital =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Hospital"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_Transplant =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Transplant"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_PartD =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"Part D"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">files_used_CROWNWeb =</span> <span class="fu">str_detect</span>(what_files_were_used, <span class="st">"CROWNWeb"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_basicdemographics =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"Basic demographics"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_icd9 =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"ICD9 code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_icd10 =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"ICD10 code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_cptcode =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"CPT code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_medicationD =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"Medications"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_transplant =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"Transplant-specific information"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_costs =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"Costs"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">component_residential =</span> <span class="fu">str_detect</span>(which_pieces_of_data_were_abstracted_from_the_files, <span class="st">"Residential location"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>timestamp, <span class="sc">-</span>changes_made, <span class="sc">-</span>comments_16, <span class="sc">-</span>comments_26, <span class="sc">-</span>confirmed_by_vh,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>what_files_were_used, <span class="sc">-</span>what_programming_language_s_was_were_used,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>which_crosswalks_were_used</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">filename =</span> filepath) <span class="sc">%&gt;%</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">paste0</span>(.x, <span class="st">"_human"</span>), <span class="sc">-</span>filename) <span class="sc">%&gt;%</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">where</span>(<span class="sc">~</span> <span class="fu">all</span>(.x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="cn">NA</span>))),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      .x <span class="sc">==</span> <span class="st">"Yes"</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      .x <span class="sc">==</span> <span class="st">"No"</span>  <span class="sc">~</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename =</span> <span class="fu">if_else</span>(</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_ends</span>(filename, <span class="st">"</span><span class="sc">\\</span><span class="st">.pdf"</span>),</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      filename,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(filename, <span class="st">".pdf"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="check-filename-alignment-across-sources" class="level2">
+<h2 class="anchored" data-anchor-id="check-filename-alignment-across-sources">Check filename alignment across sources</h2>
+<p>Before the datasets are merged, filenames are checked to ensure that the same PDF records are present across the human-reviewed and model-generated datasets. These checks make it easier to identify missing or unmatched files before proceeding.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(human_results_clean<span class="sc">$</span>filename, final_results_ChatGPT_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(final_results_ChatGPT_clean<span class="sc">$</span>filename, human_results_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(human_results_clean<span class="sc">$</span>filename, summary_final_claude_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(summary_final_claude_clean<span class="sc">$</span>filename, human_results_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(human_results_clean<span class="sc">$</span>filename, summary_final_gemini_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(summary_final_gemini_clean<span class="sc">$</span>filename, human_results_clean<span class="sc">$</span>filename)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Gemini unable to parse a single PDF despite multiple attempts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="merge-cleaned-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="merge-cleaned-datasets">Merge cleaned datasets</h2>
+<p>Once the inputs have been standardized and checked, they are merged into one wide analysis dataset using the shared <code>filename</code> field. This produces a single record per paper containing the human-reviewed variables and the corresponding outputs from ChatGPT, Claude, and Gemini.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> human_results_clean <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(final_results_ChatGPT_clean, <span class="at">by =</span> <span class="fu">join_by</span>(filename)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(summary_final_claude_clean, <span class="at">by =</span> <span class="fu">join_by</span>(filename)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(summary_final_gemini_clean, <span class="at">by =</span> <span class="fu">join_by</span>(filename)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(filename))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="standardize-logical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="standardize-logical-variables">Standardize logical variables</h2>
+<p>After merging, the dataset is reordered and all human and model variables are converted to logical format. This step is important because the imported data may still contain character encodings such as <code>"yes"</code> or <code>"no"</code> that need to be normalized before agreement statistics are calculated.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(filename, <span class="fu">sort</span>(<span class="fu">setdiff</span>(<span class="fu">names</span>(.), <span class="st">"filename"</span>)))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>logical_cols <span class="ot">&lt;-</span> <span class="fu">names</span>(df_wide)[</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">"_ChatGPT$|_claude$|_gemini$|_human$"</span>, <span class="fu">names</span>(df_wide))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(logical_cols), convert_to_logical))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="identify-human-reviewed-analysis-variables" class="level2">
+<h2 class="anchored" data-anchor-id="identify-human-reviewed-analysis-variables">Identify human-reviewed analysis variables</h2>
+<p>Finally, the script identifies the set of human-coded binary variables that will be used in downstream agreement analyses. These variables serve as the reference standard for comparisons with each model.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>human_vars <span class="ot">&lt;-</span> <span class="fu">names</span>(df_wide)[<span class="fu">grepl</span>(<span class="st">"_human$"</span>, <span class="fu">names</span>(df_wide))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -809,7 +977,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../quarto/llm_analysis.html" class="pagination-link" aria-label="LLM data extraction">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">LLM data extraction</span>
@@ -821,29 +989,176 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "LLM data analysis"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>::: {.Rcode title="Source code"}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The full R scripts are available at:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/Rscript%20data%20analysis%20ATC%202025-11-16.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R)</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/Rscript%20data%20analysis%20ATC%202025-11-16.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20NKF%202025-11-16.R)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>This R script file is itself reliant on the following helper files:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/setup.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/functions.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "LLM data import and cleaning"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>::: {.Rcode title="Source code"}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>The full R script is available at:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`R/Analysis data import and cleaning.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20data%20import%20and%20cleaning.R)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>This R script relies on the following helper files:</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`R/Analysis setup.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`R/functions.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import raw data</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>The analysis begins by importing the raw outputs from each large language model together with the human-reviewed abstraction file. These inputs were produced in different formats, so they must first be standardized before they can be compared directly.</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="in">final_results_ChatGPT_raw &lt;- readRDS("Results/ChatGPT/final_results_ChatGPT.rds")</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="in">summary_final_claude_raw &lt;- readRDS("Results/Claude/summary_final_claude.rds") %&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="in">  bind_rows()</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="in">summary_final_gemini_raw &lt;- read_csv("Results/Gemini/summary_output_gemini.csv")</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="in">human_results_raw &lt;- read_excel(</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="in">  "data-raw/Data abstraction Excel reviewer 1 and 2.xlsx",</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="in">  sheet = "Reviewer 2"</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="in">) %&gt;%</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="in">  clean_names()</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clean model outputs</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>Each model output is then cleaned separately. A model-specific suffix is added to each variable name so that the human-reviewed and model-generated versions of the same field can coexist in a single merged dataset. Unneeded text-heavy fields are removed from the ChatGPT output to keep the working dataset focused on structured variables.</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="in">final_results_ChatGPT_clean &lt;- final_results_ChatGPT_raw %&gt;%</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="in">  rename_with(~ paste0(.x, "_ChatGPT"), -filename) %&gt;%</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="in">  select(-text_ChatGPT, -raw_json_ChatGPT)</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="in">summary_final_claude_clean &lt;- summary_final_claude_raw %&gt;%</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="in">  rename_with(~ paste0(.x, "_claude"), -filename)</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="in">summary_final_gemini_clean &lt;- summary_final_gemini_raw %&gt;%</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="in">  rename_with(~ paste0(.x, "_gemini"), -filename)</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Derive structured variables from the human review file</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>The human review spreadsheet requires additional preprocessing. Several variables were originally captured as free-text fields listing programming languages, USRDS files, or abstracted data components. These were split into separate binary indicator variables so that they could be compared directly with the corresponding structured outputs from the language models.</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="in">human_results_clean &lt;- human_results_raw %&gt;%</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_R = str_detect(what_programming_language_s_was_were_used, "R")) %&gt;%</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_SAS = str_detect(what_programming_language_s_was_were_used, "SAS")) %&gt;%</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_Stata = str_detect(what_programming_language_s_was_were_used, "STATA")) %&gt;%</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_SPSS = str_detect(what_programming_language_s_was_were_used, "SPSS")) %&gt;%</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_Python = str_detect(what_programming_language_s_was_were_used, "Python")) %&gt;%</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_SQL = str_detect(what_programming_language_s_was_were_used, "SQL")) %&gt;%</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_Julia = str_detect(what_programming_language_s_was_were_used, "Julia")) %&gt;%</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(languages_used_Matlab = str_detect(what_programming_language_s_was_were_used, "Matlab")) %&gt;%</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_Core = str_detect(what_files_were_used, "Core")) %&gt;%</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_Institution = str_detect(what_files_were_used, "Institution")) %&gt;%</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_PhysicianSupplier = str_detect(what_files_were_used, "Physician/Supplier")) %&gt;%</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_Hospital = str_detect(what_files_were_used, "Hospital")) %&gt;%</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_Transplant = str_detect(what_files_were_used, "Transplant")) %&gt;%</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_PartD = str_detect(what_files_were_used, "Part D")) %&gt;%</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(files_used_CROWNWeb = str_detect(what_files_were_used, "CROWNWeb")) %&gt;%</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_basicdemographics = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Basic demographics")) %&gt;%</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_icd9 = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "ICD9 code")) %&gt;%</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_icd10 = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "ICD10 code")) %&gt;%</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_cptcode = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "CPT code")) %&gt;%</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_medicationD = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Medications")) %&gt;%</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_transplant = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Transplant-specific information")) %&gt;%</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_costs = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Costs")) %&gt;%</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(component_residential = str_detect(which_pieces_of_data_were_abstracted_from_the_files, "Residential location")) %&gt;%</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a><span class="in">  select(</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a><span class="in">    -timestamp, -changes_made, -comments_16, -comments_26, -confirmed_by_vh,</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a><span class="in">    -what_files_were_used, -what_programming_language_s_was_were_used,</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="in">    -which_crosswalks_were_used</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="in">  rename(filename = filepath) %&gt;%</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="in">  rename_with(~ paste0(.x, "_human"), -filename) %&gt;%</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(across(</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a><span class="in">    where(~ all(.x %in% c("Yes", "No", NA))),</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="in">    ~ case_when(</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="in">      .x == "Yes" ~ TRUE,</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="in">      .x == "No"  ~ FALSE,</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a><span class="in">      TRUE ~ NA</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="in">  )) %&gt;%</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(</span></span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a><span class="in">    filename = if_else(</span></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="in">      str_ends(filename, "\\.pdf"),</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a><span class="in">      filename,</span></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="in">      paste0(filename, ".pdf")</span></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Check filename alignment across sources</span></span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>Before the datasets are merged, filenames are checked to ensure that the same PDF records are present across the human-reviewed and model-generated datasets. These checks make it easier to identify missing or unmatched files before proceeding.</span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(human_results_clean$filename, final_results_ChatGPT_clean$filename)</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(final_results_ChatGPT_clean$filename, human_results_clean$filename)</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(human_results_clean$filename, summary_final_claude_clean$filename)</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(summary_final_claude_clean$filename, human_results_clean$filename)</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(human_results_clean$filename, summary_final_gemini_clean$filename)</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a><span class="in">setdiff(summary_final_gemini_clean$filename, human_results_clean$filename)</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a><span class="in"># Gemini unable to parse a single PDF despite multiple attempts</span></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merge cleaned datasets</span></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>Once the inputs have been standardized and checked, they are merged into one wide analysis dataset using the shared <span class="in">`filename`</span> field. This produces a single record per paper containing the human-reviewed variables and the corresponding outputs from ChatGPT, Claude, and Gemini.</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="in">df_wide &lt;- human_results_clean %&gt;%</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a><span class="in">  left_join(final_results_ChatGPT_clean, by = join_by(filename)) %&gt;%</span></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a><span class="in">  left_join(summary_final_claude_clean, by = join_by(filename)) %&gt;%</span></span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a><span class="in">  left_join(summary_final_gemini_clean, by = join_by(filename)) %&gt;%</span></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(!is.na(filename))</span></span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Standardize logical variables</span></span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>After merging, the dataset is reordered and all human and model variables are converted to logical format. This step is important because the imported data may still contain character encodings such as <span class="in">`"yes"`</span> or <span class="in">`"no"`</span> that need to be normalized before agreement statistics are calculated.</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a><span class="in">df_wide &lt;- df_wide %&gt;%</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a><span class="in">  select(filename, sort(setdiff(names(.), "filename")))</span></span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="in">logical_cols &lt;- names(df_wide)[</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a><span class="in">  grepl("_ChatGPT$|_claude$|_gemini$|_human$", names(df_wide))</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a><span class="in">]</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a><span class="in">df_wide &lt;- df_wide %&gt;%</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(across(all_of(logical_cols), convert_to_logical))</span></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a><span class="in"># write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")</span></span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Identify human-reviewed analysis variables</span></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a>Finally, the script identifies the set of human-coded binary variables that will be used in downstream agreement analyses. These variables serve as the reference standard for comparisons with each model.</span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a><span class="in">human_vars &lt;- names(df_wide)[grepl("_human$", names(df_wide))]</span></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/data_cleaning.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/data_cleaning.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -46,7 +46,7 @@ website:
           - href: quarto/llm_analysis.qmd
             text: LLM data extraction
           - href: quarto/data_cleaning.qmd
-            text: Analysis of manual data extraction
+            text: Data cleaning
           - href: quarto/llm_data.qmd
             text: LLM data analysis
             
