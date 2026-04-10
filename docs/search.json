@@ -650,22 +650,66 @@
     ]
   },
   {
-    "objectID": "quarto/results_LLM_full.html#heatmaps",
-    "href": "quarto/results_LLM_full.html#heatmaps",
+    "objectID": "quarto/results_LLM_full.html#descriptive-performance",
+    "href": "quarto/results_LLM_full.html#descriptive-performance",
     "title": "Results: LLM full",
-    "section": "Heatmaps",
-    "text": "Heatmaps\nThe following heatmaps provide a more detailed view of extraction performance across groups of related variables. Rather than emphasizing one variable at a time, they highlight patterns within domains of abstraction and make it easier to identify where model performance was more or less reliable.\n\nAnalytic components\nThis heatmap summarizes model performance for major analytic and study-design components. These variables reflect whether the models correctly identified core features of the study methods and analytic approach.\n ### USRDS files and data components\nThis heatmap focuses on variables related to which USRDS files or data components were used in each paper. These details are often reported inconsistently in manuscripts, making them a particularly important test of structured PDF extraction.\n ### Programming languages\nThis heatmap summarizes identification of programming languages used in the included studies. Programming languages were frequently omitted, briefly mentioned, or described indirectly, so this domain helps illustrate model performance when methodological reporting is sparse.\n ### Other study features\nThe final heatmap displays remaining variables that did not fit neatly into the earlier categories. Together, the four heatmaps provide a fuller picture of where model extraction aligned well with human review and where important gaps remained.",
+    "section": "Descriptive performance",
+    "text": "Descriptive performance\nThe table below shows the wall-clock time required for each model to process the full dataset (not limited to transplant).\n\n\n\n\n\n\n\n\nRuntime of LLMs Used in the Analysis\n\n\nWall-clock time in minutes to process the full dataset\n\n\nProvider (Company)\nModel\nTime (minutes)\n\n\n\n\nChatGPT (OpenAI)\nGpt 5.1\n165\n\n\nClaude (Anthropic)\nClaude Sonnet 4.5\n62\n\n\nGemini (Google)\nGemini 2.5 Flash\n672",
     "crumbs": [
       "Results",
       "LLM analysis of full dataset"
     ]
   },
   {
-    "objectID": "quarto/results_LLM_full.html#kappa-analysis",
-    "href": "quarto/results_LLM_full.html#kappa-analysis",
+    "objectID": "quarto/results_LLM_full.html#can-the-llms-identify-new-patient-level-data-analyses",
+    "href": "quarto/results_LLM_full.html#can-the-llms-identify-new-patient-level-data-analyses",
     "title": "Results: LLM full",
-    "section": "Kappa analysis",
-    "text": "Kappa analysis\n\n\n\n\n\n\n\n\nCohen’s κ: LLM vs Human Across All Variables\n\n\nDataset of 44 transplant-related papers\n\n\nVariable\nChatGPT\nClaude\nGemini\n\n\n\n\nComponents of USRDS used\n\n\nBasic demographics abstracted\n0.000\n 0.000\n0.000\n\n\nCost data abstracted\n0.718\n 0.885\n0.654\n\n\nCPT codes abstracted\n0.706\n 0.792\n0.779\n\n\nICD-10 codes abstracted\n0.852\n 0.852\n0.796\n\n\nICD-9 codes abstracted\n0.877\n 0.891\n0.862\n\n\nPart D medication data abstracted\n0.940\n 0.960\n0.961\n\n\nResidential location abstracted\n0.801\n 0.769\n0.753\n\n\nTransplant-specific data abstracted\n0.591\n 0.616\n0.576\n\n\nFiles used\n\n\nCore file used\n0.000\n 0.000\n0.000\n\n\nCROWNWeb file used\n0.810\n 0.841\n0.662\n\n\nHospital file used\n0.201\n 0.542\n0.327\n\n\nInstitution file used\n0.400\n 0.547\n0.651\n\n\nPart D file used\n0.806\n 0.941\n0.961\n\n\nPhysician/Supplier file used\n0.382\n 0.578\n0.704\n\n\nTransplant file used\n0.368\n 0.511\n0.739\n\n\nProgramming languages\n\n\nPython used\n1.000\n 1.000\n1.000\n\n\nR used\n0.915\n 0.958\n0.958\n\n\nSAS used\n0.859\n 0.964\n0.982\n\n\nSPSS used\n0.853\n 1.000\n1.000\n\n\nStata used\n0.941\n 1.000\n1.000\n\n\n\n\n\nUSRDS files explicitly stated\n-1\n-1\n-1\n\n\nAuthors shared code\n0.429\n 0.658\n0.429\n\n\nProgramming language stated\n0.775\n 0.975\n0.949\n\n\nFiles/codes appropriate for research question\n0.017\n−0.027\n0.000\n\n\nTransplant-related study\n0.919\n 0.812\n0.876\n\n\nNew patient-level data analysis\n0.000\n-1\n-1\n\n\nStudy funded\n0.830\n 0.762\n0.705\n\n\nAny crosswalks used\n0.421\n 0.317\n0.428\n\n\nCovered by proposed usRds package\n0.000\n 0.000\n0.000\n\n\n\n1 κ not estimable, usually due to insufficient variation or no usable paired observations.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCohen’s κ legend\n\n\n\nAgreement\nRange\n\n\n\n\n\nNegative\n&lt; 0\n\n\n\nExact zero\n0.000\n\n\n\nSlight\n0.001–0.20\n\n\n\nFair\n0.21–0.40\n\n\n\nModerate\n0.41–0.60\n\n\n\nSubstantial\n0.61–0.80\n\n\n\nAlmost perfect\n0.81–1.00\n\n\n\n\nNot estimable\n-",
+    "section": "Can the LLMs identify new patient-level data analyses?",
+    "text": "Can the LLMs identify new patient-level data analyses?\nThis table summarizes how well each large language model distinguished papers that reported a new patient-level data analysis from papers that did not. Human review was treated as the reference standard. For each model, the table shows how often the model classified papers into the same broad analytic category as the manual reviewer.\n\n\n\n\n\n\n\n\nNew data analysis classification\n\n\nModel\nHuman FALSE / LLM FALSE\nHuman FALSE / LLM TRUE\nHuman TRUE / LLM FALSE\nHuman TRUE / LLM TRUE\nNA\n\n\n\n\nChatGPT\n13\n9\n1\n149\n0\n\n\nClaude\n9\n13\n0\n150\n0\n\n\nGemini\n12\n10\n0\n149\n1",
+    "crumbs": [
+      "Results",
+      "LLM analysis of full dataset"
+    ]
+  },
+  {
+    "objectID": "quarto/results_LLM_full.html#can-the-llms-identify-transplant-related-analyses",
+    "href": "quarto/results_LLM_full.html#can-the-llms-identify-transplant-related-analyses",
+    "title": "Results: LLM full",
+    "section": "Can the LLMs identify transplant-related analyses?",
+    "text": "Can the LLMs identify transplant-related analyses?\nThis table focuses on papers that were classified by human review as new patient-level data analyses and asks a second question: can the models correctly identify which of these studies are transplant-related? Again, human review serves as the reference standard, and the table compares each model’s classifications with the manually assigned labels.\n\n\n\n\n\n\n\n\nTransplant-related study classification\n\n\nModel\nHuman FALSE / LLM FALSE\nHuman FALSE / LLM TRUE\nHuman TRUE / LLM FALSE\nHuman TRUE / LLM TRUE\nNA\n\n\n\n\nChatGPT\n104\n2\n3\n41\n0\n\n\nClaude\n105\n1\n10\n34\n0\n\n\nGemini\n98\n7\n1\n43\n1",
+    "crumbs": [
+      "Results",
+      "LLM analysis of full dataset"
+    ]
+  },
+  {
+    "objectID": "quarto/results_LLM_full.html#comparison-of-human-and-llm-answers",
+    "href": "quarto/results_LLM_full.html#comparison-of-human-and-llm-answers",
+    "title": "Results: LLM full",
+    "section": "Comparison of human and LLM answers",
+    "text": "Comparison of human and LLM answers\nThe next table summarizes how often each model matched the human-reviewed reference standard for selected study characteristics. These descriptive results provide an initial overview of performance before moving to the more detailed visual and κ-based summaries below.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHuman\n\nChatGPT\n\n\nClaude\n\n\nGemini\n\n\n\nNum/Den\n%\nNum/Den\n%\nNum/Den\n%\n\n\n\n\nBasic demographics abstracted\nTRUE\n142/149\n95.3%\n146/149\n98.0%\n147/149\n98.7%\n\n\nCost data abstracted\nFALSE\n3/145\n2.1%\n1/145\n0.7%\n4/145\n2.8%\n\n\nTRUE\n4/4\n100.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nCPT codes abstracted\nFALSE\n6/103\n5.8%\n5/103\n4.9%\n7/103\n6.8%\n\n\nTRUE\n34/46\n73.9%\n38/46\n82.6%\n39/46\n84.8%\n\n\nICD-10 codes abstracted\nFALSE\n5/121\n4.1%\n5/121\n4.1%\n8/121\n6.6%\n\n\nTRUE\n26/28\n92.9%\n26/28\n92.9%\n26/28\n92.9%\n\n\nICD-9 codes abstracted\nFALSE\n3/64\n4.7%\n3/64\n4.7%\n5/64\n7.8%\n\n\nTRUE\n79/85\n92.9%\n80/85\n94.1%\n80/85\n94.1%\n\n\nPart D medication data abstracted\nFALSE\n0/116\n0.0%\n0/116\n0.0%\n1/116\n0.9%\n\n\nTRUE\n30/33\n90.9%\n31/33\n93.9%\n32/33\n97.0%\n\n\nResidential location abstracted\nFALSE\n6/100\n6.0%\n13/100\n13.0%\n14/100\n14.0%\n\n\nTRUE\n42/49\n85.7%\n46/49\n93.9%\n45/49\n91.8%\n\n\nTransplant-specific data abstracted\nFALSE\n28/95\n29.5%\n16/95\n16.8%\n24/95\n25.3%\n\n\nTRUE\n51/54\n94.4%\n43/54\n79.6%\n47/54\n87.0%\n\n\nAuthors shared code\nFALSE\n1/144\n0.7%\n0/144\n0.0%\n1/144\n0.7%\n\n\nTRUE\n2/6\n33.3%\n3/6\n50.0%\n2/6\n33.3%\n\n\nProgramming language stated\nFALSE\n1/23\n4.3%\n0/23\n0.0%\n1/23\n4.3%\n\n\nTRUE\n118/127\n92.9%\n126/127\n99.2%\n125/127\n98.4%\n\n\nFiles/codes appropriate for research question\nFALSE\n3/4\n75.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nTRUE\n119/146\n81.5%\n142/146\n97.3%\n145/146\n99.3%\n\n\nCore file used\nTRUE\n94/150\n62.7%\n144/150\n96.0%\n147/150\n98.0%\n\n\nCROWNWeb file used\nFALSE\n6/131\n4.6%\n6/131\n4.6%\n15/131\n11.5%\n\n\nTRUE\n18/19\n94.7%\n19/19\n100.0%\n19/19\n100.0%\n\n\nHospital file used\nFALSE\n1/98\n1.0%\n11/98\n11.2%\n27/98\n27.6%\n\n\nTRUE\n9/52\n17.3%\n33/52\n63.5%\n32/52\n61.5%\n\n\nInstitution file used\nFALSE\n7/75\n9.3%\n8/75\n10.7%\n14/75\n18.7%\n\n\nTRUE\n37/75\n49.3%\n49/75\n65.3%\n63/75\n84.0%\n\n\nPart D file used\nFALSE\n0/117\n0.0%\n1/117\n0.9%\n1/117\n0.9%\n\n\nTRUE\n24/33\n72.7%\n31/33\n93.9%\n32/33\n97.0%\n\n\nPhysician/Supplier file used\nFALSE\n4/79\n5.1%\n3/79\n3.8%\n11/79\n13.9%\n\n\nTRUE\n30/71\n42.3%\n43/71\n60.6%\n60/71\n84.5%\n\n\nTransplant file used\nFALSE\n3/105\n2.9%\n13/105\n12.4%\n6/105\n5.7%\n\n\nTRUE\n15/45\n33.3%\n28/45\n62.2%\n35/45\n77.8%\n\n\nTransplant-related study\nFALSE\n2/106\n1.9%\n1/106\n0.9%\n7/106\n6.6%\n\n\nTRUE\n41/44\n93.2%\n34/44\n77.3%\n43/44\n97.7%\n\n\nNew patient-level data analysis\nTRUE\n149/150\n99.3%\n150/150\n100.0%\n149/150\n99.3%\n\n\nlanguages_used_Julia\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nlanguages_used_Matlab\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nPython used\nFALSE\n0/126\n0.0%\n0/126\n0.0%\n0/126\n0.0%\n\n\nTRUE\n1/1\n100.0%\n1/1\n100.0%\n1/1\n100.0%\n\n\nR used\nFALSE\n0/94\n0.0%\n0/94\n0.0%\n0/94\n0.0%\n\n\nTRUE\n29/33\n87.9%\n31/33\n93.9%\n31/33\n93.9%\n\n\nSAS used\nFALSE\n3/42\n7.1%\n1/42\n2.4%\n1/42\n2.4%\n\n\nTRUE\n80/85\n94.1%\n84/85\n98.8%\n84/85\n98.8%\n\n\nSPSS used\nFALSE\n0/123\n0.0%\n0/123\n0.0%\n0/123\n0.0%\n\n\nTRUE\n3/4\n75.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nlanguages_used_SQL\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nStata used\nFALSE\n0/90\n0.0%\n0/90\n0.0%\n0/90\n0.0%\n\n\nTRUE\n34/37\n91.9%\n37/37\n100.0%\n37/37\n100.0%\n\n\nStudy funded\nFALSE\n8/33\n24.2%\n7/33\n21.2%\n13/33\n39.4%\n\n\nTRUE\n117/117\n100.0%\n112/117\n95.7%\n116/117\n99.1%\n\n\nAny crosswalks used\nFALSE\n9/134\n6.7%\n9/134\n6.7%\n6/134\n4.5%\n\n\nTRUE\n8/16\n50.0%\n6/16\n37.5%\n7/16\n43.8%\n\n\nCovered by proposed usRds package\nTRUE\n133/150\n88.7%\n123/150\n82.0%\n79/150\n52.7%",
+    "crumbs": [
+      "Results",
+      "LLM analysis of full dataset"
+    ]
+  },
+  {
+    "objectID": "quarto/results_LLM_full.html#heatmaps",
+    "href": "quarto/results_LLM_full.html#heatmaps",
+    "title": "Results: LLM full",
+    "section": "Heatmaps",
+    "text": "Heatmaps\nThe following heatmaps provide a more detailed view of extraction performance across groups of related variables. Rather than emphasizing one variable at a time, they highlight patterns within domains of abstraction and make it easier to identify where model performance was more or less reliable.\n\nAnalytic components\nThis heatmap summarizes model performance for major analytic and study-design components. These variables reflect whether the models correctly identified core features of the study methods and analytic approach.\n\n\n\nUSRDS files and data components\nThis heatmap focuses on variables related to which USRDS files or data components were used in each paper. These details are often reported inconsistently in manuscripts, making them a particularly important test of structured PDF extraction.\n\n\n\nProgramming languages\nThis heatmap summarizes identification of programming languages used in the included studies. Programming languages were frequently omitted, briefly mentioned, or described indirectly, so this domain helps illustrate model performance when methodological reporting is sparse.\n\n\n\nOther study features\nThe final heatmap displays remaining variables that did not fit neatly into the earlier categories. Together, the four heatmaps provide a fuller picture of where model extraction aligned well with human review and where important gaps remained.",
+    "crumbs": [
+      "Results",
+      "LLM analysis of full dataset"
+    ]
+  },
+  {
+    "objectID": "quarto/results_LLM_full.html#κ-analysis",
+    "href": "quarto/results_LLM_full.html#κ-analysis",
+    "title": "Results: LLM full",
+    "section": "κ analysis",
+    "text": "κ analysis\nthe table below presents Cohen’s κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.\n\n\n\n\n\n\n\n\nCohen’s κ: LLM vs Human Across All Variables\n\n\nDataset of 44 transplant-related papers\n\n\nVariable\nChatGPT\nClaude\nGemini\n\n\n\n\nComponents of USRDS used\n\n\nBasic demographics abstracted\n0.000\n 0.000\n0.000\n\n\nCost data abstracted\n0.718\n 0.885\n0.654\n\n\nCPT codes abstracted\n0.706\n 0.792\n0.779\n\n\nICD-10 codes abstracted\n0.852\n 0.852\n0.796\n\n\nICD-9 codes abstracted\n0.877\n 0.891\n0.862\n\n\nPart D medication data abstracted\n0.940\n 0.960\n0.961\n\n\nResidential location abstracted\n0.801\n 0.769\n0.753\n\n\nTransplant-specific data abstracted\n0.591\n 0.616\n0.576\n\n\nFiles used\n\n\nCore file used\n0.000\n 0.000\n0.000\n\n\nCROWNWeb file used\n0.810\n 0.841\n0.662\n\n\nHospital file used\n0.201\n 0.542\n0.327\n\n\nInstitution file used\n0.400\n 0.547\n0.651\n\n\nPart D file used\n0.806\n 0.941\n0.961\n\n\nPhysician/Supplier file used\n0.382\n 0.578\n0.704\n\n\nTransplant file used\n0.368\n 0.511\n0.739\n\n\nProgramming languages\n\n\nPython used\n1.000\n 1.000\n1.000\n\n\nR used\n0.915\n 0.958\n0.958\n\n\nSAS used\n0.859\n 0.964\n0.982\n\n\nSPSS used\n0.853\n 1.000\n1.000\n\n\nStata used\n0.941\n 1.000\n1.000\n\n\n\n\n\nUSRDS files explicitly stated\n-1\n-1\n-1\n\n\nAuthors shared code\n0.429\n 0.658\n0.429\n\n\nProgramming language stated\n0.775\n 0.975\n0.949\n\n\nFiles/codes appropriate for research question\n0.017\n−0.027\n0.000\n\n\nTransplant-related study\n0.919\n 0.812\n0.876\n\n\nNew patient-level data analysis\n0.000\n-1\n-1\n\n\nStudy funded\n0.830\n 0.762\n0.705\n\n\nAny crosswalks used\n0.421\n 0.317\n0.428\n\n\nCovered by proposed usRds package\n0.000\n 0.000\n0.000\n\n\n\n1 κ not estimable, usually due to insufficient variation or no usable paired observations.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCohen’s κ legend\n\n\n\nAgreement\nRange\n\n\n\n\n\nNegative\n&lt; 0\n\n\n\nExact zero\n0.000\n\n\n\nSlight\n0.001–0.20\n\n\n\nFair\n0.21–0.40\n\n\n\nModerate\n0.41–0.60\n\n\n\nSubstantial\n0.61–0.80\n\n\n\nAlmost perfect\n0.81–1.00\n\n\n\n\nNot estimable\n-",
     "crumbs": [
       "Results",
       "LLM analysis of full dataset"
@@ -713,61 +757,6 @@
     "crumbs": [
       "Results",
       "Results of manual extraction of data"
-    ]
-  },
-  {
-    "objectID": "quarto/results_LLM_full.html#descriptive-performance",
-    "href": "quarto/results_LLM_full.html#descriptive-performance",
-    "title": "Results: LLM full",
-    "section": "Descriptive performance",
-    "text": "Descriptive performance\nThe table below shows the wall-clock time required for each model to process the full dataset (not limited to transplant).\n\n\n\n\n\n\n\n\nRuntime of LLMs Used in the Analysis\n\n\nWall-clock time in minutes to process the full dataset\n\n\nProvider (Company)\nModel\nTime (minutes)\n\n\n\n\nChatGPT (OpenAI)\nGpt 5.1\n165\n\n\nClaude (Anthropic)\nClaude Sonnet 4.5\n62\n\n\nGemini (Google)\nGemini 2.5 Flash\n672",
-    "crumbs": [
-      "Results",
-      "LLM analysis of full dataset"
-    ]
-  },
-  {
-    "objectID": "quarto/results_LLM_full.html#can-the-llms-identify-new-patient-level-data-analyses",
-    "href": "quarto/results_LLM_full.html#can-the-llms-identify-new-patient-level-data-analyses",
-    "title": "Results: LLM full",
-    "section": "Can the LLMs identify new patient-level data analyses?",
-    "text": "Can the LLMs identify new patient-level data analyses?\nThis table summarizes how well each large language model distinguished papers that reported a new patient-level data analysis from papers that did not. Human review was treated as the reference standard. For each model, the table shows how often the model classified papers into the same broad analytic category as the manual reviewer.\n\n\n\n\n\n\n\n\nNew data analysis classification\n\n\nModel\nHuman FALSE / LLM FALSE\nHuman FALSE / LLM TRUE\nHuman TRUE / LLM FALSE\nHuman TRUE / LLM TRUE\nNA\n\n\n\n\nChatGPT\n13\n9\n1\n149\n0\n\n\nClaude\n9\n13\n0\n150\n0\n\n\nGemini\n12\n10\n0\n149\n1",
-    "crumbs": [
-      "Results",
-      "LLM analysis of full dataset"
-    ]
-  },
-  {
-    "objectID": "quarto/results_LLM_full.html#can-the-llms-identify-transplant-related-analyses",
-    "href": "quarto/results_LLM_full.html#can-the-llms-identify-transplant-related-analyses",
-    "title": "Results: LLM full",
-    "section": "Can the LLMs identify transplant-related analyses?",
-    "text": "Can the LLMs identify transplant-related analyses?\nThis table focuses on papers that were classified by human review as new patient-level data analyses and asks a second question: can the models correctly identify which of these studies are transplant-related? Again, human review serves as the reference standard, and the table compares each model’s classifications with the manually assigned labels.\n\n\n\n\n\n\n\n\nTransplant-related study classification\n\n\nModel\nHuman FALSE / LLM FALSE\nHuman FALSE / LLM TRUE\nHuman TRUE / LLM FALSE\nHuman TRUE / LLM TRUE\nNA\n\n\n\n\nChatGPT\n104\n2\n3\n41\n0\n\n\nClaude\n105\n1\n10\n34\n0\n\n\nGemini\n98\n7\n1\n43\n1",
-    "crumbs": [
-      "Results",
-      "LLM analysis of full dataset"
-    ]
-  },
-  {
-    "objectID": "quarto/results_LLM_full.html#comparison-of-human-and-llm-answers",
-    "href": "quarto/results_LLM_full.html#comparison-of-human-and-llm-answers",
-    "title": "Results: LLM full",
-    "section": "Comparison of human and LLM answers",
-    "text": "Comparison of human and LLM answers\nThe next table summarizes how often each model matched the human-reviewed reference standard for selected study characteristics. These descriptive results provide an initial overview of performance before moving to the more detailed visual and κ-based summaries below.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHuman\n\nChatGPT\n\n\nClaude\n\n\nGemini\n\n\n\nNum/Den\n%\nNum/Den\n%\nNum/Den\n%\n\n\n\n\nBasic demographics abstracted\nTRUE\n142/149\n95.3%\n146/149\n98.0%\n147/149\n98.7%\n\n\nCost data abstracted\nFALSE\n3/145\n2.1%\n1/145\n0.7%\n4/145\n2.8%\n\n\nTRUE\n4/4\n100.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nCPT codes abstracted\nFALSE\n6/103\n5.8%\n5/103\n4.9%\n7/103\n6.8%\n\n\nTRUE\n34/46\n73.9%\n38/46\n82.6%\n39/46\n84.8%\n\n\nICD-10 codes abstracted\nFALSE\n5/121\n4.1%\n5/121\n4.1%\n8/121\n6.6%\n\n\nTRUE\n26/28\n92.9%\n26/28\n92.9%\n26/28\n92.9%\n\n\nICD-9 codes abstracted\nFALSE\n3/64\n4.7%\n3/64\n4.7%\n5/64\n7.8%\n\n\nTRUE\n79/85\n92.9%\n80/85\n94.1%\n80/85\n94.1%\n\n\nPart D medication data abstracted\nFALSE\n0/116\n0.0%\n0/116\n0.0%\n1/116\n0.9%\n\n\nTRUE\n30/33\n90.9%\n31/33\n93.9%\n32/33\n97.0%\n\n\nResidential location abstracted\nFALSE\n6/100\n6.0%\n13/100\n13.0%\n14/100\n14.0%\n\n\nTRUE\n42/49\n85.7%\n46/49\n93.9%\n45/49\n91.8%\n\n\nTransplant-specific data abstracted\nFALSE\n28/95\n29.5%\n16/95\n16.8%\n24/95\n25.3%\n\n\nTRUE\n51/54\n94.4%\n43/54\n79.6%\n47/54\n87.0%\n\n\nAuthors shared code\nFALSE\n1/144\n0.7%\n0/144\n0.0%\n1/144\n0.7%\n\n\nTRUE\n2/6\n33.3%\n3/6\n50.0%\n2/6\n33.3%\n\n\nProgramming language stated\nFALSE\n1/23\n4.3%\n0/23\n0.0%\n1/23\n4.3%\n\n\nTRUE\n118/127\n92.9%\n126/127\n99.2%\n125/127\n98.4%\n\n\nFiles/codes appropriate for research question\nFALSE\n3/4\n75.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nTRUE\n119/146\n81.5%\n142/146\n97.3%\n145/146\n99.3%\n\n\nCore file used\nTRUE\n94/150\n62.7%\n144/150\n96.0%\n147/150\n98.0%\n\n\nCROWNWeb file used\nFALSE\n6/131\n4.6%\n6/131\n4.6%\n15/131\n11.5%\n\n\nTRUE\n18/19\n94.7%\n19/19\n100.0%\n19/19\n100.0%\n\n\nHospital file used\nFALSE\n1/98\n1.0%\n11/98\n11.2%\n27/98\n27.6%\n\n\nTRUE\n9/52\n17.3%\n33/52\n63.5%\n32/52\n61.5%\n\n\nInstitution file used\nFALSE\n7/75\n9.3%\n8/75\n10.7%\n14/75\n18.7%\n\n\nTRUE\n37/75\n49.3%\n49/75\n65.3%\n63/75\n84.0%\n\n\nPart D file used\nFALSE\n0/117\n0.0%\n1/117\n0.9%\n1/117\n0.9%\n\n\nTRUE\n24/33\n72.7%\n31/33\n93.9%\n32/33\n97.0%\n\n\nPhysician/Supplier file used\nFALSE\n4/79\n5.1%\n3/79\n3.8%\n11/79\n13.9%\n\n\nTRUE\n30/71\n42.3%\n43/71\n60.6%\n60/71\n84.5%\n\n\nTransplant file used\nFALSE\n3/105\n2.9%\n13/105\n12.4%\n6/105\n5.7%\n\n\nTRUE\n15/45\n33.3%\n28/45\n62.2%\n35/45\n77.8%\n\n\nTransplant-related study\nFALSE\n2/106\n1.9%\n1/106\n0.9%\n7/106\n6.6%\n\n\nTRUE\n41/44\n93.2%\n34/44\n77.3%\n43/44\n97.7%\n\n\nNew patient-level data analysis\nTRUE\n149/150\n99.3%\n150/150\n100.0%\n149/150\n99.3%\n\n\nlanguages_used_Julia\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nlanguages_used_Matlab\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nPython used\nFALSE\n0/126\n0.0%\n0/126\n0.0%\n0/126\n0.0%\n\n\nTRUE\n1/1\n100.0%\n1/1\n100.0%\n1/1\n100.0%\n\n\nR used\nFALSE\n0/94\n0.0%\n0/94\n0.0%\n0/94\n0.0%\n\n\nTRUE\n29/33\n87.9%\n31/33\n93.9%\n31/33\n93.9%\n\n\nSAS used\nFALSE\n3/42\n7.1%\n1/42\n2.4%\n1/42\n2.4%\n\n\nTRUE\n80/85\n94.1%\n84/85\n98.8%\n84/85\n98.8%\n\n\nSPSS used\nFALSE\n0/123\n0.0%\n0/123\n0.0%\n0/123\n0.0%\n\n\nTRUE\n3/4\n75.0%\n4/4\n100.0%\n4/4\n100.0%\n\n\nlanguages_used_SQL\nFALSE\n0/127\n0.0%\n0/127\n0.0%\n0/127\n0.0%\n\n\nStata used\nFALSE\n0/90\n0.0%\n0/90\n0.0%\n0/90\n0.0%\n\n\nTRUE\n34/37\n91.9%\n37/37\n100.0%\n37/37\n100.0%\n\n\nStudy funded\nFALSE\n8/33\n24.2%\n7/33\n21.2%\n13/33\n39.4%\n\n\nTRUE\n117/117\n100.0%\n112/117\n95.7%\n116/117\n99.1%\n\n\nAny crosswalks used\nFALSE\n9/134\n6.7%\n9/134\n6.7%\n6/134\n4.5%\n\n\nTRUE\n8/16\n50.0%\n6/16\n37.5%\n7/16\n43.8%\n\n\nCovered by proposed usRds package\nTRUE\n133/150\n88.7%\n123/150\n82.0%\n79/150\n52.7%",
-    "crumbs": [
-      "Results",
-      "LLM analysis of full dataset"
-    ]
-  },
-  {
-    "objectID": "quarto/results_LLM_full.html#κ-analysis",
-    "href": "quarto/results_LLM_full.html#κ-analysis",
-    "title": "Results: LLM full",
-    "section": "κ analysis",
-    "text": "κ analysis\nthe table below presents Cohen’s κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.\n\n\n\n\n\n\n\n\nCohen’s κ: LLM vs Human Across All Variables\n\n\nDataset of 44 transplant-related papers\n\n\nVariable\nChatGPT\nClaude\nGemini\n\n\n\n\nComponents of USRDS used\n\n\nBasic demographics abstracted\n0.000\n 0.000\n0.000\n\n\nCost data abstracted\n0.718\n 0.885\n0.654\n\n\nCPT codes abstracted\n0.706\n 0.792\n0.779\n\n\nICD-10 codes abstracted\n0.852\n 0.852\n0.796\n\n\nICD-9 codes abstracted\n0.877\n 0.891\n0.862\n\n\nPart D medication data abstracted\n0.940\n 0.960\n0.961\n\n\nResidential location abstracted\n0.801\n 0.769\n0.753\n\n\nTransplant-specific data abstracted\n0.591\n 0.616\n0.576\n\n\nFiles used\n\n\nCore file used\n0.000\n 0.000\n0.000\n\n\nCROWNWeb file used\n0.810\n 0.841\n0.662\n\n\nHospital file used\n0.201\n 0.542\n0.327\n\n\nInstitution file used\n0.400\n 0.547\n0.651\n\n\nPart D file used\n0.806\n 0.941\n0.961\n\n\nPhysician/Supplier file used\n0.382\n 0.578\n0.704\n\n\nTransplant file used\n0.368\n 0.511\n0.739\n\n\nProgramming languages\n\n\nPython used\n1.000\n 1.000\n1.000\n\n\nR used\n0.915\n 0.958\n0.958\n\n\nSAS used\n0.859\n 0.964\n0.982\n\n\nSPSS used\n0.853\n 1.000\n1.000\n\n\nStata used\n0.941\n 1.000\n1.000\n\n\n\n\n\nUSRDS files explicitly stated\n-1\n-1\n-1\n\n\nAuthors shared code\n0.429\n 0.658\n0.429\n\n\nProgramming language stated\n0.775\n 0.975\n0.949\n\n\nFiles/codes appropriate for research question\n0.017\n−0.027\n0.000\n\n\nTransplant-related study\n0.919\n 0.812\n0.876\n\n\nNew patient-level data analysis\n0.000\n-1\n-1\n\n\nStudy funded\n0.830\n 0.762\n0.705\n\n\nAny crosswalks used\n0.421\n 0.317\n0.428\n\n\nCovered by proposed usRds package\n0.000\n 0.000\n0.000\n\n\n\n1 κ not estimable, usually due to insufficient variation or no usable paired observations.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCohen’s κ legend\n\n\n\nAgreement\nRange\n\n\n\n\n\nNegative\n&lt; 0\n\n\n\nExact zero\n0.000\n\n\n\nSlight\n0.001–0.20\n\n\n\nFair\n0.21–0.40\n\n\n\nModerate\n0.41–0.60\n\n\n\nSubstantial\n0.61–0.80\n\n\n\nAlmost perfect\n0.81–1.00\n\n\n\n\nNot estimable\n-",
-    "crumbs": [
-      "Results",
-      "LLM analysis of full dataset"
     ]
   }
 ]
