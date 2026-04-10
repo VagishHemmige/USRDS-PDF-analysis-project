@@ -475,7 +475,7 @@
     "href": "index.html#methods",
     "title": "Overview of USRDS analysis",
     "section": "Methods",
-    "text": "Methods",
+    "text": "Methods\nWe manually reviewed a sample of papers using USRDS data and recorded study characteristics, reported programming languages, and the files or data elements used. We then asked multiple large language models to extract the same information from the papers and compared model outputs with human review using descriptive summaries and agreement statistics.",
     "crumbs": [
       "Home"
     ]
@@ -485,7 +485,7 @@
     "href": "index.html#results",
     "title": "Overview of USRDS analysis",
     "section": "Results",
-    "text": "Results\nSee the detailed results pages linked via the left sidebar.",
+    "text": "Results\nManual review showed substantial variation in how clearly papers reported key details relevant to reproducibility, including programming language and data file use. Across the LLM analyses, model performance varied by task, with better agreement for some broad study-level classifications than for more specific extraction tasks.\nSee the detailed results pages linked via the left sidebar for full details.",
     "crumbs": [
       "Home"
     ]

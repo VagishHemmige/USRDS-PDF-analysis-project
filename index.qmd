@@ -11,11 +11,13 @@ This project examines **how researchers use the USRDS in published studies**. Th
 
 ## Methods
 
-
+We manually reviewed a sample of papers using USRDS data and recorded study characteristics, reported programming languages, and the files or data elements used. We then asked multiple large language models to extract the same information from the papers and compared model outputs with human review using descriptive summaries and agreement statistics.
 
 ## Results
 
-See the detailed results pages linked via the left sidebar.
+Manual review showed substantial variation in how clearly papers reported key details relevant to reproducibility, including programming language and data file use. Across the LLM analyses, model performance varied by task, with better agreement for some broad study-level classifications than for more specific extraction tasks.
+
+See the detailed results pages linked via the left sidebar for full details.
 
 ## Reproducibility
 
