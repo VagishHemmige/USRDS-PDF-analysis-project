@@ -331,7 +331,8 @@ files_res_full <- make_llm_agreement_heatmap(
   paper_id_col = "filename",
   label_list = label_list,
   title = "Files used heatmap",
-  reorder = FALSE
+  reorder = FALSE,
+  show_paper_ids = FALSE
 )
 
 files_res_full
@@ -351,13 +352,33 @@ languages_res_full <- make_llm_agreement_heatmap(
   paper_id_col = "filename",
   label_list = label_list,
   title = "Languages used heatmap",
-  reorder = FALSE
+  reorder = FALSE,
+  show_paper_ids = FALSE
 )
 
 languages_res_full
 ggsave(
   plot = languages_res_full,
   filename = "Kidney conference abstract/languages_res_full.png"
+)
+
+
+component_vars_full <- names(label_list)[str_detect(names(label_list), "^component_")]
+
+component_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = component_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Components used heatmap",
+  reorder = FALSE,
+  show_paper_ids = FALSE
+)
+
+component_res_full
+ggsave(
+  plot = component_res_full,
+  filename = "Kidney conference abstract/component_res_full.png"
 )
 
 
@@ -376,7 +397,8 @@ other_res_full <- make_llm_agreement_heatmap(
   paper_id_col = "filename",
   label_list = label_list,
   title = "Other study features heatmap",
-  reorder = FALSE
+  reorder = FALSE,
+  show_paper_ids = FALSE
 )
 
 other_res_full

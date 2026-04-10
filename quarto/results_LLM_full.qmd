@@ -83,16 +83,19 @@ The following heatmaps provide a more detailed view of extraction performance ac
 This heatmap summarizes model performance for major analytic and study-design components. These variables reflect whether the models correctly identified core features of the study methods and analytic approach.
 
 ![](../Kidney conference abstract/component_res_full.png)
+
 ### USRDS files and data components
 
 This heatmap focuses on variables related to which USRDS files or data components were used in each paper. These details are often reported inconsistently in manuscripts, making them a particularly important test of structured PDF extraction.
 
 ![](../Kidney conference abstract/files_res_full.png)
+
 ### Programming languages
 
 This heatmap summarizes identification of programming languages used in the included studies. Programming languages were frequently omitted, briefly mentioned, or described indirectly, so this domain helps illustrate model performance when methodological reporting is sparse.
 
 ![](../Kidney conference abstract/languages_res_full.png)
+
 ### Other study features
 
 The final heatmap displays remaining variables that did not fit neatly into the earlier categories. Together, the four heatmaps provide a fuller picture of where model extraction aligned well with human review and where important gaps remained.

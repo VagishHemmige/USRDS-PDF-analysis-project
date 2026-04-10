@@ -80,7 +80,9 @@ make_llm_agreement_heatmap <- function(df,
                                        title = "LLM agreement heatmap",
                                        subtitle = "Each cell shows how many of 3 models matched the human label",
                                        low_to_high = TRUE,
-                                       reorder = TRUE) {
+                                       reorder = TRUE,
+                                       show_paper_ids = TRUE,
+                                       left_margin = 5.5) {
   
   stopifnot(is.data.frame(df))
   stopifnot(is.character(vars))
@@ -228,12 +230,22 @@ make_llm_agreement_heatmap <- function(df,
       title = title,
       subtitle = subtitle,
       x = NULL,
-      y = NULL
+      y = "Paper"
     ) +
     ggplot2::theme_minimal(base_size = 11) +
     ggplot2::theme(
       panel.grid = ggplot2::element_blank(),
-      axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
-      axis.text.y = ggplot2::element_text(size = 7)
+      axis.text.x = ggplot2::element_text(angle = -45, hjust = 0, vjust = 1),
+      axis.text.y = if (show_paper_ids) {
+        ggplot2::element_text(size = 7)
+      } else {
+        ggplot2::element_blank()
+      },
+      axis.ticks.y = if (show_paper_ids) {
+        ggplot2::element_line()
+      } else {
+        ggplot2::element_blank()
+      },
+      plot.margin = ggplot2::margin(t = 5.5, r = 5.5, b = 5.5, l = left_margin)
     )
 }
