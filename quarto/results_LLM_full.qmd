@@ -104,7 +104,7 @@ The final heatmap displays remaining variables that did not fit neatly into the 
 
 ## κ analysis
 
-the table below presents Cohen's κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.
+The table below presents Cohen's κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.
 
 ```{r, echo=FALSE}
 

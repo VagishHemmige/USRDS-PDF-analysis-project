@@ -207,9 +207,7 @@ kappa_table_full <- kappa_results_full %>%
     columns = c(ChatGPT, Claude, Gemini)
   ) %>%
   tab_header(
-    title = "Cohen’s κ: LLM vs Human Across All Variables",
-    subtitle = "Dataset of 44 transplant-related papers"
-  ) %>%
+    title = "Cohen’s κ: LLM vs Human Across All Variables") %>%
   gt::tab_stubhead(label = "Variable") %>%
   sub_missing(
     columns = c(ChatGPT, Claude, Gemini),

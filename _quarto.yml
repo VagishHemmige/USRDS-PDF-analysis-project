@@ -47,9 +47,10 @@ website:
             text: LLM data extraction
           - href: quarto/data_cleaning.qmd
             text: Data cleaning
-          - href: quarto/llm_data.qmd
-            text: LLM data analysis
-            
+          - href: quarto/llm_data_full.qmd
+            text: "LLM data analysis: full"
+          - href: quarto/llm_data_transplant.qmd
+            text: "LLM data analysis: transplant"
         
       - section: Results
         contents:

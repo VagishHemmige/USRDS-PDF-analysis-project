@@ -1,0 +1,544 @@
+---
+title: "LLM data analysis: full"
+format: html
+---
+
+::: {.Rcode title="Source code"}
+
+
+The full R script is available at:
+
+-   [`R/Rscript%20data%20analysis%20NKF%202025-11-30.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20NKF%202025-11-30.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/Analysis setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
+:::
+
+
+# Overview
+
+This page explains the R code used for the full NKF analysis, which was run on the complete set of more than 170 PDFs. Compared with the transplant-only ATC analysis, this script includes an additional screening layer. It first evaluates how well the LLMs identify **new data analyses** across the entire corpus, then evaluates how well they identify **transplant-related studies** within the subset of papers that humans classified as new analyses. After these screening summaries, the script proceeds to generate runtime tables, variable-level agreement tables, descriptive breakdown tables, and heatmaps.
+
+The overall logic therefore has two levels:
+
+1. **Screening performance**, where the models are compared with human review on key inclusion variables.  
+2. **Detailed abstraction performance**, where agreement is evaluated across the full abstraction schema among papers that were retained after human screening as new data analyses.
+
+# Screening step 1: identifying new data analyses
+
+The script begins with simple cross-tabulations comparing each LLM with human review on whether a paper was classified as a new data analysis.
+
+```{r eval=FALSE}
+df_wide %>% count(is_this_paper_a_new_data_analysis_human,
+             is_this_paper_a_new_data_analysis_ChatGPT)
+
+df_wide %>% count(is_this_paper_a_new_data_analysis_human,
+                  is_this_paper_a_new_data_analysis_claude)
+
+df_wide %>% count(is_this_paper_a_new_data_analysis_human,
+                  is_this_paper_a_new_data_analysis_gemini)
+```
+
+These exploratory counts provide a quick view of the raw agreement pattern for the first key screening question: whether each paper represents a new data analysis. Because this step uses the full `df_wide` dataset, it reflects performance across the complete set of PDFs rather than only within a filtered subset.
+
+# Screening step 2: identifying transplant-related studies within new analyses
+
+The next set of counts focuses on transplant classification, but only among papers that the human reviewer identified as true new data analyses.
+
+```{r eval=FALSE}
+df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
+  count(is_this_a_transplant_related_study_human,
+        is_this_a_transplant_related_study_ChatGPT)
+
+df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
+  count(is_this_a_transplant_related_study_human,
+        is_this_a_transplant_related_study_claude)
+
+df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
+  count(is_this_a_transplant_related_study_human,
+        is_this_a_transplant_related_study_gemini)
+```
+
+This screening step is narrower. It asks: among papers that humans determined were genuine new data analyses, how well did each LLM recognize whether the paper was transplant-related? Restricting to human-positive new analyses makes this a more clinically relevant and methodologically focused comparison, since it isolates performance on the papers that move forward in the review process.
+
+# Table: new data analysis classification
+
+The exploratory counts are then reshaped into a more readable summary table.
+
+```{r eval=FALSE}
+new_analysis_table <- bind_rows(
+  df_wide %>%
+    count(
+      human = is_this_paper_a_new_data_analysis_human,
+      llm = is_this_paper_a_new_data_analysis_ChatGPT
+    ) %>%
+    mutate(model = "ChatGPT"),
+
+  df_wide %>%
+    count(
+      human = is_this_paper_a_new_data_analysis_human,
+      llm = is_this_paper_a_new_data_analysis_claude
+    ) %>%
+    mutate(model = "Claude"),
+
+  df_wide %>%
+    count(
+      human = is_this_paper_a_new_data_analysis_human,
+      llm = is_this_paper_a_new_data_analysis_gemini
+    ) %>%
+    mutate(model = "Gemini")
+) %>%
+  mutate(
+    cell = case_when(
+      human == FALSE & llm == FALSE ~ "Human FALSE / LLM FALSE",
+      human == FALSE & llm == TRUE  ~ "Human FALSE / LLM TRUE",
+      human == TRUE  & llm == FALSE ~ "Human TRUE / LLM FALSE",
+      human == TRUE  & llm == TRUE  ~ "Human TRUE / LLM TRUE"
+    )
+  ) %>%
+  select(model, cell, n) %>%
+  pivot_wider(
+    names_from = cell,
+    values_from = n,
+    values_fill = 0
+  )
+
+new_analysis_gt<-new_analysis_table %>%
+  gt(rowname_col = "model") %>%
+  tab_stubhead(label = "Model") %>%
+  tab_header(title = "New data analysis classification")
+
+gtsave(
+  filename = "Kidney conference abstract/new_analysis_gt.png",
+  data = new_analysis_gt,
+)
+saveRDS(new_analysis_gt, "Kidney conference abstract/new_analysis_gt.rds")
+```
+
+This block converts the pairwise counts into a model-by-classification table. Each row corresponds to one model, and the columns represent the four possible human/LLM combinations:
+
+- Human FALSE / LLM FALSE  
+- Human FALSE / LLM TRUE  
+- Human TRUE / LLM FALSE  
+- Human TRUE / LLM TRUE  
+
+This layout is useful because it makes false positives and false negatives directly visible. The result is then formatted as a `gt` table and saved both as a PNG image and as an `.rds` object for later reuse.
+
+# Table: transplant-related study classification
+
+A parallel table is created for transplant classification, limited to papers humans considered true new analyses.
+
+```{r eval=FALSE}
+transplant_table <- bind_rows(
+  df_wide %>%
+    filter(is_this_paper_a_new_data_analysis_human == TRUE) %>%
+    count(
+      human = is_this_a_transplant_related_study_human,
+      llm = is_this_a_transplant_related_study_ChatGPT
+    ) %>%
+    mutate(model = "ChatGPT"),
+
+  df_wide %>%
+    filter(is_this_paper_a_new_data_analysis_human == TRUE) %>%
+    count(
+      human = is_this_a_transplant_related_study_human,
+      llm = is_this_a_transplant_related_study_claude
+    ) %>%
+    mutate(model = "Claude"),
+
+  df_wide %>%
+    filter(is_this_paper_a_new_data_analysis_human == TRUE) %>%
+    count(
+      human = is_this_a_transplant_related_study_human,
+      llm = is_this_a_transplant_related_study_gemini
+    ) %>%
+    mutate(model = "Gemini")
+) %>%
+  mutate(
+    cell = case_when(
+      human == FALSE & llm == FALSE ~ "Human FALSE / LLM FALSE",
+      human == FALSE & llm == TRUE  ~ "Human FALSE / LLM TRUE",
+      human == TRUE  & llm == FALSE ~ "Human TRUE / LLM FALSE",
+      human == TRUE  & llm == TRUE  ~ "Human TRUE / LLM TRUE"
+    )
+  ) %>%
+  select(model, cell, n) %>%
+  pivot_wider(
+    names_from = cell,
+    values_from = n,
+    values_fill = 0
+  )
+
+transplant_gt<-transplant_table %>%
+  gt(rowname_col = "model") %>%
+  tab_stubhead(label = "Model") %>%
+  tab_header(title = "Transplant-related study classification")
+
+gtsave(
+  filename = "Kidney conference abstract/transplant_gt.png",
+  data = transplant_gt,
+)
+saveRDS(transplant_gt, "Kidney conference abstract/transplant_gt.rds")
+```
+
+This table mirrors the structure of the new-analysis classification table, but for the transplant-related study variable. Together, these two tables summarize how well the LLMs perform on the major screening decisions that determine whether a paper enters the more detailed abstraction workflow.
+
+# Table of model runtimes
+
+The script then reports how long each LLM took to process the full dataset.
+
+```{r eval=FALSE}
+timing_gt<-timing_table %>%
+  gt() %>%
+  fmt_number(
+    columns = `Time (minutes)`,
+    decimals = 0
+  )%>%
+  tab_header(
+    title = "Runtime of LLMs Used in the Analysis",
+    subtitle = "Wall-clock time in minutes to process the full dataset"
+  )
+
+gtsave(
+  filename = "Kidney conference abstract/timing_table_full.png",
+  data = timing_gt,
+)
+saveRDS(timing_gt, "Kidney conference abstract/timing_gt.rds")
+```
+
+This section is structurally the same as in the ATC analysis. The object `timing_table` is formatted as a `gt` table, with runtime shown in minutes, then saved for reuse. This provides an operational summary of the computational cost of running each model across the full corpus.
+
+# Restricting the dataset for detailed abstraction analysis
+
+After the screening summaries, the script creates the filtered dataset used for variable-level agreement analysis.
+
+```{r eval=FALSE}
+df_filt_full <- df_wide%>%
+  filter(
+    is_this_paper_a_new_data_analysis_human == TRUE,
+  )
+```
+
+Unlike the ATC script, this filter only requires that the paper be classified by human review as a **new data analysis**. It does not additionally restrict to transplant-related studies. This is one of the most important differences between the two scripts. The full NKF analysis is designed to assess detailed abstraction performance across all papers that passed the human new-analysis screen, rather than only within the transplant subset.
+
+# Computing variable-level Cohen's kappa
+
+The next block computes Cohen's kappa for each abstraction variable and each model within the filtered dataset.
+
+```{r eval=FALSE}
+kappa_results_full <- purrr::map_dfr(human_vars, function(h) {
+  base <- sub("_human$", "", h)
+
+  tibble::tibble(
+    variable = base,
+    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT"), df_filt_full),
+    Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_full),
+    Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_full)
+  )%>%
+    mutate(
+      across(c(ChatGPT, Claude, Gemini), ~ ifelse(is.nan(.x), NA_real_, .x))
+    )
+})%>%
+  filter(!variable %in% c(
+    "which_pieces_of_data_were_abstracted_from_the_files",
+    "which_tasks_would_not_be_covered",
+    "which_type_of_transplant_study_is_this",
+    "who_funded_the_study",
+    "year",
+    "journal",
+    "title",
+    "authors",
+    "languages_used_SQL",
+    "languages_used_Matlab",
+    "languages_used_Julia"
+  ))
+```
+
+This block has the same structure as the corresponding ATC code. It loops over the human-reviewed variables, identifies the matching ChatGPT, Claude, and Gemini variables, and computes Cohen's kappa for each pair. Non-estimable values are converted from `NaN` to `NA`, and a set of excluded variables is removed from the final table.
+
+Because this script is run on the broader filtered dataset, the resulting kappas summarize agreement across all human-positive new analyses, not just the transplant subset.
+
+# Formatting the kappa table
+
+The raw kappa results are then formatted into a publication-style table.
+
+```{r eval=FALSE}
+kappa_table_full <- kappa_results_full %>%
+  add_label_for_gt() %>%
+  gt(rowname_col = "label") %>%
+  gt::cols_hide(columns = variable) %>%
+  fmt_number(
+    columns = c(ChatGPT, Claude, Gemini),
+    decimals = 3
+  ) %>%
+  cols_align_decimal(
+    columns = c(ChatGPT, Claude, Gemini)
+  ) %>%
+  tab_header(
+    title = "Cohen’s κ: LLM vs Human Across All Variables"
+  ) %>%
+  gt::tab_stubhead(label = "Variable") %>%
+  sub_missing(
+    columns = c(ChatGPT, Claude, Gemini),
+    missing_text = "-"
+  )%>%
+  gt::tab_row_group(
+    label = "Programming languages",
+    rows = grepl("^languages_", variable)
+  ) %>%
+  gt::tab_row_group(
+    label = "Files used",
+    rows = grepl("^files_", variable)
+  )%>%
+  gt::tab_row_group(
+    label = "Components of USRDS used",
+    rows = grepl("^component_", variable)
+  ) %>%
+  gt::tab_stub_indent(
+    rows = grepl("^(languages_|files_|component_)", variable),
+    indent = 4
+  )%>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = ChatGPT, rows = is.na(ChatGPT)),
+    placement="right"
+  ) %>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = Claude, rows = is.na(Claude)),
+    placement="right"
+  ) %>%
+  tab_footnote(
+    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
+    locations = cells_body(columns = Gemini, rows = is.na(Gemini)),
+    placement="right"
+  )%>%
+  data_color(
+    columns = c(ChatGPT, Claude, Gemini),
+    fn = kappa_fill
+  )
+
+kappa_table_full
+gtsave(
+  data = kappa_table_full,
+  filename = "Kidney conference abstract/kappa_table_full.html"
+)
+saveRDS(kappa_table_full, "Kidney conference abstract/kappa_table_full.rds")
+```
+
+As before, the helper `add_label_for_gt()` adds readable labels, values are rounded to three decimals, missing kappas are shown as dashes, and related variables are grouped together. The table is also color-coded using `kappa_fill()`, which helps readers scan for lower and higher levels of agreement.
+
+One point to note is that the subtitle shown here still reads `"Dataset of 44 transplant-related papers"`, which appears to reflect older wording from the transplant-only version rather than the broader full-analysis dataset. In the Quarto narrative, it would make sense to revise that subtitle so that it matches the actual analytic sample used here.
+
+# Kappa legend
+
+The script also creates a legend explaining the color scale applied to the kappa table.
+
+```{r eval=FALSE}
+kappa_legend_gt<-create_kappa_legend_gt()
+gtsave(
+  data = kappa_legend_gt,
+  filename = "Kidney conference abstract/kappa_table_legend_full.html"
+)
+saveRDS(kappa_legend_gt, "Kidney conference abstract/kappa_legend_gt.rds")
+```
+
+This legend is especially useful when the kappa table is displayed as a standalone figure in a poster, manuscript supplement, or Quarto webpage.
+
+# Building descriptive breakdown tables
+
+Next, the script creates a more descriptive summary of model performance across variables.
+
+```{r eval=FALSE}
+breakdown_table_full <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_full)
+```
+
+This applies the helper function `get_breakdown()` to each variable. The resulting object contains numerator/denominator counts and percentages for each model within each human-coded category. This complements Cohen's kappa by showing the underlying response distributions.
+
+The formatted table is then constructed as follows.
+
+```{r eval=FALSE}
+breakdown_gt_full <- breakdown_table_full %>%
+  add_label_for_gt() %>%
+  dplyr::select(-variable) %>%
+  gt(
+    groupname_col = "label",
+    rowname_col = "human"
+  ) %>%
+  fmt_percent(
+    columns = c(chat_pct, cla_pct, gem_pct),
+    decimals = 1
+  ) %>%
+  cols_label(
+    chat_nd = "Num/Den",
+    chat_pct = "%",
+    cla_nd = "Num/Den",
+    cla_pct = "%",
+    gem_nd = "Num/Den",
+    gem_pct = "%"
+  ) %>%
+  tab_stubhead(label = md("**Human**")) %>%
+  tab_spanner(
+    label = md("**ChatGPT**"),
+    columns = c(chat_nd, chat_pct)
+  ) %>%
+  tab_spanner(
+    label = md("**Claude**"),
+    columns = c(cla_nd, cla_pct)
+  ) %>%
+  tab_spanner(
+    label = md("**Gemini**"),
+    columns = c(gem_nd, gem_pct)
+  ) %>%
+  tab_options(
+    row_group.as_column = TRUE,
+    row_group.font.weight = "bold",
+    table.font.size = px(13),
+    heading.align = "left"
+  )
+
+breakdown_gt_full
+gtsave(
+  data = breakdown_gt_full,
+  filename = "Kidney conference abstract/breakdown_gt_full.html"
+)
+saveRDS(breakdown_gt_full, "Kidney conference abstract/breakdown_gt_full.rds")
+```
+
+This table places each model under its own spanner and reports both raw counts (`Num/Den`) and percentages (`%`). The result is a more transparent companion to the kappa table, since it shows the observed proportions underlying the summary agreement statistics.
+
+# Heatmaps of agreement patterns
+
+The final part of the script generates heatmaps for groups of variables. As in the ATC analysis, these are grouped into files used, programming languages, USRDS components, and all remaining study features.
+
+## Files used
+
+```{r eval=FALSE}
+file_vars_full <- names(label_list)[str_detect(names(label_list), "^files_")]
+
+files_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = file_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Files used heatmap",
+  reorder = FALSE,
+  show_paper_ids = FALSE
+)
+
+files_res_full
+ggsave(
+  plot = files_res_full,
+  filename = "Kidney conference abstract/files_res_full.png"
+)
+```
+
+This block selects all variables beginning with `files_` and passes them to `make_llm_agreement_heatmap()`. A notable difference from the ATC script is that `show_paper_ids = FALSE` is used here, which suppresses individual paper labels on the y-axis. This makes sense for the larger dataset, where showing every paper ID would make the plot unreadable.
+
+## Programming languages used
+
+```{r eval=FALSE}
+languages_vars_full <- names(label_list)[str_detect(names(label_list), "^languages_")]
+
+languages_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = languages_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Languages used heatmap",
+  reorder = FALSE,
+  show_paper_ids = FALSE
+)
+
+languages_res_full
+ggsave(
+  plot = languages_res_full,
+  filename = "Kidney conference abstract/languages_res_full.png"
+)
+```
+
+This section produces the language-use heatmap. Suppressing paper IDs is again important here because the full dataset includes many more papers than the transplant-only subset.
+
+## Components of USRDS used
+
+```{r eval=FALSE}
+component_vars_full <- names(label_list)[str_detect(names(label_list), "^component_")]
+
+component_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = component_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Components used heatmap",
+  reorder = FALSE,
+  show_paper_ids = FALSE
+)
+
+component_res_full
+ggsave(
+  plot = component_res_full,
+  filename = "Kidney conference abstract/component_res_full.png"
+)
+```
+
+This heatmap focuses on the different USRDS components used in the studies. Grouping them visually can help show which components the models identify more consistently and which lead to greater disagreement.
+
+## Other study features
+
+```{r eval=FALSE}
+other_vars_full <- setdiff(
+  setdiff(
+    names(label_list),
+    c(file_vars_full, languages_vars_full, component_vars_full)
+  ),
+  "did_the_authors_explicitly_state_what_files_they_used"
+)
+
+other_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = other_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Other study features heatmap",
+  reorder = FALSE,
+  show_paper_ids = FALSE
+)
+
+other_res_full
+
+ggsave(
+  filename = "Kidney conference abstract/other_res_full.png",
+  plot = other_res_full,
+)
+```
+
+The final heatmap gathers all remaining variables that are not part of the file, language, or component groups, while excluding one explicitly named variable to avoid redundancy. This creates a broad overview of agreement across the rest of the abstraction schema.
+
+# Why this full-analysis script differs from the ATC script
+
+Although the NKF and ATC analysis scripts are structurally very similar, they are not identical. The most important differences are:
+
+- the NKF script begins with screening summaries for **new data analysis** and **transplant-related study** classification,
+- the NKF script filters the detailed abstraction dataset to **human-positive new analyses only**, rather than to new analyses that are also transplant-related, and
+- the NKF heatmaps suppress paper IDs because the full dataset is much larger.
+
+These changes reflect the different goals of the two analyses. The ATC script focuses on the transplant subset, while the NKF script describes performance across the broader set of papers that passed the human new-analysis screen.
+
+# Outputs produced by the script
+
+The script saves several outputs that can be reused in Quarto pages, posters, abstracts, or slides:
+
+- `new_analysis_gt.png` and `new_analysis_gt.rds`
+- `transplant_gt.png` and `transplant_gt.rds`
+- `timing_table_full.png` and `timing_gt.rds`
+- `kappa_table_full.html` and `kappa_table_full.rds`
+- `kappa_table_legend_full.html` and `kappa_legend_gt.rds`
+- `breakdown_gt_full.html` and `breakdown_gt_full.rds`
+- `files_res_full.png`
+- `languages_res_full.png`
+- `component_res_full.png`
+- `other_res_full.png`
+
+As in the ATC workflow, this separation between analysis and reporting allows the computationally intensive script to be run once, after which the saved outputs can be inserted into Quarto pages without rerunning all calculations.
