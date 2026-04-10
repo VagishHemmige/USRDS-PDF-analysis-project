@@ -75,6 +75,7 @@ gtsave(
   filename = "Kidney conference abstract/new_analysis_gt.png",
   data = new_analysis_gt,
 )
+saveRDS(new_analysis_gt, "Kidney conference abstract/new_analysis_gt.rds")
 
 
 
@@ -128,7 +129,7 @@ gtsave(
   filename = "Kidney conference abstract/transplant_gt.png",
   data = transplant_gt,
 )
-
+saveRDS(transplant_gt, "Kidney conference abstract/transplant_gt.rds")
 
 
 
@@ -146,10 +147,10 @@ timing_gt<-timing_table %>%
   )
 
 gtsave(
-  filename = "Kidney conference abstract/timing_table_atc.png",
+  filename = "Kidney conference abstract/timing_table_full.png",
   data = timing_gt,
 )
-
+saveRDS(timing_gt, "Kidney conference abstract/timing_gt.rds")
 
 #---- Filter to human-positive dataset----
 
@@ -255,6 +256,7 @@ gtsave(
   data = kappa_table_full,
   filename = "Kidney conference abstract/kappa_table_full.html"
 )
+saveRDS(kappa_table_full, "Kidney conference abstract/kappa_table_full.rds")
 
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
@@ -262,7 +264,7 @@ gtsave(
   data = kappa_legend_gt,
   filename = "Kidney conference abstract/kappa_table_legend_full.html"
 )
-
+saveRDS(kappa_legend_gt, "Kidney conference abstract/kappa_legend_gt.rds")
 
 #Create a table with raw proportions
 
@@ -317,7 +319,7 @@ gtsave(
   data = breakdown_gt_full,
   filename = "Kidney conference abstract/breakdown_gt_full.html"
 )
-
+saveRDS(breakdown_gt_full, "Kidney conference abstract/breakdown_gt_full.rds")
 
 #---- Heatmaps ----
 
@@ -358,3 +360,28 @@ ggsave(
   filename = "Kidney conference abstract/languages_res_full.png"
 )
 
+
+
+other_vars_full <- setdiff(
+  setdiff(
+    names(label_list),
+    c(file_vars_full, languages_vars_full, component_vars_full)
+  ),
+  "did_the_authors_explicitly_state_what_files_they_used"
+)
+
+other_res_full <- make_llm_agreement_heatmap(
+  df = df_filt_full,
+  vars = other_vars_full,
+  paper_id_col = "filename",
+  label_list = label_list,
+  title = "Other study features heatmap",
+  reorder = FALSE
+)
+
+other_res_full
+
+ggsave(
+  filename = "Kidney conference abstract/other_res_full.png",
+  plot = other_res_full,
+)

@@ -9,12 +9,12 @@ format: html
 
 #This code prepares the .qmd environment for analysis
 
-
-timing_table_atc<-readRDS("../ATC 2026 abstract/timing_table_atc.rds")
-kappa_table_atc<-readRDS("../ATC 2026 abstract/kappa_table_atc.rds")
-kappa_legend_gt<-readRDS("../ATC 2026 abstract/kappa_legend_gt.rds")
-breakdown_gt_atc<-readRDS("../ATC 2026 abstract/breakdown_gt_atc.rds")
-
+new_analysis_gt<-readRDS("../Kidney conference abstract/new_analysis_gt.rds")
+transplant_gt<-readRDS("../Kidney conference abstract/transplant_gt.rds")
+timing_gt<-readRDS("../Kidney conference abstract/timing_gt.rds")
+kappa_table_full<-readRDS("../Kidney conference abstract/kappa_table_full.rds")
+kappa_legend_gt<-readRDS("../Kidney conference abstract/kappa_legend_gt.rds")
+breakdown_gt_full<-readRDS("../Kidney conference abstract/breakdown_gt_full.rds")
 
 
 source("../R/Analysis setup.R")
@@ -29,34 +29,51 @@ The flowchart below summarizes how papers were identified, screened, and include
 
 ![](../Letter analysis/flowchart.png)
 
+## Descriptive performance
+
+The table below shows the wall-clock time required for each model to process the full dataset (not limited to transplant).
+
 ```{r, echo=FALSE}
 
-timing_table_atc
+timing_gt
+
+```
+
+```{r, echo=FALSE}
+
+new_analysis_gt
+
+```
+
+```{r, echo=FALSE}
+
+transplant_gt
 
 ```
 
 
+
 ```{r, echo=FALSE}
 
-breakdown_gt_atc
+breakdown_gt_full
 
 ```
 
 
 ## Heatmaps
 
-![](../ATC 2026 abstract/component_res_atc.png)
-![](../ATC 2026 abstract/files_res_atc.png)
-![](../ATC 2026 abstract/languages_res_atc.png)
+![](../Kidney conference abstract/component_res_full.png)
+![](../Kidney conference abstract/files_res_full.png)
+![](../Kidney conference abstract/languages_res_full.png)
 
 
-![](../ATC 2026 abstract/other_res_atc.png)
+![](../Kidney conference abstract/other_res_full.png)
 
 ## Kappa analysis
 
 ```{r, echo=FALSE}
 
-kappa_table_atc
+kappa_table_full
 
 ```
 
