@@ -39,11 +39,22 @@ timing_gt
 
 ```
 
+## Can the LLMs identify new patient-level data analyses?
+
+This table summarizes how well each large language model distinguished papers that reported a new patient-level data analysis from papers that did not. Human review was treated as the reference standard. For each model, the table shows how often the model classified papers into the same broad analytic category as the manual reviewer.
+
+
 ```{r, echo=FALSE}
 
 new_analysis_gt
 
 ```
+
+
+## Can the LLMs identify transplant-related analyses?
+
+This table focuses on papers that were classified by human review as new patient-level data analyses and asks a second question: can the models correctly identify which of these studies are transplant-related? Again, human review serves as the reference standard, and the table compares each model’s classifications with the manually assigned labels.
+
 
 ```{r, echo=FALSE}
 
@@ -52,6 +63,9 @@ transplant_gt
 ```
 
 
+## Comparison of human and LLM answers
+
+The next table summarizes how often each model matched the human-reviewed reference standard for selected study characteristics. These descriptive results provide an initial overview of performance before moving to the more detailed visual and κ-based summaries below.
 
 ```{r, echo=FALSE}
 
@@ -62,14 +76,32 @@ breakdown_gt_full
 
 ## Heatmaps
 
-![](../Kidney conference abstract/component_res_full.png)
-![](../Kidney conference abstract/files_res_full.png)
-![](../Kidney conference abstract/languages_res_full.png)
+The following heatmaps provide a more detailed view of extraction performance across groups of related variables. Rather than emphasizing one variable at a time, they highlight patterns within domains of abstraction and make it easier to identify where model performance was more or less reliable.
 
+### Analytic components
+
+This heatmap summarizes model performance for major analytic and study-design components. These variables reflect whether the models correctly identified core features of the study methods and analytic approach.
+
+![](../Kidney conference abstract/component_res_full.png)
+### USRDS files and data components
+
+This heatmap focuses on variables related to which USRDS files or data components were used in each paper. These details are often reported inconsistently in manuscripts, making them a particularly important test of structured PDF extraction.
+
+![](../Kidney conference abstract/files_res_full.png)
+### Programming languages
+
+This heatmap summarizes identification of programming languages used in the included studies. Programming languages were frequently omitted, briefly mentioned, or described indirectly, so this domain helps illustrate model performance when methodological reporting is sparse.
+
+![](../Kidney conference abstract/languages_res_full.png)
+### Other study features
+
+The final heatmap displays remaining variables that did not fit neatly into the earlier categories. Together, the four heatmaps provide a fuller picture of where model extraction aligned well with human review and where important gaps remained.
 
 ![](../Kidney conference abstract/other_res_full.png)
 
-## Kappa analysis
+## κ analysis
+
+the table below presents Cohen's κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.
 
 ```{r, echo=FALSE}
 
