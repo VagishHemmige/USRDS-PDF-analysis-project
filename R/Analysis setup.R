@@ -15,6 +15,8 @@ library(ellmer)
 library(pdftools)
 library(rstudioapi)
 library(purrr)
+library(patchwork)
+
 
 
 

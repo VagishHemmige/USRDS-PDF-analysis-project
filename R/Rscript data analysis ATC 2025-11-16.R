@@ -278,3 +278,298 @@ ggsave(
   filename = "ATC 2026 abstract/other_res_atc.png",
   plot = other_res_atc,
 )
+
+# ============================================================
+# Poster heatmap for ATC abstract
+# Combined heatmap + separate horizontal legend
+# ============================================================
+
+
+#--------------------------------------------------------------
+# 1. Wrap long variable labels for poster readability
+#--------------------------------------------------------------
+
+label_list_poster <- purrr::map(
+  label_list,
+  ~ stringr::str_wrap(.x, width = 20)
+)
+
+
+#--------------------------------------------------------------
+# 2. Poster-specific themes
+#--------------------------------------------------------------
+
+# Larger angled variable labels at the bottom of every panel
+poster_x_axis_theme <- theme(
+  axis.text.x = element_text(
+    size = 20,
+    angle = 55,
+    hjust = 1,
+    vjust = 1,
+    lineheight = 0.90
+  ),
+  plot.title = element_text(
+    size = 24,
+    face = "bold",
+    hjust = 0.5
+  ),
+  plot.margin = margin(
+    t = 7,
+    r = 5.5,
+    b = 12,
+    l = 5.5
+  )
+)
+
+# First panel:
+# retain paper labels and y-axis title, but suppress legend
+first_panel_theme <- theme(
+  legend.position = "none",
+  axis.text.y = element_text(
+    size = 11
+  ),
+  axis.title.y = element_text(
+    size = 24,
+    face = "bold"
+  )
+)
+
+# Subsequent panels:
+# remove repeated y-axis information and suppress legend
+later_panel_theme <- theme(
+  legend.position = "none",
+  axis.title.y = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks.y = element_blank()
+)
+
+
+#--------------------------------------------------------------
+# 3. Build the four heatmap sections
+#--------------------------------------------------------------
+
+components_poster_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = component_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list_poster,
+  title = "Analytic components",
+  subtitle = NULL,
+  reorder = FALSE,
+  show_paper_ids = TRUE,
+  left_margin = 10
+) +
+  first_panel_theme +
+  poster_x_axis_theme
+
+
+files_poster_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = file_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list_poster,
+  title = "USRDS files used",
+  subtitle = NULL,
+  reorder = FALSE,
+  show_paper_ids = FALSE,
+  left_margin = 0.5
+) +
+  later_panel_theme +
+  poster_x_axis_theme
+
+
+languages_poster_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = languages_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list_poster,
+  title = "Programming languages",
+  subtitle = NULL,
+  reorder = FALSE,
+  show_paper_ids = FALSE,
+  left_margin = 0.5
+) +
+  later_panel_theme +
+  poster_x_axis_theme
+
+
+other_poster_atc <- make_llm_agreement_heatmap(
+  df = df_filt_atc,
+  vars = other_vars_atc,
+  paper_id_col = "filename",
+  label_list = label_list_poster,
+  title = "Other study features",
+  subtitle = NULL,
+  reorder = FALSE,
+  show_paper_ids = FALSE,
+  left_margin = 0.5
+) +
+  later_panel_theme +
+  poster_x_axis_theme
+
+
+#--------------------------------------------------------------
+# 4. Allocate panel widths based on number of variables
+#--------------------------------------------------------------
+
+section_widths <- c(
+  length(component_vars_atc),
+  length(file_vars_atc),
+  length(languages_vars_atc),
+  length(other_vars_atc)
+)
+
+
+#--------------------------------------------------------------
+# 5. Assemble the combined poster heatmap
+#    No embedded legend
+#--------------------------------------------------------------
+
+combined_heatmap_atc <- wrap_plots(
+  components_poster_atc,
+  files_poster_atc,
+  languages_poster_atc,
+  other_poster_atc,
+  nrow = 1,
+  widths = section_widths
+) +
+  plot_annotation(
+    title = "Agreement between LLM extraction and human review",
+    subtitle = paste(
+      "Each tile indicates how many of the three LLMs matched",
+      "the human-reviewed value across 44 transplant-related papers"
+    ),
+    theme = theme(
+      plot.title = element_text(
+        size = 30,
+        face = "bold"
+      ),
+      plot.subtitle = element_text(
+        size = 24
+      )
+    )
+  )
+
+combined_heatmap_atc
+
+
+#--------------------------------------------------------------
+# 6. Create a separate horizontal legend
+#
+# Drawn directly as a standalone figure so that it can be
+# positioned and resized independently in PowerPoint.
+#--------------------------------------------------------------
+
+legend_df_atc <- tibble::tibble(
+  n_models_correct = factor(
+    c("0", "1", "2", "3"),
+    levels = c("0", "1", "2", "3")
+  ),
+  y = 1
+)
+
+heatmap_legend_atc <- ggplot(
+  legend_df_atc,
+  aes(
+    x = n_models_correct,
+    y = y,
+    fill = n_models_correct
+  )
+) +
+  geom_tile(
+    width = 0.85,
+    height = 0.75,
+    color = "white",
+    linewidth = 0.5
+  ) +
+  scale_fill_manual(
+    values = c(
+      "0" = "#b2182b",
+      "1" = "#ef8a62",
+      "2" = "#fddbc7",
+      "3" = "#d1e5f0"
+    ),
+    drop = FALSE
+  ) +
+  scale_x_discrete(
+    labels = c(
+      "0" = "0",
+      "1" = "1",
+      "2" = "2",
+      "3" = "3"
+    )
+  ) +
+  coord_cartesian(
+    clip = "off"
+  ) +
+  labs(
+    title = "Models matching human review",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_void(base_size = 16) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(
+      size = 18,
+      face = "bold",
+      hjust = 0.5,
+      margin = margin(b = 8)
+    ),
+    axis.text.x = element_text(
+      size = 17,
+      margin = margin(t = 5)
+    ),
+    plot.margin = margin(
+      t = 6,
+      r = 6,
+      b = 12,
+      l = 6
+    )
+  )
+
+heatmap_legend_atc
+
+
+#--------------------------------------------------------------
+# 7. Save combined heatmap
+#--------------------------------------------------------------
+
+ggsave(
+  filename = "ATC 2026 abstract/combined_heatmap_atc.svg",
+  plot = combined_heatmap_atc,
+  width = 34,
+  height = 15,
+  units = "in"
+)
+
+ggsave(
+  filename = "ATC 2026 abstract/combined_heatmap_atc.png",
+  plot = combined_heatmap_atc,
+  width = 34,
+  height = 15,
+  units = "in",
+  dpi = 300
+)
+
+
+#--------------------------------------------------------------
+# 8. Save separate horizontal legend
+#--------------------------------------------------------------
+
+ggsave(
+  filename = "ATC 2026 abstract/combined_heatmap_legend_atc.svg",
+  plot = heatmap_legend_atc,
+  width = 7,
+  height = 1.8,
+  units = "in"
+)
+
+ggsave(
+  filename = "ATC 2026 abstract/combined_heatmap_legend_atc.png",
+  plot = heatmap_legend_atc,
+  width = 7,
+  height = 1.8,
+  units = "in",
+  dpi = 300
+)

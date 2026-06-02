@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='129.60pt' viewBox='0 0 504.00 129.60'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwxMjkuNjA='>
+    <rect x='0.00' y='0.00' width='504.00' height='129.60' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwxMjkuNjA=)'>
+<rect x='26.48' y='33.64' width='99.58' height='60.25' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt; stroke-linejoin: miter; fill: #B2182B;' />
+<rect x='143.63' y='33.64' width='99.58' height='60.25' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt; stroke-linejoin: miter; fill: #EF8A62;' />
+<rect x='260.79' y='33.64' width='99.58' height='60.25' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt; stroke-linejoin: miter; fill: #FDDBC7;' />
+<rect x='377.94' y='33.64' width='99.58' height='60.25' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt; stroke-linejoin: miter; fill: #D1E5F0;' />
+<text x='76.27' y='115.86' text-anchor='middle' style='font-size: 17.00px; font-family: "Arial";' textLength='9.45px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='193.42' y='115.86' text-anchor='middle' style='font-size: 17.00px; font-family: "Arial";' textLength='9.45px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='310.58' y='115.86' text-anchor='middle' style='font-size: 17.00px; font-family: "Arial";' textLength='9.45px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='427.73' y='115.86' text-anchor='middle' style='font-size: 17.00px; font-family: "Arial";' textLength='9.45px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='252.00' y='18.87' text-anchor='middle' style='font-size: 18.00px; font-weight: bold; font-family: "Arial";' textLength='272.06px' lengthAdjust='spacingAndGlyphs'>Models matching human review</text>
+</g>
+</svg>
