@@ -54,6 +54,33 @@ The `get_breakdown()` function creates descriptive summaries for a given human-r
 #| eval: false
 ```
 
+## Function to add readable labels for tables
+
+The `add_label_for_gt()` function adds a `label` column to a results data frame by looking up each internal variable name in `label_list`. Variables without an entry in `label_list` keep their internal name as the label. It is used before building the kappa and breakdown `gt` tables so that rows display reader-friendly names.
+
+```{r}
+#| label: fn-add-label
+#| eval: false
+```
+
+## Function to color-code kappa values
+
+The `kappa_fill()` function maps each Cohen’s kappa value to a fill color, using bands based on the Landis and Koch agreement categories (slight, fair, moderate, substantial, almost perfect), with separate colors for negative values and exact zero. Missing kappas are left white. It is passed to `gt::data_color()` to shade the kappa tables.
+
+```{r}
+#| label: fn-kappa-fill
+#| eval: false
+```
+
+## Function to create the kappa legend
+
+The `create_kappa_legend_gt()` function builds a small `gt` table that explains the color scale used by `kappa_fill()`, listing each agreement category with its color swatch and kappa range, plus a row for kappas that could not be estimated. It accompanies the kappa tables in the results pages, posters, and slides.
+
+```{r}
+#| label: fn-kappa-legend
+#| eval: false
+```
+
 ## Function to create heatmap
 
 The `make_llm_agreement_heatmap()` function creates a paper-by-variable heatmap showing how many of the three language models matched the human-reviewed label for each observation. It can optionally relabel variables using `label_list`, reorder rows and columns by average agreement, hide paper IDs and adjust the left margin, and customize the plot title and subtitle. This figure is used to visualize where model agreement was high, where it was mixed, and which variables were most difficult for the models to classify consistently.
