@@ -2,16 +2,19 @@
 
 
 
-# ---- Import data ----
+## ---- import-data
+# Import data
 
 Anagha_summer_project_form_2025_raw <- read_excel("data-raw/Data abstraction Excel reviewer 1 and 2.xlsx", sheet = "Reviewer 2")
 
-# ---- Clean data ----
+## ---- clean-data
+# Clean data
 
 Anagha_summer_project_form_clean <- Anagha_summer_project_form_2025_raw %>%
   clean_names()%>%
   filter(confirmed_by_vh == "Yes")
 
+## ---- flowchart-build
 #Create flowchart of STROBE diagram
 Anagha_summer_project_form_clean_fc<-Anagha_summer_project_form_clean%>%
   as_fc(label = "Initial papers from Pubmed search")%>%
@@ -22,11 +25,13 @@ Anagha_summer_project_form_clean_fc<-Anagha_summer_project_form_clean%>%
   fc_split(is_this_a_transplant_related_study,
            label=c("Not transplant-related", "Transplant-related"))
 
+## ---- flowchart-export
 fc_draw(Anagha_summer_project_form_clean_fc)%>%
   fc_export("Letter analysis/flowchart.png")
 
 
 
+## ---- paper-table
 #Create table of included papers 
 paper_table_gt <-Anagha_summer_project_form_clean%>%
   
@@ -53,12 +58,14 @@ paper_table_gt <-Anagha_summer_project_form_clean%>%
     title = "Papers Included in the Analysis"
   )
 
+## ---- paper-table-save
 paper_table_gt
 saveRDS(paper_table_gt, file = "Letter analysis/paper_table_gt.rds")
 
 gtsave(filename = "Letter analysis/paper_table_gt.html",
        data=paper_table_gt)
 
+## ---- final-dataset
 #Create final dataset for analysis
 Anagha_summer_project_form_final <- Anagha_summer_project_form_clean_fc$data %>%
   
@@ -125,6 +132,7 @@ Anagha_summer_project_form_final <- Anagha_summer_project_form_clean_fc$data %>%
     )
   )
 
+## ---- split-transplant
 #Split the final data set into non-transplant and transplant components
 Anagha_summer_project_form_split <- Anagha_summer_project_form_final %>%
   group_by(is_this_a_transplant_related_study) %>%
@@ -133,7 +141,8 @@ Anagha_summer_project_form_split <- Anagha_summer_project_form_final %>%
 
 
 
-# ---- Analysis and table creation ----
+## ---- table1-build
+# Analysis and table creation
 
 #Save the overall table as a document
 letter_table1_gt<-Anagha_summer_project_form_final %>%
@@ -148,12 +157,14 @@ letter_table1_gt<-Anagha_summer_project_form_final %>%
   ) %>%
   tbl_summary() %>%
   as_gt()
+## ---- table1-save
 gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html",
        data=letter_table1_gt)
 saveRDS(letter_table1_gt, file = "Letter analysis/Letter analysis Table 1 overall raw.rds")
 
 
 
+## ---- table2-build
 letter_table2_gt<-Anagha_summer_project_form_final %>%
   
   select(
@@ -251,12 +262,14 @@ letter_table2_gt<-Anagha_summer_project_form_final %>%
   as_gt()
 
 
+## ---- table2-save
 saveRDS(letter_table2_gt, file = "Letter analysis/Letter analysis Table 2 stratified by transplant.rds")
 
 gtsave(filename = "Letter analysis/Letter analysis Table 2 stratified by transplant.html",
        data=letter_table2_gt)
 
 
+## ---- table3-build
 letter_table3_gt<-Anagha_summer_project_form_split[["transplant"]] %>%
   
   
@@ -354,6 +367,7 @@ letter_table3_gt<-Anagha_summer_project_form_split[["transplant"]] %>%
   
   as_gt()
 
+## ---- table3-save
 saveRDS(letter_table3_gt, file = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds")
 
 gtsave(filename = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.html",
