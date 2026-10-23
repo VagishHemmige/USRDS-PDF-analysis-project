@@ -8,3 +8,5 @@ Archive/
 data-raw/
 Results/
 /.quarto/
+
+**/*.quarto_ipynb

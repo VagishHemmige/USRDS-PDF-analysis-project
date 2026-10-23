@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>Results: LLM full – Analysis of USRDS-related papers</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -22,8 +28,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +41,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,15 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../quarto/results_LLM_transplant.html" rel="next">
 <link href="../quarto/results_manual.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b512256bc363577b27543e003c495f0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -124,7 +132,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <link rel="stylesheet" href="styles.scss">
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -350,23 +358,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>The table below shows the wall-clock time required for each model to process the full dataset (not limited to transplant).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fjmscxakjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fjmscxakjc table {
+<div id="gzehchfivw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gzehchfivw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fjmscxakjc thead, #fjmscxakjc tbody, #fjmscxakjc tfoot, #fjmscxakjc tr, #fjmscxakjc td, #fjmscxakjc th {
+#gzehchfivw thead, #gzehchfivw tbody, #gzehchfivw tfoot, #gzehchfivw tr, #gzehchfivw td, #gzehchfivw th {
   border-style: none;
 }
 
-#fjmscxakjc p {
+#gzehchfivw p {
   margin: 0;
   padding: 0;
 }
 
-#fjmscxakjc .gt_table {
+#gzehchfivw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -392,12 +400,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_caption {
+#gzehchfivw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fjmscxakjc .gt_title {
+#gzehchfivw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -409,7 +417,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#fjmscxakjc .gt_subtitle {
+#gzehchfivw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -421,7 +429,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#fjmscxakjc .gt_heading {
+#gzehchfivw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -433,13 +441,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_bottom_border {
+#gzehchfivw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_col_headings {
+#gzehchfivw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -454,7 +462,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_col_heading {
+#gzehchfivw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -474,7 +482,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#fjmscxakjc .gt_column_spanner_outer {
+#gzehchfivw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -486,15 +494,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#fjmscxakjc .gt_column_spanner_outer:first-child {
+#gzehchfivw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fjmscxakjc .gt_column_spanner_outer:last-child {
+#gzehchfivw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fjmscxakjc .gt_column_spanner {
+#gzehchfivw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -506,11 +514,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#fjmscxakjc .gt_spanner_row {
+#gzehchfivw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fjmscxakjc .gt_group_heading {
+#gzehchfivw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -536,7 +544,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#fjmscxakjc .gt_empty_group_heading {
+#gzehchfivw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -551,15 +559,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#fjmscxakjc .gt_from_md > :first-child {
+#gzehchfivw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fjmscxakjc .gt_from_md > :last-child {
+#gzehchfivw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fjmscxakjc .gt_row {
+#gzehchfivw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -578,7 +586,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#fjmscxakjc .gt_stub {
+#gzehchfivw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -591,7 +599,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#fjmscxakjc .gt_stub_row_group {
+#gzehchfivw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -605,15 +613,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#fjmscxakjc .gt_row_group_first td {
+#gzehchfivw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fjmscxakjc .gt_row_group_first th {
+#gzehchfivw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fjmscxakjc .gt_summary_row {
+#gzehchfivw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -623,16 +631,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#fjmscxakjc .gt_first_summary_row {
+#gzehchfivw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_first_summary_row.thick {
+#gzehchfivw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fjmscxakjc .gt_last_summary_row {
+#gzehchfivw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,7 +650,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_grand_summary_row {
+#gzehchfivw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -652,7 +660,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#fjmscxakjc .gt_first_grand_summary_row {
+#gzehchfivw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -662,7 +670,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_last_grand_summary_row_top {
+#gzehchfivw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -672,11 +680,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_striped {
+#gzehchfivw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fjmscxakjc .gt_table_body {
+#gzehchfivw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -685,7 +693,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_footnotes {
+#gzehchfivw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -699,7 +707,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_footnote {
+#gzehchfivw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -708,7 +716,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#fjmscxakjc .gt_sourcenotes {
+#gzehchfivw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -722,7 +730,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#fjmscxakjc .gt_sourcenote {
+#gzehchfivw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -730,83 +738,83 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#fjmscxakjc .gt_left {
+#gzehchfivw .gt_left {
   text-align: left;
 }
 
-#fjmscxakjc .gt_center {
+#gzehchfivw .gt_center {
   text-align: center;
 }
 
-#fjmscxakjc .gt_right {
+#gzehchfivw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fjmscxakjc .gt_font_normal {
+#gzehchfivw .gt_font_normal {
   font-weight: normal;
 }
 
-#fjmscxakjc .gt_font_bold {
+#gzehchfivw .gt_font_bold {
   font-weight: bold;
 }
 
-#fjmscxakjc .gt_font_italic {
+#gzehchfivw .gt_font_italic {
   font-style: italic;
 }
 
-#fjmscxakjc .gt_super {
+#gzehchfivw .gt_super {
   font-size: 65%;
 }
 
-#fjmscxakjc .gt_footnote_marks {
+#gzehchfivw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fjmscxakjc .gt_asterisk {
+#gzehchfivw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fjmscxakjc .gt_indent_1 {
+#gzehchfivw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fjmscxakjc .gt_indent_2 {
+#gzehchfivw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fjmscxakjc .gt_indent_3 {
+#gzehchfivw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fjmscxakjc .gt_indent_4 {
+#gzehchfivw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fjmscxakjc .gt_indent_5 {
+#gzehchfivw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fjmscxakjc .katex-display {
+#gzehchfivw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fjmscxakjc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gzehchfivw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="3" class="gt_heading gt_title gt_font_normal">Runtime of LLMs Used in the Analysis</th>
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Runtime of LLMs Used in the Analysis</td>
 </tr>
 <tr class="gt_heading even">
-<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Wall-clock time in minutes to process the full dataset</th>
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Wall-clock time in minutes to process the full dataset</td>
 </tr>
 <tr class="gt_col_headings header">
 <th id="Provider-(Company)" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Provider (Company)</th>
@@ -842,23 +850,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>This table summarizes how well each large language model distinguished papers that reported a new patient-level data analysis from papers that did not. Human review was treated as the reference standard. For each model, the table shows how often the model classified papers into the same broad analytic category as the manual reviewer.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="rsqsjghdmo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rsqsjghdmo table {
+<div id="fdnthoodsr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fdnthoodsr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rsqsjghdmo thead, #rsqsjghdmo tbody, #rsqsjghdmo tfoot, #rsqsjghdmo tr, #rsqsjghdmo td, #rsqsjghdmo th {
+#fdnthoodsr thead, #fdnthoodsr tbody, #fdnthoodsr tfoot, #fdnthoodsr tr, #fdnthoodsr td, #fdnthoodsr th {
   border-style: none;
 }
 
-#rsqsjghdmo p {
+#fdnthoodsr p {
   margin: 0;
   padding: 0;
 }
 
-#rsqsjghdmo .gt_table {
+#fdnthoodsr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -884,12 +892,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_caption {
+#fdnthoodsr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rsqsjghdmo .gt_title {
+#fdnthoodsr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -901,7 +909,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#rsqsjghdmo .gt_subtitle {
+#fdnthoodsr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -913,7 +921,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#rsqsjghdmo .gt_heading {
+#fdnthoodsr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -925,13 +933,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_bottom_border {
+#fdnthoodsr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_col_headings {
+#fdnthoodsr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -946,7 +954,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_col_heading {
+#fdnthoodsr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -966,7 +974,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#rsqsjghdmo .gt_column_spanner_outer {
+#fdnthoodsr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -978,15 +986,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#rsqsjghdmo .gt_column_spanner_outer:first-child {
+#fdnthoodsr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rsqsjghdmo .gt_column_spanner_outer:last-child {
+#fdnthoodsr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rsqsjghdmo .gt_column_spanner {
+#fdnthoodsr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -998,11 +1006,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#rsqsjghdmo .gt_spanner_row {
+#fdnthoodsr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rsqsjghdmo .gt_group_heading {
+#fdnthoodsr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1028,7 +1036,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#rsqsjghdmo .gt_empty_group_heading {
+#fdnthoodsr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1043,15 +1051,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#rsqsjghdmo .gt_from_md > :first-child {
+#fdnthoodsr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rsqsjghdmo .gt_from_md > :last-child {
+#fdnthoodsr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rsqsjghdmo .gt_row {
+#fdnthoodsr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1070,7 +1078,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#rsqsjghdmo .gt_stub {
+#fdnthoodsr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1083,7 +1091,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#rsqsjghdmo .gt_stub_row_group {
+#fdnthoodsr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1097,15 +1105,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#rsqsjghdmo .gt_row_group_first td {
+#fdnthoodsr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rsqsjghdmo .gt_row_group_first th {
+#fdnthoodsr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rsqsjghdmo .gt_summary_row {
+#fdnthoodsr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1115,16 +1123,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#rsqsjghdmo .gt_first_summary_row {
+#fdnthoodsr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_first_summary_row.thick {
+#fdnthoodsr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rsqsjghdmo .gt_last_summary_row {
+#fdnthoodsr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1134,7 +1142,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_grand_summary_row {
+#fdnthoodsr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1144,7 +1152,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#rsqsjghdmo .gt_first_grand_summary_row {
+#fdnthoodsr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1154,7 +1162,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_last_grand_summary_row_top {
+#fdnthoodsr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1164,11 +1172,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_striped {
+#fdnthoodsr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rsqsjghdmo .gt_table_body {
+#fdnthoodsr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1177,7 +1185,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_footnotes {
+#fdnthoodsr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1191,7 +1199,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_footnote {
+#fdnthoodsr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1200,7 +1208,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#rsqsjghdmo .gt_sourcenotes {
+#fdnthoodsr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1214,7 +1222,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#rsqsjghdmo .gt_sourcenote {
+#fdnthoodsr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1222,80 +1230,80 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#rsqsjghdmo .gt_left {
+#fdnthoodsr .gt_left {
   text-align: left;
 }
 
-#rsqsjghdmo .gt_center {
+#fdnthoodsr .gt_center {
   text-align: center;
 }
 
-#rsqsjghdmo .gt_right {
+#fdnthoodsr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rsqsjghdmo .gt_font_normal {
+#fdnthoodsr .gt_font_normal {
   font-weight: normal;
 }
 
-#rsqsjghdmo .gt_font_bold {
+#fdnthoodsr .gt_font_bold {
   font-weight: bold;
 }
 
-#rsqsjghdmo .gt_font_italic {
+#fdnthoodsr .gt_font_italic {
   font-style: italic;
 }
 
-#rsqsjghdmo .gt_super {
+#fdnthoodsr .gt_super {
   font-size: 65%;
 }
 
-#rsqsjghdmo .gt_footnote_marks {
+#fdnthoodsr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rsqsjghdmo .gt_asterisk {
+#fdnthoodsr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rsqsjghdmo .gt_indent_1 {
+#fdnthoodsr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rsqsjghdmo .gt_indent_2 {
+#fdnthoodsr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rsqsjghdmo .gt_indent_3 {
+#fdnthoodsr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rsqsjghdmo .gt_indent_4 {
+#fdnthoodsr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rsqsjghdmo .gt_indent_5 {
+#fdnthoodsr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rsqsjghdmo .katex-display {
+#fdnthoodsr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rsqsjghdmo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fdnthoodsr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">New data analysis classification</th>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">New data analysis classification</td>
 </tr>
 <tr class="gt_col_headings even">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Model</th>
@@ -1308,7 +1316,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">ChatGPT</td>
+<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">ChatGPT</th>
 <td class="gt_row gt_right" headers="stub_1_1 Human FALSE / LLM FALSE">13</td>
 <td class="gt_row gt_right" headers="stub_1_1 Human FALSE / LLM TRUE">9</td>
 <td class="gt_row gt_right" headers="stub_1_1 Human TRUE / LLM FALSE">1</td>
@@ -1316,7 +1324,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="stub_1_1 NA">0</td>
 </tr>
 <tr class="even">
-<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Claude</td>
+<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Claude</th>
 <td class="gt_row gt_right" headers="stub_1_2 Human FALSE / LLM FALSE">9</td>
 <td class="gt_row gt_right" headers="stub_1_2 Human FALSE / LLM TRUE">13</td>
 <td class="gt_row gt_right" headers="stub_1_2 Human TRUE / LLM FALSE">0</td>
@@ -1324,7 +1332,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="stub_1_2 NA">0</td>
 </tr>
 <tr class="odd">
-<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Gemini</td>
+<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Gemini</th>
 <td class="gt_row gt_right" headers="stub_1_3 Human FALSE / LLM FALSE">12</td>
 <td class="gt_row gt_right" headers="stub_1_3 Human FALSE / LLM TRUE">10</td>
 <td class="gt_row gt_right" headers="stub_1_3 Human TRUE / LLM FALSE">0</td>
@@ -1343,23 +1351,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>This table focuses on papers that were classified by human review as new patient-level data analyses and asks a second question: can the models correctly identify which of these studies are transplant-related? Again, human review serves as the reference standard, and the table compares each model’s classifications with the manually assigned labels.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="boyidvsiox" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#boyidvsiox table {
+<div id="tzgmqdbuig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tzgmqdbuig table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#boyidvsiox thead, #boyidvsiox tbody, #boyidvsiox tfoot, #boyidvsiox tr, #boyidvsiox td, #boyidvsiox th {
+#tzgmqdbuig thead, #tzgmqdbuig tbody, #tzgmqdbuig tfoot, #tzgmqdbuig tr, #tzgmqdbuig td, #tzgmqdbuig th {
   border-style: none;
 }
 
-#boyidvsiox p {
+#tzgmqdbuig p {
   margin: 0;
   padding: 0;
 }
 
-#boyidvsiox .gt_table {
+#tzgmqdbuig .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1385,12 +1393,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_caption {
+#tzgmqdbuig .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#boyidvsiox .gt_title {
+#tzgmqdbuig .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1402,7 +1410,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#boyidvsiox .gt_subtitle {
+#tzgmqdbuig .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1414,7 +1422,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#boyidvsiox .gt_heading {
+#tzgmqdbuig .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1426,13 +1434,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_bottom_border {
+#tzgmqdbuig .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_col_headings {
+#tzgmqdbuig .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1447,7 +1455,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_col_heading {
+#tzgmqdbuig .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1467,7 +1475,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#boyidvsiox .gt_column_spanner_outer {
+#tzgmqdbuig .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1479,15 +1487,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#boyidvsiox .gt_column_spanner_outer:first-child {
+#tzgmqdbuig .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#boyidvsiox .gt_column_spanner_outer:last-child {
+#tzgmqdbuig .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#boyidvsiox .gt_column_spanner {
+#tzgmqdbuig .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1499,11 +1507,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#boyidvsiox .gt_spanner_row {
+#tzgmqdbuig .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#boyidvsiox .gt_group_heading {
+#tzgmqdbuig .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1529,7 +1537,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#boyidvsiox .gt_empty_group_heading {
+#tzgmqdbuig .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1544,15 +1552,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#boyidvsiox .gt_from_md > :first-child {
+#tzgmqdbuig .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#boyidvsiox .gt_from_md > :last-child {
+#tzgmqdbuig .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#boyidvsiox .gt_row {
+#tzgmqdbuig .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1571,7 +1579,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#boyidvsiox .gt_stub {
+#tzgmqdbuig .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1584,7 +1592,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#boyidvsiox .gt_stub_row_group {
+#tzgmqdbuig .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1598,15 +1606,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#boyidvsiox .gt_row_group_first td {
+#tzgmqdbuig .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#boyidvsiox .gt_row_group_first th {
+#tzgmqdbuig .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#boyidvsiox .gt_summary_row {
+#tzgmqdbuig .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1616,16 +1624,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#boyidvsiox .gt_first_summary_row {
+#tzgmqdbuig .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_first_summary_row.thick {
+#tzgmqdbuig .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#boyidvsiox .gt_last_summary_row {
+#tzgmqdbuig .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1635,7 +1643,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_grand_summary_row {
+#tzgmqdbuig .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1645,7 +1653,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#boyidvsiox .gt_first_grand_summary_row {
+#tzgmqdbuig .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1655,7 +1663,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_last_grand_summary_row_top {
+#tzgmqdbuig .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1665,11 +1673,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_striped {
+#tzgmqdbuig .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#boyidvsiox .gt_table_body {
+#tzgmqdbuig .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1678,7 +1686,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_footnotes {
+#tzgmqdbuig .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1692,7 +1700,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_footnote {
+#tzgmqdbuig .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1701,7 +1709,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#boyidvsiox .gt_sourcenotes {
+#tzgmqdbuig .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1715,7 +1723,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#boyidvsiox .gt_sourcenote {
+#tzgmqdbuig .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1723,80 +1731,80 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#boyidvsiox .gt_left {
+#tzgmqdbuig .gt_left {
   text-align: left;
 }
 
-#boyidvsiox .gt_center {
+#tzgmqdbuig .gt_center {
   text-align: center;
 }
 
-#boyidvsiox .gt_right {
+#tzgmqdbuig .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#boyidvsiox .gt_font_normal {
+#tzgmqdbuig .gt_font_normal {
   font-weight: normal;
 }
 
-#boyidvsiox .gt_font_bold {
+#tzgmqdbuig .gt_font_bold {
   font-weight: bold;
 }
 
-#boyidvsiox .gt_font_italic {
+#tzgmqdbuig .gt_font_italic {
   font-style: italic;
 }
 
-#boyidvsiox .gt_super {
+#tzgmqdbuig .gt_super {
   font-size: 65%;
 }
 
-#boyidvsiox .gt_footnote_marks {
+#tzgmqdbuig .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#boyidvsiox .gt_asterisk {
+#tzgmqdbuig .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#boyidvsiox .gt_indent_1 {
+#tzgmqdbuig .gt_indent_1 {
   text-indent: 5px;
 }
 
-#boyidvsiox .gt_indent_2 {
+#tzgmqdbuig .gt_indent_2 {
   text-indent: 10px;
 }
 
-#boyidvsiox .gt_indent_3 {
+#tzgmqdbuig .gt_indent_3 {
   text-indent: 15px;
 }
 
-#boyidvsiox .gt_indent_4 {
+#tzgmqdbuig .gt_indent_4 {
   text-indent: 20px;
 }
 
-#boyidvsiox .gt_indent_5 {
+#tzgmqdbuig .gt_indent_5 {
   text-indent: 25px;
 }
 
-#boyidvsiox .katex-display {
+#tzgmqdbuig .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#boyidvsiox div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tzgmqdbuig div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">Transplant-related study classification</th>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">Transplant-related study classification</td>
 </tr>
 <tr class="gt_col_headings even">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Model</th>
@@ -1809,7 +1817,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">ChatGPT</td>
+<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">ChatGPT</th>
 <td class="gt_row gt_right" headers="stub_1_1 Human FALSE / LLM FALSE">104</td>
 <td class="gt_row gt_right" headers="stub_1_1 Human FALSE / LLM TRUE">2</td>
 <td class="gt_row gt_right" headers="stub_1_1 Human TRUE / LLM FALSE">3</td>
@@ -1817,7 +1825,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="stub_1_1 NA">0</td>
 </tr>
 <tr class="even">
-<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Claude</td>
+<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Claude</th>
 <td class="gt_row gt_right" headers="stub_1_2 Human FALSE / LLM FALSE">105</td>
 <td class="gt_row gt_right" headers="stub_1_2 Human FALSE / LLM TRUE">1</td>
 <td class="gt_row gt_right" headers="stub_1_2 Human TRUE / LLM FALSE">10</td>
@@ -1825,7 +1833,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="stub_1_2 NA">0</td>
 </tr>
 <tr class="odd">
-<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Gemini</td>
+<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Gemini</th>
 <td class="gt_row gt_right" headers="stub_1_3 Human FALSE / LLM FALSE">98</td>
 <td class="gt_row gt_right" headers="stub_1_3 Human FALSE / LLM TRUE">7</td>
 <td class="gt_row gt_right" headers="stub_1_3 Human TRUE / LLM FALSE">1</td>
@@ -1844,23 +1852,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>The next table summarizes how often each model matched the human-reviewed reference standard for selected study characteristics. These descriptive results provide an initial overview of performance before moving to the more detailed visual and κ-based summaries below.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ouyqdowzxa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ouyqdowzxa table {
+<div id="jjyzkaeiui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jjyzkaeiui table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ouyqdowzxa thead, #ouyqdowzxa tbody, #ouyqdowzxa tfoot, #ouyqdowzxa tr, #ouyqdowzxa td, #ouyqdowzxa th {
+#jjyzkaeiui thead, #jjyzkaeiui tbody, #jjyzkaeiui tfoot, #jjyzkaeiui tr, #jjyzkaeiui td, #jjyzkaeiui th {
   border-style: none;
 }
 
-#ouyqdowzxa p {
+#jjyzkaeiui p {
   margin: 0;
   padding: 0;
 }
 
-#ouyqdowzxa .gt_table {
+#jjyzkaeiui .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1886,12 +1894,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_caption {
+#jjyzkaeiui .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ouyqdowzxa .gt_title {
+#jjyzkaeiui .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1903,7 +1911,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#ouyqdowzxa .gt_subtitle {
+#jjyzkaeiui .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1915,7 +1923,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#ouyqdowzxa .gt_heading {
+#jjyzkaeiui .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1927,13 +1935,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_bottom_border {
+#jjyzkaeiui .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_col_headings {
+#jjyzkaeiui .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1948,7 +1956,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_col_heading {
+#jjyzkaeiui .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1968,7 +1976,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#ouyqdowzxa .gt_column_spanner_outer {
+#jjyzkaeiui .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1980,15 +1988,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#ouyqdowzxa .gt_column_spanner_outer:first-child {
+#jjyzkaeiui .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ouyqdowzxa .gt_column_spanner_outer:last-child {
+#jjyzkaeiui .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ouyqdowzxa .gt_column_spanner {
+#jjyzkaeiui .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2000,11 +2008,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#ouyqdowzxa .gt_spanner_row {
+#jjyzkaeiui .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ouyqdowzxa .gt_group_heading {
+#jjyzkaeiui .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2030,7 +2038,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#ouyqdowzxa .gt_empty_group_heading {
+#jjyzkaeiui .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2045,15 +2053,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#ouyqdowzxa .gt_from_md > :first-child {
+#jjyzkaeiui .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ouyqdowzxa .gt_from_md > :last-child {
+#jjyzkaeiui .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ouyqdowzxa .gt_row {
+#jjyzkaeiui .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2072,7 +2080,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#ouyqdowzxa .gt_stub {
+#jjyzkaeiui .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2085,7 +2093,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ouyqdowzxa .gt_stub_row_group {
+#jjyzkaeiui .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2099,15 +2107,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#ouyqdowzxa .gt_row_group_first td {
+#jjyzkaeiui .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ouyqdowzxa .gt_row_group_first th {
+#jjyzkaeiui .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ouyqdowzxa .gt_summary_row {
+#jjyzkaeiui .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2117,16 +2125,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ouyqdowzxa .gt_first_summary_row {
+#jjyzkaeiui .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_first_summary_row.thick {
+#jjyzkaeiui .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ouyqdowzxa .gt_last_summary_row {
+#jjyzkaeiui .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2136,7 +2144,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_grand_summary_row {
+#jjyzkaeiui .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2146,7 +2154,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ouyqdowzxa .gt_first_grand_summary_row {
+#jjyzkaeiui .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2156,7 +2164,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_last_grand_summary_row_top {
+#jjyzkaeiui .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2166,11 +2174,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_striped {
+#jjyzkaeiui .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ouyqdowzxa .gt_table_body {
+#jjyzkaeiui .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2179,7 +2187,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_footnotes {
+#jjyzkaeiui .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2193,7 +2201,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_footnote {
+#jjyzkaeiui .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2202,7 +2210,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ouyqdowzxa .gt_sourcenotes {
+#jjyzkaeiui .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2216,7 +2224,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ouyqdowzxa .gt_sourcenote {
+#jjyzkaeiui .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2224,77 +2232,77 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ouyqdowzxa .gt_left {
+#jjyzkaeiui .gt_left {
   text-align: left;
 }
 
-#ouyqdowzxa .gt_center {
+#jjyzkaeiui .gt_center {
   text-align: center;
 }
 
-#ouyqdowzxa .gt_right {
+#jjyzkaeiui .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ouyqdowzxa .gt_font_normal {
+#jjyzkaeiui .gt_font_normal {
   font-weight: normal;
 }
 
-#ouyqdowzxa .gt_font_bold {
+#jjyzkaeiui .gt_font_bold {
   font-weight: bold;
 }
 
-#ouyqdowzxa .gt_font_italic {
+#jjyzkaeiui .gt_font_italic {
   font-style: italic;
 }
 
-#ouyqdowzxa .gt_super {
+#jjyzkaeiui .gt_super {
   font-size: 65%;
 }
 
-#ouyqdowzxa .gt_footnote_marks {
+#jjyzkaeiui .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ouyqdowzxa .gt_asterisk {
+#jjyzkaeiui .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ouyqdowzxa .gt_indent_1 {
+#jjyzkaeiui .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ouyqdowzxa .gt_indent_2 {
+#jjyzkaeiui .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ouyqdowzxa .gt_indent_3 {
+#jjyzkaeiui .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ouyqdowzxa .gt_indent_4 {
+#jjyzkaeiui .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ouyqdowzxa .gt_indent_5 {
+#jjyzkaeiui .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ouyqdowzxa .katex-display {
+#jjyzkaeiui .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ouyqdowzxa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jjyzkaeiui div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -2330,7 +2338,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <tbody class="gt_table_body">
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub_row_group" headers="Basic demographics abstracted stub_2_1 stub_1">Basic demographics abstracted</td>
-<td id="stub_2_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Basic demographics abstracted stub_2_1 chat_nd">142/149</td>
 <td class="gt_row gt_right" headers="Basic demographics abstracted stub_2_1 chat_pct">95.3%</td>
 <td class="gt_row gt_right" headers="Basic demographics abstracted stub_2_1 cla_nd">146/149</td>
@@ -2340,7 +2348,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Cost data abstracted stub_2_2 stub_1">Cost data abstracted</td>
-<td id="stub_2_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_2 chat_nd">3/145</td>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_2 chat_pct">2.1%</td>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_2 cla_nd">1/145</td>
@@ -2349,7 +2357,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_2 gem_pct">2.8%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_3 chat_nd">4/4</td>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_3 chat_pct">100.0%</td>
 <td class="gt_row gt_right" headers="Cost data abstracted stub_2_3 cla_nd">4/4</td>
@@ -2359,7 +2367,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="CPT codes abstracted stub_2_4 stub_1">CPT codes abstracted</td>
-<td id="stub_2_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_4 chat_nd">6/103</td>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_4 chat_pct">5.8%</td>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_4 cla_nd">5/103</td>
@@ -2368,7 +2376,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_4 gem_pct">6.8%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_5 chat_nd">34/46</td>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_5 chat_pct">73.9%</td>
 <td class="gt_row gt_right" headers="CPT codes abstracted stub_2_5 cla_nd">38/46</td>
@@ -2378,7 +2386,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="ICD-10 codes abstracted stub_2_6 stub_1">ICD-10 codes abstracted</td>
-<td id="stub_2_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_6 chat_nd">5/121</td>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_6 chat_pct">4.1%</td>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_6 cla_nd">5/121</td>
@@ -2387,7 +2395,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_6 gem_pct">6.6%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_7" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_7" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_7 chat_nd">26/28</td>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_7 chat_pct">92.9%</td>
 <td class="gt_row gt_right" headers="ICD-10 codes abstracted stub_2_7 cla_nd">26/28</td>
@@ -2397,7 +2405,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="ICD-9 codes abstracted stub_2_8 stub_1">ICD-9 codes abstracted</td>
-<td id="stub_2_8" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_8" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_8 chat_nd">3/64</td>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_8 chat_pct">4.7%</td>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_8 cla_nd">3/64</td>
@@ -2406,7 +2414,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_8 gem_pct">7.8%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_9" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_9" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_9 chat_nd">79/85</td>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_9 chat_pct">92.9%</td>
 <td class="gt_row gt_right" headers="ICD-9 codes abstracted stub_2_9 cla_nd">80/85</td>
@@ -2416,7 +2424,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Part D medication data abstracted stub_2_10 stub_1">Part D medication data abstracted</td>
-<td id="stub_2_10" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_10" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_10 chat_nd">0/116</td>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_10 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_10 cla_nd">0/116</td>
@@ -2425,7 +2433,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_10 gem_pct">0.9%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_11" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_11" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_11 chat_nd">30/33</td>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_11 chat_pct">90.9%</td>
 <td class="gt_row gt_right" headers="Part D medication data abstracted stub_2_11 cla_nd">31/33</td>
@@ -2435,7 +2443,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Residential location abstracted stub_2_12 stub_1">Residential location abstracted</td>
-<td id="stub_2_12" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_12" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_12 chat_nd">6/100</td>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_12 chat_pct">6.0%</td>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_12 cla_nd">13/100</td>
@@ -2444,7 +2452,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_12 gem_pct">14.0%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_13" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_13" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_13 chat_nd">42/49</td>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_13 chat_pct">85.7%</td>
 <td class="gt_row gt_right" headers="Residential location abstracted stub_2_13 cla_nd">46/49</td>
@@ -2454,7 +2462,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Transplant-specific data abstracted stub_2_14 stub_1">Transplant-specific data abstracted</td>
-<td id="stub_2_14" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_14" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_14 chat_nd">28/95</td>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_14 chat_pct">29.5%</td>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_14 cla_nd">16/95</td>
@@ -2463,7 +2471,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_14 gem_pct">25.3%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_15" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_15" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_15 chat_nd">51/54</td>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_15 chat_pct">94.4%</td>
 <td class="gt_row gt_right" headers="Transplant-specific data abstracted stub_2_15 cla_nd">43/54</td>
@@ -2473,7 +2481,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Authors shared code stub_2_16 stub_1">Authors shared code</td>
-<td id="stub_2_16" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_16" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_16 chat_nd">1/144</td>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_16 chat_pct">0.7%</td>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_16 cla_nd">0/144</td>
@@ -2482,7 +2490,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Authors shared code stub_2_16 gem_pct">0.7%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_17" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_17" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_17 chat_nd">2/6</td>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_17 chat_pct">33.3%</td>
 <td class="gt_row gt_right" headers="Authors shared code stub_2_17 cla_nd">3/6</td>
@@ -2492,7 +2500,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Programming language stated stub_2_18 stub_1">Programming language stated</td>
-<td id="stub_2_18" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_18" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_18 chat_nd">1/23</td>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_18 chat_pct">4.3%</td>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_18 cla_nd">0/23</td>
@@ -2501,7 +2509,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Programming language stated stub_2_18 gem_pct">4.3%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_19" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_19" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_19 chat_nd">118/127</td>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_19 chat_pct">92.9%</td>
 <td class="gt_row gt_right" headers="Programming language stated stub_2_19 cla_nd">126/127</td>
@@ -2511,7 +2519,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Files/codes appropriate for research question stub_2_20 stub_1">Files/codes appropriate for research question</td>
-<td id="stub_2_20" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_20" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_20 chat_nd">3/4</td>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_20 chat_pct">75.0%</td>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_20 cla_nd">4/4</td>
@@ -2520,7 +2528,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_20 gem_pct">100.0%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_21" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_21" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_21 chat_nd">119/146</td>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_21 chat_pct">81.5%</td>
 <td class="gt_row gt_right" headers="Files/codes appropriate for research question stub_2_21 cla_nd">142/146</td>
@@ -2530,7 +2538,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left gt_stub_row_group" headers="Core file used stub_2_22 stub_1">Core file used</td>
-<td id="stub_2_22" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_22" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Core file used stub_2_22 chat_nd">94/150</td>
 <td class="gt_row gt_right" headers="Core file used stub_2_22 chat_pct">62.7%</td>
 <td class="gt_row gt_right" headers="Core file used stub_2_22 cla_nd">144/150</td>
@@ -2540,7 +2548,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="CROWNWeb file used stub_2_23 stub_1">CROWNWeb file used</td>
-<td id="stub_2_23" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_23" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_23 chat_nd">6/131</td>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_23 chat_pct">4.6%</td>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_23 cla_nd">6/131</td>
@@ -2549,7 +2557,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_23 gem_pct">11.5%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_24" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_24" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_24 chat_nd">18/19</td>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_24 chat_pct">94.7%</td>
 <td class="gt_row gt_right" headers="CROWNWeb file used stub_2_24 cla_nd">19/19</td>
@@ -2559,7 +2567,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Hospital file used stub_2_25 stub_1">Hospital file used</td>
-<td id="stub_2_25" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_25" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_25 chat_nd">1/98</td>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_25 chat_pct">1.0%</td>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_25 cla_nd">11/98</td>
@@ -2568,7 +2576,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Hospital file used stub_2_25 gem_pct">27.6%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_26" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_26" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_26 chat_nd">9/52</td>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_26 chat_pct">17.3%</td>
 <td class="gt_row gt_right" headers="Hospital file used stub_2_26 cla_nd">33/52</td>
@@ -2578,7 +2586,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Institution file used stub_2_27 stub_1">Institution file used</td>
-<td id="stub_2_27" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_27" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Institution file used stub_2_27 chat_nd">7/75</td>
 <td class="gt_row gt_right" headers="Institution file used stub_2_27 chat_pct">9.3%</td>
 <td class="gt_row gt_right" headers="Institution file used stub_2_27 cla_nd">8/75</td>
@@ -2587,7 +2595,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Institution file used stub_2_27 gem_pct">18.7%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_28" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_28" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Institution file used stub_2_28 chat_nd">37/75</td>
 <td class="gt_row gt_right" headers="Institution file used stub_2_28 chat_pct">49.3%</td>
 <td class="gt_row gt_right" headers="Institution file used stub_2_28 cla_nd">49/75</td>
@@ -2597,7 +2605,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Part D file used stub_2_29 stub_1">Part D file used</td>
-<td id="stub_2_29" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_29" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Part D file used stub_2_29 chat_nd">0/117</td>
 <td class="gt_row gt_right" headers="Part D file used stub_2_29 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="Part D file used stub_2_29 cla_nd">1/117</td>
@@ -2606,7 +2614,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Part D file used stub_2_29 gem_pct">0.9%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_30" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_30" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Part D file used stub_2_30 chat_nd">24/33</td>
 <td class="gt_row gt_right" headers="Part D file used stub_2_30 chat_pct">72.7%</td>
 <td class="gt_row gt_right" headers="Part D file used stub_2_30 cla_nd">31/33</td>
@@ -2616,7 +2624,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Physician/Supplier file used stub_2_31 stub_1">Physician/Supplier file used</td>
-<td id="stub_2_31" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_31" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_31 chat_nd">4/79</td>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_31 chat_pct">5.1%</td>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_31 cla_nd">3/79</td>
@@ -2625,7 +2633,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_31 gem_pct">13.9%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_32" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_32" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_32 chat_nd">30/71</td>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_32 chat_pct">42.3%</td>
 <td class="gt_row gt_right" headers="Physician/Supplier file used stub_2_32 cla_nd">43/71</td>
@@ -2635,7 +2643,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Transplant file used stub_2_33 stub_1">Transplant file used</td>
-<td id="stub_2_33" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_33" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_33 chat_nd">3/105</td>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_33 chat_pct">2.9%</td>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_33 cla_nd">13/105</td>
@@ -2644,7 +2652,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Transplant file used stub_2_33 gem_pct">5.7%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_34" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_34" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_34 chat_nd">15/45</td>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_34 chat_pct">33.3%</td>
 <td class="gt_row gt_right" headers="Transplant file used stub_2_34 cla_nd">28/45</td>
@@ -2654,7 +2662,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Transplant-related study stub_2_35 stub_1">Transplant-related study</td>
-<td id="stub_2_35" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_35" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_35 chat_nd">2/106</td>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_35 chat_pct">1.9%</td>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_35 cla_nd">1/106</td>
@@ -2663,7 +2671,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_35 gem_pct">6.6%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_36" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_36" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_36 chat_nd">41/44</td>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_36 chat_pct">93.2%</td>
 <td class="gt_row gt_right" headers="Transplant-related study stub_2_36 cla_nd">34/44</td>
@@ -2673,7 +2681,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub_row_group" headers="New patient-level data analysis stub_2_37 stub_1">New patient-level data analysis</td>
-<td id="stub_2_37" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_37" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="New patient-level data analysis stub_2_37 chat_nd">149/150</td>
 <td class="gt_row gt_right" headers="New patient-level data analysis stub_2_37 chat_pct">99.3%</td>
 <td class="gt_row gt_right" headers="New patient-level data analysis stub_2_37 cla_nd">150/150</td>
@@ -2683,7 +2691,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left gt_stub_row_group" headers="languages_used_Julia stub_2_38 stub_1">languages_used_Julia</td>
-<td id="stub_2_38" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_38" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="languages_used_Julia stub_2_38 chat_nd">0/127</td>
 <td class="gt_row gt_right" headers="languages_used_Julia stub_2_38 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="languages_used_Julia stub_2_38 cla_nd">0/127</td>
@@ -2693,7 +2701,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub_row_group" headers="languages_used_Matlab stub_2_39 stub_1">languages_used_Matlab</td>
-<td id="stub_2_39" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_39" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="languages_used_Matlab stub_2_39 chat_nd">0/127</td>
 <td class="gt_row gt_right" headers="languages_used_Matlab stub_2_39 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="languages_used_Matlab stub_2_39 cla_nd">0/127</td>
@@ -2703,7 +2711,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Python used stub_2_40 stub_1">Python used</td>
-<td id="stub_2_40" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_40" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Python used stub_2_40 chat_nd">0/126</td>
 <td class="gt_row gt_right" headers="Python used stub_2_40 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="Python used stub_2_40 cla_nd">0/126</td>
@@ -2712,7 +2720,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Python used stub_2_40 gem_pct">0.0%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_41" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_41" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Python used stub_2_41 chat_nd">1/1</td>
 <td class="gt_row gt_right" headers="Python used stub_2_41 chat_pct">100.0%</td>
 <td class="gt_row gt_right" headers="Python used stub_2_41 cla_nd">1/1</td>
@@ -2722,7 +2730,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="R used stub_2_42 stub_1">R used</td>
-<td id="stub_2_42" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_42" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="R used stub_2_42 chat_nd">0/94</td>
 <td class="gt_row gt_right" headers="R used stub_2_42 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="R used stub_2_42 cla_nd">0/94</td>
@@ -2731,7 +2739,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="R used stub_2_42 gem_pct">0.0%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_43" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_43" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="R used stub_2_43 chat_nd">29/33</td>
 <td class="gt_row gt_right" headers="R used stub_2_43 chat_pct">87.9%</td>
 <td class="gt_row gt_right" headers="R used stub_2_43 cla_nd">31/33</td>
@@ -2741,7 +2749,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="SAS used stub_2_44 stub_1">SAS used</td>
-<td id="stub_2_44" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_44" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="SAS used stub_2_44 chat_nd">3/42</td>
 <td class="gt_row gt_right" headers="SAS used stub_2_44 chat_pct">7.1%</td>
 <td class="gt_row gt_right" headers="SAS used stub_2_44 cla_nd">1/42</td>
@@ -2750,7 +2758,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="SAS used stub_2_44 gem_pct">2.4%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_45" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_45" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="SAS used stub_2_45 chat_nd">80/85</td>
 <td class="gt_row gt_right" headers="SAS used stub_2_45 chat_pct">94.1%</td>
 <td class="gt_row gt_right" headers="SAS used stub_2_45 cla_nd">84/85</td>
@@ -2760,7 +2768,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="SPSS used stub_2_46 stub_1">SPSS used</td>
-<td id="stub_2_46" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_46" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="SPSS used stub_2_46 chat_nd">0/123</td>
 <td class="gt_row gt_right" headers="SPSS used stub_2_46 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="SPSS used stub_2_46 cla_nd">0/123</td>
@@ -2769,7 +2777,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="SPSS used stub_2_46 gem_pct">0.0%</td>
 </tr>
 <tr class="odd">
-<td id="stub_2_47" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_47" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="SPSS used stub_2_47 chat_nd">3/4</td>
 <td class="gt_row gt_right" headers="SPSS used stub_2_47 chat_pct">75.0%</td>
 <td class="gt_row gt_right" headers="SPSS used stub_2_47 cla_nd">4/4</td>
@@ -2779,7 +2787,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left gt_stub_row_group" headers="languages_used_SQL stub_2_48 stub_1">languages_used_SQL</td>
-<td id="stub_2_48" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_48" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="languages_used_SQL stub_2_48 chat_nd">0/127</td>
 <td class="gt_row gt_right" headers="languages_used_SQL stub_2_48 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="languages_used_SQL stub_2_48 cla_nd">0/127</td>
@@ -2789,7 +2797,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Stata used stub_2_49 stub_1">Stata used</td>
-<td id="stub_2_49" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_49" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Stata used stub_2_49 chat_nd">0/90</td>
 <td class="gt_row gt_right" headers="Stata used stub_2_49 chat_pct">0.0%</td>
 <td class="gt_row gt_right" headers="Stata used stub_2_49 cla_nd">0/90</td>
@@ -2798,7 +2806,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Stata used stub_2_49 gem_pct">0.0%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_50" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_50" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Stata used stub_2_50 chat_nd">34/37</td>
 <td class="gt_row gt_right" headers="Stata used stub_2_50 chat_pct">91.9%</td>
 <td class="gt_row gt_right" headers="Stata used stub_2_50 cla_nd">37/37</td>
@@ -2808,7 +2816,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Study funded stub_2_51 stub_1">Study funded</td>
-<td id="stub_2_51" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_51" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Study funded stub_2_51 chat_nd">8/33</td>
 <td class="gt_row gt_right" headers="Study funded stub_2_51 chat_pct">24.2%</td>
 <td class="gt_row gt_right" headers="Study funded stub_2_51 cla_nd">7/33</td>
@@ -2817,7 +2825,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Study funded stub_2_51 gem_pct">39.4%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_52" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_52" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Study funded stub_2_52 chat_nd">117/117</td>
 <td class="gt_row gt_right" headers="Study funded stub_2_52 chat_pct">100.0%</td>
 <td class="gt_row gt_right" headers="Study funded stub_2_52 cla_nd">112/117</td>
@@ -2827,7 +2835,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td rowspan="2" class="gt_row gt_left gt_stub_row_group" headers="Any crosswalks used stub_2_53 stub_1">Any crosswalks used</td>
-<td id="stub_2_53" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</td>
+<th id="stub_2_53" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">FALSE</th>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_53 chat_nd">9/134</td>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_53 chat_pct">6.7%</td>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_53 cla_nd">9/134</td>
@@ -2836,7 +2844,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_53 gem_pct">4.5%</td>
 </tr>
 <tr class="even">
-<td id="stub_2_54" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_54" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_54 chat_nd">8/16</td>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_54 chat_pct">50.0%</td>
 <td class="gt_row gt_right" headers="Any crosswalks used stub_2_54 cla_nd">6/16</td>
@@ -2846,7 +2854,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub_row_group" headers="Covered by proposed usRds package stub_2_55 stub_1">Covered by proposed usRds package</td>
-<td id="stub_2_55" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</td>
+<th id="stub_2_55" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row">TRUE</th>
 <td class="gt_row gt_right" headers="Covered by proposed usRds package stub_2_55 chat_nd">133/150</td>
 <td class="gt_row gt_right" headers="Covered by proposed usRds package stub_2_55 chat_pct">88.7%</td>
 <td class="gt_row gt_right" headers="Covered by proposed usRds package stub_2_55 cla_nd">123/150</td>
@@ -2890,23 +2898,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>The table below presents Cohen’s κ comparing each model with the human-reviewed reference standard across the included variables. κ provides a stricter measure of agreement and is especially useful when some categories are much more common than others.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ddtvkeeqnk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ddtvkeeqnk table {
+<div id="ejetawtoog" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ejetawtoog table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ddtvkeeqnk thead, #ddtvkeeqnk tbody, #ddtvkeeqnk tfoot, #ddtvkeeqnk tr, #ddtvkeeqnk td, #ddtvkeeqnk th {
+#ejetawtoog thead, #ejetawtoog tbody, #ejetawtoog tfoot, #ejetawtoog tr, #ejetawtoog td, #ejetawtoog th {
   border-style: none;
 }
 
-#ddtvkeeqnk p {
+#ejetawtoog p {
   margin: 0;
   padding: 0;
 }
 
-#ddtvkeeqnk .gt_table {
+#ejetawtoog .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2932,12 +2940,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_caption {
+#ejetawtoog .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ddtvkeeqnk .gt_title {
+#ejetawtoog .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2949,7 +2957,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#ddtvkeeqnk .gt_subtitle {
+#ejetawtoog .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2961,7 +2969,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#ddtvkeeqnk .gt_heading {
+#ejetawtoog .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2973,13 +2981,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_bottom_border {
+#ejetawtoog .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_col_headings {
+#ejetawtoog .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2994,7 +3002,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_col_heading {
+#ejetawtoog .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3014,7 +3022,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#ddtvkeeqnk .gt_column_spanner_outer {
+#ejetawtoog .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3026,15 +3034,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#ddtvkeeqnk .gt_column_spanner_outer:first-child {
+#ejetawtoog .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ddtvkeeqnk .gt_column_spanner_outer:last-child {
+#ejetawtoog .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ddtvkeeqnk .gt_column_spanner {
+#ejetawtoog .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3046,11 +3054,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#ddtvkeeqnk .gt_spanner_row {
+#ejetawtoog .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ddtvkeeqnk .gt_group_heading {
+#ejetawtoog .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3076,7 +3084,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#ddtvkeeqnk .gt_empty_group_heading {
+#ejetawtoog .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3091,15 +3099,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#ddtvkeeqnk .gt_from_md > :first-child {
+#ejetawtoog .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ddtvkeeqnk .gt_from_md > :last-child {
+#ejetawtoog .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ddtvkeeqnk .gt_row {
+#ejetawtoog .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3118,7 +3126,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#ddtvkeeqnk .gt_stub {
+#ejetawtoog .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3131,7 +3139,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ddtvkeeqnk .gt_stub_row_group {
+#ejetawtoog .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3145,15 +3153,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#ddtvkeeqnk .gt_row_group_first td {
+#ejetawtoog .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ddtvkeeqnk .gt_row_group_first th {
+#ejetawtoog .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ddtvkeeqnk .gt_summary_row {
+#ejetawtoog .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3163,16 +3171,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ddtvkeeqnk .gt_first_summary_row {
+#ejetawtoog .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_first_summary_row.thick {
+#ejetawtoog .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ddtvkeeqnk .gt_last_summary_row {
+#ejetawtoog .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3182,7 +3190,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_grand_summary_row {
+#ejetawtoog .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3192,7 +3200,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ddtvkeeqnk .gt_first_grand_summary_row {
+#ejetawtoog .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3202,7 +3210,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_last_grand_summary_row_top {
+#ejetawtoog .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3212,11 +3220,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_striped {
+#ejetawtoog .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ddtvkeeqnk .gt_table_body {
+#ejetawtoog .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3225,7 +3233,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_footnotes {
+#ejetawtoog .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3239,7 +3247,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_footnote {
+#ejetawtoog .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3248,7 +3256,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ddtvkeeqnk .gt_sourcenotes {
+#ejetawtoog .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3262,7 +3270,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#ddtvkeeqnk .gt_sourcenote {
+#ejetawtoog .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3270,80 +3278,80 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#ddtvkeeqnk .gt_left {
+#ejetawtoog .gt_left {
   text-align: left;
 }
 
-#ddtvkeeqnk .gt_center {
+#ejetawtoog .gt_center {
   text-align: center;
 }
 
-#ddtvkeeqnk .gt_right {
+#ejetawtoog .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ddtvkeeqnk .gt_font_normal {
+#ejetawtoog .gt_font_normal {
   font-weight: normal;
 }
 
-#ddtvkeeqnk .gt_font_bold {
+#ejetawtoog .gt_font_bold {
   font-weight: bold;
 }
 
-#ddtvkeeqnk .gt_font_italic {
+#ejetawtoog .gt_font_italic {
   font-style: italic;
 }
 
-#ddtvkeeqnk .gt_super {
+#ejetawtoog .gt_super {
   font-size: 65%;
 }
 
-#ddtvkeeqnk .gt_footnote_marks {
+#ejetawtoog .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ddtvkeeqnk .gt_asterisk {
+#ejetawtoog .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ddtvkeeqnk .gt_indent_1 {
+#ejetawtoog .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ddtvkeeqnk .gt_indent_2 {
+#ejetawtoog .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ddtvkeeqnk .gt_indent_3 {
+#ejetawtoog .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ddtvkeeqnk .gt_indent_4 {
+#ejetawtoog .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ddtvkeeqnk .gt_indent_5 {
+#ejetawtoog .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ddtvkeeqnk .katex-display {
+#ejetawtoog .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ddtvkeeqnk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ejetawtoog div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Cohen’s κ: LLM vs Human Across All Variables</th>
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Cohen’s κ: LLM vs Human Across All Variables</td>
 </tr>
 <tr class="gt_col_headings even">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
@@ -3354,7 +3362,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<td colspan="4" id="Components of USRDS used" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Components of USRDS used</td>
+<th colspan="4" id="Components of USRDS used" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Components of USRDS used</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left gt_stub gt_indent_4" headers="Components of USRDS used stub_1_1 stub_1">Basic demographics abstracted</td>
@@ -3405,7 +3413,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Components of USRDS used stub_1_8 Gemini" style="background-color: #D9EAD3; color: #000000">0.576</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<td colspan="4" id="Files used" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Files used</td>
+<th colspan="4" id="Files used" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Files used</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub gt_indent_4" headers="Files used stub_1_9 stub_1">Core file used</td>
@@ -3450,7 +3458,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Files used stub_1_15 Gemini" style="background-color: #B6D7A8; color: #000000">0.739</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<td colspan="4" id="Programming languages" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Programming languages</td>
+<th colspan="4" id="Programming languages" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Programming languages</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left gt_stub gt_indent_4" headers="Programming languages stub_1_16 stub_1">Python used</td>
@@ -3483,58 +3491,58 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <td class="gt_row gt_right" headers="Programming languages stub_1_20 Gemini" style="background-color: #93C47D; color: #000000">1.000</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<td colspan="4" class="gt_empty_group_heading" data-quarto-table-cell-role="th" scope="colgroup"></td>
+<th colspan="4" class="gt_empty_group_heading" data-quarto-table-cell-role="th" scope="colgroup"></th>
 </tr>
 <tr class="gt_row_group_first odd">
-<td id="stub_1_21" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">USRDS files explicitly stated</td>
+<th id="stub_1_21" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">USRDS files explicitly stated</th>
 <td class="gt_row gt_right" headers="NA stub_1_21 ChatGPT" style="background-color: #FFFFFF; color: #000000">-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></td>
 <td class="gt_row gt_right" headers="NA stub_1_21 Claude" style="background-color: #FFFFFF; color: #000000">-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></td>
 <td class="gt_row gt_right" headers="NA stub_1_21 Gemini" style="background-color: #FFFFFF; color: #000000">-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></td>
 </tr>
 <tr class="even">
-<td id="stub_1_22" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Authors shared code</td>
+<th id="stub_1_22" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Authors shared code</th>
 <td class="gt_row gt_right" headers="NA stub_1_22 ChatGPT" style="background-color: #D9EAD3; color: #000000">0.429</td>
 <td class="gt_row gt_right" headers="NA stub_1_22 Claude" style="background-color: #B6D7A8; color: #000000"> 0.658</td>
 <td class="gt_row gt_right" headers="NA stub_1_22 Gemini" style="background-color: #D9EAD3; color: #000000">0.429</td>
 </tr>
 <tr class="odd">
-<td id="stub_1_23" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Programming language stated</td>
+<th id="stub_1_23" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Programming language stated</th>
 <td class="gt_row gt_right" headers="NA stub_1_23 ChatGPT" style="background-color: #B6D7A8; color: #000000">0.775</td>
 <td class="gt_row gt_right" headers="NA stub_1_23 Claude" style="background-color: #93C47D; color: #000000"> 0.975</td>
 <td class="gt_row gt_right" headers="NA stub_1_23 Gemini" style="background-color: #93C47D; color: #000000">0.949</td>
 </tr>
 <tr class="even">
-<td id="stub_1_24" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Files/codes appropriate for research question</td>
+<th id="stub_1_24" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Files/codes appropriate for research question</th>
 <td class="gt_row gt_right" headers="NA stub_1_24 ChatGPT" style="background-color: #FCE5CD; color: #000000">0.017</td>
 <td class="gt_row gt_right" headers="NA stub_1_24 Claude" style="background-color: #E6B8B7; color: #000000">−0.027</td>
 <td class="gt_row gt_right" headers="NA stub_1_24 Gemini" style="background-color: #F4CCCC; color: #000000">0.000</td>
 </tr>
 <tr class="odd">
-<td id="stub_1_25" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Transplant-related study</td>
+<th id="stub_1_25" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Transplant-related study</th>
 <td class="gt_row gt_right" headers="NA stub_1_25 ChatGPT" style="background-color: #93C47D; color: #000000">0.919</td>
 <td class="gt_row gt_right" headers="NA stub_1_25 Claude" style="background-color: #93C47D; color: #000000"> 0.812</td>
 <td class="gt_row gt_right" headers="NA stub_1_25 Gemini" style="background-color: #93C47D; color: #000000">0.876</td>
 </tr>
 <tr class="even">
-<td id="stub_1_26" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">New patient-level data analysis</td>
+<th id="stub_1_26" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">New patient-level data analysis</th>
 <td class="gt_row gt_right" headers="NA stub_1_26 ChatGPT" style="background-color: #F4CCCC; color: #000000">0.000</td>
 <td class="gt_row gt_right" headers="NA stub_1_26 Claude" style="background-color: #FFFFFF; color: #000000">-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></td>
 <td class="gt_row gt_right" headers="NA stub_1_26 Gemini" style="background-color: #FFFFFF; color: #000000">-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></td>
 </tr>
 <tr class="odd">
-<td id="stub_1_27" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Study funded</td>
+<th id="stub_1_27" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Study funded</th>
 <td class="gt_row gt_right" headers="NA stub_1_27 ChatGPT" style="background-color: #93C47D; color: #000000">0.830</td>
 <td class="gt_row gt_right" headers="NA stub_1_27 Claude" style="background-color: #B6D7A8; color: #000000"> 0.762</td>
 <td class="gt_row gt_right" headers="NA stub_1_27 Gemini" style="background-color: #B6D7A8; color: #000000">0.705</td>
 </tr>
 <tr class="even">
-<td id="stub_1_28" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Any crosswalks used</td>
+<th id="stub_1_28" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Any crosswalks used</th>
 <td class="gt_row gt_right" headers="NA stub_1_28 ChatGPT" style="background-color: #D9EAD3; color: #000000">0.421</td>
 <td class="gt_row gt_right" headers="NA stub_1_28 Claude" style="background-color: #FFF2CC; color: #000000"> 0.317</td>
 <td class="gt_row gt_right" headers="NA stub_1_28 Gemini" style="background-color: #D9EAD3; color: #000000">0.428</td>
 </tr>
 <tr class="odd">
-<td id="stub_1_29" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Covered by proposed usRds package</td>
+<th id="stub_1_29" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Covered by proposed usRds package</th>
 <td class="gt_row gt_right" headers="NA stub_1_29 ChatGPT" style="background-color: #F4CCCC; color: #000000">0.000</td>
 <td class="gt_row gt_right" headers="NA stub_1_29 Claude" style="background-color: #F4CCCC; color: #000000"> 0.000</td>
 <td class="gt_row gt_right" headers="NA stub_1_29 Gemini" style="background-color: #F4CCCC; color: #000000">0.000</td>
@@ -3552,23 +3560,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qkcacbnpll" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qkcacbnpll table {
+<div id="tmrharopmd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tmrharopmd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qkcacbnpll thead, #qkcacbnpll tbody, #qkcacbnpll tfoot, #qkcacbnpll tr, #qkcacbnpll td, #qkcacbnpll th {
+#tmrharopmd thead, #tmrharopmd tbody, #tmrharopmd tfoot, #tmrharopmd tr, #tmrharopmd td, #tmrharopmd th {
   border-style: none;
 }
 
-#qkcacbnpll p {
+#tmrharopmd p {
   margin: 0;
   padding: 0;
 }
 
-#qkcacbnpll .gt_table {
+#tmrharopmd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3594,12 +3602,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_caption {
+#tmrharopmd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qkcacbnpll .gt_title {
+#tmrharopmd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3611,7 +3619,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#qkcacbnpll .gt_subtitle {
+#tmrharopmd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3623,7 +3631,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#qkcacbnpll .gt_heading {
+#tmrharopmd .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3635,13 +3643,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_bottom_border {
+#tmrharopmd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_col_headings {
+#tmrharopmd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3656,7 +3664,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_col_heading {
+#tmrharopmd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3676,7 +3684,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#qkcacbnpll .gt_column_spanner_outer {
+#tmrharopmd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3688,15 +3696,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#qkcacbnpll .gt_column_spanner_outer:first-child {
+#tmrharopmd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qkcacbnpll .gt_column_spanner_outer:last-child {
+#tmrharopmd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qkcacbnpll .gt_column_spanner {
+#tmrharopmd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3708,11 +3716,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#qkcacbnpll .gt_spanner_row {
+#tmrharopmd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qkcacbnpll .gt_group_heading {
+#tmrharopmd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3738,7 +3746,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#qkcacbnpll .gt_empty_group_heading {
+#tmrharopmd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3753,15 +3761,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#qkcacbnpll .gt_from_md > :first-child {
+#tmrharopmd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qkcacbnpll .gt_from_md > :last-child {
+#tmrharopmd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qkcacbnpll .gt_row {
+#tmrharopmd .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -3780,7 +3788,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#qkcacbnpll .gt_stub {
+#tmrharopmd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3793,7 +3801,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#qkcacbnpll .gt_stub_row_group {
+#tmrharopmd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3807,15 +3815,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#qkcacbnpll .gt_row_group_first td {
+#tmrharopmd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qkcacbnpll .gt_row_group_first th {
+#tmrharopmd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qkcacbnpll .gt_summary_row {
+#tmrharopmd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3825,16 +3833,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#qkcacbnpll .gt_first_summary_row {
+#tmrharopmd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_first_summary_row.thick {
+#tmrharopmd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qkcacbnpll .gt_last_summary_row {
+#tmrharopmd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3844,7 +3852,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_grand_summary_row {
+#tmrharopmd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3854,7 +3862,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#qkcacbnpll .gt_first_grand_summary_row {
+#tmrharopmd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3864,7 +3872,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_last_grand_summary_row_top {
+#tmrharopmd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3874,11 +3882,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_striped {
+#tmrharopmd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qkcacbnpll .gt_table_body {
+#tmrharopmd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3887,7 +3895,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_footnotes {
+#tmrharopmd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3901,7 +3909,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_footnote {
+#tmrharopmd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3910,7 +3918,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#qkcacbnpll .gt_sourcenotes {
+#tmrharopmd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3924,7 +3932,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#qkcacbnpll .gt_sourcenote {
+#tmrharopmd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3932,80 +3940,80 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#qkcacbnpll .gt_left {
+#tmrharopmd .gt_left {
   text-align: left;
 }
 
-#qkcacbnpll .gt_center {
+#tmrharopmd .gt_center {
   text-align: center;
 }
 
-#qkcacbnpll .gt_right {
+#tmrharopmd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qkcacbnpll .gt_font_normal {
+#tmrharopmd .gt_font_normal {
   font-weight: normal;
 }
 
-#qkcacbnpll .gt_font_bold {
+#tmrharopmd .gt_font_bold {
   font-weight: bold;
 }
 
-#qkcacbnpll .gt_font_italic {
+#tmrharopmd .gt_font_italic {
   font-style: italic;
 }
 
-#qkcacbnpll .gt_super {
+#tmrharopmd .gt_super {
   font-size: 65%;
 }
 
-#qkcacbnpll .gt_footnote_marks {
+#tmrharopmd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qkcacbnpll .gt_asterisk {
+#tmrharopmd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qkcacbnpll .gt_indent_1 {
+#tmrharopmd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qkcacbnpll .gt_indent_2 {
+#tmrharopmd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qkcacbnpll .gt_indent_3 {
+#tmrharopmd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qkcacbnpll .gt_indent_4 {
+#tmrharopmd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qkcacbnpll .gt_indent_5 {
+#tmrharopmd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qkcacbnpll .katex-display {
+#tmrharopmd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qkcacbnpll div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tmrharopmd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Cohen’s κ legend</strong></th>
+<td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Cohen’s κ legend</strong></td>
 </tr>
 <tr class="gt_col_headings even">
 <th id="Swatch" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"></th>
@@ -4069,287 +4077,294 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/vagishhemmige\.github\.io\/USRDS-PDF-analysis-project");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/vagishhemmige\.github\.io\/USRDS-PDF-analysis-project");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -4357,185 +4372,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../quarto/results_manual.html" class="pagination-link" aria-label="Results of manual extraction of data">
@@ -4548,7 +4539,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Results: LLM full"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
@@ -4557,17 +4548,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">#This code prepares the .qmd environment for analysis</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#This code prepares the .qmd environment for analysis</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">new_analysis_gt&lt;-readRDS("../Kidney conference abstract/new_analysis_gt.rds")</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">transplant_gt&lt;-readRDS("../Kidney conference abstract/transplant_gt.rds")</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">timing_gt&lt;-readRDS("../Kidney conference abstract/timing_gt.rds")</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">kappa_table_full&lt;-readRDS("../Kidney conference abstract/kappa_table_full.rds")</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">kappa_legend_gt&lt;-readRDS("../Kidney conference abstract/kappa_legend_gt.rds")</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">breakdown_gt_full&lt;-readRDS("../Kidney conference abstract/breakdown_gt_full.rds")</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>new_analysis_gt<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/new_analysis_gt.rds"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>transplant_gt<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/transplant_gt.rds"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>timing_gt<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/timing_gt.rds"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>kappa_table_full<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/kappa_table_full.rds"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>kappa_legend_gt<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/kappa_legend_gt.rds"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>breakdown_gt_full<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"../Kidney conference abstract/breakdown_gt_full.rds"</span>)</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">source("../R/Analysis setup.R")</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../R/Analysis setup.R"</span>)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -4585,7 +4576,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">timing_gt</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>timing_gt</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
@@ -4596,7 +4587,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">new_analysis_gt</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>new_analysis_gt</span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
@@ -4608,7 +4599,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">transplant_gt</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>transplant_gt</span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
@@ -4619,7 +4610,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="in">breakdown_gt_full</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>breakdown_gt_full</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
@@ -4658,15 +4649,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">kappa_table_full</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>kappa_table_full</span>
 <span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">kappa_legend_gt</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>kappa_legend_gt</span>
 <span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_LLM_full.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
