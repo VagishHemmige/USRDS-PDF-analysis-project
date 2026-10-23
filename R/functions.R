@@ -1,3 +1,4 @@
+## ---- fn-convert-to-logical
 # Function that safely normalizes to logical
 convert_to_logical <- function(x) {
   if (is.logical(x)) return(x)
@@ -12,6 +13,7 @@ convert_to_logical <- function(x) {
 }
 
 
+## ---- fn-compute-kappa
 # Compute kappa helper
 compute_kappa <- function(hvar, mvar, df_filt) {
   if (!(mvar %in% names(df_filt))) return(NA_real_)
@@ -27,6 +29,7 @@ compute_kappa <- function(hvar, mvar, df_filt) {
 
 
 
+## ---- fn-get-breakdown
 # Function to compute numerators, denominators, percentages
 
 get_breakdown <- function(hvar, df_filt) {
@@ -72,7 +75,8 @@ get_breakdown <- function(hvar, df_filt) {
 
 
 
-#Function to label variables in a df being piped into a table-creating object
+## ---- fn-heatmap
+# Function to create LLM agreement heatmap
 make_llm_agreement_heatmap <- function(df,
                                        vars,
                                        paper_id_col = "filename",
