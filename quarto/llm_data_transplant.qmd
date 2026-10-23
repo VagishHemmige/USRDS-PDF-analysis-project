@@ -3,18 +3,29 @@ title: "LLM data analysis: transplant"
 format: html
 ---
 
+```{r}
+#| label: import-atc-script
+#| include: false
+#| cache: false
+
+knitr::read_chunk("../R/Rscript data analysis ATC 2025-11-16.R")
+```
+
 ::: {.Rcode title="Source code"}
 
 
 The full R script is available at:
 
--   [`R/Rscript%20data%20analysis%20ATC%202025-11-16.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R)
+-   [`R/Rscript data analysis ATC 2025-11-16.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R)
 
 
 This R script file is itself reliant on the following helper files:
 
 -   [`R/Analysis setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)
 -   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
+
+The code sections below are imported directly from that script when this page is rendered.
+
 :::
 
 
@@ -28,12 +39,9 @@ The overall workflow has four main parts. First, the dataset is restricted to pa
 
 The first step creates the analysis dataset used throughout the remainder of the script.
 
-```{r eval=FALSE}
-df_filt_atc <- df_wide %>%
-  filter(
-    is_this_paper_a_new_data_analysis_human == TRUE,
-    is_this_a_transplant_related_study_human == TRUE
-  )
+```{r}
+#| label: filter-atc
+#| eval: false
 ```
 
 This code filters the full wide-format dataset to include only papers that the human reviewer classified as both:
@@ -47,23 +55,9 @@ This restriction is important because the downstream ATC results are intended to
 
 The next section formats a simple table showing how long each LLM took to process the full dataset.
 
-```{r eval=FALSE}
-timing_gt<-timing_table %>%
-  gt() %>%
-  fmt_number(
-    columns = `Time (minutes)`,
-    decimals = 0
-  )%>%
-  tab_header(
-    title = "Runtime of LLMs Used in the Analysis",
-    subtitle = "Wall-clock time in minutes to process the full dataset"
-  )
-
-gt::gtsave(
-  data = timing_gt,
-  filename = "ATC 2026 abstract/timing_table_atc.png"
-)
-saveRDS(timing_gt, "ATC 2026 abstract/timing_table_atc.rds")
+```{r}
+#| label: timing-table-atc
+#| eval: false
 ```
 
 Here, the object `timing_table` is converted into a formatted `gt` table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:
@@ -77,33 +71,9 @@ This pattern appears repeatedly in the script: create a formatted object, export
 
 The next section computes Cohen's kappa for each study variable and for each model, comparing model abstraction against the human reference standard.
 
-```{r eval=FALSE}
-kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
-  base <- sub("_human$", "", h)
-
-  tibble::tibble(
-    variable = base,
-    ChatGPT = compute_kappa(h, paste0(base, "_ChatGPT"), df_filt_atc),
-    Claude  = compute_kappa(h, paste0(base, "_claude"),  df_filt_atc),
-    Gemini  = compute_kappa(h, paste0(base, "_gemini"),  df_filt_atc)
-  )%>%
-    mutate(
-    across(c(ChatGPT, Claude, Gemini), ~ ifelse(is.nan(.x), NA_real_, .x))
-  )
-})%>%
-  filter(!variable %in% c(
-    "which_pieces_of_data_were_abstracted_from_the_files",
-    "which_tasks_would_not_be_covered",
-    "which_type_of_transplant_study_is_this",
-    "who_funded_the_study",
-    "year",
-    "journal",
-    "title",
-    "authors",
-    "languages_used_SQL",
-    "languages_used_Matlab",
-    "languages_used_Julia"
-  ))
+```{r}
+#| label: kappa-compute-atc
+#| eval: false
 ```
 
 This block loops over the vector `human_vars`, which contains the names of variables derived from human review. For each variable, the script removes the `_human` suffix to recover the shared base name, then uses that base name to identify the corresponding variables for ChatGPT, Claude, and Gemini.
@@ -118,69 +88,9 @@ Finally, a small group of variables is excluded from the kappa table. These are 
 
 The raw kappa results are then transformed into a publication-style table.
 
-```{r eval=FALSE}
-kappa_table_atc <- kappa_results_atc %>%
-  add_label_for_gt() %>%
-  gt(rowname_col = "label") %>%
-  gt::cols_hide(columns = variable) %>%
-  fmt_number(
-    columns = c(ChatGPT, Claude, Gemini),
-    decimals = 3
-  ) %>%
-  cols_align_decimal(
-    columns = c(ChatGPT, Claude, Gemini)
-  ) %>%
-  tab_header(
-    title = "Cohen’s κ: LLM vs Human Across All Variables",
-    subtitle = "Dataset of 44 transplant-related papers"
-  ) %>%
-  gt::tab_stubhead(label = "Variable") %>%
-  sub_missing(
-    columns = c(ChatGPT, Claude, Gemini),
-    missing_text = "-"
-  )%>%
-  gt::tab_row_group(
-    label = "Programming languages",
-    rows = grepl("^languages_", variable)
-  ) %>%
-  gt::tab_row_group(
-    label = "Files used",
-    rows = grepl("^files_", variable)
-  )%>%
-  gt::tab_row_group(
-    label = "Components of USRDS used",
-    rows = grepl("^component_", variable)
-  ) %>%
-  gt::tab_stub_indent(
-    rows = grepl("^(languages_|files_|component_)", variable),
-    indent = 4
-  )%>%
-  tab_footnote(
-    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
-    locations = cells_body(columns = ChatGPT, rows = is.na(ChatGPT)),
-    placement="right"
-  ) %>%
-  tab_footnote(
-    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
-    locations = cells_body(columns = Claude, rows = is.na(Claude)),
-    placement="right"
-  ) %>%
-  tab_footnote(
-    footnote = "κ not estimable, usually due to insufficient variation or no usable paired observations.",
-    locations = cells_body(columns = Gemini, rows = is.na(Gemini)),
-    placement="right"
-  )%>%
-  data_color(
-    columns = c(ChatGPT, Claude, Gemini),
-    fn = kappa_fill
-  )
-
-kappa_table_atc
-gtsave(
-  data = kappa_table_atc,
-  filename = "ATC 2026 abstract/kappa_table_atc.png"
-)
-saveRDS(kappa_table_atc, "ATC 2026 abstract/kappa_table_atc.rds")
+```{r}
+#| label: kappa-table-atc
+#| eval: false
 ```
 
 This section takes the raw kappa results and makes them easier to interpret. The helper function `add_label_for_gt()` adds a human-readable label for each variable, allowing the final table to display descriptive names instead of internal variable names.
@@ -201,13 +111,9 @@ Finally, the call to `data_color()` applies the custom `kappa_fill()` function t
 
 Because the kappa table is color-coded, the script also generates a companion legend.
 
-```{r eval=FALSE}
-kappa_legend_gt<-create_kappa_legend_gt()
-gtsave(
-  data = kappa_legend_gt,
-  filename = "ATC 2026 abstract/kappa_table_legend_atc.png"
-)
-saveRDS(kappa_legend_gt, "ATC 2026 abstract/kappa_legend_gt.rds")
+```{r}
+#| label: kappa-legend-atc
+#| eval: false
 ```
 
 The helper function `create_kappa_legend_gt()` creates a small legend table that explains the meaning of the color scale used in the main kappa table. This is especially helpful for posters, slides, or webpages where readers may not immediately know how the shading maps to different levels of agreement.
@@ -216,60 +122,18 @@ The helper function `create_kappa_legend_gt()` creates a small legend table that
 
 In addition to kappa, the script generates a more descriptive table that shows the raw proportions of model responses within each human-coded category.
 
-```{r eval=FALSE}
-breakdown_table_atc <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_atc)
+```{r}
+#| label: breakdown-data-atc
+#| eval: false
 ```
 
 This line applies the helper function `get_breakdown()` across all human-reviewed variables. Rather than summarizing agreement as a single kappa statistic, this step produces numerator/denominator counts and percentages for each model within each human category. These descriptive summaries complement the kappa table by showing the underlying distribution of matches.
 
 The resulting dataset is then formatted as a `gt` table.
 
-```{r eval=FALSE}
-breakdown_gt_atc <- breakdown_table_atc %>%
-  add_label_for_gt() %>%
-  dplyr::select(-variable) %>%
-  gt(
-    groupname_col = "label",
-    rowname_col = "human"
-  ) %>%
-  fmt_percent(
-    columns = c(chat_pct, cla_pct, gem_pct),
-    decimals = 1
-  ) %>%
-  cols_label(
-    chat_nd = "Num/Den",
-    chat_pct = "%",
-    cla_nd = "Num/Den",
-    cla_pct = "%",
-    gem_nd = "Num/Den",
-    gem_pct = "%"
-  ) %>%
-  tab_stubhead(label = md("**Human**")) %>%
-  tab_spanner(
-    label = md("**ChatGPT**"),
-    columns = c(chat_nd, chat_pct)
-  ) %>%
-  tab_spanner(
-    label = md("**Claude**"),
-    columns = c(cla_nd, cla_pct)
-  ) %>%
-  tab_spanner(
-    label = md("**Gemini**"),
-    columns = c(gem_nd, gem_pct)
-  ) %>%
-  tab_options(
-    row_group.as_column = TRUE,
-    row_group.font.weight = "bold",
-    table.font.size = px(13),
-    heading.align = "left"
-  )
-
-breakdown_gt_atc
-gtsave(
-  data = breakdown_gt_atc,
-  filename = "ATC 2026 abstract/breakdown_gt_atc.png"
-)
-saveRDS(breakdown_gt_atc, "ATC 2026 abstract/breakdown_gt_atc.rds")
+```{r}
+#| label: breakdown-gt-atc
+#| eval: false
 ```
 
 This table is designed to answer a different question from the kappa table. Instead of summarizing agreement with one statistic per variable, it shows the raw counts and percentages for each model. The final layout places each model under its own column spanner, with paired columns for:
@@ -285,99 +149,36 @@ The last major section of the script produces heatmaps. These visualize agreemen
 
 ## Files used
 
-```{r eval=FALSE}
-file_vars_atc <- names(label_list)[str_detect(names(label_list), "^files_")]
-
-files_res_atc <- make_llm_agreement_heatmap(
-  df = df_filt_atc,
-  vars = file_vars_atc,
-  paper_id_col = "filename",
-  label_list = label_list,
-  title = "Files used heatmap",
-  reorder = FALSE
-)
-
-files_res_atc
-ggsave(
-  plot = files_res_atc,
-  filename = "ATC 2026 abstract/files_res_atc.png"
-)
+```{r}
+#| label: heatmap-files-atc
+#| eval: false
 ```
 
 This block identifies variables whose names begin with `files_`, which represent specific USRDS files reported as used in each paper. Those variables are passed to `make_llm_agreement_heatmap()`, which generates a heatmap summarizing model-versus-human agreement by paper.
 
 ## Programming languages used
 
-```{r eval=FALSE}
-languages_vars_atc <- names(label_list)[str_detect(names(label_list), "^languages_")]
-
-languages_res_atc <- make_llm_agreement_heatmap(
-  df = df_filt_atc,
-  vars = languages_vars_atc,
-  paper_id_col = "filename",
-  label_list = label_list,
-  title = "Languages used heatmap",
-  reorder = FALSE
-)
-
-languages_res_atc
-ggsave(
-  plot = languages_res_atc,
-  filename = "ATC 2026 abstract/languages_res_atc.png"
-)
+```{r}
+#| label: heatmap-languages-atc
+#| eval: false
 ```
 
 This section repeats the same process for variables beginning with `languages_`. These heatmaps help show whether agreement differs across programming language variables, which may be especially sparse or inconsistently reported in the literature.
 
 ## Components of USRDS used
 
-```{r eval=FALSE}
-component_vars_atc <- names(label_list)[str_detect(names(label_list), "^component_")]
-
-component_res_atc <- make_llm_agreement_heatmap(
-  df = df_filt_atc,
-  vars = component_vars_atc,
-  paper_id_col = "filename",
-  label_list = label_list,
-  title = "Components used heatmap",
-  reorder = FALSE
-)
-
-component_res_atc
-ggsave(
-  plot = component_res_atc,
-  filename = "ATC 2026 abstract/component_res_atc.png"
-)
+```{r}
+#| label: heatmap-components-atc
+#| eval: false
 ```
 
 Here the script focuses on variables describing which components of the USRDS dataset were used in each paper. Grouping these together allows the heatmap to show whether some parts of the registry were easier for models to identify than others.
 
 ## Other study features
 
-```{r eval=FALSE}
-other_vars_atc <- setdiff(
-  setdiff(
-    names(label_list),
-    c(file_vars_atc, languages_vars_atc, component_vars_atc)
-  ),
-  "did_the_authors_explicitly_state_what_files_they_used"
-)
-
-other_res_atc <- make_llm_agreement_heatmap(
-  df = df_filt_atc,
-  vars = other_vars_atc,
-  paper_id_col = "filename",
-  label_list = label_list,
-  title = "Other study features heatmap",
-  reorder = FALSE
-)
-
-other_res_atc
-
-ggsave(
-  filename = "ATC 2026 abstract/other_res_atc.png",
-  plot = other_res_atc,
-)
+```{r}
+#| label: heatmap-other-atc
+#| eval: false
 ```
 
 The final heatmap brings together the remaining variables that do not fall into the prior groups. One variable is explicitly excluded to avoid redundancy. This produces a catch-all visualization for the rest of the study characteristics included in the abstraction schema.

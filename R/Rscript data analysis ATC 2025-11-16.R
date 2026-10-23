@@ -3,7 +3,8 @@
 
 
 
-#---- Filter to human-positive dataset and transplant only----
+## ---- filter-atc
+# Filter to human-positive dataset and transplant only
 
 df_filt_atc <- df_wide %>%
   filter(
@@ -12,7 +13,8 @@ df_filt_atc <- df_wide %>%
   )
 
 
-#---- Table of times to run analysis----
+## ---- timing-table-atc
+# Table of times to run analysis
 
 
 
@@ -33,7 +35,8 @@ gt::gtsave(
 )
 saveRDS(timing_gt, "ATC 2026 abstract/timing_table_atc.rds")
 
-#---- Compute full kappa table----
+## ---- kappa-compute-atc
+# Compute full kappa table
 
 kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
   base <- sub("_human$", "", h)
@@ -63,7 +66,8 @@ kappa_results_atc <- purrr::map_dfr(human_vars, function(h) {
   ))
 
 
-#---- Make a clean gt table----
+## ---- kappa-table-atc
+# Make a clean gt table
 
 kappa_table_atc <- kappa_results_atc %>%
   add_label_for_gt() %>%
@@ -128,6 +132,7 @@ gtsave(
 )
 saveRDS(kappa_table_atc, "ATC 2026 abstract/kappa_table_atc.rds")
 
+## ---- kappa-legend-atc
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
 gtsave(
@@ -139,14 +144,16 @@ saveRDS(kappa_legend_gt, "ATC 2026 abstract/kappa_legend_gt.rds")
 
 
 
+## ---- breakdown-data-atc
 #Create a table with raw proportions
 
 
-#---- Build combined dataset----
+# Build combined dataset
 breakdown_table_atc <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_atc)
 
 
-#---- Produce formatted gt table with spanners and combined N/D
+## ---- breakdown-gt-atc
+# Produce formatted gt table with spanners and combined N/D
 
 breakdown_gt_atc <- breakdown_table_atc %>%
   add_label_for_gt() %>%
@@ -194,7 +201,8 @@ gtsave(
 )
 saveRDS(breakdown_gt_atc, "ATC 2026 abstract/breakdown_gt_atc.rds")
 
-#---- Heatmaps ----
+## ---- heatmap-files-atc
+# Heatmaps
 
 file_vars_atc <- names(label_list)[str_detect(names(label_list), "^files_")]
 
@@ -216,6 +224,7 @@ ggsave(
 
 
 
+## ---- heatmap-languages-atc
 languages_vars_atc <- names(label_list)[str_detect(names(label_list), "^languages_")]
 
 languages_res_atc <- make_llm_agreement_heatmap(
@@ -236,6 +245,7 @@ ggsave(
 
 
 
+## ---- heatmap-components-atc
 component_vars_atc <- names(label_list)[str_detect(names(label_list), "^component_")]
 
 component_res_atc <- make_llm_agreement_heatmap(
@@ -255,6 +265,7 @@ ggsave(
 
 
 
+## ---- heatmap-other-atc
 other_vars_atc <- setdiff(
   setdiff(
     names(label_list),
@@ -279,6 +290,7 @@ ggsave(
   plot = other_res_atc,
 )
 
+## ---- poster-heatmap-atc
 # ============================================================
 # Poster heatmap for ATC abstract
 # Combined heatmap + separate horizontal legend
