@@ -1,6 +1,7 @@
 #Data analysis script for NKF.  This will run the full 170+ PDFs
 
 
+## ---- screen-new-analysis-full
 #How well can LLMs differentiate new data analyses from papers that are not new data analyses?
 df_wide %>% count(is_this_paper_a_new_data_analysis_human,
              is_this_paper_a_new_data_analysis_ChatGPT)
@@ -11,6 +12,7 @@ df_wide %>% count(is_this_paper_a_new_data_analysis_human,
 df_wide %>% count(is_this_paper_a_new_data_analysis_human,
                   is_this_paper_a_new_data_analysis_gemini)
 
+## ---- screen-transplant-full
 #When limiting to true new analyses, how well can LLMs spot transplant-related papers?
 df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
   count(is_this_a_transplant_related_study_human,
@@ -25,6 +27,7 @@ df_wide%>%filter(is_this_paper_a_new_data_analysis_human==TRUE)%>%
         is_this_a_transplant_related_study_gemini)
 
 
+## ---- new-analysis-table-full
 #Tables from the above
 
 new_analysis_table <- bind_rows(
@@ -79,6 +82,7 @@ saveRDS(new_analysis_gt, "Kidney conference abstract/new_analysis_gt.rds")
 
 
 
+## ---- transplant-table-full
 transplant_table <- bind_rows(
   df_wide %>%
     filter(is_this_paper_a_new_data_analysis_human == TRUE) %>%
@@ -133,7 +137,8 @@ saveRDS(transplant_gt, "Kidney conference abstract/transplant_gt.rds")
 
 
 
-#---- Table of times to run analysis----
+## ---- timing-table-full
+# Table of times to run analysis
 
 timing_gt<-timing_table %>%
   gt() %>%
@@ -152,7 +157,8 @@ gtsave(
 )
 saveRDS(timing_gt, "Kidney conference abstract/timing_gt.rds")
 
-#---- Filter to human-positive dataset----
+## ---- filter-full
+# Filter to human-positive dataset
 
 df_filt_full <- df_wide%>%
   filter(
@@ -163,7 +169,8 @@ df_filt_full <- df_wide%>%
 
 
 
-#---- Compute full kappa table----
+## ---- kappa-compute-full
+# Compute full kappa table
 
 kappa_results_full <- purrr::map_dfr(human_vars, function(h) {
   base <- sub("_human$", "", h)
@@ -193,7 +200,8 @@ kappa_results_full <- purrr::map_dfr(human_vars, function(h) {
   ))
 
 
-#---- Make a clean gt table----
+## ---- kappa-table-full
+# Make a clean gt table
 
 kappa_table_full <- kappa_results_full %>%
   add_label_for_gt() %>%
@@ -256,6 +264,7 @@ gtsave(
 )
 saveRDS(kappa_table_full, "Kidney conference abstract/kappa_table_full.rds")
 
+## ---- kappa-legend-full
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
 gtsave(
@@ -264,14 +273,16 @@ gtsave(
 )
 saveRDS(kappa_legend_gt, "Kidney conference abstract/kappa_legend_gt.rds")
 
+## ---- breakdown-data-full
 #Create a table with raw proportions
 
 
-#---- Build combined dataset----
+# Build combined dataset
 breakdown_table_full <- map_dfr(human_vars, get_breakdown, df_filt = df_filt_full)
 
 
-#---- Produce formatted gt table with spanners and combined N/D
+## ---- breakdown-gt-full
+# Produce formatted gt table with spanners and combined N/D
 
 breakdown_gt_full <- breakdown_table_full %>%
   add_label_for_gt() %>%
@@ -319,7 +330,8 @@ gtsave(
 )
 saveRDS(breakdown_gt_full, "Kidney conference abstract/breakdown_gt_full.rds")
 
-#---- Heatmaps ----
+## ---- heatmap-files-full
+# Heatmaps
 
 file_vars_full <- names(label_list)[str_detect(names(label_list), "^files_")]
 
@@ -342,6 +354,7 @@ ggsave(
 
 
 
+## ---- heatmap-languages-full
 languages_vars_full <- names(label_list)[str_detect(names(label_list), "^languages_")]
 
 languages_res_full <- make_llm_agreement_heatmap(
@@ -361,6 +374,7 @@ ggsave(
 )
 
 
+## ---- heatmap-components-full
 component_vars_full <- names(label_list)[str_detect(names(label_list), "^component_")]
 
 component_res_full <- make_llm_agreement_heatmap(
@@ -381,6 +395,7 @@ ggsave(
 
 
 
+## ---- heatmap-other-full
 other_vars_full <- setdiff(
   setdiff(
     names(label_list),
