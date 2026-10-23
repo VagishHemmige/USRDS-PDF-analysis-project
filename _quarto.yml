@@ -79,7 +79,6 @@ filters:
 format:
   html:
     theme: cosmo
-    css: styles.scss
     toc: true
     code-fold: true
     code-tools: true
