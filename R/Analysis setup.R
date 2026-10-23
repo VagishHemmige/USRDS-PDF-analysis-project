@@ -1,4 +1,8 @@
 
+
+## ---- setup-libraries
+# Libraries necessary for the analysis
+
 library(tidyverse)
 library(readr)
 library(readxl)
@@ -18,7 +22,8 @@ library(purrr)
 library(patchwork)
 
 
-
+## ---- setup-labels
+# Variable label dictionary and analysis objects
 
 label_list <- list(
   did_the_authors_state_what_programming_language_they_used = "Programming language stated",
@@ -54,6 +59,8 @@ label_list <- list(
   is_this_a_transplant_related_study = "Transplant-related study",
   is_this_paper_a_new_data_analysis = "New patient-level data analysis"
 )
+
+## ---- setup-timing
 
 #Table of times to run the analysis
 timing_table <- tibble(
