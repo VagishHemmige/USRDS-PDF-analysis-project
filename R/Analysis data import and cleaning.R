@@ -1,3 +1,4 @@
+## ---- import-raw-data
 #Import raw data from files
 final_results_ChatGPT_raw <- readRDS("Results/ChatGPT/final_results_ChatGPT.rds")
 summary_final_claude_raw <- readRDS("Results/Claude/summary_final_claude.rds")%>%
@@ -9,6 +10,7 @@ human_results_raw <- read_excel("data-raw/Data abstraction Excel reviewer 1 and 
 
 
 
+## ---- clean-model-outputs
 #Clean data by renaming with suffix and removing unneccesary columns
 final_results_ChatGPT_clean <- final_results_ChatGPT_raw %>%
   rename_with(~ paste0(.x, "_ChatGPT"), -filename)%>%
@@ -20,6 +22,7 @@ summary_final_claude_clean <- summary_final_claude_raw %>%
 summary_final_gemini_clean <- summary_final_gemini_raw %>%
   rename_with(~ paste0(.x, "_gemini"), -filename)
 
+## ---- clean-human-data
 human_results_clean<-human_results_raw%>%
   #Language variables--split into multiple columns
   mutate(languages_used_R=str_detect(what_programming_language_s_was_were_used, "R"))%>%
@@ -73,6 +76,7 @@ human_results_clean<-human_results_raw%>%
     paste0(filename, ".pdf")
   ))
 
+## ---- check-filenames
 #Ensure filenames match before merging
 setdiff(human_results_clean$filename, final_results_ChatGPT_clean$filename)
 setdiff(final_results_ChatGPT_clean$filename, human_results_clean$filename)
@@ -85,6 +89,7 @@ setdiff(summary_final_gemini_clean$filename, human_results_clean$filename)
 
 #Gemini unable to parse a single PDF despite multiple attempts
 
+## ---- merge-data
 #Merge into a large mega_file
 df_wide<-human_results_clean%>%
   left_join(final_results_ChatGPT_clean, by = join_by(filename))%>%
@@ -93,7 +98,8 @@ df_wide<-human_results_clean%>%
   filter(!is.na(filename))
 
 
-#---- Make sure all variables are logical format----
+## ---- standardize-logical
+# Make sure all variables are logical format
 
 df_wide<-df_wide%>%
   #Resort with filename first, then all variable names in alphabetical order
@@ -114,6 +120,7 @@ df_wide <- df_wide %>%
 #write_xlsx(df_wide, "Results/Cleaned and merged data.xlsx")  
 
 
-#---- Identify all human-coded boolean variables----
+## ---- human-vars
+# Identify all human-coded boolean variables
 
 human_vars <- names(df_wide)[grepl("_human$", names(df_wide))]
