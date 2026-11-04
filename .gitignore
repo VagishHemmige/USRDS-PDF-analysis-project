@@ -10,3 +10,6 @@ Results/
 /.quarto/
 
 **/*.quarto_ipynb
+
+# Rendered website: GitHub Actions renders the site and publishes it to gh-pages
+/docs/
