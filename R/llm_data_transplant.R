@@ -31,9 +31,9 @@ timing_gt<-timing_table %>%
 
 gt::gtsave(
   data = timing_gt,
-  filename = "ATC 2026 abstract/timing_table_atc.png"
+  filename = "tables/llm_transplant/timing_table_atc.png"
 )
-saveRDS(timing_gt, "ATC 2026 abstract/timing_table_atc.rds")
+saveRDS(timing_gt, "tables/llm_transplant/timing_table_atc.rds")
 
 ## ---- kappa-compute-atc
 # Compute full kappa table
@@ -128,18 +128,18 @@ kappa_table_atc <- kappa_results_atc %>%
 kappa_table_atc
 gtsave(
   data = kappa_table_atc,
-  filename = "ATC 2026 abstract/kappa_table_atc.png"
+  filename = "tables/llm_transplant/kappa_table_atc.png"
 )
-saveRDS(kappa_table_atc, "ATC 2026 abstract/kappa_table_atc.rds")
+saveRDS(kappa_table_atc, "tables/llm_transplant/kappa_table_atc.rds")
 
 ## ---- kappa-legend-atc
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
 gtsave(
   data = kappa_legend_gt,
-  filename = "ATC 2026 abstract/kappa_table_legend_atc.png"
+  filename = "tables/llm_transplant/kappa_table_legend_atc.png"
 )
-saveRDS(kappa_legend_gt, "ATC 2026 abstract/kappa_legend_gt.rds")
+saveRDS(kappa_legend_gt, "tables/llm_transplant/kappa_legend_gt.rds")
 
 
 
@@ -197,9 +197,9 @@ breakdown_gt_atc <- breakdown_table_atc %>%
 breakdown_gt_atc
 gtsave(
   data = breakdown_gt_atc,
-  filename = "ATC 2026 abstract/breakdown_gt_atc.png"
+  filename = "tables/llm_transplant/breakdown_gt_atc.png"
 )
-saveRDS(breakdown_gt_atc, "ATC 2026 abstract/breakdown_gt_atc.rds")
+saveRDS(breakdown_gt_atc, "tables/llm_transplant/breakdown_gt_atc.rds")
 
 ## ---- heatmap-files-atc
 # Heatmaps
@@ -218,7 +218,7 @@ files_res_atc <- make_llm_agreement_heatmap(
 files_res_atc
 ggsave(
   plot = files_res_atc,
-  filename = "ATC 2026 abstract/files_res_atc.png"
+  filename = "figures/llm_transplant/files_res_atc.png"
 )
 
 
@@ -239,7 +239,7 @@ languages_res_atc <- make_llm_agreement_heatmap(
 languages_res_atc
 ggsave(
   plot = languages_res_atc,
-  filename = "ATC 2026 abstract/languages_res_atc.png"
+  filename = "figures/llm_transplant/languages_res_atc.png"
 )
 
 
@@ -260,7 +260,7 @@ component_res_atc <- make_llm_agreement_heatmap(
 component_res_atc
 ggsave(
   plot = component_res_atc,
-  filename = "ATC 2026 abstract/component_res_atc.png"
+  filename = "figures/llm_transplant/component_res_atc.png"
 )
 
 
@@ -286,7 +286,7 @@ other_res_atc <- make_llm_agreement_heatmap(
 other_res_atc
 
 ggsave(
-  filename = "ATC 2026 abstract/other_res_atc.png",
+  filename = "figures/llm_transplant/other_res_atc.png",
   plot = other_res_atc,
 )
 
@@ -548,7 +548,7 @@ heatmap_legend_atc
 #--------------------------------------------------------------
 
 ggsave(
-  filename = "ATC 2026 abstract/combined_heatmap_atc.svg",
+  filename = "figures/llm_transplant/combined_heatmap_atc.svg",
   plot = combined_heatmap_atc,
   width = 34,
   height = 15,
@@ -556,7 +556,7 @@ ggsave(
 )
 
 ggsave(
-  filename = "ATC 2026 abstract/combined_heatmap_atc.png",
+  filename = "figures/llm_transplant/combined_heatmap_atc.png",
   plot = combined_heatmap_atc,
   width = 34,
   height = 15,
@@ -570,7 +570,7 @@ ggsave(
 #--------------------------------------------------------------
 
 ggsave(
-  filename = "ATC 2026 abstract/combined_heatmap_legend_atc.svg",
+  filename = "figures/llm_transplant/combined_heatmap_legend_atc.svg",
   plot = heatmap_legend_atc,
   width = 7,
   height = 1.8,
@@ -578,7 +578,7 @@ ggsave(
 )
 
 ggsave(
-  filename = "ATC 2026 abstract/combined_heatmap_legend_atc.png",
+  filename = "figures/llm_transplant/combined_heatmap_legend_atc.png",
   plot = heatmap_legend_atc,
   width = 7,
   height = 1.8,

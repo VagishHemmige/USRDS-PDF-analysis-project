@@ -8,7 +8,7 @@ format: html
 #| include: false
 #| cache: false
 
-knitr::read_chunk("../R/Rscript data analysis NKF 2025-11-30.R")
+knitr::read_chunk("../R/llm_data_full.R")
 ```
 
 ::: {.Rcode title="Source code"}
@@ -16,11 +16,11 @@ knitr::read_chunk("../R/Rscript data analysis NKF 2025-11-30.R")
 
 The full R script is available at:
 
--   [`R/Rscript data analysis NKF 2025-11-30.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20NKF%202025-11-30.R)
+-   [`R/llm_data_full.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/llm_data_full.R)
 
 This R script file is itself reliant on the following helper files:
 
--   [`R/Analysis setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)
+-   [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
 -   [`R/functions.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)
 
 The code sections below are imported directly from that script when this page is rendered.

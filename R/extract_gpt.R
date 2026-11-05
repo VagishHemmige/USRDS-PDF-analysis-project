@@ -1,3 +1,10 @@
+# Calls a paid model API for every paper. Runs only when run_extraction is
+# TRUE (set in R/setup.R), so the analysis never calls a model by accident.
+if (!isTRUE(get0("run_extraction", ifnotfound = FALSE))) {
+  stop("This script calls a paid model API. Set run_extraction <- TRUE in ",
+       "R/setup.R and source R/setup.R first to re-extract.", call. = FALSE)
+}
+
 # ---- Libraries ----
 library(ellmer)
 library(tidyverse)

@@ -11,14 +11,14 @@ format: html
 #This code prepares the .qmd environent for analysis
 
 
-letter_table2_gt<-readRDS("../Letter analysis/Letter analysis Table 2 stratified by transplant.rds")
+letter_table2_gt<-readRDS("../tables/manual/Letter analysis Table 2 stratified by transplant.rds")
 
 
-letter_table3_gt<-readRDS("../Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds")
+letter_table3_gt<-readRDS("../tables/manual/Letter analysis Table 3 stratified by transplant study type.rds")
 
 
 
-source("../R/Analysis setup.R")
+library(gt)
 
 
 ```

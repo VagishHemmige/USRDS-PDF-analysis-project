@@ -6,7 +6,7 @@
 #
 # The pages never run the analysis: analysis chunks are imported with
 # knitr::read_chunk() and shown with eval: false, and the results pages read
-# the gt tables committed as .rds in the abstract and letter folders. This
+# the gt tables committed as .rds in tables/. This
 # machine has no PDFs, reviewer sheets, model outputs or API keys, and makes no
 # model calls. A failed render publishes nothing, so the last good site stays
 # live.
@@ -45,28 +45,18 @@ jobs:
         with:
           use-public-rspm: true
 
-      # The packages "R/Analysis setup.R" loads (the results pages source it),
-      # plus knitr and rmarkdown for the chunks. System libraries such as
-      # poppler for pdftools are installed automatically. Current CRAN versions.
+      # What the pages run: knitr and rmarkdown for the chunks and the
+      # read_chunk() imports, gt to print the saved tables, and tibble for the
+      # tables on the Setup page. The pages never source the analysis scripts,
+      # so the analysis packages are not needed here. Current CRAN versions.
       - name: Install the R packages the pages use
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
             any::knitr
             any::rmarkdown
-            any::tidyverse
-            any::readxl
-            any::writexl
-            any::janitor
-            any::irr
-            any::gtsummary
             any::gt
-            any::officer
-            any::flowchart
-            any::ellmer
-            any::pdftools
-            any::rstudioapi
-            any::patchwork
+            any::tibble
 
       - name: Render (pull requests only)
         if: github.event_name == 'pull_request'

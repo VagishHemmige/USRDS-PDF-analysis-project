@@ -1,9 +1,11 @@
 ## ---- import-raw-data
-#Import raw data from files
-final_results_ChatGPT_raw <- readRDS("Results/ChatGPT/final_results_ChatGPT.rds")
-summary_final_claude_raw <- readRDS("Results/Claude/summary_final_claude.rds")%>%
+#Import raw data from files: the saved model runs listed in model_runs
+#(R/setup.R), and the human abstraction
+check_saved_runs(model_runs)
+final_results_ChatGPT_raw <- readRDS(saved_run_path(model_runs, "gpt"))
+summary_final_claude_raw <- readRDS(saved_run_path(model_runs, "claude"))%>%
   bind_rows()
-summary_final_gemini_raw <- read_csv("Results/Gemini/summary_output_gemini.csv")
+summary_final_gemini_raw <- read_csv(saved_run_path(model_runs, "gemini"))
 human_results_raw <- read_excel("data-raw/Data abstraction Excel reviewer 1 and 2.xlsx", 
                                 sheet = "Reviewer 2")%>%
   clean_names()

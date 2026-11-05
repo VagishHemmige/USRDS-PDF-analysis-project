@@ -17,7 +17,7 @@ Read the three files before making changes. Each covers its own topic and does n
 
 The project evaluates whether large language models (LLMs) can extract study characteristics (study type, transplant relevance, programming language, USRDS files and data components used, and related items) from published papers that use United States Renal Data System (USRDS) data, compared with dual manual review. It also reports the reporting practices found by manual review. The data are published papers, not patient records. The code and methods are published as a Quarto website.
 
-Outputs feed several products: the reporting-practices letter (`Letter analysis/`), the LLM validation manuscript, and conference abstracts and posters (`Kidney conference abstract/`, `ATC 2026 abstract/`).
+Outputs feed several products: the reporting-practices letter, the LLM validation manuscript, and conference abstracts and posters (the kidney conference abstract and the ATC 2026 abstract). Their tables and figures are in `tables/<strand>/` and `figures/<strand>/`, with `manual` (manual review only), `llm_full` (all papers, humans versus LLMs) and `llm_transplant` (transplant papers, humans versus LLMs) as the folders.
 
 - **`analysis-plan.md` is the source of truth for design.** Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the decider. Once the decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.
 - **Decider.** Scientific decisions are made by Vagish Hemmige. Anyone may open or contribute to a decision issue; only the decider settles it (see "Working with agents").
@@ -41,17 +41,17 @@ Outputs feed several products: the reporting-practices letter (`Letter analysis/
 
 ## Exploration and definitive analysis
 
-Exploration is welcome on branches or forks. Experimental scripts need not have Quarto pages, and their findings are labelled preliminary. Until `R/main.R` exists ([#4](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/4)), the definitive scripts are those listed in `ARCHITECTURE.md`; from then on, a script is definitive when `R/main.R` sources it, and every rule below applies to it.
+Exploration is welcome on branches or forks. Experimental scripts need not be sourced from `R/main.R` or have Quarto pages, and their findings are labelled preliminary. A script becomes part of the definitive analysis when it is sourced from `R/main.R`; from then on every rule below applies to it.
 
 ## R scripts
 
-- **Running the analysis.** Run the scripts from the project root in the order `ARCHITECTURE.md` gives. The extraction scripts call paid APIs; running the analysis must not start new model calls by default.
-- **One job per script.** When you add a definitive script, add it to the run order and update `ARCHITECTURE.md` in the same pull request.
+- **Running the analysis.** Run `R/main.R` from the project root in a fresh session. It sources the other scripts in dependency order; `ARCHITECTURE.md` describes what each does. It never calls a model: it reads the saved runs listed in `model_runs` and stops with a message if one is missing. The extraction scripts call paid APIs and run only when `run_extraction` is set to `TRUE` in `R/setup.R`.
+- **One job per script.** When you add a definitive script, source it from `main.R` at the right point and update `ARCHITECTURE.md` in the same pull request.
 - **Header comment.** Each script begins with what it does, which objects it needs from earlier scripts, and what it produces.
-- **Constants and libraries** live in `R/Analysis setup.R`. Other scripts do not call `library()` or hard-code values a reader might want to change.
+- **Constants and libraries** live in `R/setup.R`, including `run_extraction` and the `model_runs` record. Other scripts do not call `library()` or hard-code values a reader might want to change. (The extraction scripts still load their own packages; see `ARCHITECTURE.md`.)
 - **Helper functions** go in `R/functions.R`. A function takes its inputs as arguments and does not read global objects.
 - **No side effects outside the project.** No `setwd()`, absolute paths, or writes outside the project.
-- **Saved model outputs are records.** Do not overwrite a saved run. A new extraction is a new run, saved with the prompt and schema, model identifier, text limits and run date that produced it.
+- **Saved model outputs are records.** Do not overwrite a saved run. A new extraction is a new run, saved with the prompt and schema, model identifier, text limits and run date that produced it, and added to `model_runs`. Runs saved before `model_runs` existed are marked `legacy`.
 
 ## Chunk labels
 
@@ -82,7 +82,7 @@ The site documents the code. It does not run the analysis.
 
 ## Outputs
 
-- Tables and figures are saved by the analysis scripts into one folder per product (`Kidney conference abstract/`, `ATC 2026 abstract/`, `Letter analysis/`) and tracked. Issue [#5](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/5) concerns moving them to `figures/` and `tables/`.
+- Tables are saved by the analysis scripts to `tables/<strand>/` and figures to `figures/<strand>/`, and both are tracked: they are what the website reads. Hand-edited documents (such as `ATC 2026 abstract/Tables.docx`) stay out of these folders.
 - Results pages read the saved `gt` tables (`.rds`). They must be re-saved when a `gt` update can no longer print them; compare the `.html` tables before and after to confirm only formatting changed.
 - Published figures need alt text.
 - `README.Rmd` is the source of `README.md`; edit the `.Rmd` and re-knit.
@@ -111,7 +111,7 @@ Check the items that apply before opening a pull request.
 - **Reported numbers:** do tables, figures and site prose say what the code actually computes, and does the letter's text match its tables?
 - **Reporting and definitions:** does the validation write-up follow its reporting guideline? Are USRDS files, analysis types and clinical categories checked against the Researcher's Guide, NIDDK or PubMed, never invented?
 - **Structure:** is `ARCHITECTURE.md` current; are chunk labels unique and found by their pages; does every definitive script have a page and sidebar entry; does any site chunk run analysis code?
-- **Execution:** do the scripts run in a fresh session with relative paths, including folder names with spaces; are any saved outputs or tables stale relative to the code?
+- **Execution:** does `main.R` run in a fresh session with relative paths, without calling a model; are any saved outputs or tables stale relative to the code?
 
 ## Working with agents
 

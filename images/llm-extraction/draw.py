@@ -24,11 +24,11 @@ ASSET_DIR = HERE / 'assets'
 
 # Where each value came from (commit 1f8e386).
 SOURCES = {
-    'models and text sent': ['R/Rscript ChatGPT 2025-11-14.R', 'R/Rscript Claude 2025-11-14.R',
-                             'R/Rscript Gemini 2025-11-15.R'],
+    'models and text sent': ['R/extract_gpt.R', 'R/extract_claude.R',
+                             'R/extract_gemini.R'],
     'schema fields': 'R/abstract_schema.R (type_summary)',
-    'human sheet': 'R/Analysis data import and cleaning.R',
-    'kappa papers': 'R/Rscript data analysis NKF 2025-11-30.R (df_filt_full)',
+    'human sheet': 'R/data_cleaning.R',
+    'kappa papers': 'R/llm_data_full.R (df_filt_full)',
 }
 
 # Label, short name, logo, model identifier and text sent. The difference in text sent
@@ -270,8 +270,8 @@ def footer():
     t(100, FOOTER_Y + 73, 'Reply, as structured fields', 15)
     t(380, FOOTER_Y + 35, 'A methods illustration: it shows no results; the Y/N cells in the datasets are illustrative. '
       'Model identifiers, text sent and fields are as set in the R scripts.', 13, c=MUTED)
-    t(380, FOOTER_Y + 56, 'Extraction scripts: Rscript ChatGPT 2025-11-14.R, Rscript Claude 2025-11-14.R, '
-      'Rscript Gemini 2025-11-15.R.', 13, c=MUTED)
+    t(380, FOOTER_Y + 56, 'Extraction scripts: extract_gpt.R, extract_claude.R, '
+      'extract_gemini.R.', 13, c=MUTED)
 
 
 def main():

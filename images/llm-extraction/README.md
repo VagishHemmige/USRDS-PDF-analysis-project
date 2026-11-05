@@ -25,14 +25,14 @@ reviewer data and no model outputs, and it shows no results. The Y/N cells in th
 dataset tables are illustrative and identical across cards.
 
 The values shown are typed into `draw.py` (see `SOURCES` there), taken from commit
-`1f8e386`:
+`1f8e386`; the scripts have since been renamed, and are listed here by their current names:
 
-- model identifiers and text sent: `R/Rscript ChatGPT 2025-11-14.R`,
-  `R/Rscript Claude 2025-11-14.R`, `R/Rscript Gemini 2025-11-15.R`, the scripts
-  that wrote the outputs read by `R/Analysis data import and cleaning.R`;
+- model identifiers and text sent: `R/extract_gpt.R`,
+  `R/extract_claude.R`, `R/extract_gemini.R`, the scripts
+  that wrote the outputs read by `R/data_cleaning.R`;
 - schema fields (44, with group counts): `type_summary` in `R/abstract_schema.R`;
-- human sheet read: `R/Analysis data import and cleaning.R`;
-- papers used for kappa: `df_filt_full` in `R/Rscript data analysis NKF 2025-11-30.R`.
+- human sheet read: `R/data_cleaning.R`;
+- papers used for kappa: `df_filt_full` in `R/llm_data_full.R`.
 
 Update them by hand if any of those change. The models were not sent the same
 text (GPT: all pages, cut 10% per rate-limit retry; Claude and Gemini: first 50

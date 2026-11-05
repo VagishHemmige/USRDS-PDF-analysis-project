@@ -350,3 +350,30 @@ make_llm_agreement_heatmap <- function(df,
       plot.margin = ggplot2::margin(t = 5.5, r = 5.5, b = 5.5, l = left_margin)
     )
 }
+## ---- fn-saved-runs
+# Checks that every saved model run the analysis reads exists, and stops with
+# a clear message if any is missing, instead of calling a model to make it.
+# `runs` is the model_runs table from R/setup.R.
+check_saved_runs <- function(runs) {
+  missing <- runs[!file.exists(runs$path), , drop = FALSE]
+  if (nrow(missing) > 0) {
+    stop(
+      "Saved model runs not found: ",
+      paste0(missing$model, " (", missing$path, ")", collapse = ", "),
+      ". The analysis does not call models. Restore the saved files, or set ",
+      "run_extraction <- TRUE in R/setup.R to re-extract (paid API calls).",
+      call. = FALSE
+    )
+  }
+  invisible(runs)
+}
+
+# Returns the path of one model's saved run, from the model_runs table.
+saved_run_path <- function(runs, which_model) {
+  path <- runs$path[runs$model == which_model]
+  if (length(path) != 1) {
+    stop("Expected one saved run for model '", which_model, "', found ",
+         length(path), ".", call. = FALSE)
+  }
+  path
+}

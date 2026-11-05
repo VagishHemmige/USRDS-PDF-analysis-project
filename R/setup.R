@@ -80,3 +80,19 @@ timing_table <- tibble(
     672
   )
 )
+
+## ---- setup-model-runs
+# Saved model runs the analysis reads. These are research records, not caches:
+# running the analysis never calls a model. Re-extraction is deliberate: set
+# run_extraction to TRUE, which lets R/main.R source the extraction scripts
+# (paid API calls). Runs saved before this record existed are marked "legacy":
+# their settings are as the extraction scripts stood at the time, not
+# verified from the run itself.
+run_extraction <- FALSE
+
+model_runs <- tibble::tribble(
+  ~model,   ~model_id,           ~text_sent,                                            ~path,                                         ~status,
+  "gpt",    "gpt-5.1",           "all pages, <= 240,000 characters, cut on retry",      "Results/ChatGPT/final_results_ChatGPT.rds",   "legacy",
+  "claude", "claude-sonnet-4-5", "first 50 pages, <= 240,000 characters",               "Results/Claude/summary_final_claude.rds",     "legacy",
+  "gemini", "gemini-2.5-flash",  "first 50 pages, <= 240,000 characters",               "Results/Gemini/summary_output_gemini.csv",    "legacy"
+)
