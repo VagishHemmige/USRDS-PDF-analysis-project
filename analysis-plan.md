@@ -30,8 +30,6 @@ As described on the methods page: a PubMed search in June 2022 for "United State
 
 Each paper was reviewed independently by two reviewers using the abstraction form shown on the methods page.
 
-**Open:** which human data are the reference standard. The LLM comparison reads the "Reviewer 2" sheet of the abstraction spreadsheet without filtering on its confirmation column; the letter reads the same sheet and keeps only confirmed rows. The plan should state whether the reference is one reviewer's sheet, a confirmed or adjudicated set, and how disagreements between the reviewers were resolved, and whether inter-rater agreement is reported. Decision issue not yet opened.
-
 **Open:** whether the human coding rules match the prompt's rules. The prompt allows only explicitly stated programming languages, crosswalks and USRDS files, never inferred ones. The plan should state whether the reviewers followed the same rule, item by item. Decision issue not yet opened.
 
 **Open:** how to treat the item on coverage by the `usRds` package, which is the maintainer's own package: disclose it, or exclude it from the accuracy metrics. Decision issue not yet opened.
