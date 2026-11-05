@@ -10,7 +10,7 @@ The code in this script imports libraries, initializes constants, and performs o
 #| include: false
 #| cache: false
 
-knitr::read_chunk("../R/Analysis setup.R")
+knitr::read_chunk("../R/setup.R")
 
 # Packages needed to render the documentation tables
 library(tidyverse)
@@ -21,7 +21,7 @@ library(gt)
 
 The full R script is available at:
 
-- [`R/Analysis setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)
+- [`R/setup.R`](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)
 
 The code sections below are imported directly from that script when this page is rendered.
 
@@ -100,7 +100,7 @@ libraries_table |>
 
 ## Label dictionary and analysis objects
 
-The PDF analysis uses a small set of shared objects defined in `R/Analysis setup.R`. These help standardize variable labels across tables and figures and store supporting information used in the results pages.
+The PDF analysis uses a small set of shared objects defined in `R/setup.R`. These help standardize variable labels across tables and figures and store supporting information used in the results pages.
 
 ### Variable label dictionary
 
@@ -139,5 +139,15 @@ The `timing_table` object stores the approximate runtime required to process the
 
 ```{r}
 #| label: setup-timing
+#| eval: false
+```
+### Saved model runs
+
+The analysis reads saved model outputs rather than calling the models again, because extraction costs money and the saved outputs are the records the results come from. `model_runs` lists, for each model, the identifier, the text it was sent and the file its output was saved to. The three runs saved before this list existed are marked `legacy`: their settings are recorded as the extraction scripts stood at the time, not verified from the runs themselves.
+
+`run_extraction` is `FALSE`, so running the analysis never calls a model. Setting it to `TRUE` is the deliberate step that lets `R/main.R` run the three extraction scripts.
+
+```{r}
+#| label: setup-model-runs
 #| eval: false
 ```

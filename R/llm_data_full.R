@@ -75,10 +75,10 @@ new_analysis_gt<-new_analysis_table %>%
 
 
 gtsave(
-  filename = "Kidney conference abstract/new_analysis_gt.png",
+  filename = "tables/llm_full/new_analysis_gt.png",
   data = new_analysis_gt,
 )
-saveRDS(new_analysis_gt, "Kidney conference abstract/new_analysis_gt.rds")
+saveRDS(new_analysis_gt, "tables/llm_full/new_analysis_gt.rds")
 
 
 
@@ -130,10 +130,10 @@ transplant_gt<-transplant_table %>%
 
 
 gtsave(
-  filename = "Kidney conference abstract/transplant_gt.png",
+  filename = "tables/llm_full/transplant_gt.png",
   data = transplant_gt,
 )
-saveRDS(transplant_gt, "Kidney conference abstract/transplant_gt.rds")
+saveRDS(transplant_gt, "tables/llm_full/transplant_gt.rds")
 
 
 
@@ -152,10 +152,10 @@ timing_gt<-timing_table %>%
   )
 
 gtsave(
-  filename = "Kidney conference abstract/timing_table_full.png",
+  filename = "tables/llm_full/timing_table_full.png",
   data = timing_gt,
 )
-saveRDS(timing_gt, "Kidney conference abstract/timing_gt.rds")
+saveRDS(timing_gt, "tables/llm_full/timing_gt.rds")
 
 ## ---- filter-full
 # Filter to human-positive dataset
@@ -260,18 +260,18 @@ kappa_table_full <- kappa_results_full %>%
 kappa_table_full
 gtsave(
   data = kappa_table_full,
-  filename = "Kidney conference abstract/kappa_table_full.html"
+  filename = "tables/llm_full/kappa_table_full.html"
 )
-saveRDS(kappa_table_full, "Kidney conference abstract/kappa_table_full.rds")
+saveRDS(kappa_table_full, "tables/llm_full/kappa_table_full.rds")
 
 ## ---- kappa-legend-full
 #Create legend to supplement kappa table
 kappa_legend_gt<-create_kappa_legend_gt()
 gtsave(
   data = kappa_legend_gt,
-  filename = "Kidney conference abstract/kappa_table_legend_full.html"
+  filename = "tables/llm_full/kappa_table_legend_full.html"
 )
-saveRDS(kappa_legend_gt, "Kidney conference abstract/kappa_legend_gt.rds")
+saveRDS(kappa_legend_gt, "tables/llm_full/kappa_legend_gt.rds")
 
 ## ---- breakdown-data-full
 #Create a table with raw proportions
@@ -326,9 +326,9 @@ breakdown_gt_full <- breakdown_table_full %>%
 breakdown_gt_full
 gtsave(
   data = breakdown_gt_full,
-  filename = "Kidney conference abstract/breakdown_gt_full.html"
+  filename = "tables/llm_full/breakdown_gt_full.html"
 )
-saveRDS(breakdown_gt_full, "Kidney conference abstract/breakdown_gt_full.rds")
+saveRDS(breakdown_gt_full, "tables/llm_full/breakdown_gt_full.rds")
 
 ## ---- heatmap-files-full
 # Heatmaps
@@ -348,7 +348,7 @@ files_res_full <- make_llm_agreement_heatmap(
 files_res_full
 ggsave(
   plot = files_res_full,
-  filename = "Kidney conference abstract/files_res_full.png"
+  filename = "figures/llm_full/files_res_full.png"
 )
 
 
@@ -370,7 +370,7 @@ languages_res_full <- make_llm_agreement_heatmap(
 languages_res_full
 ggsave(
   plot = languages_res_full,
-  filename = "Kidney conference abstract/languages_res_full.png"
+  filename = "figures/llm_full/languages_res_full.png"
 )
 
 
@@ -390,7 +390,7 @@ component_res_full <- make_llm_agreement_heatmap(
 component_res_full
 ggsave(
   plot = component_res_full,
-  filename = "Kidney conference abstract/component_res_full.png"
+  filename = "figures/llm_full/component_res_full.png"
 )
 
 
@@ -417,6 +417,6 @@ other_res_full <- make_llm_agreement_heatmap(
 other_res_full
 
 ggsave(
-  filename = "Kidney conference abstract/other_res_full.png",
+  filename = "figures/llm_full/other_res_full.png",
   plot = other_res_full,
 )

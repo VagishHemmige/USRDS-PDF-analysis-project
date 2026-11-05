@@ -27,7 +27,7 @@ Anagha_summer_project_form_clean_fc<-Anagha_summer_project_form_clean%>%
 
 ## ---- flowchart-export
 fc_draw(Anagha_summer_project_form_clean_fc)%>%
-  fc_export("Letter analysis/flowchart.png")
+  fc_export("figures/manual/flowchart.png")
 
 
 
@@ -60,9 +60,9 @@ paper_table_gt <-Anagha_summer_project_form_clean%>%
 
 ## ---- paper-table-save
 paper_table_gt
-saveRDS(paper_table_gt, file = "Letter analysis/paper_table_gt.rds")
+saveRDS(paper_table_gt, file = "tables/manual/paper_table_gt.rds")
 
-gtsave(filename = "Letter analysis/paper_table_gt.html",
+gtsave(filename = "tables/manual/paper_table_gt.html",
        data=paper_table_gt)
 
 ## ---- final-dataset
@@ -158,9 +158,9 @@ letter_table1_gt<-Anagha_summer_project_form_final %>%
   tbl_summary() %>%
   as_gt()
 ## ---- table1-save
-gtsave(filename = "Letter analysis/Letter analysis Table 1 overall raw.html",
+gtsave(filename = "tables/manual/Letter analysis Table 1 overall raw.html",
        data=letter_table1_gt)
-saveRDS(letter_table1_gt, file = "Letter analysis/Letter analysis Table 1 overall raw.rds")
+saveRDS(letter_table1_gt, file = "tables/manual/Letter analysis Table 1 overall raw.rds")
 
 
 
@@ -263,9 +263,9 @@ letter_table2_gt<-Anagha_summer_project_form_final %>%
 
 
 ## ---- table2-save
-saveRDS(letter_table2_gt, file = "Letter analysis/Letter analysis Table 2 stratified by transplant.rds")
+saveRDS(letter_table2_gt, file = "tables/manual/Letter analysis Table 2 stratified by transplant.rds")
 
-gtsave(filename = "Letter analysis/Letter analysis Table 2 stratified by transplant.html",
+gtsave(filename = "tables/manual/Letter analysis Table 2 stratified by transplant.html",
        data=letter_table2_gt)
 
 
@@ -368,7 +368,7 @@ letter_table3_gt<-Anagha_summer_project_form_split[["transplant"]] %>%
   as_gt()
 
 ## ---- table3-save
-saveRDS(letter_table3_gt, file = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.rds")
+saveRDS(letter_table3_gt, file = "tables/manual/Letter analysis Table 3 stratified by transplant study type.rds")
 
-gtsave(filename = "Letter analysis/Letter analysis Table 3 stratified by transplant study type.html",
+gtsave(filename = "tables/manual/Letter analysis Table 3 stratified by transplant study type.html",
        data=letter_table3_gt)

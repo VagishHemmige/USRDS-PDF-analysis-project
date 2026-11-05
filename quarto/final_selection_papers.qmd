@@ -10,16 +10,16 @@ format: html
 
 #This code prepares the .qmd environent for analysis
 
-paper_table_gt<-readRDS("../Letter analysis/paper_table_gt.rds")
+paper_table_gt<-readRDS("../tables/manual/paper_table_gt.rds")
 
-source("../R/Analysis setup.R")
+library(gt)
 
 
 ```
 
 The flowchart below summarizes how papers were identified, screened, and included in the manual review dataset. This manually reviewed sample serves as the reference set for the descriptive results presented on this page.
 
-![](../Letter analysis/flowchart.png)
+![](../figures/manual/flowchart.png)
 
 ## Table of papers included in the analysis
 
