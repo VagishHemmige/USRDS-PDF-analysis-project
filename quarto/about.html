@@ -72,6 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../quarto/repository-blueprint.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -81,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-aade7b2294effb6f0ad8f1cba2010aba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -161,9 +162,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Analysis of USRDS-related papers
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/about.html">About</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -380,16 +379,32 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/about.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-info-circle" role="img">
+</i> 
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-study" id="toc-the-study" class="nav-link active" data-scroll-target="#the-study">The study</a></li>
+  <li><a href="#this-repository" id="toc-this-repository" class="nav-link" data-scroll-target="#this-repository">This repository</a></li>
+  <li><a href="#how-this-website-was-created" id="toc-how-this-website-was-created" class="nav-link" data-scroll-target="#how-this-website-was-created">How this website was created</a></li>
+  <li><a href="#pages" id="toc-pages" class="nav-link" data-scroll-target="#pages">Pages</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/about.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -398,7 +413,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -416,11 +431,51 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </header>
 
 
-<p>Pending</p>
+<section id="the-study" class="level2">
+<h2 class="anchored" data-anchor-id="the-study">The study</h2>
+<p>This project asks how well large language models (LLMs) can extract study characteristics from published papers that use United States Renal Data System (USRDS) data, compared with manual review by two reviewers, and what manual review shows about how these papers report their methods. The analysis is preliminary and has not yet been published; abstracts have been or will be presented at the World Transplant Congress 2025 and the American Transplant Congress 2026.</p>
+<ul>
+<li><strong>Vagish Hemmige</strong> (study design, analysis and code)</li>
+</ul>
+<p>Scientific decisions are made by Vagish Hemmige. Open decisions are marked <strong>Open:</strong> in the <a href="../quarto/analysis-plan.html">analysis plan</a> and tracked in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues">Issues</a>.</p>
+</section>
+<section id="this-repository" class="level2">
+<h2 class="anchored" data-anchor-id="this-repository">This repository</h2>
+<p>The analysis is run by <code>R/main.R</code>, which sources the other scripts in order: setup and helper functions, the three LLM extraction scripts, data cleaning, and the manual, full LLM and transplant LLM analyses. Running it never calls a model: it reads the saved model outputs, and the extraction scripts, which call paid model APIs, run only when re-extraction is deliberately switched on. Tables are saved to <code>tables/</code> and figures to <code>figures/</code>, one folder per strand.</p>
+<p>The inputs are not in the repository. The papers’ PDFs are copyrighted, the reviewers’ abstraction spreadsheet is internal, and the saved model outputs are kept with them. The papers can be found from PubMed.</p>
+<p>Contributions follow the rules in <a href="../quarto/agents.html"><code>AGENTS.md</code></a>; known issues and open decisions are tracked in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues">Issues</a>.</p>
+</section>
+<section id="how-this-website-was-created" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-website-was-created">How this website was created</h2>
+<p>The site is built with <a href="https://quarto.org">Quarto</a> from the analysis scripts themselves. Each code page imports the labelled sections of its script from <code>R/</code> and shows them with an explanation; the results pages show the tables the analysis saved. The site never runs the analysis, so it is built without the papers, the reviewers’ data or the model outputs. A GitHub Actions workflow renders and publishes it whenever <code>master</code> changes.</p>
+<p>The repository follows the R Analysis Workflow conventions used by the maintainer’s other analysis projects. AI assistants help with code review, documentation and repository maintenance under the rules in <a href="../quarto/agents.html"><code>AGENTS.md</code></a>: they do not make scientific decisions, merge changes, or call the model APIs without the maintainer’s approval.</p>
+<p>Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and <code>AGENTS.md</code> holds the rules for working together.</p>
+<ul>
+<li><a href="../quarto/analysis-plan.html"><strong>Analysis plan</strong></a>: <em>what the analysis is meant to do, and why.</em> The question, the paper sample, the methods, and the open decisions. Code implements it and does not redefine it.</li>
+<li><a href="../quarto/architecture.html"><strong>Architecture</strong></a>: <em>how the code does it.</em> The scripts, the order they run in, what each needs and produces, and how data flow between them.</li>
+<li><a href="../quarto/agents.html"><strong>AGENTS.md</strong></a>: <em>how people and AI assistants work on the project.</em> Rules for the papers, the reviewers’ data and the model APIs, coding, checks, proposing changes and getting the maintainer’s approval.</li>
+<li><a href="../quarto/repository-blueprint.html"><strong>Repository blueprint</strong></a>: <em>the layout every project of this kind starts from</em>, which the architecture document then describes as built.</li>
+</ul>
+</section>
+<section id="pages" class="level2">
+<h2 class="anchored" data-anchor-id="pages">Pages</h2>
+<ul>
+<li><a href="../quarto/background.html"><strong>Clinical background</strong></a>: the USRDS and its research files.</li>
+<li><a href="../quarto/analysis_methods.html"><strong>Description of analysis methods</strong></a>: the paper sample, the manual review form, the LLM extraction and the analysis in R.</li>
+<li><a href="../quarto/setup.html"><strong>Setup</strong></a>: packages, variable labels and the record of saved model runs.</li>
+<li><a href="../quarto/functions.html"><strong>Functions</strong></a>: reusable helper functions.</li>
+<li><a href="../quarto/manual_data.html"><strong>Analysis of manual data extraction</strong></a>: the paper flow, the table of included papers and the reporting-practices tables.</li>
+<li><a href="../quarto/llm_analysis.html"><strong>LLM data extraction</strong></a>: the prompt, the schema and the three extraction scripts.</li>
+<li><a href="../quarto/data_cleaning.html"><strong>Data cleaning</strong></a>: importing the model outputs and the human abstraction and merging them.</li>
+<li><a href="../quarto/llm_data_full.html"><strong>LLM data analysis: full</strong></a>: agreement between each model and the humans, for all papers.</li>
+<li><a href="../quarto/llm_data_transplant.html"><strong>LLM data analysis: transplant</strong></a>: the same for transplant-related papers.</li>
+<li>The <strong>Results</strong> pages show the saved tables and figures for each strand.</li>
+</ul>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -873,18 +928,66 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../quarto/repository-blueprint.html" class="pagination-link" aria-label="Repository blueprint">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Repository blueprint</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "About"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Pending</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## The study</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This project asks how well large language models (LLMs) can extract study characteristics from published papers that use United States Renal Data System (USRDS) data, compared with manual review by two reviewers, and what manual review shows about how these papers report their methods. The analysis is preliminary and has not yet been published; abstracts have been or will be presented at the World Transplant Congress 2025 and the American Transplant Congress 2026.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Vagish Hemmige** (study design, analysis and code)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Scientific decisions are made by Vagish Hemmige. Open decisions are marked **Open:** in the <span class="co">[</span><span class="ot">analysis plan</span><span class="co">](analysis-plan.qmd)</span> and tracked in <span class="co">[</span><span class="ot">Issues</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues)</span>.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## This repository</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The analysis is run by <span class="in">`R/main.R`</span>, which sources the other scripts in order: setup and helper functions, the three LLM extraction scripts, data cleaning, and the manual, full LLM and transplant LLM analyses. Running it never calls a model: it reads the saved model outputs, and the extraction scripts, which call paid model APIs, run only when re-extraction is deliberately switched on. Tables are saved to <span class="in">`tables/`</span> and figures to <span class="in">`figures/`</span>, one folder per strand.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The inputs are not in the repository. The papers' PDFs are copyrighted, the reviewers' abstraction spreadsheet is internal, and the saved model outputs are kept with them. The papers can be found from PubMed.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Contributions follow the rules in <span class="co">[</span><span class="ot">`AGENTS.md`</span><span class="co">](agents.qmd)</span>; known issues and open decisions are tracked in <span class="co">[</span><span class="ot">Issues</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues)</span>.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## How this website was created</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>The site is built with <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org)</span> from the analysis scripts themselves. Each code page imports the labelled sections of its script from <span class="in">`R/`</span> and shows them with an explanation; the results pages show the tables the analysis saved. The site never runs the analysis, so it is built without the papers, the reviewers' data or the model outputs. A GitHub Actions workflow renders and publishes it whenever <span class="in">`master`</span> changes.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>The repository follows the R Analysis Workflow conventions used by the maintainer's other analysis projects. AI assistants help with code review, documentation and repository maintenance under the rules in <span class="co">[</span><span class="ot">`AGENTS.md`</span><span class="co">](agents.qmd)</span>: they do not make scientific decisions, merge changes, or call the model APIs without the maintainer's approval.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and <span class="in">`AGENTS.md`</span> holds the rules for working together.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Analysis plan**</span><span class="co">](analysis-plan.qmd)</span>: *what the analysis is meant to do, and why.* The question, the paper sample, the methods, and the open decisions. Code implements it and does not redefine it.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Architecture**</span><span class="co">](architecture.qmd)</span>: *how the code does it.* The scripts, the order they run in, what each needs and produces, and how data flow between them.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**AGENTS.md**</span><span class="co">](agents.qmd)</span>: *how people and AI assistants work on the project.* Rules for the papers, the reviewers' data and the model APIs, coding, checks, proposing changes and getting the maintainer's approval.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Repository blueprint**</span><span class="co">](repository-blueprint.qmd)</span>: *the layout every project of this kind starts from*, which the architecture document then describes as built.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pages</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Clinical background**</span><span class="co">](background.qmd)</span>: the USRDS and its research files.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Description of analysis methods**</span><span class="co">](analysis_methods.qmd)</span>: the paper sample, the manual review form, the LLM extraction and the analysis in R.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Setup**</span><span class="co">](setup.qmd)</span>: packages, variable labels and the record of saved model runs.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Functions**</span><span class="co">](functions.qmd)</span>: reusable helper functions.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Analysis of manual data extraction**</span><span class="co">](manual_data.qmd)</span>: the paper flow, the table of included papers and the reporting-practices tables.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**LLM data extraction**</span><span class="co">](llm_analysis.qmd)</span>: the prompt, the schema and the three extraction scripts.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Data cleaning**</span><span class="co">](data_cleaning.qmd)</span>: importing the model outputs and the human abstraction and merging them.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**LLM data analysis: full**</span><span class="co">](llm_data_full.qmd)</span>: agreement between each model and the humans, for all papers.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**LLM data analysis: transplant**</span><span class="co">](llm_data_transplant.qmd)</span>: the same for transplant-related papers.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The **Results** pages show the saved tables and figures for each strand.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/about.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/about.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
