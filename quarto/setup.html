@@ -125,10 +125,33 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
+  background-image: none;
+}
 </style>
 <script>window.ISSUE_COMMENTS = {"contact":"mailto:vagish.hemmige@gmail.com","endpoint":"https://script.google.com/macros/s/AKfycbyE8fNBvy3vfuAnuQqdjpCTR8i2zYI-KSvGzhkGlQRYevI1I6auqq9H-mIk2yrXCaIROA/exec","owner":"Vagish Hemmige","pageButton":false,"passcode":true,"preview":true};</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -140,7 +163,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup and helper functions</a></li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Code</li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup and helper functions</a></li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +190,8 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-house" role="img">
+</i> 
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -182,113 +206,176 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/background.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/background.html" class="sidebar-item-text sidebar-link"><i class="bi bi-book" role="img">
+</i> 
  <span class="menu-text">Clinical background</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../quarto/analysis_methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Description of analysis methods</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/analysis_methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-diagram-3" role="img">
+</i> 
+ <span class="menu-text">Description of analysis methods</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Setup and helper functions</span></a>
+ <span class="menu-text">Code</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Setup and helper functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/setup.html" class="sidebar-item-text sidebar-link active">
+  <a href="../quarto/setup.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/functions.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Functions</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Methods</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data processing and analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/manual_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/manual_data.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Analysis of manual data extraction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data extraction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_data_full.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_data_full.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data analysis: full</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_data_transplant.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_data_transplant.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data analysis: transplant</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/final_selection_papers.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Final selection of papers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_manual.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Results of manual extraction of data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_LLM_full.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">LLM analysis of full dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_LLM_transplant.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Transplant LLM analysis</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Results</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/final_selection_papers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final selection of papers</span></a>
+  <a href="../quarto/analysis-plan.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Analysis plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Results of manual extraction of data</span></a>
+  <a href="../quarto/architecture.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_LLM_full.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LLM analysis of full dataset</span></a>
+  <a href="../quarto/agents.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">AGENTS.md</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_LLM_transplant.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Transplant LLM analysis</span></a>
+  <a href="../quarto/repository-blueprint.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Repository blueprint</span></a>
   </div>
 </li>
       </ul>
@@ -310,12 +397,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   <li><a href="#model-runtime-table" id="toc-model-runtime-table" class="nav-link" data-scroll-target="#model-runtime-table">Model runtime table</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup and helper functions</a></li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Code</li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup and helper functions</a></li><li class="breadcrumb-item"><a href="../quarto/setup.html">Setup</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Setup</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
@@ -388,23 +475,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>The table below lists the required packages along with links to their primary documentation.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="hyaefppktf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hyaefppktf table {
+<div id="fvzxbfqirq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fvzxbfqirq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hyaefppktf thead, #hyaefppktf tbody, #hyaefppktf tfoot, #hyaefppktf tr, #hyaefppktf td, #hyaefppktf th {
+#fvzxbfqirq thead, #fvzxbfqirq tbody, #fvzxbfqirq tfoot, #fvzxbfqirq tr, #fvzxbfqirq td, #fvzxbfqirq th {
   border-style: none;
 }
 
-#hyaefppktf p {
+#fvzxbfqirq p {
   margin: 0;
   padding: 0;
 }
 
-#hyaefppktf .gt_table {
+#fvzxbfqirq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -430,12 +517,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_caption {
+#fvzxbfqirq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hyaefppktf .gt_title {
+#fvzxbfqirq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -447,7 +534,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#hyaefppktf .gt_subtitle {
+#fvzxbfqirq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -459,7 +546,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#hyaefppktf .gt_heading {
+#fvzxbfqirq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -471,13 +558,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_bottom_border {
+#fvzxbfqirq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_col_headings {
+#fvzxbfqirq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -492,7 +579,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_col_heading {
+#fvzxbfqirq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -512,7 +599,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#hyaefppktf .gt_column_spanner_outer {
+#fvzxbfqirq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -524,15 +611,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#hyaefppktf .gt_column_spanner_outer:first-child {
+#fvzxbfqirq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hyaefppktf .gt_column_spanner_outer:last-child {
+#fvzxbfqirq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hyaefppktf .gt_column_spanner {
+#fvzxbfqirq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -544,11 +631,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#hyaefppktf .gt_spanner_row {
+#fvzxbfqirq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hyaefppktf .gt_group_heading {
+#fvzxbfqirq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -574,7 +661,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#hyaefppktf .gt_empty_group_heading {
+#fvzxbfqirq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -589,15 +676,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#hyaefppktf .gt_from_md > :first-child {
+#fvzxbfqirq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hyaefppktf .gt_from_md > :last-child {
+#fvzxbfqirq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hyaefppktf .gt_row {
+#fvzxbfqirq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -616,7 +703,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#hyaefppktf .gt_stub {
+#fvzxbfqirq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -629,7 +716,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#hyaefppktf .gt_stub_row_group {
+#fvzxbfqirq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -643,15 +730,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#hyaefppktf .gt_row_group_first td {
+#fvzxbfqirq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hyaefppktf .gt_row_group_first th {
+#fvzxbfqirq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hyaefppktf .gt_summary_row {
+#fvzxbfqirq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -661,16 +748,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#hyaefppktf .gt_first_summary_row {
+#fvzxbfqirq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_first_summary_row.thick {
+#fvzxbfqirq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hyaefppktf .gt_last_summary_row {
+#fvzxbfqirq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -680,7 +767,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_grand_summary_row {
+#fvzxbfqirq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -690,7 +777,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#hyaefppktf .gt_first_grand_summary_row {
+#fvzxbfqirq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -700,7 +787,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_last_grand_summary_row_top {
+#fvzxbfqirq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -710,11 +797,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_striped {
+#fvzxbfqirq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hyaefppktf .gt_table_body {
+#fvzxbfqirq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -723,7 +810,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_footnotes {
+#fvzxbfqirq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -737,7 +824,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_footnote {
+#fvzxbfqirq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -746,7 +833,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#hyaefppktf .gt_sourcenotes {
+#fvzxbfqirq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -760,7 +847,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#hyaefppktf .gt_sourcenote {
+#fvzxbfqirq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -768,72 +855,72 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#hyaefppktf .gt_left {
+#fvzxbfqirq .gt_left {
   text-align: left;
 }
 
-#hyaefppktf .gt_center {
+#fvzxbfqirq .gt_center {
   text-align: center;
 }
 
-#hyaefppktf .gt_right {
+#fvzxbfqirq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hyaefppktf .gt_font_normal {
+#fvzxbfqirq .gt_font_normal {
   font-weight: normal;
 }
 
-#hyaefppktf .gt_font_bold {
+#fvzxbfqirq .gt_font_bold {
   font-weight: bold;
 }
 
-#hyaefppktf .gt_font_italic {
+#fvzxbfqirq .gt_font_italic {
   font-style: italic;
 }
 
-#hyaefppktf .gt_super {
+#fvzxbfqirq .gt_super {
   font-size: 65%;
 }
 
-#hyaefppktf .gt_footnote_marks {
+#fvzxbfqirq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hyaefppktf .gt_asterisk {
+#fvzxbfqirq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hyaefppktf .gt_indent_1 {
+#fvzxbfqirq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hyaefppktf .gt_indent_2 {
+#fvzxbfqirq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hyaefppktf .gt_indent_3 {
+#fvzxbfqirq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hyaefppktf .gt_indent_4 {
+#fvzxbfqirq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hyaefppktf .gt_indent_5 {
+#fvzxbfqirq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hyaefppktf .katex-display {
+#fvzxbfqirq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hyaefppktf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fvzxbfqirq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -995,23 +1082,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>The table below summarizes the variable label dictionary.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="clhbtzslmn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#clhbtzslmn table {
+<div id="mwsjeabmyk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwsjeabmyk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#clhbtzslmn thead, #clhbtzslmn tbody, #clhbtzslmn tfoot, #clhbtzslmn tr, #clhbtzslmn td, #clhbtzslmn th {
+#mwsjeabmyk thead, #mwsjeabmyk tbody, #mwsjeabmyk tfoot, #mwsjeabmyk tr, #mwsjeabmyk td, #mwsjeabmyk th {
   border-style: none;
 }
 
-#clhbtzslmn p {
+#mwsjeabmyk p {
   margin: 0;
   padding: 0;
 }
 
-#clhbtzslmn .gt_table {
+#mwsjeabmyk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1037,12 +1124,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_caption {
+#mwsjeabmyk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#clhbtzslmn .gt_title {
+#mwsjeabmyk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1054,7 +1141,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#clhbtzslmn .gt_subtitle {
+#mwsjeabmyk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1066,7 +1153,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#clhbtzslmn .gt_heading {
+#mwsjeabmyk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1078,13 +1165,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_bottom_border {
+#mwsjeabmyk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_col_headings {
+#mwsjeabmyk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1099,7 +1186,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_col_heading {
+#mwsjeabmyk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1119,7 +1206,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#clhbtzslmn .gt_column_spanner_outer {
+#mwsjeabmyk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1131,15 +1218,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#clhbtzslmn .gt_column_spanner_outer:first-child {
+#mwsjeabmyk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#clhbtzslmn .gt_column_spanner_outer:last-child {
+#mwsjeabmyk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#clhbtzslmn .gt_column_spanner {
+#mwsjeabmyk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1151,11 +1238,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#clhbtzslmn .gt_spanner_row {
+#mwsjeabmyk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#clhbtzslmn .gt_group_heading {
+#mwsjeabmyk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1181,7 +1268,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#clhbtzslmn .gt_empty_group_heading {
+#mwsjeabmyk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1196,15 +1283,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#clhbtzslmn .gt_from_md > :first-child {
+#mwsjeabmyk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#clhbtzslmn .gt_from_md > :last-child {
+#mwsjeabmyk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#clhbtzslmn .gt_row {
+#mwsjeabmyk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1223,7 +1310,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#clhbtzslmn .gt_stub {
+#mwsjeabmyk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1236,7 +1323,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#clhbtzslmn .gt_stub_row_group {
+#mwsjeabmyk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1250,15 +1337,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#clhbtzslmn .gt_row_group_first td {
+#mwsjeabmyk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#clhbtzslmn .gt_row_group_first th {
+#mwsjeabmyk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#clhbtzslmn .gt_summary_row {
+#mwsjeabmyk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1268,16 +1355,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#clhbtzslmn .gt_first_summary_row {
+#mwsjeabmyk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_first_summary_row.thick {
+#mwsjeabmyk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#clhbtzslmn .gt_last_summary_row {
+#mwsjeabmyk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1287,7 +1374,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_grand_summary_row {
+#mwsjeabmyk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1297,7 +1384,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#clhbtzslmn .gt_first_grand_summary_row {
+#mwsjeabmyk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1307,7 +1394,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_last_grand_summary_row_top {
+#mwsjeabmyk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1317,11 +1404,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_striped {
+#mwsjeabmyk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#clhbtzslmn .gt_table_body {
+#mwsjeabmyk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1330,7 +1417,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_footnotes {
+#mwsjeabmyk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1344,7 +1431,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_footnote {
+#mwsjeabmyk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1353,7 +1440,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#clhbtzslmn .gt_sourcenotes {
+#mwsjeabmyk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1367,7 +1454,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#clhbtzslmn .gt_sourcenote {
+#mwsjeabmyk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1375,72 +1462,72 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#clhbtzslmn .gt_left {
+#mwsjeabmyk .gt_left {
   text-align: left;
 }
 
-#clhbtzslmn .gt_center {
+#mwsjeabmyk .gt_center {
   text-align: center;
 }
 
-#clhbtzslmn .gt_right {
+#mwsjeabmyk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#clhbtzslmn .gt_font_normal {
+#mwsjeabmyk .gt_font_normal {
   font-weight: normal;
 }
 
-#clhbtzslmn .gt_font_bold {
+#mwsjeabmyk .gt_font_bold {
   font-weight: bold;
 }
 
-#clhbtzslmn .gt_font_italic {
+#mwsjeabmyk .gt_font_italic {
   font-style: italic;
 }
 
-#clhbtzslmn .gt_super {
+#mwsjeabmyk .gt_super {
   font-size: 65%;
 }
 
-#clhbtzslmn .gt_footnote_marks {
+#mwsjeabmyk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#clhbtzslmn .gt_asterisk {
+#mwsjeabmyk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#clhbtzslmn .gt_indent_1 {
+#mwsjeabmyk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#clhbtzslmn .gt_indent_2 {
+#mwsjeabmyk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#clhbtzslmn .gt_indent_3 {
+#mwsjeabmyk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#clhbtzslmn .gt_indent_4 {
+#mwsjeabmyk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#clhbtzslmn .gt_indent_5 {
+#mwsjeabmyk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#clhbtzslmn .katex-display {
+#mwsjeabmyk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#clhbtzslmn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mwsjeabmyk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2229,4 +2316,4 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -125,10 +125,33 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
+  background-image: none;
+}
 </style>
 <script>window.ISSUE_COMMENTS = {"contact":"mailto:vagish.hemmige@gmail.com","endpoint":"https://script.google.com/macros/s/AKfycbyE8fNBvy3vfuAnuQqdjpCTR8i2zYI-KSvGzhkGlQRYevI1I6auqq9H-mIk2yrXCaIROA/exec","owner":"Vagish Hemmige","pageButton":false,"passcode":true,"preview":true};</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -167,7 +190,8 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-house" role="img">
+</i> 
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -182,113 +206,176 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/background.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/background.html" class="sidebar-item-text sidebar-link"><i class="bi bi-book" role="img">
+</i> 
  <span class="menu-text">Clinical background</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../quarto/analysis_methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Description of analysis methods</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/analysis_methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-diagram-3" role="img">
+</i> 
+ <span class="menu-text">Description of analysis methods</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Setup and helper functions</span></a>
+ <span class="menu-text">Code</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Setup and helper functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/setup.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/functions.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Functions</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Methods</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data processing and analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/manual_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/manual_data.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Analysis of manual data extraction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_analysis.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data extraction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/data_cleaning.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_data_full.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_data_full.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data analysis: full</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/llm_data_transplant.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto/llm_data_transplant.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
  <span class="menu-text">LLM data analysis: transplant</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/final_selection_papers.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Final selection of papers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_manual.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Results of manual extraction of data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_LLM_full.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">LLM analysis of full dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_LLM_transplant.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Transplant LLM analysis</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Results</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/final_selection_papers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final selection of papers</span></a>
+  <a href="../quarto/analysis-plan.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Analysis plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_manual.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Results of manual extraction of data</span></a>
+  <a href="../quarto/architecture.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_LLM_full.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LLM analysis of full dataset</span></a>
+  <a href="../quarto/agents.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">AGENTS.md</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../quarto/results_LLM_transplant.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Transplant LLM analysis</span></a>
+  <a href="../quarto/repository-blueprint.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Repository blueprint</span></a>
   </div>
 </li>
       </ul>
@@ -307,7 +394,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   <li><a href="#characteristics-of-transplant-studies-by-study-type" id="toc-characteristics-of-transplant-studies-by-study-type" class="nav-link" data-scroll-target="#characteristics-of-transplant-studies-by-study-type">Characteristics of transplant studies by study type</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
@@ -344,23 +431,23 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <p>Notably, explicit reporting of which USRDS files were used remained incomplete in both groups, despite most studies appearing to use files appropriate to the research question. Sharing of analytic code was rare across the manual review sample.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="umlcybcjbb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#umlcybcjbb table {
+<div id="ehanpolfpq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ehanpolfpq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#umlcybcjbb thead, #umlcybcjbb tbody, #umlcybcjbb tfoot, #umlcybcjbb tr, #umlcybcjbb td, #umlcybcjbb th {
+#ehanpolfpq thead, #ehanpolfpq tbody, #ehanpolfpq tfoot, #ehanpolfpq tr, #ehanpolfpq td, #ehanpolfpq th {
   border-style: none;
 }
 
-#umlcybcjbb p {
+#ehanpolfpq p {
   margin: 0;
   padding: 0;
 }
 
-#umlcybcjbb .gt_table {
+#ehanpolfpq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -386,12 +473,12 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-left-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_caption {
+#ehanpolfpq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#umlcybcjbb .gt_title {
+#ehanpolfpq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -403,7 +490,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-width: 0;
 }
 
-#umlcybcjbb .gt_subtitle {
+#ehanpolfpq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -415,7 +502,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-width: 0;
 }
 
-#umlcybcjbb .gt_heading {
+#ehanpolfpq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -427,13 +514,13 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_bottom_border {
+#ehanpolfpq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_col_headings {
+#ehanpolfpq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -448,7 +535,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_col_heading {
+#ehanpolfpq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -468,7 +555,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#umlcybcjbb .gt_column_spanner_outer {
+#ehanpolfpq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -480,15 +567,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 4px;
 }
 
-#umlcybcjbb .gt_column_spanner_outer:first-child {
+#ehanpolfpq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#umlcybcjbb .gt_column_spanner_outer:last-child {
+#ehanpolfpq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#umlcybcjbb .gt_column_spanner {
+#ehanpolfpq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -500,11 +587,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   width: 100%;
 }
 
-#umlcybcjbb .gt_spanner_row {
+#ehanpolfpq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#umlcybcjbb .gt_group_heading {
+#ehanpolfpq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -530,7 +617,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   text-align: left;
 }
 
-#umlcybcjbb .gt_empty_group_heading {
+#ehanpolfpq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -545,15 +632,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: middle;
 }
 
-#umlcybcjbb .gt_from_md > :first-child {
+#ehanpolfpq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#umlcybcjbb .gt_from_md > :last-child {
+#ehanpolfpq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#umlcybcjbb .gt_row {
+#ehanpolfpq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -572,7 +659,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   overflow-x: hidden;
 }
 
-#umlcybcjbb .gt_stub {
+#ehanpolfpq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,7 +672,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#umlcybcjbb .gt_stub_row_group {
+#ehanpolfpq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,15 +686,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   vertical-align: top;
 }
 
-#umlcybcjbb .gt_row_group_first td {
+#ehanpolfpq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#umlcybcjbb .gt_row_group_first th {
+#ehanpolfpq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#umlcybcjbb .gt_summary_row {
+#ehanpolfpq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -617,16 +704,16 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#umlcybcjbb .gt_first_summary_row {
+#ehanpolfpq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_first_summary_row.thick {
+#ehanpolfpq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#umlcybcjbb .gt_last_summary_row {
+#ehanpolfpq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -636,7 +723,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_grand_summary_row {
+#ehanpolfpq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -646,7 +733,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#umlcybcjbb .gt_first_grand_summary_row {
+#ehanpolfpq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +743,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-top-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_last_grand_summary_row_top {
+#ehanpolfpq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,11 +753,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_striped {
+#ehanpolfpq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#umlcybcjbb .gt_table_body {
+#ehanpolfpq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -679,7 +766,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-bottom-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_footnotes {
+#ehanpolfpq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -693,7 +780,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_footnote {
+#ehanpolfpq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -702,7 +789,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#umlcybcjbb .gt_sourcenotes {
+#ehanpolfpq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -716,7 +803,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   border-right-color: #D3D3D3;
 }
 
-#umlcybcjbb .gt_sourcenote {
+#ehanpolfpq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -724,72 +811,72 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   padding-right: 5px;
 }
 
-#umlcybcjbb .gt_left {
+#ehanpolfpq .gt_left {
   text-align: left;
 }
 
-#umlcybcjbb .gt_center {
+#ehanpolfpq .gt_center {
   text-align: center;
 }
 
-#umlcybcjbb .gt_right {
+#ehanpolfpq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#umlcybcjbb .gt_font_normal {
+#ehanpolfpq .gt_font_normal {
   font-weight: normal;
 }
 
-#umlcybcjbb .gt_font_bold {
+#ehanpolfpq .gt_font_bold {
   font-weight: bold;
 }
 
-#umlcybcjbb .gt_font_italic {
+#ehanpolfpq .gt_font_italic {
   font-style: italic;
 }
 
-#umlcybcjbb .gt_super {
+#ehanpolfpq .gt_super {
   font-size: 65%;
 }
 
-#umlcybcjbb .gt_footnote_marks {
+#ehanpolfpq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#umlcybcjbb .gt_asterisk {
+#ehanpolfpq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#umlcybcjbb .gt_indent_1 {
+#ehanpolfpq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#umlcybcjbb .gt_indent_2 {
+#ehanpolfpq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#umlcybcjbb .gt_indent_3 {
+#ehanpolfpq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#umlcybcjbb .gt_indent_4 {
+#ehanpolfpq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#umlcybcjbb .gt_indent_5 {
+#ehanpolfpq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#umlcybcjbb .katex-display {
+#ehanpolfpq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#umlcybcjbb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ehanpolfpq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -994,23 +1081,23 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <p>SAS was the dominant language across transplant study types, particularly in pre-transplant access-to-care studies, while R and Stata were used less often. Although the subgroup sizes are small, the overall pattern suggests that transplant studies varied more in clinical focus than in their basic computational approach. In other words, post-transplant and pre-transplant studies appeared to draw from a broadly similar analytic toolkit, with differences likely driven by the specific data elements needed for each research question.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="orzpxtlyqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#orzpxtlyqv table {
+<div id="loydcqokcl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#loydcqokcl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#orzpxtlyqv thead, #orzpxtlyqv tbody, #orzpxtlyqv tfoot, #orzpxtlyqv tr, #orzpxtlyqv td, #orzpxtlyqv th {
+#loydcqokcl thead, #loydcqokcl tbody, #loydcqokcl tfoot, #loydcqokcl tr, #loydcqokcl td, #loydcqokcl th {
   border-style: none;
 }
 
-#orzpxtlyqv p {
+#loydcqokcl p {
   margin: 0;
   padding: 0;
 }
 
-#orzpxtlyqv .gt_table {
+#loydcqokcl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1036,12 +1123,12 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-left-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_caption {
+#loydcqokcl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#orzpxtlyqv .gt_title {
+#loydcqokcl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1053,7 +1140,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-width: 0;
 }
 
-#orzpxtlyqv .gt_subtitle {
+#loydcqokcl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1065,7 +1152,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-top-width: 0;
 }
 
-#orzpxtlyqv .gt_heading {
+#loydcqokcl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1077,13 +1164,13 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_bottom_border {
+#loydcqokcl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_col_headings {
+#loydcqokcl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1098,7 +1185,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_col_heading {
+#loydcqokcl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1118,7 +1205,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   overflow-x: hidden;
 }
 
-#orzpxtlyqv .gt_column_spanner_outer {
+#loydcqokcl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1130,15 +1217,15 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 4px;
 }
 
-#orzpxtlyqv .gt_column_spanner_outer:first-child {
+#loydcqokcl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#orzpxtlyqv .gt_column_spanner_outer:last-child {
+#loydcqokcl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#orzpxtlyqv .gt_column_spanner {
+#loydcqokcl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1150,11 +1237,11 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   width: 100%;
 }
 
-#orzpxtlyqv .gt_spanner_row {
+#loydcqokcl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#orzpxtlyqv .gt_group_heading {
+#loydcqokcl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1180,7 +1267,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   text-align: left;
 }
 
-#orzpxtlyqv .gt_empty_group_heading {
+#loydcqokcl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1195,15 +1282,15 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   vertical-align: middle;
 }
 
-#orzpxtlyqv .gt_from_md > :first-child {
+#loydcqokcl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#orzpxtlyqv .gt_from_md > :last-child {
+#loydcqokcl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#orzpxtlyqv .gt_row {
+#loydcqokcl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1222,7 +1309,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   overflow-x: hidden;
 }
 
-#orzpxtlyqv .gt_stub {
+#loydcqokcl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1235,7 +1322,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#orzpxtlyqv .gt_stub_row_group {
+#loydcqokcl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1249,15 +1336,15 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   vertical-align: top;
 }
 
-#orzpxtlyqv .gt_row_group_first td {
+#loydcqokcl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#orzpxtlyqv .gt_row_group_first th {
+#loydcqokcl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#orzpxtlyqv .gt_summary_row {
+#loydcqokcl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1267,16 +1354,16 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#orzpxtlyqv .gt_first_summary_row {
+#loydcqokcl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_first_summary_row.thick {
+#loydcqokcl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#orzpxtlyqv .gt_last_summary_row {
+#loydcqokcl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1286,7 +1373,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_grand_summary_row {
+#loydcqokcl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1296,7 +1383,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#orzpxtlyqv .gt_first_grand_summary_row {
+#loydcqokcl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1306,7 +1393,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-top-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_last_grand_summary_row_top {
+#loydcqokcl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1316,11 +1403,11 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_striped {
+#loydcqokcl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#orzpxtlyqv .gt_table_body {
+#loydcqokcl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1329,7 +1416,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_footnotes {
+#loydcqokcl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1343,7 +1430,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_footnote {
+#loydcqokcl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1352,7 +1439,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#orzpxtlyqv .gt_sourcenotes {
+#loydcqokcl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1366,7 +1453,7 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#orzpxtlyqv .gt_sourcenote {
+#loydcqokcl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1374,72 +1461,72 @@ N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#orzpxtlyqv .gt_left {
+#loydcqokcl .gt_left {
   text-align: left;
 }
 
-#orzpxtlyqv .gt_center {
+#loydcqokcl .gt_center {
   text-align: center;
 }
 
-#orzpxtlyqv .gt_right {
+#loydcqokcl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#orzpxtlyqv .gt_font_normal {
+#loydcqokcl .gt_font_normal {
   font-weight: normal;
 }
 
-#orzpxtlyqv .gt_font_bold {
+#loydcqokcl .gt_font_bold {
   font-weight: bold;
 }
 
-#orzpxtlyqv .gt_font_italic {
+#loydcqokcl .gt_font_italic {
   font-style: italic;
 }
 
-#orzpxtlyqv .gt_super {
+#loydcqokcl .gt_super {
   font-size: 65%;
 }
 
-#orzpxtlyqv .gt_footnote_marks {
+#loydcqokcl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#orzpxtlyqv .gt_asterisk {
+#loydcqokcl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#orzpxtlyqv .gt_indent_1 {
+#loydcqokcl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#orzpxtlyqv .gt_indent_2 {
+#loydcqokcl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#orzpxtlyqv .gt_indent_3 {
+#loydcqokcl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#orzpxtlyqv .gt_indent_4 {
+#loydcqokcl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#orzpxtlyqv .gt_indent_5 {
+#loydcqokcl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#orzpxtlyqv .katex-display {
+#loydcqokcl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#orzpxtlyqv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#loydcqokcl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2214,4 +2301,4 @@ N = 7<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/main/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/edit/master/quarto/results_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
