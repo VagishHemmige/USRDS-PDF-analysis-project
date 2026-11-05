@@ -106,6 +106,10 @@ website:
             text: Repository blueprint
             icon: file-earmark-ruled
 
+      - href: quarto/about.qmd
+        text: About
+        icon: info-circle
+
 # Each kind of content has one callout, in its kind's colour: Rcode for code,
 # Results for results, Pending for provisional content (added by
 # quarto/_pending.lua).
