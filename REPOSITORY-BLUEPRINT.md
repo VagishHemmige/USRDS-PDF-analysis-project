@@ -4,22 +4,24 @@ Intended file organization for an R research analysis. `ARCHITECTURE.md`, mainta
 
 ```text
 repository/
-  ├── R/
-  │   ├── main.R               # Orchestrates definitive analysis
+├── R/
+│   ├── main.R               # Orchestrates definitive analysis
 │   ├── setup.R              # Packages, paths, shared parameters
 │   ├── functions.R          # Reusable functions
 │   ├── ...                  # Study-specific scripts and subdirectories
 │   ├── tables.R             # Generates or orchestrates tables
 │   └── figures.R            # Generates or orchestrates figures
 ├── figures/                 # Generated figures
-  ├── tables/                  # Generated tables
-  ├── references/              # Supporting literature and evidence
-  ├── quarto/                  # Explanatory Quarto pages
-  ├── _extensions/             # Quarto extensions, when used
-  ├── docs/                    # Example rendered website directory
-  ├── <project>.Rproj          # Optional RStudio project file
+├── tables/                  # Generated tables
+├── references/              # Supporting literature and evidence
+├── quarto/                  # Explanatory Quarto pages, and _pending.lua
+├── _extensions/             # Quarto extensions, when used
+├── .github/workflows/       # Publish workflow, when a workflow publishes the site
+├── docs/                    # Rendered website (tracked, or ignored when a workflow publishes it)
 ├── _quarto.yml              # Quarto configuration
 ├── index.qmd                # Website entry point
+├── 404.qmd                  # Page for a missing address
+├── styles.css               # Website icon colours and marks
 ├── README.md                # Overview and execution
 ├── README.Rmd               # Optional source for README.md
 ├── analysis-plan.md         # Scientific objectives and methods
@@ -27,6 +29,9 @@ repository/
 ├── AGENTS.md                # Agent instructions
 ├── ARCHITECTURE.md          # Current implementation (Posit)
 ├── REPOSITORY-BLUEPRINT.md  # Intended organization
+├── LICENSE.md               # Optional license
+├── .Rbuildignore            # Optional build exclusions
+├── <project>.Rproj          # Optional RStudio project file (not used by Positron)
 └── .gitignore               # Project-specific exclusions
 ```
 

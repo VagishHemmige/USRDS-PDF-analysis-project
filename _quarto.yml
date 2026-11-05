@@ -1,81 +1,135 @@
 project:
   type: website
   output-dir: docs
+  # Only the site's pages. Without this list Quarto also renders the root .md
+  # files (analysis-plan.md, ARCHITECTURE.md, ...) as pages outside the
+  # sidebar; they are shown through the Project documents pages instead.
   render:
     - index.qmd
+    - 404.qmd
     - quarto/**
-    
-    
+
+bibliography: references.bib
+
 author:
   - name: Vagish Hemmige
     email: vagish.hemmige@gmail.com
 
-
-
 website:
   site-url: https://vagishhemmige.github.io/USRDS-PDF-analysis-project
   repo-url: https://github.com/VagishHemmige/USRDS-PDF-analysis-project
+  repo-branch: master
   repo-actions: [edit, issue]
   title: "Analysis of USRDS-related papers"
+  page-navigation: true
 
+  # Each kind of page has one icon, coloured in styles.css: book = background,
+  # diagram-3 = study design and methods, laptop = R code, clipboard-data =
+  # results, file-earmark-ruled = project documents.
   sidebar:
     style: "docked"
+    # Every section starts open, including those inside Code
+    collapse-level: 3
     search: true
     contents:
       - href: index.qmd
         text: Home
+        icon: house
 
       - section: Background
         contents:
           - href: quarto/background.qmd
             text: Clinical background
-          - href: quarto/analysis_methods.qmd
-            text: Description of analysis methods
+            icon: book
 
-      - section: Setup and helper functions
-        contents:
-          - href: quarto/setup.qmd
-            text: Setup
-          - href: quarto/functions.qmd
-            text: Functions
+      - href: quarto/analysis_methods.qmd
+        text: Description of analysis methods
+        icon: diagram-3
 
-      - section: Methods
+      - section: Code
         contents:
-          - href: quarto/manual_data.qmd
-            text: Analysis of manual data extraction
-          - href: quarto/llm_analysis.qmd
-            text: LLM data extraction
-          - href: quarto/data_cleaning.qmd
-            text: Data cleaning
-          - href: quarto/llm_data_full.qmd
-            text: "LLM data analysis: full"
-          - href: quarto/llm_data_transplant.qmd
-            text: "LLM data analysis: transplant"
-        
+          - section: Setup and helper functions
+            contents:
+              - href: quarto/setup.qmd
+                text: Setup
+                icon: laptop
+              - href: quarto/functions.qmd
+                text: Functions
+                icon: laptop
+
+          # Numbered in the order R/main.R sources them once it exists (#4).
+          - section: Data processing and analysis
+            contents:
+              - href: quarto/manual_data.qmd
+                text: Analysis of manual data extraction
+                icon: laptop
+              - href: quarto/llm_analysis.qmd
+                text: LLM data extraction
+                icon: laptop
+              - href: quarto/data_cleaning.qmd
+                text: Data cleaning
+                icon: laptop
+              - href: quarto/llm_data_full.qmd
+                text: "LLM data analysis: full"
+                icon: laptop
+              - href: quarto/llm_data_transplant.qmd
+                text: "LLM data analysis: transplant"
+                icon: laptop
+
       - section: Results
         contents:
           - href: quarto/final_selection_papers.qmd
             text: Final selection of papers
+            icon: clipboard-data
           - href: quarto/results_manual.qmd
             text: Results of manual extraction of data
+            icon: clipboard-data
           - href: quarto/results_LLM_full.qmd
             text: LLM analysis of full dataset
+            icon: clipboard-data
           - href: quarto/results_LLM_transplant.qmd
             text: Transplant LLM analysis
+            icon: clipboard-data
 
+      - section: Project documents
+        contents:
+          - href: quarto/analysis-plan.qmd
+            text: Analysis plan
+            icon: file-earmark-ruled
+          - href: quarto/architecture.qmd
+            text: Architecture
+            icon: file-earmark-ruled
+          - href: quarto/agents.qmd
+            text: AGENTS.md
+            icon: file-earmark-ruled
+          - href: quarto/repository-blueprint.qmd
+            text: Repository blueprint
+            icon: file-earmark-ruled
 
-
-  page-navigation: true
-
+# Each kind of content has one callout, in its kind's colour: Rcode for code,
+# Results for results, Pending for provisional content (added by
+# quarto/_pending.lua).
 custom-callout:
   Rcode:
     icon: true
     icon-symbol: "💻 "
     color: "pink"
+  Results:
+    icon: true
+    icon-symbol: "📊"
+    color: "#198754"
+  Pending:
+    icon: true
+    icon-symbol: "⏳"
+    color: "#f0c400"
 
 filters:
-- custom-callout
-- issue-comments
+  # Yellow marks for provisional content, and their Pending callout. It runs
+  # before custom-callout, which turns the callout it adds into a styled box.
+  - quarto/_pending.lua
+  - custom-callout
+  # Reader comments, filed as GitHub issues by the relay.
+  - issue-comments
 
 issue-comments:
   endpoint: https://script.google.com/macros/s/AKfycbyE8fNBvy3vfuAnuQqdjpCTR8i2zYI-KSvGzhkGlQRYevI1I6auqq9H-mIk2yrXCaIROA/exec
@@ -86,6 +140,7 @@ issue-comments:
 format:
   html:
     theme: cosmo
+    css: styles.css
     toc: true
     code-fold: true
     code-tools: true
