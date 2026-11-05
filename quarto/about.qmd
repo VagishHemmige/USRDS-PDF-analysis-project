@@ -3,6 +3,44 @@ title: "About"
 format: html
 ---
 
-Pending
+## The study
 
+This project asks how well large language models (LLMs) can extract study characteristics from published papers that use United States Renal Data System (USRDS) data, compared with manual review by two reviewers, and what manual review shows about how these papers report their methods. The analysis is preliminary and has not yet been published; abstracts have been or will be presented at the World Transplant Congress 2025 and the American Transplant Congress 2026.
 
+-   **Vagish Hemmige** (study design, analysis and code)
+
+Scientific decisions are made by Vagish Hemmige. Open decisions are marked **Open:** in the [analysis plan](analysis-plan.qmd) and tracked in [Issues](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues).
+
+## This repository
+
+The analysis is run by `R/main.R`, which sources the other scripts in order: setup and helper functions, the three LLM extraction scripts, data cleaning, and the manual, full LLM and transplant LLM analyses. Running it never calls a model: it reads the saved model outputs, and the extraction scripts, which call paid model APIs, run only when re-extraction is deliberately switched on. Tables are saved to `tables/` and figures to `figures/`, one folder per strand.
+
+The inputs are not in the repository. The papers' PDFs are copyrighted, the reviewers' abstraction spreadsheet is internal, and the saved model outputs are kept with them. The papers can be found from PubMed.
+
+Contributions follow the rules in [`AGENTS.md`](agents.qmd); known issues and open decisions are tracked in [Issues](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues).
+
+## How this website was created
+
+The site is built with [Quarto](https://quarto.org) from the analysis scripts themselves. Each code page imports the labelled sections of its script from `R/` and shows them with an explanation; the results pages show the tables the analysis saved. The site never runs the analysis, so it is built without the papers, the reviewers' data or the model outputs. A GitHub Actions workflow renders and publishes it whenever `master` changes.
+
+The repository follows the R Analysis Workflow conventions used by the maintainer's other analysis projects. AI assistants help with code review, documentation and repository maintenance under the rules in [`AGENTS.md`](agents.qmd): they do not make scientific decisions, merge changes, or call the model APIs without the maintainer's approval.
+
+Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and `AGENTS.md` holds the rules for working together.
+
+-   [**Analysis plan**](analysis-plan.qmd): *what the analysis is meant to do, and why.* The question, the paper sample, the methods, and the open decisions. Code implements it and does not redefine it.
+-   [**Architecture**](architecture.qmd): *how the code does it.* The scripts, the order they run in, what each needs and produces, and how data flow between them.
+-   [**AGENTS.md**](agents.qmd): *how people and AI assistants work on the project.* Rules for the papers, the reviewers' data and the model APIs, coding, checks, proposing changes and getting the maintainer's approval.
+-   [**Repository blueprint**](repository-blueprint.qmd): *the layout every project of this kind starts from*, which the architecture document then describes as built.
+
+## Pages
+
+-   [**Clinical background**](background.qmd): the USRDS and its research files.
+-   [**Description of analysis methods**](analysis_methods.qmd): the paper sample, the manual review form, the LLM extraction and the analysis in R.
+-   [**Setup**](setup.qmd): packages, variable labels and the record of saved model runs.
+-   [**Functions**](functions.qmd): reusable helper functions.
+-   [**Analysis of manual data extraction**](manual_data.qmd): the paper flow, the table of included papers and the reporting-practices tables.
+-   [**LLM data extraction**](llm_analysis.qmd): the prompt, the schema and the three extraction scripts.
+-   [**Data cleaning**](data_cleaning.qmd): importing the model outputs and the human abstraction and merging them.
+-   [**LLM data analysis: full**](llm_data_full.qmd): agreement between each model and the humans, for all papers.
+-   [**LLM data analysis: transplant**](llm_data_transplant.qmd): the same for transplant-related papers.
+-   The **Results** pages show the saved tables and figures for each strand.
