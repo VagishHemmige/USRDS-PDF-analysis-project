@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aade7b2294effb6f0ad8f1cba2010aba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -125,17 +125,6 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
-  background-image: none;
-}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -145,6 +134,17 @@ div.callout-Pending.callout-style-default > .callout-header {
 div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
   content: '⏳';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -472,7 +472,7 @@ edit that file, not this page. Its first heading is the page title.
 <section id="the-project" class="level2">
 <h2 class="anchored" data-anchor-id="the-project">The project</h2>
 <p>The project evaluates whether large language models (LLMs) can extract study characteristics (study type, transplant relevance, programming language, USRDS files and data components used, and related items) from published papers that use United States Renal Data System (USRDS) data, compared with dual manual review. It also reports the reporting practices found by manual review. The data are published papers, not patient records. The code and methods are published as a Quarto website.</p>
-<p>Outputs feed several products: the reporting-practices letter (<code>Letter analysis/</code>), the LLM validation manuscript, and conference abstracts and posters (<code>Kidney conference abstract/</code>, <code>ATC 2026 abstract/</code>).</p>
+<p>Outputs feed several products: the reporting-practices letter, the LLM validation manuscript, and conference abstracts and posters (the kidney conference abstract and the ATC 2026 abstract). Their tables and figures are in <code>tables/&lt;strand&gt;/</code> and <code>figures/&lt;strand&gt;/</code>, with <code>manual</code> (manual review only), <code>llm_full</code> (all papers, humans versus LLMs) and <code>llm_transplant</code> (transplant papers, humans versus LLMs) as the folders.</p>
 <ul>
 <li><strong><code>analysis-plan.md</code> is the source of truth for design.</strong> Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the decider. Once the decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.</li>
 <li><strong>Decider.</strong> Scientific decisions are made by Vagish Hemmige. Anyone may open or contribute to a decision issue; only the decider settles it (see “Working with agents”).</li>
@@ -534,18 +534,18 @@ edit that file, not this page. Its first heading is the page title.
 </section>
 <section id="exploration-and-definitive-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploration-and-definitive-analysis">Exploration and definitive analysis</h2>
-<p>Exploration is welcome on branches or forks. Experimental scripts need not have Quarto pages, and their findings are labelled preliminary. Until <code>R/main.R</code> exists (<a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/4">#4</a>), the definitive scripts are those listed in <code>ARCHITECTURE.md</code>; from then on, a script is definitive when <code>R/main.R</code> sources it, and every rule below applies to it.</p>
+<p>Exploration is welcome on branches or forks. Experimental scripts need not be sourced from <code>R/main.R</code> or have Quarto pages, and their findings are labelled preliminary. A script becomes part of the definitive analysis when it is sourced from <code>R/main.R</code>; from then on every rule below applies to it.</p>
 </section>
 <section id="r-scripts" class="level2">
 <h2 class="anchored" data-anchor-id="r-scripts">R scripts</h2>
 <ul>
-<li><strong>Running the analysis.</strong> Run the scripts from the project root in the order <code>ARCHITECTURE.md</code> gives. The extraction scripts call paid APIs; running the analysis must not start new model calls by default.</li>
-<li><strong>One job per script.</strong> When you add a definitive script, add it to the run order and update <code>ARCHITECTURE.md</code> in the same pull request.</li>
+<li><strong>Running the analysis.</strong> Run <code>R/main.R</code> from the project root in a fresh session. It sources the other scripts in dependency order; <code>ARCHITECTURE.md</code> describes what each does. It never calls a model: it reads the saved runs listed in <code>model_runs</code> and stops with a message if one is missing. The extraction scripts call paid APIs and run only when <code>run_extraction</code> is set to <code>TRUE</code> in <code>R/setup.R</code>.</li>
+<li><strong>One job per script.</strong> When you add a definitive script, source it from <code>main.R</code> at the right point and update <code>ARCHITECTURE.md</code> in the same pull request.</li>
 <li><strong>Header comment.</strong> Each script begins with what it does, which objects it needs from earlier scripts, and what it produces.</li>
-<li><strong>Constants and libraries</strong> live in <code>R/Analysis setup.R</code>. Other scripts do not call <code>library()</code> or hard-code values a reader might want to change.</li>
+<li><strong>Constants and libraries</strong> live in <code>R/setup.R</code>, including <code>run_extraction</code> and the <code>model_runs</code> record. Other scripts do not call <code>library()</code> or hard-code values a reader might want to change. (The extraction scripts still load their own packages; see <code>ARCHITECTURE.md</code>.)</li>
 <li><strong>Helper functions</strong> go in <code>R/functions.R</code>. A function takes its inputs as arguments and does not read global objects.</li>
 <li><strong>No side effects outside the project.</strong> No <code>setwd()</code>, absolute paths, or writes outside the project.</li>
-<li><strong>Saved model outputs are records.</strong> Do not overwrite a saved run. A new extraction is a new run, saved with the prompt and schema, model identifier, text limits and run date that produced it.</li>
+<li><strong>Saved model outputs are records.</strong> Do not overwrite a saved run. A new extraction is a new run, saved with the prompt and schema, model identifier, text limits and run date that produced it, and added to <code>model_runs</code>. Runs saved before <code>model_runs</code> existed are marked <code>legacy</code>.</li>
 </ul>
 </section>
 <section id="chunk-labels" class="level2">
@@ -577,7 +577,7 @@ edit that file, not this page. Its first heading is the page title.
 <section id="outputs" class="level2">
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
-<li>Tables and figures are saved by the analysis scripts into one folder per product (<code>Kidney conference abstract/</code>, <code>ATC 2026 abstract/</code>, <code>Letter analysis/</code>) and tracked. Issue <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/5">#5</a> concerns moving them to <code>figures/</code> and <code>tables/</code>.</li>
+<li>Tables are saved by the analysis scripts to <code>tables/&lt;strand&gt;/</code> and figures to <code>figures/&lt;strand&gt;/</code>, and both are tracked: they are what the website reads. Hand-edited documents (such as <code>ATC 2026 abstract/Tables.docx</code>) stay out of these folders.</li>
 <li>Results pages read the saved <code>gt</code> tables (<code>.rds</code>). They must be re-saved when a <code>gt</code> update can no longer print them; compare the <code>.html</code> tables before and after to confirm only formatting changed.</li>
 <li>Published figures need alt text.</li>
 <li><code>README.Rmd</code> is the source of <code>README.md</code>; edit the <code>.Rmd</code> and re-knit.</li>
@@ -611,7 +611,7 @@ edit that file, not this page. Its first heading is the page title.
 <li><strong>Reported numbers:</strong> do tables, figures and site prose say what the code actually computes, and does the letter’s text match its tables?</li>
 <li><strong>Reporting and definitions:</strong> does the validation write-up follow its reporting guideline? Are USRDS files, analysis types and clinical categories checked against the Researcher’s Guide, NIDDK or PubMed, never invented?</li>
 <li><strong>Structure:</strong> is <code>ARCHITECTURE.md</code> current; are chunk labels unique and found by their pages; does every definitive script have a page and sidebar entry; does any site chunk run analysis code?</li>
-<li><strong>Execution:</strong> do the scripts run in a fresh session with relative paths, including folder names with spaces; are any saved outputs or tables stale relative to the code?</li>
+<li><strong>Execution:</strong> does <code>main.R</code> run in a fresh session with relative paths, without calling a model; are any saved outputs or tables stale relative to the code?</li>
 </ul>
 </section>
 <section id="working-with-agents" class="level2">

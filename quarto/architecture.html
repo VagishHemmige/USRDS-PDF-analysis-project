@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aade7b2294effb6f0ad8f1cba2010aba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -117,15 +117,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <style>
-div.callout-Results.callout {
-  border-left-color: #198754;
+div.callout-Rcode.callout {
+  border-left-color: pink;
 }
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
 }
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 div.callout-Pending.callout {
@@ -139,15 +139,15 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   content: '⏳';
   background-image: none;
 }
-div.callout-Rcode.callout {
-  border-left-color: pink;
+div.callout-Results.callout {
+  border-left-color: #198754;
 }
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgb(from pink r g b / 13%);
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
 }
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -399,7 +399,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow">Data flow</a></li>
   <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a>
   <ul class="collapse">
-  <li><a href="#setup-and-helpers" id="toc-setup-and-helpers" class="nav-link" data-scroll-target="#setup-and-helpers">Setup and helpers</a></li>
+  <li><a href="#orchestration-and-setup" id="toc-orchestration-and-setup" class="nav-link" data-scroll-target="#orchestration-and-setup">Orchestration and setup</a></li>
   <li><a href="#extraction" id="toc-extraction" class="nav-link" data-scroll-target="#extraction">Extraction</a></li>
   <li><a href="#import-and-merge" id="toc-import-and-merge" class="nav-link" data-scroll-target="#import-and-merge">Import and merge</a></li>
   <li><a href="#analyses" id="toc-analyses" class="nav-link" data-scroll-target="#analyses">Analyses</a></li>
@@ -452,11 +452,11 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 -->
 <section id="architecture" class="level1">
 <h1>Architecture</h1>
-<p>How the analysis is implemented: the scripts, the order they run in, what each needs and produces, and how data flow between them. It describes the repository at commit <code>35e0ac7</code> on <code>master</code>; uncommitted changes were not included. Design intent is in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/analysis-plan.md"><code>analysis-plan.md</code></a>; open work is in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues">GitHub Issues</a>.</p>
+<p>How the analysis is implemented: the scripts, the order they run in, what each needs and produces, and how data flow between them. It describes the repository as restructured for issues <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/4">#4</a> and <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/5">#5</a>, on top of commit <code>482fb01</code> on <code>master</code>. Design intent is in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/analysis-plan.md"><code>analysis-plan.md</code></a>; open work is in <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues">GitHub Issues</a>.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>The project evaluates whether large language models (LLMs) can extract study characteristics from published papers that use United States Renal Data System (USRDS) data, compared with manual review by two reviewers. A second strand reports the reporting practices found by manual review, for a letter.</p>
-<p>There is no <code>R/main.R</code>; scripts are run by hand, in the order below, in one R session. The extraction scripts call paid model APIs. The analysis scripts read the saved model outputs and the reviewer spreadsheet, and save <code>gt</code> tables and <code>ggplot2</code> figures into one folder per product. The Quarto website shows the code without running it and displays the saved tables.</p>
+<p><code>R/main.R</code> runs the analysis in dependency order. It never calls a model: it reads the saved model runs listed in <code>model_runs</code> (<code>R/setup.R</code>), and the extraction scripts, which call paid model APIs, run only when <code>run_extraction</code> is set to <code>TRUE</code>. The analysis scripts read the saved runs and the reviewer spreadsheet, and save <code>gt</code> tables to <code>tables/&lt;strand&gt;/</code> and <code>ggplot2</code> and <code>flowchart</code> figures to <code>figures/&lt;strand&gt;/</code>. The Quarto website shows the code without running it and displays the saved tables.</p>
 </section>
 <section id="data-flow" class="level2">
 <h2 class="anchored" data-anchor-id="data-flow">Data flow</h2>
@@ -466,42 +466,39 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
+    MAIN["R/main.R"]
     PDF[("PDFs&lt;br/&gt;data-raw/PDFs (not tracked)")]
     XLSX[("Reviewer spreadsheet&lt;br/&gt;data-raw/ (not tracked)")]
     SCHEMA["R/abstract_schema.R&lt;br/&gt;prompt and type_summary"]
-    SETUP["R/Analysis setup.R&lt;br/&gt;packages, label_list, timing_table"]
-    FUN["R/functions.R&lt;br/&gt;helpers"]
+    SETUP["R/setup.R&lt;br/&gt;packages, labels, run_extraction, model_runs"]
+    FUN["R/functions.R&lt;br/&gt;helpers, check_saved_runs()"]
 
-    subgraph Extraction["Extraction (paid API calls)"]
-        GPT["R/Rscript ChatGPT 2025-11-14.R"]
-        CLA["R/Rscript Claude 2025-11-14.R"]
-        GEM["R/Rscript Gemini 2025-11-15.R"]
+    subgraph Extraction["Extraction: only when run_extraction is TRUE (paid API calls)"]
+        GPT["R/extract_gpt.R"]
+        CLA["R/extract_claude.R"]
+        GEM["R/extract_gemini.R"]
     end
 
-    RES[("Results/ (not tracked)&lt;br/&gt;one folder per model")]
-    IMP["R/Analysis data import and cleaning.R&lt;br/&gt;df_wide"]
-    NKF["R/Rscript data analysis NKF 2025-11-30.R"]
-    ATC["R/Rscript data analysis ATC 2025-11-16.R"]
-    LET["R/Rscript letter analysis of manual review.R"]
+    RES[("Results/ (not tracked)&lt;br/&gt;saved model runs")]
+    IMP["R/data_cleaning.R&lt;br/&gt;df_wide"]
+    LET["R/manual_data.R"]
+    KID["R/llm_data_full.R"]
+    ATC["R/llm_data_transplant.R"]
 
-    KCA[("Kidney conference abstract/")]
-    ATCF[("ATC 2026 abstract/")]
-    LETF[("Letter analysis/")]
+    TAB[("tables/manual, tables/llm_full, tables/llm_transplant")]
+    FIG[("figures/manual, figures/llm_full, figures/llm_transplant")]
     SITE["Quarto website&lt;br/&gt;published by GitHub Actions"]
 
+    MAIN --&gt; SETUP --&gt; FUN
+    MAIN -.-&gt; Extraction
     PDF --&gt; GPT &amp; CLA &amp; GEM
     SCHEMA --&gt; GPT &amp; CLA &amp; GEM
     GPT &amp; CLA &amp; GEM --&gt; RES
     RES --&gt; IMP
-    XLSX --&gt; IMP
-    XLSX --&gt; LET
-    SETUP --&gt; IMP &amp; NKF &amp; ATC &amp; LET
-    FUN --&gt; IMP &amp; NKF &amp; ATC
-    IMP --&gt; NKF &amp; ATC
-    NKF --&gt; KCA
-    ATC --&gt; ATCF
-    LET --&gt; LETF
-    KCA &amp; ATCF &amp; LETF --&gt; SITE
+    XLSX --&gt; IMP &amp; LET
+    IMP --&gt; KID &amp; ATC
+    LET &amp; KID &amp; ATC --&gt; TAB &amp; FIG
+    TAB --&gt; SITE
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -511,43 +508,37 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 </section>
 <section id="components" class="level2">
 <h2 class="anchored" data-anchor-id="components">Components</h2>
-<section id="setup-and-helpers" class="level3">
-<h3 class="anchored" data-anchor-id="setup-and-helpers">Setup and helpers</h3>
-<p><strong><code>R/Analysis setup.R</code></strong> loads the packages every analysis script relies on (none of the analysis scripts call <code>library()</code> themselves) and defines <code>label_list</code>, which maps variable names to the labels used in tables, and <code>timing_table</code>, the approximate run time per model. Labels: <code>setup-libraries</code>, <code>setup-labels</code>, <code>setup-timing</code>.</p>
-<p><strong><code>R/functions.R</code></strong> holds the helpers the import and analysis scripts use: <code>convert_to_logical()</code>, <code>compute_kappa()</code> (Cohen’s κ through <code>irr::kappa2()</code> on complete pairs), <code>get_breakdown()</code>, <code>add_label_for_gt()</code>, <code>kappa_fill()</code>, <code>create_kappa_legend_gt()</code> and <code>make_llm_agreement_heatmap()</code>. Labels: <code>fn-*</code>.</p>
+<section id="orchestration-and-setup" class="level3">
+<h3 class="anchored" data-anchor-id="orchestration-and-setup">Orchestration and setup</h3>
+<p><strong><code>R/main.R</code></strong> sources <code>R/setup.R</code> and <code>R/functions.R</code>; the three extraction scripts only if <code>run_extraction</code> is <code>TRUE</code>; then <code>R/data_cleaning.R</code>, <code>R/manual_data.R</code>, <code>R/llm_data_full.R</code> and <code>R/llm_data_transplant.R</code>.</p>
+<p><strong><code>R/setup.R</code></strong> loads the packages the analysis scripts rely on (they do not call <code>library()</code> themselves) and defines <code>label_list</code> (variable labels for tables), <code>timing_table</code> (approximate run time per model), <code>run_extraction</code> (<code>FALSE</code>) and <code>model_runs</code>. <code>model_runs</code> has one row per model: its identifier, the text it was sent, the path of its saved output in <code>Results/</code>, and a status. The three existing runs are <code>legacy</code>: their settings are recorded as the extraction scripts stood when they were made. Labels: <code>setup-libraries</code>, <code>setup-labels</code>, <code>setup-timing</code>, <code>setup-model-runs</code>.</p>
+<p><strong><code>R/functions.R</code></strong> holds the helpers: <code>convert_to_logical()</code>, <code>compute_kappa()</code> (Cohen’s κ through <code>irr::kappa2()</code> on complete pairs), <code>get_breakdown()</code>, <code>add_label_for_gt()</code>, <code>kappa_fill()</code>, <code>create_kappa_legend_gt()</code>, <code>make_llm_agreement_heatmap()</code>, and <code>check_saved_runs()</code> and <code>saved_run_path()</code>, which check that the runs in <code>model_runs</code> exist and return their paths. Labels: <code>fn-*</code>.</p>
 </section>
 <section id="extraction" class="level3">
 <h3 class="anchored" data-anchor-id="extraction">Extraction</h3>
 <p><strong><code>R/abstract_schema.R</code></strong> defines the prompt, <code>id_prompt()</code>, and the structured output type, <code>type_summary</code> (44 fields), shared by the three extraction scripts.</p>
-<p><strong><code>R/Rscript ChatGPT 2025-11-14.R</code></strong>, <strong><code>R/Rscript Claude 2025-11-14.R</code></strong> and <strong><code>R/Rscript Gemini 2025-11-15.R</code></strong> each read every PDF in <code>data-raw/PDFs</code> with <code>pdftools::pdf_text()</code>, send the text with the prompt through <code>ellmer</code> (<code>chat_openai()</code> with <code>gpt-5.1</code>, <code>chat_anthropic()</code> with <code>claude-sonnet-4-5</code>, <code>chat_google_gemini()</code> with <code>gemini-2.5-flash</code>) and <code>chat_structured()</code>, one call per paper, and save the replies in <code>Results/ChatGPT/</code>, <code>Results/Claude/</code> and <code>Results/Gemini/</code>. Each keeps a job-status or processed-files record and partial checkpoints so a run can resume, and retries on rate limits.</p>
-<p>The text sent differs between scripts. The ChatGPT script sends all pages, up to 240,000 characters, and cuts the text by 10% on each rate-limit retry, down to 5,000 characters. The Claude and Gemini scripts send the first 50 pages, up to 240,000 characters. These scripts have no chunk labels; the LLM data extraction page shows their code directly.</p>
+<p><strong><code>R/extract_gpt.R</code></strong>, <strong><code>R/extract_claude.R</code></strong> and <strong><code>R/extract_gemini.R</code></strong> each stop at once unless <code>run_extraction</code> is <code>TRUE</code>. When allowed to run, each reads every PDF in <code>data-raw/PDFs</code> with <code>pdftools::pdf_text()</code>, sends the text with the prompt through <code>ellmer</code> (<code>chat_openai()</code> with <code>gpt-5.1</code>, <code>chat_anthropic()</code> with <code>claude-sonnet-4-5</code>, <code>chat_google_gemini()</code> with <code>gemini-2.5-flash</code>) and <code>chat_structured()</code>, one call per paper, and saves the replies in <code>Results/ChatGPT/</code>, <code>Results/Claude/</code> and <code>Results/Gemini/</code>. Each loads its own packages, keeps a job-status or processed-files record and partial checkpoints so a run can resume, retries on rate limits, and in an interactive RStudio session offers to delete its saved files and start over. A new run overwrites the saved files at the paths in <code>model_runs</code>.</p>
+<p>The text sent differs between scripts. The GPT script sends all pages, up to 240,000 characters, and cuts the text by 10% on each rate-limit retry, down to 5,000 characters. The Claude and Gemini scripts send the first 50 pages, up to 240,000 characters. These scripts have no chunk labels; the LLM data extraction page shows their code directly.</p>
 </section>
 <section id="import-and-merge" class="level3">
 <h3 class="anchored" data-anchor-id="import-and-merge">Import and merge</h3>
-<p><strong><code>R/Analysis data import and cleaning.R</code></strong> reads the three models’ saved outputs and the “Reviewer 2” sheet of the reviewer spreadsheet. It renames each source’s columns with a suffix (<code>_ChatGPT</code>, <code>_claude</code>, <code>_gemini</code>, <code>_human</code>), splits the human multi-select answers (languages, files, data components) into one logical column per option, converts Yes/No to logical, and checks which filenames are missing from each source. It then left-joins the three model datasets to the human data by <code>filename</code> into <code>df_wide</code>, and lists the human variables to compare in <code>human_vars</code>. The confirmation column in the sheet is dropped, not used as a filter. Labels: <code>import-raw-data</code> through <code>human-vars</code>.</p>
+<p><strong><code>R/data_cleaning.R</code></strong> checks the saved runs with <code>check_saved_runs()</code>, reads each model’s output from its <code>model_runs</code> path, and reads the “Reviewer 2” sheet of the reviewer spreadsheet. It renames each source’s columns with a suffix (<code>_ChatGPT</code>, <code>_claude</code>, <code>_gemini</code>, <code>_human</code>), splits the human multi-select answers (languages, files, data components) into one logical column per option, converts Yes/No to logical, and checks which filenames are missing from each source. It then left-joins the three model datasets to the human data by <code>filename</code> into <code>df_wide</code>, and lists the human variables to compare in <code>human_vars</code>. The confirmation column in the sheet is dropped, not used as a filter. Labels: <code>import-raw-data</code> through <code>human-vars</code>.</p>
 </section>
 <section id="analyses" class="level3">
 <h3 class="anchored" data-anchor-id="analyses">Analyses</h3>
-<p><strong><code>R/Rscript data analysis NKF 2025-11-30.R</code></strong> (all papers) cross-tabulates each model against the humans for the new-analysis and transplant classifications, restricts to papers the humans coded as new USRDS analyses (<code>df_filt_full</code>), computes κ per variable for each model, builds the κ table, its legend and the breakdown table, and draws heatmaps. It saves everything to <code>Kidney conference abstract/</code>.</p>
-<p><strong><code>R/Rscript data analysis ATC 2025-11-16.R</code></strong> (transplant subset) does the same on papers the humans coded as new USRDS analyses and transplant-related (<code>df_filt_atc</code>), adds a combined poster heatmap, and saves to <code>ATC 2026 abstract/</code>.</p>
-<p><strong><code>R/Rscript letter analysis of manual review.R</code></strong> reads the same reviewer sheet itself, keeps only rows marked as confirmed, builds the paper-flow diagram with <code>flowchart</code>, a table of included papers, and three <code>gtsummary</code> tables (overall, by transplant relevance, by transplant study type), and saves them to <code>Letter analysis/</code>. It does not use the model outputs.</p>
+<p><strong><code>R/manual_data.R</code></strong> reads the reviewer sheet itself, keeps only rows marked as confirmed, builds the paper-flow diagram with <code>flowchart</code>, a table of included papers, and three <code>gtsummary</code> tables (overall, by transplant relevance, by transplant study type). Tables go to <code>tables/manual/</code>, the flow diagram to <code>figures/manual/</code>. It does not use the model outputs.</p>
+<p><strong><code>R/llm_data_full.R</code></strong> (all papers) cross-tabulates each model against the humans for the new-analysis and transplant classifications, restricts to papers the humans coded as new USRDS analyses (<code>df_filt_full</code>), computes κ per variable for each model, builds the κ table, its legend and the breakdown table, and draws heatmaps. Tables go to <code>tables/llm_full/</code>, heatmaps to <code>figures/llm_full/</code>.</p>
+<p><strong><code>R/llm_data_transplant.R</code></strong> (transplant subset) does the same on papers the humans coded as new USRDS analyses and transplant-related (<code>df_filt_atc</code>), and adds a combined poster heatmap. Tables go to <code>tables/llm_transplant/</code>, heatmaps to <code>figures/llm_transplant/</code>.</p>
 </section>
 <section id="website" class="level3">
 <h3 class="anchored" data-anchor-id="website">Website</h3>
-<p><code>_quarto.yml</code> and the pages in <code>quarto/</code> form a Quarto website rendered to <code>docs/</code> (not tracked) and published to the <code>gh-pages</code> branch by <code>.github/workflows/publish.yml</code> on every push to <code>master</code>; pull requests get a render check. Code pages import their script’s labelled sections with <code>knitr::read_chunk()</code> and show them with <code>eval: false</code>. Results pages read the saved <code>gt</code> tables (<code>.rds</code>) from the three product folders and print them. The Project documents pages include this file, <code>analysis-plan.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code> from the root. Reader comments use the <code>issue-comments</code> extension, and <code>quarto/_pending.lua</code> marks provisional content.</p>
+<p><code>_quarto.yml</code> and the pages in <code>quarto/</code> form a Quarto website rendered to <code>docs/</code> (not tracked) and published to the <code>gh-pages</code> branch by <code>.github/workflows/publish.yml</code> on every push to <code>master</code>; pull requests get a render check. The workflow installs only <code>knitr</code>, <code>rmarkdown</code>, <code>gt</code> and <code>tibble</code>: code pages import their script’s labelled sections with <code>knitr::read_chunk()</code> and show them with <code>eval: false</code>, and results pages load <code>gt</code> and print the saved tables (<code>.rds</code>) from <code>tables/</code>. The Project documents pages include this file, <code>analysis-plan.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code> from the root. Reader comments use the <code>issue-comments</code> extension, and <code>quarto/_pending.lua</code> marks provisional content.</p>
 <p>The methods diagram, <code>images/llm-extraction-methods.png</code>, is generated by <code>images/llm-extraction/draw.py</code> (Python standard library) and committed; the site does not run Python.</p>
 </section>
 </section>
 <section id="running-the-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-analysis">Running the analysis</h2>
-<p>In one R session, from the project root:</p>
-<ol type="1">
-<li><code>R/Analysis setup.R</code>, then <code>R/functions.R</code>.</li>
-<li>Only to re-extract, which costs money: the three extraction scripts.</li>
-<li><code>R/Analysis data import and cleaning.R</code>.</li>
-<li><code>R/Rscript letter analysis of manual review.R</code>, <code>R/Rscript data analysis NKF 2025-11-30.R</code> and <code>R/Rscript data analysis ATC 2025-11-16.R</code>, in any order.</li>
-</ol>
-<p>Steps 3 and 4 make no API calls. Issue <a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/issues/4">#4</a> proposes an <code>R/main.R</code> for this order.</p>
+<p>From the project root, in a fresh session: <code>source("R/main.R")</code>. With the saved runs in <code>Results/</code> and the reviewer spreadsheet in <code>data-raw/</code>, this makes no API calls and rewrites <code>tables/</code> and <code>figures/</code>. To re-extract, set <code>run_extraction &lt;- TRUE</code> in <code>R/setup.R</code> first; this calls the three model APIs for every paper.</p>
 </section>
 <section id="what-is-and-is-not-tracked" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-and-is-not-tracked">What is and is not tracked</h2>
@@ -572,7 +563,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 </tr>
 <tr class="even">
 <td><code>Results/</code></td>
-<td>Saved model outputs, job status and checkpoints</td>
+<td>Saved model runs, job status and checkpoints</td>
 <td>No</td>
 </tr>
 <tr class="odd">
@@ -581,11 +572,26 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <td>No</td>
 </tr>
 <tr class="even">
-<td><code>Kidney conference abstract/</code>, <code>ATC 2026 abstract/</code>, <code>Letter analysis/</code></td>
-<td>Saved tables (<code>.rds</code>, <code>.html</code>, <code>.png</code>) and figures</td>
+<td><code>tables/&lt;strand&gt;/</code></td>
+<td>Saved <code>gt</code> tables (<code>.rds</code>, <code>.html</code>, <code>.png</code>)</td>
 <td>Yes</td>
 </tr>
 <tr class="odd">
+<td><code>figures/&lt;strand&gt;/</code></td>
+<td>Heatmaps and the paper-flow diagram (<code>.png</code>, <code>.svg</code>)</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>ATC 2026 abstract/Tables.docx</code></td>
+<td>Hand-edited abstract tables; no script writes it</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>Kidney conference abstract/timing_table_atc.png</code></td>
+<td>A timing table no current script writes</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
 <td><code>docs/</code></td>
 <td>Local render of the website</td>
 <td>No</td>
@@ -610,38 +616,48 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 </thead>
 <tbody>
 <tr class="odd">
+<td>Orchestration</td>
+<td><code>R/main.R</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Settings and saved runs</td>
+<td><code>R/setup.R</code></td>
+<td><code>run_extraction</code>, <code>model_runs</code>, <code>label_list</code></td>
+</tr>
+<tr class="odd">
 <td>Prompt and schema</td>
 <td><code>R/abstract_schema.R</code></td>
 <td><code>id_prompt()</code>, <code>type_summary</code></td>
 </tr>
 <tr class="even">
 <td>Extraction</td>
-<td><code>R/Rscript ChatGPT 2025-11-14.R</code>, <code>R/Rscript Claude 2025-11-14.R</code>, <code>R/Rscript Gemini 2025-11-15.R</code></td>
+<td><code>R/extract_gpt.R</code>, <code>R/extract_claude.R</code>, <code>R/extract_gemini.R</code></td>
 <td><code>extract_summary_row()</code>, <code>extract_summary_single()</code></td>
 </tr>
 <tr class="odd">
 <td>Merge</td>
-<td><code>R/Analysis data import and cleaning.R</code></td>
+<td><code>R/data_cleaning.R</code></td>
 <td><code>df_wide</code>, <code>human_vars</code></td>
 </tr>
 <tr class="even">
-<td>Agreement</td>
+<td>Agreement and runs</td>
 <td><code>R/functions.R</code></td>
-<td><code>compute_kappa()</code>, <code>get_breakdown()</code>, <code>kappa_fill()</code>, <code>create_kappa_legend_gt()</code>, <code>make_llm_agreement_heatmap()</code></td>
+<td><code>compute_kappa()</code>, <code>get_breakdown()</code>, <code>kappa_fill()</code>, <code>create_kappa_legend_gt()</code>, <code>make_llm_agreement_heatmap()</code>, <code>check_saved_runs()</code>, <code>saved_run_path()</code></td>
 </tr>
 <tr class="odd">
 <td>All-papers analysis</td>
-<td><code>R/Rscript data analysis NKF 2025-11-30.R</code></td>
+<td><code>R/llm_data_full.R</code></td>
 <td><code>df_filt_full</code>, <code>kappa_results_full</code></td>
 </tr>
 <tr class="even">
 <td>Transplant analysis</td>
-<td><code>R/Rscript data analysis ATC 2025-11-16.R</code></td>
+<td><code>R/llm_data_transplant.R</code></td>
 <td><code>df_filt_atc</code></td>
 </tr>
 <tr class="odd">
 <td>Letter</td>
-<td><code>R/Rscript letter analysis of manual review.R</code></td>
+<td><code>R/manual_data.R</code></td>
 <td><code>paper_table_gt</code>, <code>letter_table1_gt</code>–<code>letter_table3_gt</code></td>
 </tr>
 <tr class="even">
@@ -671,8 +687,8 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <td>Cohen’s kappa, agreement between a model and the human answers beyond chance</td>
 </tr>
 <tr class="even">
-<td>NKF</td>
-<td>The kidney conference abstract (all papers)</td>
+<td>Kidney conference</td>
+<td>The kidney conference abstract (all papers); formerly the NKF analysis</td>
 </tr>
 <tr class="odd">
 <td>ATC</td>
@@ -681,6 +697,10 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <tr class="even">
 <td>New analysis</td>
 <td>A paper the reviewers coded as a new patient-level analysis of USRDS data</td>
+</tr>
+<tr class="odd">
+<td>Legacy run</td>
+<td>A saved model run made before <code>model_runs</code> recorded runs; its settings are not verified from the run itself</td>
 </tr>
 </tbody>
 </table>

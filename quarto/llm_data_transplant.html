@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aade7b2294effb6f0ad8f1cba2010aba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -449,11 +449,11 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <div class="callout-body-container callout-body">
 <p>The full R script is available at:</p>
 <ul>
-<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R"><code>R/Rscript data analysis ATC 2025-11-16.R</code></a></li>
+<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/llm_data_transplant.R"><code>R/llm_data_transplant.R</code></a></li>
 </ul>
 <p>This R script file is itself reliant on the following helper files:</p>
 <ul>
-<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R"><code>R/Analysis setup.R</code></a></li>
+<li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R"><code>R/setup.R</code></a></li>
 <li><a href="https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R"><code>R/functions.R</code></a></li>
 </ul>
 <p>The code sections below are imported directly from that script when this page is rendered.</p>
@@ -510,9 +510,9 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gtsave</span>(</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> timing_gt,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/timing_table_atc.png"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"tables/llm_transplant/timing_table_atc.png"</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(timing_gt, <span class="st">"ATC 2026 abstract/timing_table_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(timing_gt, <span class="st">"tables/llm_transplant/timing_table_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Here, the object <code>timing_table</code> is converted into a formatted <code>gt</code> table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:</p>
@@ -631,9 +631,9 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>kappa_table_atc</span>
 <span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(</span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> kappa_table_atc,</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/kappa_table_atc.png"</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"tables/llm_transplant/kappa_table_atc.png"</span></span>
 <span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(kappa_table_atc, <span class="st">"ATC 2026 abstract/kappa_table_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(kappa_table_atc, <span class="st">"tables/llm_transplant/kappa_table_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This section takes the raw kappa results and makes them easier to interpret. The helper function <code>add_label_for_gt()</code> adds a human-readable label for each variable, allowing the final table to display descriptive names instead of internal variable names.</p>
@@ -658,9 +658,9 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>kappa_legend_gt<span class="ot">&lt;-</span><span class="fu">create_kappa_legend_gt</span>()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> kappa_legend_gt,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/kappa_table_legend_atc.png"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"tables/llm_transplant/kappa_table_legend_atc.png"</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(kappa_legend_gt, <span class="st">"ATC 2026 abstract/kappa_legend_gt.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(kappa_legend_gt, <span class="st">"tables/llm_transplant/kappa_legend_gt.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The helper function <code>create_kappa_legend_gt()</code> creates a small legend table that explains the meaning of the color scale used in the main kappa table. This is especially helpful for posters, slides, or webpages where readers may not immediately know how the shading maps to different levels of agreement.</p>
@@ -727,9 +727,9 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>breakdown_gt_atc</span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(</span>
 <span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> breakdown_gt_atc,</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/breakdown_gt_atc.png"</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"tables/llm_transplant/breakdown_gt_atc.png"</span></span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(breakdown_gt_atc, <span class="st">"ATC 2026 abstract/breakdown_gt_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(breakdown_gt_atc, <span class="st">"tables/llm_transplant/breakdown_gt_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This table is designed to answer a different question from the kappa table. Instead of summarizing agreement with one statistic per variable, it shows the raw counts and percentages for each model. The final layout places each model under its own column spanner, with paired columns for:</p>
@@ -764,7 +764,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>files_res_atc</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> files_res_atc,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/files_res_atc.png"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"figures/llm_transplant/files_res_atc.png"</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -789,7 +789,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>languages_res_atc</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> languages_res_atc,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/languages_res_atc.png"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"figures/llm_transplant/languages_res_atc.png"</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -814,7 +814,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>component_res_atc</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> component_res_atc,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/component_res_atc.png"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"figures/llm_transplant/component_res_atc.png"</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -845,7 +845,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>other_res_atc</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"ATC 2026 abstract/other_res_atc.png"</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"figures/llm_transplant/other_res_atc.png"</span>,</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> other_res_atc,</span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1354,7 +1354,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| cache: false</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">read_chunk</span>(<span class="st">"../R/Rscript data analysis ATC 2025-11-16.R"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">read_chunk</span>(<span class="st">"../R/llm_data_transplant.R"</span>)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>::: {.Rcode title="Source code"}</span>
@@ -1362,12 +1362,12 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>The full R script is available at:</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/Rscript data analysis ATC 2025-11-16.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Rscript%20data%20analysis%20ATC%202025-11-16.R)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/llm_data_transplant.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/llm_data_transplant.R)</span></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>This R script file is itself reliant on the following helper files:</span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/Analysis setup.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/Analysis%20setup.R)</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/setup.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/setup.R)</span></span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`R/functions.R`</span><span class="co">](https://github.com/VagishHemmige/USRDS-PDF-analysis-project/blob/master/R/functions.R)</span></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>The code sections below are imported directly from that script when this page is rendered.</span>
