@@ -28,4 +28,4 @@ In this project, we examined how published studies used the United States Renal 
 
 Our review of the USRDS literature helps clarify where an R package could be most useful. For example, a package may be able to simplify file loading, standardize variable labels and coding, support common extraction tasks for diagnoses and procedures, and make it easier for researchers to work across raw CSV, SAS, and parquet versions of the data. Just as importantly, reviewing published studies helps show which tasks remain difficult, inconsistent, or insufficiently documented, and therefore where package development could have the greatest practical value.
 
-The prototype package for this work is **[`usRds`](https://vagishhemmige.github.io/usRds/)**, which is designed to facilitate analysis of USRDS data in R.
+The prototype package for this work is **[{usRds}](https://vagishhemmige.github.io/usRds/)**, which is designed to facilitate analysis of USRDS data in R.

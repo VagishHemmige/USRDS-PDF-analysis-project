@@ -56,7 +56,7 @@ The `get_breakdown()` function creates descriptive summaries for a given human-r
 
 ## Function to add readable labels for tables
 
-The `add_label_for_gt()` function adds a `label` column to a results data frame by looking up each internal variable name in `label_list`. Variables without an entry in `label_list` keep their internal name as the label. It is used before building the kappa and breakdown `gt` tables so that rows display reader-friendly names.
+The `add_label_for_gt()` function adds a `label` column to a results data frame by looking up each internal variable name in `label_list`. Variables without an entry in `label_list` keep their internal name as the label. It is used before building the kappa and breakdown [{gt}](https://gt.rstudio.com/) tables so that rows display reader-friendly names.
 
 ```{r}
 #| label: fn-add-label
@@ -74,7 +74,7 @@ The `kappa_fill()` function maps each Cohen’s kappa value to a fill color, usi
 
 ## Function to create the kappa legend
 
-The `create_kappa_legend_gt()` function builds a small `gt` table that explains the color scale used by `kappa_fill()`, listing each agreement category with its color swatch and kappa range, plus a row for kappas that could not be estimated. It accompanies the kappa tables in the results pages, posters, and slides.
+The `create_kappa_legend_gt()` function builds a small {gt} table that explains the color scale used by `kappa_fill()`, listing each agreement category with its color swatch and kappa range, plus a row for kappas that could not be estimated. It accompanies the kappa tables in the results pages, posters, and slides.
 
 ```{r}
 #| label: fn-kappa-legend

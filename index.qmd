@@ -25,6 +25,8 @@ All analyses presented on this website are fully reproducible.
 
 The complete source code used to perform the full analysis and generate the tables and figures is publicly available at this [GitHub repo](https://github.com/VagishHemmige/USRDS-PDF-analysis-project).
 
+[Braces](https://forum.posit.co/t/curly-braces-around-package-name-convention/122547) identify R packages throughout this site.
+
 
 ## Abstracts/manuscripts
 

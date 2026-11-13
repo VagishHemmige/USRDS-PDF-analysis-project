@@ -75,7 +75,7 @@ This block converts the pairwise counts into a model-by-classification table. Ea
 - Human TRUE / LLM FALSE  
 - Human TRUE / LLM TRUE  
 
-This layout is useful because it makes false positives and false negatives directly visible. The result is then formatted as a `gt` table and saved both as a PNG image and as an `.rds` object for later reuse.
+This layout is useful because it makes false positives and false negatives directly visible. The result is then formatted as a [{gt}](https://gt.rstudio.com/) table and saved both as a PNG image and as an `.rds` object for later reuse.
 
 # Table: transplant-related study classification
 
@@ -97,7 +97,7 @@ The script then reports how long each LLM took to process the full dataset.
 #| eval: false
 ```
 
-This section is structurally the same as in the ATC analysis. The object `timing_table` is formatted as a `gt` table, with runtime shown in minutes, then saved for reuse. This provides an operational summary of the computational cost of running each model across the full corpus.
+This section is structurally the same as in the ATC analysis. The object `timing_table` is formatted as a {gt} table, with runtime shown in minutes, then saved for reuse. This provides an operational summary of the computational cost of running each model across the full corpus.
 
 # Restricting the dataset for detailed abstraction analysis
 
