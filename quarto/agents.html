@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9c6fd4a99ff4209dd1149a1765198857.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -483,7 +483,7 @@ edit that file, not this page. Its first heading is the page title.
 <ul>
 <li><strong><code>analysis-plan.md</code> is the source of truth for design.</strong> Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the decider. Once the decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.</li>
 <li><strong>Decider.</strong> Scientific decisions are made by Vagish Hemmige. Anyone may open or contribute to a decision issue; only the decider settles it (see “Working with agents”).</li>
-<li><strong>This is an analysis project, not an R package.</strong> Do not add DESCRIPTION, NAMESPACE, roxygen, or pkgdown infrastructure, or apply CRAN conventions.</li>
+<li><strong>This is an analysis project, not an R package.</strong> Do not add DESCRIPTION, NAMESPACE, roxygen, or <a href="https://pkgdown.r-lib.org/">{pkgdown}</a> infrastructure, or apply CRAN conventions.</li>
 <li><strong>Default branch:</strong> <code>master</code>. Changes from agents reach it only through pull requests.</li>
 </ul>
 </section>
@@ -504,7 +504,7 @@ edit that file, not this page. Its first heading is the page title.
 <tr class="odd">
 <td>Full-text PDFs of the sampled papers (PubMed search)</td>
 <td><code>pdftools::pdf_text()</code></td>
-<td><a href="https://docs.ropensci.org/pdftools/">pdftools</a></td>
+<td><a href="https://docs.ropensci.org/pdftools/">{pdftools}</a></td>
 <td>External</td>
 <td>Copyrighted; kept in <code>data-raw/</code>, not in the repository</td>
 <td>Refer to papers by PMID or citation. Do not upload PDFs or their extracted text to any outside service, or reproduce substantial passages</td>
@@ -512,7 +512,7 @@ edit that file, not this page. Its first heading is the page title.
 <tr class="even">
 <td>Manual abstraction spreadsheet (two reviewers)</td>
 <td><code>readxl::read_excel()</code></td>
-<td><a href="https://readxl.tidyverse.org/">readxl</a></td>
+<td><a href="https://readxl.tidyverse.org/">{readxl}</a></td>
 <td>External</td>
 <td>Internal; kept in <code>data-raw/</code>, not in the repository</td>
 <td>Report aggregate findings, not reviewer-by-reviewer content or reviewer identities, unless the decider asks</td>
@@ -520,7 +520,7 @@ edit that file, not this page. Its first heading is the page title.
 <tr class="odd">
 <td>OpenAI, Anthropic and Google model APIs</td>
 <td><code>ellmer::chat_openai()</code>, <code>chat_anthropic()</code>, <code>chat_google_gemini()</code></td>
-<td><a href="https://ellmer.tidyverse.org/">ellmer</a></td>
+<td><a href="https://ellmer.tidyverse.org/">{ellmer}</a></td>
 <td>External</td>
 <td>Paid API; keys in the user’s <code>.Renviron</code></td>
 <td>No calls without the decider’s explicit approval for that specific run, including a single test paper</td>
@@ -585,7 +585,7 @@ edit that file, not this page. Its first heading is the page title.
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
 <li>Tables are saved by the analysis scripts to <code>tables/&lt;strand&gt;/</code> and figures to <code>figures/&lt;strand&gt;/</code>, and both are tracked: they are what the website reads. Hand-edited documents (such as <code>ATC 2026 abstract/Tables.docx</code>) stay out of these folders.</li>
-<li>Results pages read the saved <code>gt</code> tables (<code>.rds</code>). They must be re-saved when a <code>gt</code> update can no longer print them; compare the <code>.html</code> tables before and after to confirm only formatting changed.</li>
+<li>Results pages read the saved <a href="https://gt.rstudio.com/">{gt}</a> tables (<code>.rds</code>). They must be re-saved when a {gt} update can no longer print them; compare the <code>.html</code> tables before and after to confirm only formatting changed.</li>
 <li>Published figures need alt text.</li>
 <li><code>README.Rmd</code> is the source of <code>README.md</code>; edit the <code>.Rmd</code> and re-knit.</li>
 </ul>
@@ -600,7 +600,7 @@ edit that file, not this page. Its first heading is the page title.
 <section id="coding-conventions" class="level2">
 <h2 class="anchored" data-anchor-id="coding-conventions">Coding conventions</h2>
 <ul>
-<li><strong>Paper flow</strong> uses the <code>flowchart</code> package, so the flow diagram and the analysed set of papers come from the same code. Every inclusion or exclusion goes through <code>fc_filter()</code>, in the plan’s order.</li>
+<li><strong>Paper flow</strong> uses the <a href="https://bruigtp.github.io/flowchart/">{flowchart}</a> package, so the flow diagram and the analysed set of papers come from the same code. Every inclusion or exclusion goes through <code>fc_filter()</code>, in the plan’s order.</li>
 <li><strong>Joins</strong> use <code>join_by()</code> with an explicit <code>relationship</code> where possible. After every join of model outputs to the human data, check that rows did not multiply, and decide deliberately what happens to unmatched papers.</li>
 <li><strong>Code that turns model output into reported numbers</strong> lives in named functions in <code>R/functions.R</code>, tested on synthetic data with a known answer.</li>
 <li><strong>Package APIs:</strong> read the help page and NEWS for the installed version before calling a package; don’t write calls from memory.</li>
@@ -612,7 +612,7 @@ edit that file, not this page. Its first heading is the page title.
 <p>Check the items that apply before opening a pull request.</p>
 <ul>
 <li><strong>Plan:</strong> does the change implement the plan as written, and does it leave every open decision open?</li>
-<li><strong>Paper selection and reference standard:</strong> do the PubMed search, dates, and inclusion and exclusion rules match the plan, and do counts reconcile across the methods text, flowchart and tables? Which reviewer sheet or adjudicated set does each analysis read? Do the human coding rules match the prompt rules (for example, stated versus inferred data files)? Are subjective or author-conflicted items (such as coverage by the maintainer’s <code>usRds</code> package) flagged for disclosure or excluded from accuracy metrics?</li>
+<li><strong>Paper selection and reference standard:</strong> do the PubMed search, dates, and inclusion and exclusion rules match the plan, and do counts reconcile across the methods text, flowchart and tables? Which reviewer sheet or adjudicated set does each analysis read? Do the human coding rules match the prompt rules (for example, stated versus inferred data files)? Are subjective or author-conflicted items (such as coverage by the maintainer’s <a href="https://vagishhemmige.github.io/usRds/">{usRds}</a> package) flagged for disclosure or excluded from accuracy metrics?</li>
 <li><strong>LLM extraction:</strong> does the prompt and schema wording match what is actually sent (full text versus abstract), including gating rules that force fields to FALSE? Does every model receive the same text, and is truncation logged per paper? Are model identifiers, parameters, run dates and repeat runs recorded? How are failed, empty or unparsed responses counted?</li>
 <li><strong>Merging and agreement:</strong> are joins free of duplicates and row multiplication, with counts before and after each join? Are denominators and subsets filtered on the reference standard, not on the outcome evaluated? Is κ reported as not estimable, not 0, when one rater has no variation, and are confidence intervals or prevalence-robust measures reported where positives are few? Is wall-clock time confounded by rate-limit waits?</li>
 <li><strong>Reported numbers:</strong> do tables, figures and site prose say what the code actually computes, and does the letter’s text match its tables?</li>

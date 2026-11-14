@@ -102,7 +102,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9c6fd4a99ff4209dd1149a1765198857.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -133,6 +133,17 @@ div.csl-indent {
   }
 }</script>
 <style>
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
+  background-image: none;
+}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -153,17 +164,6 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
-  background-image: none;
-}
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
   background-image: none;
 }
 </style>
@@ -520,15 +520,15 @@ gives this page GitHub-style IDs and those links work on both.
 <p><strong>Open:</strong> whether the human coding rules match the prompt’s rules. The prompt allows only explicitly stated programming languages, crosswalks and USRDS files, never inferred ones. The plan should state whether the reviewers followed the same rule, item by item. Decision issue not yet opened.</p>
 </div>
 <div class="pending-note">
-<p><strong>Open:</strong> how to treat the item on coverage by the <code>usRds</code> package, which is the maintainer’s own package: disclose it, or exclude it from the accuracy metrics. Decision issue not yet opened.</p>
+<p><strong>Open:</strong> how to treat the item on coverage by the <a href="https://vagishhemmige.github.io/usRds/">{usRds}</a> package, which is the maintainer’s own package: disclose it, or exclude it from the accuracy metrics. Decision issue not yet opened.</p>
 </div>
 </section>
 <section id="4-llm-extraction" class="level2">
 <h2 class="anchored" data-anchor-id="4-llm-extraction">4. LLM extraction</h2>
 <ul>
-<li><strong>Models:</strong> OpenAI <code>gpt-5.1</code>, Anthropic <code>claude-sonnet-4-5</code> and Google <code>gemini-2.5-flash</code>, called through the <code>ellmer</code> R package with structured output, one call per paper, with the same prompt and a 44-field schema.</li>
+<li><strong>Models:</strong> OpenAI <code>gpt-5.1</code>, Anthropic <code>claude-sonnet-4-5</code> and Google <code>gemini-2.5-flash</code>, called through the <a href="https://ellmer.tidyverse.org/">{ellmer}</a> R package with structured output, one call per paper, with the same prompt and a 44-field schema.</li>
 <li><strong>Prompt rules:</strong> details count only when stated in the paper; programming languages, crosswalks and USRDS files are never inferred; if USRDS or Medicare ESRD program data are not mentioned, the paper is coded as not a new analysis and its file and data-component fields as FALSE.</li>
-<li><strong>Text sent:</strong> text extracted from each PDF with <code>pdftools</code>. GPT was sent all pages up to 240,000 characters, cut by 10% on each rate-limit retry down to 5,000 characters; Claude and Gemini were sent the first 50 pages up to 240,000 characters.</li>
+<li><strong>Text sent:</strong> text extracted from each PDF with <a href="https://CRAN.R-project.org/package=pdftools">{pdftools}</a>. GPT was sent all pages up to 240,000 characters, cut by 10% on each rate-limit retry down to 5,000 characters; Claude and Gemini were sent the first 50 pages up to 240,000 characters.</li>
 </ul>
 <div class="pending-note">
 <p><strong>Open:</strong> whether the difference in text sent is accepted and disclosed, or the extraction repeated with the same input for every model; and whether the characters actually sent per paper can be recovered. Decision issue not yet opened.</p>
@@ -560,7 +560,7 @@ gives this page GitHub-style IDs and those links work on both.
 <ul>
 <li>The plan was written after the analysis.</li>
 <li>The models did not all receive the same text.</li>
-<li>The <code>usRds</code> coverage item concerns the maintainer’s own package.</li>
+<li>The {usRds} coverage item concerns the maintainer’s own package.</li>
 </ul>
 </section>
 <section id="7-reporting-map" class="level2">

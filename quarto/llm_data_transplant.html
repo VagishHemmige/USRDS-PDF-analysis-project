@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-66ae90e4418e9d0ac3caa4b8c3bef75c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9c6fd4a99ff4209dd1149a1765198857.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.js"></script>
 <link href="../site_libs/quarto-contrib/issue-comments-0.3.0/issue-comments.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -114,17 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
-  background-image: none;
-}
 div.callout-Rcode.callout {
   border-left-color: pink;
 }
@@ -134,6 +123,17 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 div.callout-Results.callout {
@@ -522,7 +522,7 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(timing_gt, <span class="st">"tables/llm_transplant/timing_table_atc.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Here, the object <code>timing_table</code> is converted into a formatted <code>gt</code> table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:</p>
+<p>Here, the object <code>timing_table</code> is converted into a formatted <a href="https://gt.rstudio.com/">{gt}</a> table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:</p>
 <ul>
 <li>a <code>.png</code> image for insertion into slides, posters, or webpages, and<br>
 </li>
@@ -686,7 +686,7 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 </details>
 </div>
 <p>This line applies the helper function <code>get_breakdown()</code> across all human-reviewed variables. Rather than summarizing agreement as a single kappa statistic, this step produces numerator/denominator counts and percentages for each model within each human category. These descriptive summaries complement the kappa table by showing the underlying distribution of matches.</p>
-<p>The resulting dataset is then formatted as a <code>gt</code> table.</p>
+<p>The resulting dataset is then formatted as a {gt} table.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -1413,7 +1413,7 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 <span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>Here, the object <span class="in">`timing_table`</span> is converted into a formatted <span class="in">`gt`</span> table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>Here, the object <span class="in">`timing_table`</span> is converted into a formatted <span class="co">[</span><span class="ot">{gt}</span><span class="co">](https://gt.rstudio.com/)</span> table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:</span>
 <span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a <span class="in">`.png`</span> image for insertion into slides, posters, or webpages, and  </span>
 <span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>an <span class="in">`.rds`</span> object for later reuse in Quarto pages or other R scripts.</span>
@@ -1482,7 +1482,7 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 <span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>This line applies the helper function <span class="in">`get_breakdown()`</span> across all human-reviewed variables. Rather than summarizing agreement as a single kappa statistic, this step produces numerator/denominator counts and percentages for each model within each human category. These descriptive summaries complement the kappa table by showing the underlying distribution of matches.</span>
 <span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>The resulting dataset is then formatted as a <span class="in">`gt`</span> table.</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>The resulting dataset is then formatted as a {gt} table.</span>
 <span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: breakdown-gt-atc</span></span>
