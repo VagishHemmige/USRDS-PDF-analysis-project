@@ -13,7 +13,7 @@ The code in this script imports libraries, initializes constants, and performs o
 knitr::read_chunk("../R/setup.R")
 
 # Packages needed to render the documentation tables
-library(tidyverse)
+library(tibble)
 library(gt)
 ```
 
