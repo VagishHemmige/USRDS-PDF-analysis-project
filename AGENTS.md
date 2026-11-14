@@ -21,16 +21,16 @@ Outputs feed several products: the reporting-practices letter, the LLM validatio
 
 - **`analysis-plan.md` is the source of truth for design.** Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the decider. Once the decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.
 - **Decider.** Scientific decisions are made by Vagish Hemmige. Anyone may open or contribute to a decision issue; only the decider settles it (see "Working with agents").
-- **This is an analysis project, not an R package.** Do not add DESCRIPTION, NAMESPACE, roxygen, or pkgdown infrastructure, or apply CRAN conventions.
+- **This is an analysis project, not an R package.** Do not add DESCRIPTION, NAMESPACE, roxygen, or [{pkgdown}](https://pkgdown.r-lib.org/) infrastructure, or apply CRAN conventions.
 - **Default branch:** `master`. Changes from agents reach it only through pull requests.
 
 ## Data sources
 
 | Source | Accessed through | Package documentation | Package maintained by | Access | What AI agents may do |
 |---|---|---|---|---|---|
-| Full-text PDFs of the sampled papers (PubMed search) | `pdftools::pdf_text()` | [pdftools](https://docs.ropensci.org/pdftools/) | External | Copyrighted; kept in `data-raw/`, not in the repository | Refer to papers by PMID or citation. Do not upload PDFs or their extracted text to any outside service, or reproduce substantial passages |
-| Manual abstraction spreadsheet (two reviewers) | `readxl::read_excel()` | [readxl](https://readxl.tidyverse.org/) | External | Internal; kept in `data-raw/`, not in the repository | Report aggregate findings, not reviewer-by-reviewer content or reviewer identities, unless the decider asks |
-| OpenAI, Anthropic and Google model APIs | `ellmer::chat_openai()`, `chat_anthropic()`, `chat_google_gemini()` | [ellmer](https://ellmer.tidyverse.org/) | External | Paid API; keys in the user's `.Renviron` | No calls without the decider's explicit approval for that specific run, including a single test paper |
+| Full-text PDFs of the sampled papers (PubMed search) | `pdftools::pdf_text()` | [{pdftools}](https://docs.ropensci.org/pdftools/) | External | Copyrighted; kept in `data-raw/`, not in the repository | Refer to papers by PMID or citation. Do not upload PDFs or their extracted text to any outside service, or reproduce substantial passages |
+| Manual abstraction spreadsheet (two reviewers) | `readxl::read_excel()` | [{readxl}](https://readxl.tidyverse.org/) | External | Internal; kept in `data-raw/`, not in the repository | Report aggregate findings, not reviewer-by-reviewer content or reviewer identities, unless the decider asks |
+| OpenAI, Anthropic and Google model APIs | `ellmer::chat_openai()`, `chat_anthropic()`, `chat_google_gemini()` | [{ellmer}](https://ellmer.tidyverse.org/) | External | Paid API; keys in the user's `.Renviron` | No calls without the decider's explicit approval for that specific run, including a single test paper |
 | Saved model outputs | `readRDS()`, `readr::read_csv()` | | | Kept in `Results/`, not in the repository | Read when provided; they are research records, not disposable caches |
 
 **For every package:** read its documentation before writing code for a source, including known issues. Behavior that sets which papers are included, how an answer is coded, or a denominator is checked in the documentation, not assumed from a function's name.
@@ -83,7 +83,7 @@ The site documents the code. It does not run the analysis.
 ## Outputs
 
 - Tables are saved by the analysis scripts to `tables/<strand>/` and figures to `figures/<strand>/`, and both are tracked: they are what the website reads. Hand-edited documents (such as `ATC 2026 abstract/Tables.docx`) stay out of these folders.
-- Results pages read the saved `gt` tables (`.rds`). They must be re-saved when a `gt` update can no longer print them; compare the `.html` tables before and after to confirm only formatting changed.
+- Results pages read the saved [{gt}](https://gt.rstudio.com/) tables (`.rds`). They must be re-saved when a {gt} update can no longer print them; compare the `.html` tables before and after to confirm only formatting changed.
 - Published figures need alt text.
 - `README.Rmd` is the source of `README.md`; edit the `.Rmd` and re-knit.
 
@@ -94,7 +94,7 @@ The site documents the code. It does not run the analysis.
 
 ## Coding conventions
 
-- **Paper flow** uses the `flowchart` package, so the flow diagram and the analysed set of papers come from the same code. Every inclusion or exclusion goes through `fc_filter()`, in the plan's order.
+- **Paper flow** uses the [{flowchart}](https://bruigtp.github.io/flowchart/) package, so the flow diagram and the analysed set of papers come from the same code. Every inclusion or exclusion goes through `fc_filter()`, in the plan's order.
 - **Joins** use `join_by()` with an explicit `relationship` where possible. After every join of model outputs to the human data, check that rows did not multiply, and decide deliberately what happens to unmatched papers.
 - **Code that turns model output into reported numbers** lives in named functions in `R/functions.R`, tested on synthetic data with a known answer.
 - **Package APIs:** read the help page and NEWS for the installed version before calling a package; don't write calls from memory.
@@ -105,7 +105,7 @@ The site documents the code. It does not run the analysis.
 Check the items that apply before opening a pull request.
 
 - **Plan:** does the change implement the plan as written, and does it leave every open decision open?
-- **Paper selection and reference standard:** do the PubMed search, dates, and inclusion and exclusion rules match the plan, and do counts reconcile across the methods text, flowchart and tables? Which reviewer sheet or adjudicated set does each analysis read? Do the human coding rules match the prompt rules (for example, stated versus inferred data files)? Are subjective or author-conflicted items (such as coverage by the maintainer's `usRds` package) flagged for disclosure or excluded from accuracy metrics?
+- **Paper selection and reference standard:** do the PubMed search, dates, and inclusion and exclusion rules match the plan, and do counts reconcile across the methods text, flowchart and tables? Which reviewer sheet or adjudicated set does each analysis read? Do the human coding rules match the prompt rules (for example, stated versus inferred data files)? Are subjective or author-conflicted items (such as coverage by the maintainer's [{usRds}](https://vagishhemmige.github.io/usRds/) package) flagged for disclosure or excluded from accuracy metrics?
 - **LLM extraction:** does the prompt and schema wording match what is actually sent (full text versus abstract), including gating rules that force fields to FALSE? Does every model receive the same text, and is truncation logged per paper? Are model identifiers, parameters, run dates and repeat runs recorded? How are failed, empty or unparsed responses counted?
 - **Merging and agreement:** are joins free of duplicates and row multiplication, with counts before and after each join? Are denominators and subsets filtered on the reference standard, not on the outcome evaluated? Is κ reported as not estimable, not 0, when one rater has no variation, and are confidence intervals or prevalence-robust measures reported where positives are few? Is wall-clock time confounded by rate-limit waits?
 - **Reported numbers:** do tables, figures and site prose say what the code actually computes, and does the letter's text match its tables?

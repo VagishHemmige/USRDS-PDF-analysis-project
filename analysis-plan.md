@@ -32,13 +32,13 @@ Each paper was reviewed independently by two reviewers using the abstraction for
 
 **Open:** whether the human coding rules match the prompt's rules. The prompt allows only explicitly stated programming languages, crosswalks and USRDS files, never inferred ones. The plan should state whether the reviewers followed the same rule, item by item. Decision issue not yet opened.
 
-**Open:** how to treat the item on coverage by the `usRds` package, which is the maintainer's own package: disclose it, or exclude it from the accuracy metrics. Decision issue not yet opened.
+**Open:** how to treat the item on coverage by the [{usRds}](https://vagishhemmige.github.io/usRds/) package, which is the maintainer's own package: disclose it, or exclude it from the accuracy metrics. Decision issue not yet opened.
 
 ## 4. LLM extraction
 
-- **Models:** OpenAI `gpt-5.1`, Anthropic `claude-sonnet-4-5` and Google `gemini-2.5-flash`, called through the `ellmer` R package with structured output, one call per paper, with the same prompt and a 44-field schema.
+- **Models:** OpenAI `gpt-5.1`, Anthropic `claude-sonnet-4-5` and Google `gemini-2.5-flash`, called through the [{ellmer}](https://ellmer.tidyverse.org/) R package with structured output, one call per paper, with the same prompt and a 44-field schema.
 - **Prompt rules:** details count only when stated in the paper; programming languages, crosswalks and USRDS files are never inferred; if USRDS or Medicare ESRD program data are not mentioned, the paper is coded as not a new analysis and its file and data-component fields as FALSE.
-- **Text sent:** text extracted from each PDF with `pdftools`. GPT was sent all pages up to 240,000 characters, cut by 10% on each rate-limit retry down to 5,000 characters; Claude and Gemini were sent the first 50 pages up to 240,000 characters.
+- **Text sent:** text extracted from each PDF with [{pdftools}](https://CRAN.R-project.org/package=pdftools). GPT was sent all pages up to 240,000 characters, cut by 10% on each rate-limit retry down to 5,000 characters; Claude and Gemini were sent the first 50 pages up to 240,000 characters.
 
 **Open:** whether the difference in text sent is accepted and disclosed, or the extraction repeated with the same input for every model; and whether the characters actually sent per paper can be recovered. Decision issue not yet opened.
 
@@ -61,7 +61,7 @@ Each paper was reviewed independently by two reviewers using the abstraction for
 
 - The plan was written after the analysis.
 - The models did not all receive the same text.
-- The `usRds` coverage item concerns the maintainer's own package.
+- The {usRds} coverage item concerns the maintainer's own package.
 
 ## 7. Reporting map
 

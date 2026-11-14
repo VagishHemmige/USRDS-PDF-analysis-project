@@ -60,7 +60,7 @@ The next section formats a simple table showing how long each LLM took to proces
 #| eval: false
 ```
 
-Here, the object `timing_table` is converted into a formatted `gt` table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:
+Here, the object `timing_table` is converted into a formatted [{gt}](https://gt.rstudio.com/) table. The reported quantity is wall-clock time in minutes, which reflects the total elapsed time needed for each model to run across the full dataset. The table is then saved in two formats:
 
 - a `.png` image for insertion into slides, posters, or webpages, and  
 - an `.rds` object for later reuse in Quarto pages or other R scripts.
@@ -129,7 +129,7 @@ In addition to kappa, the script generates a more descriptive table that shows t
 
 This line applies the helper function `get_breakdown()` across all human-reviewed variables. Rather than summarizing agreement as a single kappa statistic, this step produces numerator/denominator counts and percentages for each model within each human category. These descriptive summaries complement the kappa table by showing the underlying distribution of matches.
 
-The resulting dataset is then formatted as a `gt` table.
+The resulting dataset is then formatted as a {gt} table.
 
 ```{r}
 #| label: breakdown-gt-atc

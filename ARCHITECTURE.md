@@ -6,7 +6,7 @@ How the analysis is implemented: the scripts, the order they run in, what each n
 
 The project evaluates whether large language models (LLMs) can extract study characteristics from published papers that use United States Renal Data System (USRDS) data, compared with manual review by two reviewers. A second strand reports the reporting practices found by manual review, for a letter.
 
-`R/main.R` runs the analysis in dependency order. It never calls a model: it reads the saved model runs listed in `model_runs` (`R/setup.R`), and the extraction scripts, which call paid model APIs, run only when `run_extraction` is set to `TRUE`. The analysis scripts read the saved runs and the reviewer spreadsheet, and save `gt` tables to `tables/<strand>/` and `ggplot2` and `flowchart` figures to `figures/<strand>/`. The Quarto website shows the code without running it and displays the saved tables.
+`R/main.R` runs the analysis in dependency order. It never calls a model: it reads the saved model runs listed in `model_runs` (`R/setup.R`), and the extraction scripts, which call paid model APIs, run only when `run_extraction` is set to `TRUE`. The analysis scripts read the saved runs and the reviewer spreadsheet, and save [{gt}](https://gt.rstudio.com/) tables to `tables/<strand>/` and [{ggplot2}](https://ggplot2.tidyverse.org/) and [{flowchart}](https://bruigtp.github.io/flowchart/) figures to `figures/<strand>/`. The Quarto website shows the code without running it and displays the saved tables.
 
 ## Data flow
 
@@ -61,7 +61,7 @@ flowchart TD
 
 **`R/abstract_schema.R`** defines the prompt, `id_prompt()`, and the structured output type, `type_summary` (44 fields), shared by the three extraction scripts.
 
-**`R/extract_gpt.R`**, **`R/extract_claude.R`** and **`R/extract_gemini.R`** each stop at once unless `run_extraction` is `TRUE`. When allowed to run, each reads every PDF in `data-raw/PDFs` with `pdftools::pdf_text()`, sends the text with the prompt through `ellmer` (`chat_openai()` with `gpt-5.1`, `chat_anthropic()` with `claude-sonnet-4-5`, `chat_google_gemini()` with `gemini-2.5-flash`) and `chat_structured()`, one call per paper, and saves the replies in `Results/ChatGPT/`, `Results/Claude/` and `Results/Gemini/`. Each loads its own packages, keeps a job-status or processed-files record and partial checkpoints so a run can resume, retries on rate limits, and in an interactive RStudio session offers to delete its saved files and start over. A new run overwrites the saved files at the paths in `model_runs`.
+**`R/extract_gpt.R`**, **`R/extract_claude.R`** and **`R/extract_gemini.R`** each stop at once unless `run_extraction` is `TRUE`. When allowed to run, each reads every PDF in `data-raw/PDFs` with `pdftools::pdf_text()`, sends the text with the prompt through [{ellmer}](https://ellmer.tidyverse.org/) (`chat_openai()` with `gpt-5.1`, `chat_anthropic()` with `claude-sonnet-4-5`, `chat_google_gemini()` with `gemini-2.5-flash`) and `chat_structured()`, one call per paper, and saves the replies in `Results/ChatGPT/`, `Results/Claude/` and `Results/Gemini/`. Each loads its own packages, keeps a job-status or processed-files record and partial checkpoints so a run can resume, retries on rate limits, and in an interactive RStudio session offers to delete its saved files and start over. A new run overwrites the saved files at the paths in `model_runs`.
 
 The text sent differs between scripts. The GPT script sends all pages, up to 240,000 characters, and cuts the text by 10% on each rate-limit retry, down to 5,000 characters. The Claude and Gemini scripts send the first 50 pages, up to 240,000 characters. These scripts have no chunk labels; the LLM data extraction page shows their code directly.
 
@@ -71,7 +71,7 @@ The text sent differs between scripts. The GPT script sends all pages, up to 240
 
 ### Analyses
 
-**`R/manual_data.R`** reads the reviewer sheet itself, keeps only rows marked as confirmed, builds the paper-flow diagram with `flowchart`, a table of included papers, and three `gtsummary` tables (overall, by transplant relevance, by transplant study type). Tables go to `tables/manual/`, the flow diagram to `figures/manual/`. It does not use the model outputs.
+**`R/manual_data.R`** reads the reviewer sheet itself, keeps only rows marked as confirmed, builds the paper-flow diagram with {flowchart}, a table of included papers, and three [{gtsummary}](https://www.danieldsjoberg.com/gtsummary/) tables (overall, by transplant relevance, by transplant study type). Tables go to `tables/manual/`, the flow diagram to `figures/manual/`. It does not use the model outputs.
 
 **`R/llm_data_full.R`** (all papers) cross-tabulates each model against the humans for the new-analysis and transplant classifications, restricts to papers the humans coded as new USRDS analyses (`df_filt_full`), computes κ per variable for each model, builds the κ table, its legend and the breakdown table, and draws heatmaps. Tables go to `tables/llm_full/`, heatmaps to `figures/llm_full/`.
 
@@ -79,7 +79,7 @@ The text sent differs between scripts. The GPT script sends all pages, up to 240
 
 ### Website
 
-`_quarto.yml` and the pages in `quarto/` form a Quarto website rendered to `docs/` (not tracked) and published to the `gh-pages` branch by `.github/workflows/publish.yml` on every push to `master`; pull requests get a render check. The workflow installs only `knitr`, `rmarkdown`, `gt` and `tibble`: code pages import their script's labelled sections with `knitr::read_chunk()` and show them with `eval: false`, and results pages load `gt` and print the saved tables (`.rds`) from `tables/`. The Project documents pages include this file, `analysis-plan.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md` from the root. Reader comments use the `issue-comments` extension, and `quarto/_pending.lua` marks provisional content.
+`_quarto.yml` and the pages in `quarto/` form a Quarto website rendered to `docs/` (not tracked) and published to the `gh-pages` branch by `.github/workflows/publish.yml` on every push to `master`; pull requests get a render check. The workflow installs only [{knitr}](https://yihui.org/knitr/), [{rmarkdown}](https://rmarkdown.rstudio.com/), {gt} and [{tibble}](https://tibble.tidyverse.org/): code pages import their script's labelled sections with `knitr::read_chunk()` and show them with `eval: false`, and results pages load {gt} and print the saved tables (`.rds`) from `tables/`. The Project documents pages include this file, `analysis-plan.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md` from the root. Reader comments use the `issue-comments` extension, and `quarto/_pending.lua` marks provisional content.
 
 The methods diagram, `images/llm-extraction-methods.png`, is generated by `images/llm-extraction/draw.py` (Python standard library) and committed; the site does not run Python.
 
@@ -94,7 +94,7 @@ From the project root, in a fresh session: `source("R/main.R")`. With the saved 
 | `data-raw/` | PDFs and the reviewer spreadsheet | No |
 | `Results/` | Saved model runs, job status and checkpoints | No |
 | `Archive/` | Superseded material | No |
-| `tables/<strand>/` | Saved `gt` tables (`.rds`, `.html`, `.png`) | Yes |
+| `tables/<strand>/` | Saved {gt} tables (`.rds`, `.html`, `.png`) | Yes |
 | `figures/<strand>/` | Heatmaps and the paper-flow diagram (`.png`, `.svg`) | Yes |
 | `ATC 2026 abstract/Tables.docx` | Hand-edited abstract tables; no script writes it | Yes |
 | `Kidney conference abstract/timing_table_atc.png` | A timing table no current script writes | Yes |
